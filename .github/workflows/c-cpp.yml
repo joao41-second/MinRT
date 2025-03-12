@@ -12,11 +12,11 @@ jobs:
       - run : python3 -m pip install norminette
       - run : | 
           norminette 
-          if [ $? -ne 1 ]; then 
-          echo "norminette not correctly $?"
-          exit 1
+          if [ $? -eq 0 ]; then 
+            echo "✅ Norminette passed successfully! exit $?"
           else 
-          echo "error our not error $?"
+            echo "❌ Norminette found style errors! exit $?"
+          exit 1
           fi
       - name: Check out repository code
         uses: actions/checkout@v4
