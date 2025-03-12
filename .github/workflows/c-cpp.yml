@@ -13,7 +13,7 @@ jobs:
       - run : | 
           norminette 
           if [ $? -ne 1 ]; then 
-          echo "norminette not correctly"
+          echo "norminette not correctly $?"
           exit 1
           else 
           echo "error our not error $?"
