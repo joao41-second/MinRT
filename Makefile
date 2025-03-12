@@ -6,7 +6,7 @@
 #    By: rui <rui@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/03/12 13:43:27 by jperpct          ###   ########.fr        #
+#    Updated: 2025/03/12 13:48:52 by jperpct          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ RM = rm -f
 CAT = cat number.txt
 
 # Output
-NAME = minRT
+NAME = miniRT
 OBJDIR = Objs
 
 # Create object directory if it doesn't exist
