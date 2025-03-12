@@ -11,7 +11,7 @@ jobs:
       - run : sudo apt-get install ruby ruby-bundler ruby-dev build-essential
       - run : git clone https://github.com/42Paris/norminette.git ~/.norminette/
       - run : cd ~/.norminette/
-      - run : pwd
+      - run : bundle
       - run : norminette
       - name: Check out repository code
         uses: actions/checkout@v4
