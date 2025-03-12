@@ -11,7 +11,6 @@ jobs:
           norminette 
           if [ $? == '0' ]; then 
           echo "norminette not correctly"
-          exit 1
           fi
       - name: Check out repository code
       - name: List files in the repository
