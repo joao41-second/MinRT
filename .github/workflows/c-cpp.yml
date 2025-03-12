@@ -7,10 +7,11 @@ jobs:
     steps:
       - run : python3 -m pip install --upgrade pip setuptools
       - run : python3 -m pip install norminette
-      - run : | norminette if [ $? -ne 0]; then 
+      - run : | 
+          norminette 
+          if [ $? -ne 0 ]; then 
           echo "norminette not correctly"
           exit 1
           fi
-        rses: actions/checkout@v4
       - name: Check out repository code
       - name: List files in the repository
