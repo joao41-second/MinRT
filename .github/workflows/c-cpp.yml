@@ -11,7 +11,8 @@ jobs:
       - run : sudo apt-get install ruby ruby-bundler ruby-dev build-essential
       - run : git clone https://github.com/42Paris/norminette.git ~/.norminette/
       - run : cd ~/.norminette/
-      - run : ls
+      - run : pwd
+      - run : norminette
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
