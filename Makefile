@@ -6,14 +6,15 @@
 #    By: rui <rui@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2024/12/13 16:17:03 by rui              ###   ########.fr        #
+#    Updated: 2025/03/12 13:43:27 by jperpct          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler flags
 #WFLGS = -Wall -Wextra -Werror
 READ_FLG = -g 
-FLGS = $(WFLGS) $(READ_FLG)
+MINILIB_FLG = -Lminilibx-linux -lmlx_Linux -lX11 -lXext 
+FLGS = $(WFLGS) $(READ_FLG) $(MINILIB_FLG)
 
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --trace-children=yes --suppressions=readline.supp 
 
@@ -49,7 +50,9 @@ $(OBJDIR)/%.o: src/%.c
 
 # Main target
 $(NAME): $(OBJS)
-	cd libft && make compile && make
+	cd libft && make compile && make	
+	rm -fr minilibx-linux
+	git clone https://github.com/42paris/minilibx-linux.git	&& cd minilibx-linux  && make 
 	$(CC) $(FLGS) $(OBJS) $(LIB) -lreadline -o $(NAME)
 	@echo "╔══════════════════════════╗"
 	@echo "║ ✅ Compiled Successfully!║"
