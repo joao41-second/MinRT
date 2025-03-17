@@ -51,8 +51,6 @@ $(OBJDIR)/%.o: src/%.c
 # Main target
 $(NAME): $(OBJS)
 	cd libft && make compile && make	
-	rm -fr minilibx-linux
-	git clone https://github.com/42paris/minilibx-linux.git	&& cd minilibx-linux  && make 
 	$(CC) $(FLGS) $(OBJS) $(LIB) -lreadline -o $(NAME)
 	@echo "╔══════════════════════════╗"
 	@echo "║ ✅ Compiled Successfully!║"
