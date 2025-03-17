@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:33:28 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/17 16:19:52 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/17 16:28:07 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ t_color colors_multipl(t_color c1,t_color c2);
 
 void canva_inicializ(int x, int y, t_color base);
 
+void canva_set_pixel(int x,int y, t_color base );
 
+void canva_update();
+
+void canva_close();
 
 
 #endif
