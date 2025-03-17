@@ -1,7 +1,8 @@
-minishell
+miniRT
 *.a
 *.o
 /Objs
 .nfs*
 *.out
 .swp
+/minilibx-linux
