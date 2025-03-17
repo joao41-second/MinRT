@@ -10,6 +10,9 @@
 [submodule "libft/ft_get_next_line"]
 	path = libft/ft_get_next_line
 	url = git@github.com:joao41-second/ft_get_next_line.git
+[submodule "libft/ft_libft"]
+	path = libft/libft
+	url = git@github.com:joao41-second/ft_libft.git
 [submodule "libft/minilibx-linux"]
 	path = libft/minilibx-linux
 	url = https://github.com/42paris/minilibx-linux.git

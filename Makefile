@@ -28,7 +28,7 @@ SRCS = $(shell find src -name '*.c')
 OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))
 
 # Libraries
-LIB = ./libft/libft.a ./libft/libftprintf.a ./libft/get_next_line.a 
+LIB = ./libft/ft_libft/ft_libft.a ./libft/ft_printf/libftprintf.a ./libft/ft_free/ft_free.a
 
 # Commands
 AR = ar rcs
@@ -50,7 +50,11 @@ $(OBJDIR)/%.o: src/%.c
 
 # Main target
 $(NAME): $(OBJS)
-	cd libft && make compile && make	
+	cd libft/ft_free  && make 
+	cd libft/ft_libft && make bonos 
+	cd libft/ft_printf && make 
+	cd libft/ft_get_next_line && make 
+	cd libft/minilibx-linux && make
 	$(CC) $(FLGS) $(OBJS) $(LIB) -lreadline -o $(NAME)
 	@echo "╔══════════════════════════╗"
 	@echo "║ ✅ Compiled Successfully!║"
@@ -68,7 +72,10 @@ all: $(NAME)
 
 clean:
 	$(RM) -r $(OBJDIR)
-	cd ./libft && make clean
+	cd libft/ft_free  && make 
+	cd libft/ft_libft && make bonos 
+	cd libft/ft_printf && make 
+	cd libft/ft_get_next_line && make 
 
 fclean: clean
 	$(RM) $(NAME)

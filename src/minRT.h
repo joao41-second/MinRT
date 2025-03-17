@@ -16,9 +16,10 @@
 # define TRUE 0
 # define FALSE 1
 
-# include "../libft/Get_next_line/get_next_line_bonus.h"
-# include "../libft/libft/libft.h"
-# include "../libft/printf/ft_printf.h"
+# include "../libft/ft_get_next_line/get_next_line_bonus.h"
+# include "../libft/ft_free/ft_free.h"
+# include "../libft/ft_printf/ft_printf.h"
+# include "../libft/minilibx-linux/mlx.h"
 # include <asm-generic/errno.h>
 # include <fcntl.h>
 # include <limits.h>
