@@ -11,7 +11,7 @@ jobs:
       - run : python3 -m pip install --upgrade pip setuptools
       - run : python3 -m pip install norminette
       - run : | 
-          norminette /src/ 
+          norminette ./src/ 
           if [ $? -eq 0 ]; then 
             echo "✅ Norminette passed successfully! exit $?"
           else 
