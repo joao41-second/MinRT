@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:33:28 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 12:08:09 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:30:20 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,5 @@ void canva_inicializ(t_minirt *rt_struct,int x, int y, t_color base);
 void canva_set_pixel(t_minirt *rt_struct,int x,int y, t_color base );
 
 void canva_update(t_minirt *rt_struct);
-
-int canva_close(int keycode, t_minirt *rt_struct);
-
 
 #endif

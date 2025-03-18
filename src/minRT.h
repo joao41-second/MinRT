@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 11:21:39 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 09:05:46 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:33:50 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # include <unistd.h>
 
 # include "./miniRT_struct.h"
+# include "./loop/loop.h"
 # include "./canvas/canvas.h"
 
 #endif

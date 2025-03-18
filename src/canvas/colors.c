@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:42:48 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/17 16:19:58 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:29:58 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ t_color colors_multipl(t_color c1,t_color c2)
 {
 	return (color_new(c1.red * c2.red , c1.green * c2.green, c1.blue * c2.blue));
 }
+
 
 
