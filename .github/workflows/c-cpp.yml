@@ -10,12 +10,12 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - run : python3 -m pip install --upgrade pip setuptools
       - run : python3 -m pip install norminette
-      - run : git pull
-      - run : cd ..
+      - run : git clone git@github.com:joao41-second/MinRT.git
+      - run : cd MiniRT
       - run : ls
       - run : pwd
       - run : | 
-          norminette 
+          norminette ./src/
           if [ $? -eq 0 ]; then 
             echo "✅ Norminette passed successfully! exit $?"
           else 
