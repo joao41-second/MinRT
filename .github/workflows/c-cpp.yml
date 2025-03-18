@@ -8,9 +8,9 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - run : ls
       - run : python3 -m pip install --upgrade pip setuptools
       - run : python3 -m pip install norminette
-      - run : git clone git@github.com:joao41-second/MinRT.git
       - run : cd MiniRT
       - run : ls
       - run : pwd
