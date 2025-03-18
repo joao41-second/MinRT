@@ -6,18 +6,17 @@
 #    By: rui <rui@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/03/12 13:48:52 by jperpct          ###   ########.fr        #
+#    Updated: 2025/03/18 13:19:31 by jperpct          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler flags
 #WFLGS = -Wall -Wextra -Werror
 READ_FLG = -g 
-MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext 
+MINILIB_FLG = -lX11 -lXext 
 FLGS = $(WFLGS) $(READ_FLG) $(MINILIB_FLG)
 
-VAL = valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --trace-children=yes --suppressions=readline.supp 
-
+VAL = valgrind --leak-check=full  
 # Make flags
 MAKEFLAGS += -s
 
@@ -28,7 +27,8 @@ SRCS = $(shell find src -name '*.c')
 OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))
 
 # Libraries
-LIB = ./libft/ft_libft/libft.a ./libft/ft_printf/libftprintf.a ./libft/ft_free/ft_free.a
+LIB = ./libft/ft_libft/libft.a ./libft/ft_printf/libftprintf.a ./libft/ft_free/ft_free.a \
+./libft/minilibx-linux/libmlx.a ./libft/minilibx-linux/libmlx_Linux.a \
 
 # Commands
 AR = ar rcs
@@ -83,11 +83,11 @@ fclean: clean
 re: fclean all
 
 s:
-	clear && make re && ./minishell
+	clear && make re && ./$(NAME)
 v:
-	clear && make re && $(VAL) ./minishell
+	clear && make re && $(VAL) ./$(NAME)
 e:
-	make re && env -i ./minishell
+	make re && env -i ./$(NAME)
 b:
 	tmux \; split-window -h \; send-keys 'bash' C-m \; select-pane -t 1 \; send-keys 'make s' C-m \; setw synchronize-panes on
 g:

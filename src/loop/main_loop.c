@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 11:19:42 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 15:56:28 by jperpct          ###   ########.fr       */
+/*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
+/*   Updated: 2025/03/18 15:51:54 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minRT.h"
-#include "miniRT_struct.h"
+#include "../minRT.h"
 
-int	main(int ac, char **av, char **env)
+void	main_loop(t_minirt *rt_struct)
 {
-	t_minirt	rt_struct;
+	int	i;
+	int	a;
 
-	(void)ac;
-	(void)av;
-	ft_start_alloc();
-	canva_inicializ(&rt_struct, 200, 100, c_new(0, 0, 0));
-	return (0);
+	i = 0;
+	while (i < 100)
+	{
+		a = 0;
+		while (a < 100)
+		{
+			canva_set_pixel(rt_struct, a, i, c_new(255.0, 1.0, 100.0));
+			a++;
+		}
+		i++;
+	}
+	canva_update(rt_struct);
 }

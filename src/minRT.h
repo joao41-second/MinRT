@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 11:21:39 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/12 11:22:51 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:33:50 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@
 # define TRUE 0
 # define FALSE 1
 
-# include "../libft/ft_get_next_line/get_next_line_bonus.h"
 # include "../libft/ft_free/ft_free.h"
+# include "../libft/ft_get_next_line/get_next_line_bonus.h"
 # include "../libft/ft_printf/ft_printf.h"
 # include "../libft/minilibx-linux/mlx.h"
+# include "../libft/minilibx-linux/mlx_int.h"
+# include "./canvas/canvas.h"
+# include "./loop/loop.h"
+# include "./miniRT_struct.h"
 # include <asm-generic/errno.h>
 # include <fcntl.h>
 # include <limits.h>
