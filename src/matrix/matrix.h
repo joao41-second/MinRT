@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 11:19:42 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 20:01:41 by jperpct          ###   ########.fr       */
+/*   Created: 2025/03/18 17:44:00 by jperpct           #+#    #+#             */
+/*   Updated: 2025/03/18 20:01:20 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix/matrix.h"
-#include "minRT.h"
-#include "miniRT_struct.h"
+#ifndef MATRIX
+#define MATRIX
 
-int	main(int ac, char **av, char **env)
+typedef struct s_matrix
 {
-	t_minirt	rt_struct;
+	int x;
+	int y;
+	double ** matr;
+} t_matrix;
 
-	(void)ac;
-	(void)av;
-	ft_start_alloc();
-	t_matrix matrix;
-	t_matrix mat2;
 
-	matrix = mat_gener(10, 10);
-	mat2 = mat_gener(10, 10);
-	mat_print(mat_multip(mat2, matrix));
-//	canva_inicializ(&rt_struct, 200, 100, c_new(0, 0, 0));
-	return (0);
-}
+t_matrix mat_gener(int x,int y);
+
+void mat_print(const t_matrix matrix);
+
+
+t_matrix mat_multip(t_matrix mat1,t_matrix mat2);
+#endif

@@ -6,7 +6,7 @@
 #    By: rui <rui@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/03/18 13:19:31 by jperpct          ###   ########.fr        #
+#    Updated: 2025/03/18 20:04:33 by jperpct          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,6 @@ e:
 b:
 	tmux \; split-window -h \; send-keys 'bash' C-m \; select-pane -t 1 \; send-keys 'make s' C-m \; setw synchronize-panes on
 g:
-	clear && gdb -tui ./minishell
+	clear && gdb -tui ./$(NAME)
 t:
 	make re && cd ./minishell_tester  && ./tester
