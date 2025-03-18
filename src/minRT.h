@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minRT.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 11:21:39 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 14:33:50 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:56:46 by rerodrig         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #define MINRT_H
 #ifdef MINRT_H
@@ -21,9 +21,13 @@
 # include "../libft/ft_printf/ft_printf.h"
 # include "../libft/minilibx-linux/mlx.h"
 # include "../libft/minilibx-linux/mlx_int.h"
+
 # include "./canvas/canvas.h"
 # include "./loop/loop.h"
 # include "./miniRT_struct.h"
+# include "./tuples/tuples.h"
+# include "./parser/parser.h"
+
 # include <asm-generic/errno.h>
 # include <fcntl.h>
 # include <limits.h>
