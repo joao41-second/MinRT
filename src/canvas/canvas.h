@@ -6,20 +6,14 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:33:28 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/17 16:28:07 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/18 09:02:43 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CANVAS_H
 # define CANVAS_H
 
-typedef union s_color
-{
-	double red;
-	double green;
-	double blue;
-	int color[3];
-} t_color; 
+#include "../miniRT_struct.h"
 
 t_color color_new(double red, double green, double blue);
 
@@ -35,13 +29,13 @@ t_color colors_multipl(t_color c1,t_color c2);
 
 //------------------------------------------------------//
 
-void canva_inicializ(int x, int y, t_color base);
+void canva_inicializ(t_minirt *rt_struct,int x, int y, t_color base);
 
-void canva_set_pixel(int x,int y, t_color base );
+void canva_set_pixel(t_minirt *rt_struct,int x,int y, t_color base );
 
-void canva_update();
+void canva_update(t_minirt *rt_struct);
 
-void canva_close();
+void canva_close(t_minirt *rt_struct);
 
 
 #endif

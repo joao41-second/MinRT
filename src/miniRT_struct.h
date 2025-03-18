@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   miniRT_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 11:19:42 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 10:04:21 by jperpct          ###   ########.fr       */
+/*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
+/*   Updated: 2025/03/18 09:01:48 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minRT.h"
+#ifndef MINIRT_STRUCT
+#define MINIRT_STRUCT
 
+#include "./canvas/canvas_struct.h"
 
-
-int	main(int ac, char **av, char **env)
+typedef struct  s_minirt 
 {
-	(void)ac;
-	(void)av;
-	t_minirt rt_struct;
+	t_canva canva;
+}		t_minirt;
 
-    ft_start_alloc();
-	canva_inicializ(&rt_struct,200, 100, color_new(0, 0, 0));
-	
 
-	return (0);
-}
+#endif

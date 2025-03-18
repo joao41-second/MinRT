@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
-#include "canvas.h"
 
 t_color color_new(double red, double green, double blue)
 {

@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 11:21:39 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/17 16:06:53 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/18 09:05:46 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "../libft/ft_free/ft_free.h"
 # include "../libft/ft_printf/ft_printf.h"
 # include "../libft/minilibx-linux/mlx.h"
+# include "../libft/minilibx-linux/mlx_int.h"
 
 # include <asm-generic/errno.h>
 # include <fcntl.h>
@@ -33,6 +34,8 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+
+# include "./miniRT_struct.h"
 # include "./canvas/canvas.h"
 
 #endif

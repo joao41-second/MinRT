@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   canvas_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 11:19:42 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 10:04:21 by jperpct          ###   ########.fr       */
+/*   Created: 2025/03/18 08:51:11 by jperpct           #+#    #+#             */
+/*   Updated: 2025/03/18 08:53:29 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minRT.h"
+#ifndef CANVAS_STRUCT_H
+# define CANVAS_STRUCT_H
 
-
-
-int	main(int ac, char **av, char **env)
+typedef struct s_canva 
 {
-	(void)ac;
-	(void)av;
-	t_minirt rt_struct;
+	void *mlx;
+	void *mlx_wind;
+	void *canva;
 
-    ft_start_alloc();
-	canva_inicializ(&rt_struct,200, 100, color_new(0, 0, 0));
-	
+} t_canva;
 
-	return (0);
-}
+typedef union s_color
+{
+	double red;
+	double green;
+	double blue;
+	int color[3];
+} t_color; 
+
+
+
+#endif
