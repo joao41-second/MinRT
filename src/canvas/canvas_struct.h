@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:51:11 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 14:56:16 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:34:57 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,12 @@ typedef struct s_canva
 
 typedef union s_color
 {
+	struct
+	{
 	double red;
 	double green;
 	double blue;
+	};
 	int color[3];
 } t_color; 
 

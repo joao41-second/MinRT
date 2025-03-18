@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:13:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 14:58:08 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:29:29 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ unsigned int	my_mlx_pixel_retunr(t_img_ *data, int x, int y)
 
 int	create_trgb(int t, int r, int g, int b)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	//printf("the rbg is %d %d %d, x color #%x \n",r,g,b,  t << 24 | r << 16 | g << 8 | b);
+
+	return ( t << 24 | r << 16 | g << 8 | b);
 }
 
 void canva_set_pixel(t_minirt *rt_struct,int x,int y, t_color base )
-{
-	my_mlx_pixel_put(&rt_struct->canva.canva, x, y, create_trgb(1,base.red,base.green,base.blue));
+{	
+	printf("the rbg is %f %f %f, x color # \n",base.blue,base.green,base.red);
+	my_mlx_pixel_put(&rt_struct->canva.canva, x, y, create_trgb(1,(int)base.red,(int)base.green,(int)base.blue));
 }
 
 void canva_update(t_minirt *rt_struct)

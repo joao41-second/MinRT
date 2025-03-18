@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:33:28 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 14:30:20 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:14:36 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_color colors_scalar_multipl(t_color c1,double c2);
 t_color colors_multipl(t_color c1,t_color c2);
 
 # define hadamard_product(c1,c2) colors_multipl(c1,c2);
+
+# define c_new(r,g,b) color_new(r,g,b)
 
 //------------------------------------------------------//
 
