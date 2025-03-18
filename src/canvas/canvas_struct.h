@@ -15,32 +15,32 @@
 
 typedef struct s_img_
 {
-	int				width;
-	int				height;
-	char			*addr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-	void			*img;
-}					t_img_;
+	int			width;
+	int			height;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	void		*img;
+}				t_img_;
 
-typedef struct s_canva 
+typedef struct s_canva
 {
-	void *mlx;
-	void *mlx_wind;
-	t_img_ canva;
+	void		*mlx;
+	void		*mlx_wind;
+	t_img_		canva;
 
-} t_canva;
+}				t_canva;
 
 typedef union s_color
 {
 	struct
 	{
-	double red;
-	double green;
-	double blue;
+		double	red;
+		double	green;
+		double	blue;
 	};
-	int color[3];
-} t_color; 
+	int			color[3];
+}				t_color;
 
 #endif
