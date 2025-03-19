@@ -63,7 +63,6 @@ t_matrix mat_gener_identity(int x)
 }
 
 
-
 t_matrix mat_multip(t_matrix mat1,t_matrix mat2)
 {
 	return 	mat_exet(mat1, mat2,mat_mult_matrix);
@@ -84,4 +83,11 @@ void mat_print(const t_matrix matrix)
 		}
 		printf("\n");
 	}	
+}
+
+double mat_det2x2(t_matrix mat)
+{
+	if(mat.size != 2)
+		return(0);
+	return (mat.matr[0][0]*mat.matr[1][1] - mat.matr[1][0]*mat.matr[0][1]);
 }

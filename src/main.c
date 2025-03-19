@@ -23,13 +23,12 @@ int	main(int ac, char **av, char **env)
 	t_matrix matrix;
 	t_matrix mat2;
 
-	matrix = mat_gener(4);
+	matrix = mat_gener(2);
 	mat_get_file("matix", matrix);
 	
-	mat2 = mat_gener_identity(4);
 
 
-	mat2 = mat_gener(4);
+	mat2 = mat_gener(2);
 	mat_get_file("matix2", mat2);
 	printf("mat 1\n");
 	mat_print(matrix);
@@ -38,8 +37,8 @@ int	main(int ac, char **av, char **env)
 	mat_trans(&matrix);
 	mat_print(mat_cp(matrix));
 	
-	printf("mat x\n");
-	mat_print(mat_multip(mat2, matrix));
+	printf("mat x deter %f \n",mat_det2x2(matrix));
+//	mat_print(mat_multip(mat2, matrix));
 //	canva_inicializ(&rt_struct, 200, 100, c_new(0, 0, 0));
 	ft_free_all();
 	return (0);

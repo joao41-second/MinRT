@@ -25,6 +25,8 @@ t_matrix mat_gener_identity(int x);
 
 void mat_trans(t_matrix *mat);
 
+double mat_det2x2(t_matrix mat);
+
 
 
 void mat_free(t_matrix *matrix);
