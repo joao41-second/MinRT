@@ -6,7 +6,7 @@
 #    By: rui <rui@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/03/18 20:04:33 by jperpct          ###   ########.fr        #
+#    Updated: 2025/03/19 10:38:54 by jperpct          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))
 
 # Libraries
 LIB = ./libft/ft_libft/libft.a ./libft/ft_printf/libftprintf.a ./libft/ft_free/ft_free.a \
-./libft/minilibx-linux/libmlx.a ./libft/minilibx-linux/libmlx_Linux.a \
+./libft/minilibx-linux/libmlx.a ./libft/minilibx-linux/libmlx_Linux.a  ./libft/ft_get_next_line/get_next_line.a\
 
 # Commands
 AR = ar rcs
