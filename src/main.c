@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 11:19:42 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/19 13:16:06 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/19 14:10:28 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ int	main(int ac, char **av, char **env)
 	t_matrix mat2;
 
 	matrix = mat_gener(4);
-
 	mat_get_file("matix", matrix);
 	
 	mat2 = mat_gener_identity(4);
 
-//	mat_get_file("matix2", mat2);
+
+	mat2 = mat_gener(4);
+	mat_get_file("matix2", mat2);
 	printf("mat 1\n");
 	mat_print(matrix);
 
