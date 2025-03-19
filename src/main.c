@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 11:19:42 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/19 11:25:35 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/19 13:16:06 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ int	main(int ac, char **av, char **env)
 
 	mat_get_file("matix", matrix);
 	
-	mat2 = mat_gener(4);
+	mat2 = mat_gener_identity(4);
 
-	mat_get_file("matix2", mat2);
+//	mat_get_file("matix2", mat2);
 	printf("mat 1\n");
 	mat_print(matrix);
 
 	printf("mat 2\n");
-	mat_print(mat2);
+	mat_trans(&matrix);
+	mat_print(mat_cp(matrix));
 	
 	printf("mat x\n");
 	mat_print(mat_multip(mat2, matrix));
