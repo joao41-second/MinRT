@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:02:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/20 14:24:33 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/20 15:37:41 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ double mat_det(t_matrix mat)
 	double ret;
 	int i;
 	t_matrix sub;
+	int mul;
 
 	i = -1;
 	if(mat.size == 2)
@@ -55,8 +56,11 @@ double mat_det(t_matrix mat)
 	while (++i < mat.size)
 	{
 		sub = mat_sub(mat,0,i);
-		printf("la %f \n",mat_det(sub));
-		ret	+=  mat.matr[0][i] * mat_det(sub);
+		mul=-1;
+		if(0 % 2 == 0 && i % 2 == 0)
+			mul = +1;
+
+		ret	+=  mat.matr[0][i] * ( mul * mat_det(sub));
 		ft_free(sub.matr);
 	}
 	return(ret);

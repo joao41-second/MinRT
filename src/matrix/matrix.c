@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:47:38 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/20 14:59:46 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/20 15:04:37 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ double mat_det2x2(t_matrix mat)
 {
 	if(mat.size != 2)
 		return(0);
-	return (mat.matr[0][0]*mat.matr[1][1] -(mat.matr[0][1]*mat.matr[1][0]));
+	mat_print(mat);
+	printf(" %f\n",(mat.matr[0][0]*mat.matr[1][1] - mat.matr[0][1]*mat.matr[1][0]));
+	return (mat.matr[0][0]*mat.matr[1][1] -( mat.matr[0][1]*mat.matr[1][0]));
 }
