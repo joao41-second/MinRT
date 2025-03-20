@@ -1,5 +1,4 @@
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -33,7 +32,7 @@ int	main(int ac, char **av, char **env)
 
 //	mat_print(mat_sub(mat1,0,3));
 //
-	printf("print the determinat the matrix %f \n",mat_det2x2(mat_sub(mat1,0,1)));
+	printf("print the determinat the matrix %f \n",mat_cof(mat1,0,1));
 	double var = mat_det(mat1);
 	printf("print the determinat the matrix %f \n",var);
 

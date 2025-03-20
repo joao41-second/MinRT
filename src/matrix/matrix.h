@@ -29,6 +29,8 @@ double mat_det2x2(t_matrix mat);
 
 double mat_det(t_matrix mat);
 
+double mat_cof(t_matrix mat,int line,int column);
+
 
 
 t_matrix mat_sub(t_matrix mat,int line,int column);

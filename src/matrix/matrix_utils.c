@@ -37,7 +37,6 @@ void mat_get_file(char *file,t_matrix mat)
 		nb_char = ft_split(line, '|');
 		while (nb_char[++i] != NULL && i < mat.size)
 		 mat.matr[y][i] = ft_atoi(nb_char[i]);
-		ft_free(line);
 		line = ft_add_memory(get_next_line(fd), NULL);
 	}
 	close(fd);

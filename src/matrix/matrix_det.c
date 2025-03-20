@@ -11,8 +11,12 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
-#include "matrix.h"
-#include <stdio.h>
+double mat_det2x2(t_matrix mat)
+{
+	if(mat.size != 2)
+		return(0);
+	return (mat.matr[0][0]*mat.matr[1][1] -( mat.matr[0][1]*mat.matr[1][0]));
+}
 
 t_matrix mat_sub(t_matrix mat,int line,int column)
 {
@@ -65,3 +69,21 @@ double mat_det(t_matrix mat)
 	}
 	return(ret);
 }
+
+double mat_cof(t_matrix mat,int line,int column)
+{
+	double ret;
+	t_matrix sub;
+	int mul;
+
+	sub = mat_sub(mat,line,column);
+	mul=-1;
+	if(line % 2 == 0 && column % 2 == 0)
+		mul = +1;
+	sub = mat_sub(mat,line,column);
+	ret	= ( mul * mat_det(sub));
+	ft_free(sub.matr);
+	return(ret);
+}
+
+

@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix.h"
 #include "../minRT.h"
-#include <unistd.h>
-
 t_matrix mat_gener(int x)
 {
 	t_matrix matrix_;
@@ -85,11 +82,3 @@ void mat_print(const t_matrix matrix)
 	}	
 }
 
-double mat_det2x2(t_matrix mat)
-{
-	if(mat.size != 2)
-		return(0);
-	mat_print(mat);
-	printf(" %f\n",(mat.matr[0][0]*mat.matr[1][1] - mat.matr[0][1]*mat.matr[1][0]));
-	return (mat.matr[0][0]*mat.matr[1][1] -( mat.matr[0][1]*mat.matr[1][0]));
-}
