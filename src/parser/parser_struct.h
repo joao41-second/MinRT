@@ -1,32 +1,38 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 12:47:07 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/03/20 13:47:55 by rerodrig         ###   ########.fr       */
+/*   Created: 2025/03/20 11:21:05 by rerodrig          #+#    #+#             */
+/*   Updated: 2025/03/20 11:22:49 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 
-#include "tests.h"
+#ifndef PARSER_STRUCT_H
+# define PARSER_STRUCT_H
 
-void	setUp(void)
-{
-}
 
-void	tearDown(void)
+typedef enum e_token
 {
-}
+    AMBIENT,
+    CAMERA,
+    LIGHT,
+    SPHERE,
+    PLANE,
+    CYLINDER,
+    COMMENT,
+    NEWLINE,
+    ERROR,
+    COUNT
+} t_token;
 
-int	main(void)
+typedef struct s_token_map
 {
-	srand(time(NULL));
-	UNITY_BEGIN();
-	test_tuples();
-	// test_ft_atof();
-	UNITY_END();
-	return (0);
-}
+    char        *key;
+    t_token     value;
+} t_token_map;
+
+# endif

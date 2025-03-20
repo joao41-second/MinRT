@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:38:54 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/03/18 16:43:00 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:27:18 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,6 +18,7 @@
 //TUPLES, VECTORS, POINTS
 #define W_POINT 1
 #define W_VECTOR 0
+#define EPSILON 0.00001
 
 typedef struct s_tuple
 {

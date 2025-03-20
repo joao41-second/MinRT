@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 11:21:39 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 16:56:46 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:41:38 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,8 +16,10 @@
 # define TRUE 0
 # define FALSE 1
 
+# include <math.h>
 # include "../libft/ft_free/ft_free.h"
 # include "../libft/ft_get_next_line/get_next_line_bonus.h"
+# include "../libft/ft_libft/libft.h"
 # include "../libft/ft_printf/ft_printf.h"
 # include "../libft/minilibx-linux/mlx.h"
 # include "../libft/minilibx-linux/mlx_int.h"

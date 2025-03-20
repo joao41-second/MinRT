@@ -6,14 +6,14 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/03/18 16:44:44 by rerodrig         ###   ########.fr        #
+#    Updated: 2025/03/20 14:39:52 by rerodrig         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 # Compiler flags
 #WFLGS = -Wall -Wextra -Werror
 READ_FLG = -g 
-MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext 
+MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft
 FLGS = $(WFLGS) $(READ_FLG) $(MINILIB_FLG)
 
 VAL = valgrind --leak-check=full  
@@ -30,7 +30,7 @@ OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))
 
 # Libraries
 LIB = ./libft/ft_libft/libft.a ./libft/ft_printf/libftprintf.a ./libft/ft_free/ft_free.a \
-      ./libft/minilibx-linux/libmlx_Linux.a
+./libft/minilibx-linux/libmlx.a ./libft/minilibx-linux/libmlx_Linux.a  ./libft/ft_get_next_line/get_next_line.a\
 
 # Commands
 AR = ar rcs
@@ -82,7 +82,12 @@ fclean: clean
 
 re: fclean all
 
-test: all
+# Test target
+test: $(LIB) $(OBJS)
+	$(CC) $(OBJS) $(LIB) $(FLGS) -o $(NAME)_test
+	@echo "╔══════════════════════════╗"
+	@echo "║ ✅ Test Compiled Successfully!║"
+	@echo "╚══════════════════════════╝"
 	make run -C tests
 
 test_vall: all

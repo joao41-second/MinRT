@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:45:05 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/03/18 12:53:07 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:12:52 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,7 +14,7 @@
 #ifndef TESTS_H
 # define TESTS_H
 // #define UNITY_INCLUDE_DOUBLE
-#include <unity/unity.h>
+#include "unity/unity.h"
 #include "../src/minRT.h"
 #include <time.h>
 
@@ -30,5 +30,6 @@
 #define LOOP_ITERATIONS 100
 
 void	test_tuples(void);
+// void	test_ft_atof(void);
 
 #endif /* TESTS_H */
