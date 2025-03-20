@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:44:00 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/19 13:18:59 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:40:11 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void mat_trans(t_matrix *mat);
 
 double mat_det2x2(t_matrix mat);
 
+double mat_det(t_matrix mat);
 
+
+
+t_matrix mat_sub(t_matrix mat,int line,int column);
 
 void mat_free(t_matrix *matrix);
 

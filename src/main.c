@@ -1,5 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -12,6 +10,7 @@
 
 #include "matrix/matrix.h"
 #include "minRT.h"
+#include <stdio.h>
 
 int	main(int ac, char **av, char **env)
 {
@@ -20,26 +19,24 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	ft_start_alloc();
-	t_matrix matrix;
+	t_matrix mat1;
 	t_matrix mat2;
 
-	matrix = mat_gener(2);
-	mat_get_file("matix", matrix);
+	mat1 = mat_gener(3);
+	mat_get_file("matix", mat1);
 	
-
-
-	mat2 = mat_gener(2);
+	mat2 = mat_gener(3);
 	mat_get_file("matix2", mat2);
-	printf("mat 1\n");
-	mat_print(matrix);
+//	mat_print(mat_sub(mat2, 0, 0));
 
-	printf("mat 2\n");
-	mat_trans(&matrix);
-	mat_print(mat_cp(matrix));
-	
-	printf("mat x deter %f \n",mat_det2x2(matrix));
-//	mat_print(mat_multip(mat2, matrix));
-//	canva_inicializ(&rt_struct, 200, 100, c_new(0, 0, 0));
+	mat_print(mat1);
+
+//	mat_print(mat_sub(mat1,0,3));
+//
+	printf("print the determinat the matrix %f \n",mat_det2x2(mat_sub(mat1,0,1)));
+	double var = mat_det(mat1);
+	printf("print the determinat the matrix %f \n",var);
+
 	ft_free_all();
 	return (0);
 }

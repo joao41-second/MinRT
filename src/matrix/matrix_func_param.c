@@ -6,14 +6,14 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 13:01:18 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/19 13:07:45 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/20 11:18:59 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minRT.h"
 
 double mat_mult_matrix(int *y,int*x,t_matrix *mat1,t_matrix *mat2)
 {
-	double ret;
+	double	ret;
 	double *m1;
 	double *m2;
 	int i; 
