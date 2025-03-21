@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:44:00 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/21 10:27:19 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/21 12:40:54 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ double mat_mult_matrix(int *y,int*x,t_matrix *mat1,t_matrix *mat2);
 
 double mat_transposing(int *y,int*x,t_matrix *mat1,t_matrix *mat2);
 
-
-
+t_matrix mat_matrix_signal(int size);
 
 #endif

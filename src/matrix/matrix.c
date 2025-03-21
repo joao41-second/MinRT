@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:47:38 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/20 15:04:37 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/21 12:21:40 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void mat_print(const t_matrix matrix)
 		x = -1;
 		while(++x < matrix.size)
 		{
-			printf("|  %8.2f ", matrix.matr[y][x]);
+			printf("|  %10.5f ", matrix.matr[y][x]);
 		}
 		printf("\n");
 	}	
