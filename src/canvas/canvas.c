@@ -30,13 +30,17 @@ int	canva_loop_key(int keycode, void *param)
 int	canva_loop_mouse(int button, int x, int y, void *param)
 {
 	t_minirt	*rt_struct;
-
+	
+	(void)x;
+	(void)y;
+	(void)button;
 	rt_struct = (t_minirt *) param;
 	return (1);
 }
 
 void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 {
+	(void)base;
 	rt_struct->canva.mlx = ft_add_memory(mlx_init(), NULL);
 	rt_struct->canva.mlx_wind = mlx_new_window(rt_struct->canva.mlx,
 			x, y, "new minRT");

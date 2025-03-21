@@ -11,10 +11,10 @@
 # **************************************************************************** #
 
 # Compiler flags
-#WFLGS = -Wall -Wextra -Werror
+WFLGS = -Wall -Wextra -Werror
 READ_FLG = -g 
 MINILIB_FLG = -lX11 -lXext 
-FLGS = $(WFLGS) $(READ_FLG) $(MINILIB_FLG)
+FLGS = $(WFLGS) $(READ_FLG) 
 
 VAL = valgrind --leak-check=full  
 # Make flags
@@ -55,7 +55,7 @@ $(NAME): $(OBJS)
 	cd libft/ft_printf && make 
 	cd libft/ft_get_next_line && make 
 	cd libft/minilibx-linux && make
-	$(CC) $(FLGS) $(OBJS) $(LIB)  -o $(NAME)
+	$(CC) $(FLGS) $(OBJS) $(MINILIB_FLG) $(LIB)  -o $(NAME)
 	@echo "╔══════════════════════════╗"
 	@echo "║ ✅ Compiled Successfully!║"
 	@echo "╚══════════════════════════╝"

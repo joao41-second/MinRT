@@ -19,6 +19,7 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
+	(void)env;
 	ft_start_alloc();
 	canva_inicializ(&rt_struct, 200, 100, c_new(0, 0, 0));
 	return (0);
