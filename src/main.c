@@ -21,18 +21,18 @@ int	main(int ac, char **av, char **env)
 	t_matrix mat1;
 	t_matrix mat2;
 
-	mat1 = mat_gener(3);
+	mat1 = mat_gener(4);
 	mat_get_file("matix", mat1);
 	
 	mat2 = mat_gener(3);
 	mat_get_file("matix2", mat2);
-//	mat_print(mat_sub(mat2, 0, 0));
+//	mat_print(mat_the_cof(mat1));
 
 	mat_print(mat1);
 
-//	mat_print(mat_sub(mat1,0,3));
+	printf("\n");
+	mat_print(mat_inv(mat1));
 //
-	printf("print the determinat the matrix %f \n",mat_cof(mat1,0,1));
 	double var = mat_det(mat1);
 	printf("print the determinat the matrix %f \n",var);
 

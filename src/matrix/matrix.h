@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:44:00 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/20 13:40:11 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/21 10:27:19 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ double mat_det2x2(t_matrix mat);
 double mat_det(t_matrix mat);
 
 double mat_cof(t_matrix mat,int line,int column);
+
+t_matrix mat_the_cof(t_matrix mat);
+
+t_matrix mat_inv(t_matrix mat);
+
+void mat_matsh_matrix(t_matrix *mat,char math,double nb);
 
 
 

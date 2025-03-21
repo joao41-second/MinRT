@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:11:40 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/19 14:11:08 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/21 10:26:53 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,30 @@ void mat_free(t_matrix *matrix)
 	}
 	ft_free(matrix);
 	matrix = NULL;
+}
+
+void mat_matsh_matrix(t_matrix *mat,char math,double nb)
+{
+	int l;
+	int c;
+	double temp;
+
+	l = -1;
+	while (++l < mat->size)
+	{
+		c = -1;
+		while (++c < mat->size)
+		{
+			temp = mat->matr[l][c];
+			mat->matr[l][c] = 0;
+			if(math == '+')
+				mat->matr[l][c] = temp + nb;
+			if(math == '-')
+				mat->matr[l][c] = temp - nb;
+			if(math == '*')
+				mat->matr[l][c] = temp * nb;
+			if(math == '/')
+				mat->matr[l][c] = temp / nb;
+		}	
+	}
 }
