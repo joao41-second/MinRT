@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:02:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/21 12:44:06 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/21 12:45:07 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,6 @@ t_matrix mat_matrix_signal(int size)
 				mat.matr[c][l] = -1;
 			if(c % 2 != 0)
 				mat.matr[c][l] = -mat.matr[c][l];
-				
-
 		}	
 	}
 	return (mat);
@@ -113,6 +111,7 @@ double mat_cof(t_matrix mat,int line,int column)
 	mul = sub_signal.matr[column][line];
 	ret	= ( mul * mat_det(sub));
 	ft_free(sub.matr);
+	ft_free(sub_signal.matr);
 	return(ret);
 }
 
