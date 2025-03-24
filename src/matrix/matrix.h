@@ -19,6 +19,12 @@ typedef struct s_matrix
 	double	**matr;
 }			t_matrix;
 
+/**
+ * @brief this funncion generate the new matrix
+ *
+ * @param x size the matrix ex: 2 generate matrix 2X2 
+ * @return matrix inicialized all nb 0
+ */
 t_matrix	mat_gener(int x);
 
 t_matrix	mat_gener_identity(int x);
