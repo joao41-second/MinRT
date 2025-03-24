@@ -76,8 +76,6 @@ t_matrix	mat_matrix_signal(int size)
 {
 	int			c;
 	int			l;
-	int			c_sig;
-	int			l_sig;
 	t_matrix	mat;
 
 	mat = mat_gener(size);

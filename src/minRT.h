@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 11:21:39 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/19 10:24:42 by jperpct          ###   ########.fr       */
+/*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
+/*   Updated: 2025/03/24 14:27:06 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@
 # include "./miniRT_struct.h"
 # include "./matrix/matrix.h"
 
+# include "./tuples/tuples.h"
 # include <asm-generic/errno.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>

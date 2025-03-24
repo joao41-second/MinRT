@@ -15,11 +15,13 @@
 int	main(int ac, char **av, char **env)
 {
 	t_minirt	rt_struct;
+	int			status;
 
+	status = 1;
 	(void)ac;
 	(void)av;
 	(void)env;
 	ft_start_alloc();
-	ft_free_all();
-	return (0);
+	canva_inicializ(&rt_struct, 200, 100, c_new(0, 0, 0));
+	return (status);
 }

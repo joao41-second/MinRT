@@ -6,3 +6,5 @@ miniRT
 *.out
 .swp
 /minilibx-linux
+.qodo
+.vscode/*

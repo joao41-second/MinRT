@@ -59,8 +59,8 @@ t_matrix	mat_cp(t_matrix mat);
 
 //----------------utils--------------//
 
-t_matrix	mat_exet(t_matrix mat1, t_matrix mat2, double f(const int *,
-					const int *, const t_matrix *, const t_matrix *));
+t_matrix	mat_exet(t_matrix mat1, t_matrix mat2, double f( int *,
+					 int *, t_matrix *, t_matrix *));
 
 //_____________exet_func____________//
 

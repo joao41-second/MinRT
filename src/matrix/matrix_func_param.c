@@ -40,16 +40,18 @@ double	mat_mult_matrix(int *y, int *x, t_matrix *mat1, t_matrix *mat2)
 
 double	mat_copy(int *y, int*x, t_matrix *mat1, t_matrix *mat2)
 {
+	(void)mat2;
 	return (mat1->matr[*y][*x]);
 }
 
 double	mat_transposing(int *y, int*x, t_matrix *mat1, t_matrix *mat2)
 {
+	(void)mat1;
 	return (mat2->matr[*x][*y]);
 }
 
-t_matrix	mat_exet(t_matrix mat1, t_matrix mat2, double f(const int*,
-			const int*, const t_matrix*, const t_matrix*))
+t_matrix	mat_exet(t_matrix mat1, t_matrix mat2, double f( int*,
+			 int*, t_matrix*, t_matrix*))
 {
 	t_matrix	new_matrix;
 	int			x;
