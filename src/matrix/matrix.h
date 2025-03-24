@@ -29,6 +29,8 @@ t_matrix	mat_gener(int x);
 
 t_matrix	mat_gener_identity(int x);
 
+t_matrix	mat_gener_trans(double x,double y, double z);
+
 void		mat_trans(t_matrix *mat);
 
 double		mat_det2x2(t_matrix mat);

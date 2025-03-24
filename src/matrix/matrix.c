@@ -61,6 +61,16 @@ t_matrix	mat_gener_identity(int x)
 	return (matrix_);
 }
 
+t_matrix	mat_gener_trans(double x,double y, double z)
+{
+	t_matrix ret;
+	ret = mat_gener_identity(4);
+	ret.matr[0][3] = x;
+	ret.matr[1][3] = y;
+	ret.matr[2][3] = z;
+	return (ret);
+}
+
 t_matrix	mat_multip(t_matrix mat1, t_matrix mat2)
 {
 	return (mat_exet(mat1, mat2, mat_mult_matrix));
