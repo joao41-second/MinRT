@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
@@ -6,17 +6,23 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/03/20 12:56:30 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/03/24 11:56:25 by rerodrig         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
 # include "../miniRT_struct.h"
 
-int         parser(const char *file, t_minirt *data);
-void        parse_ambient(char *line, t_minirt *data, char *ptr, int fd);
+int			parser(const char *file, t_minirt *data);
+void		parse_ambient(char *line, t_minirt *data, char *ptr, int fd);
+void		parse_camera(char *line, t_minirt *data);
+void		parse_light(char *line, t_minirt *data);
+void		parse_sphere(char *line, t_minirt *data);
+void		parse_plane(char *line, t_minirt *data);
+void		parse_cylinder(char *line, t_minirt *data);
+void		parse_comment(char *line, t_minirt *data);
+t_token		tokenizer(const char *line, t_token_map *token_map);
 
-
-# endif
+#endif
