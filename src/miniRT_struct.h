@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/24 12:10:59 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/03/24 14:28:22 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 
 # include "./canvas/canvas_struct.h"
 # include "./tuples/tuples.h"
-# include "./parser/parser_struct.h"
 
 typedef struct s_object
 {
 	void		*data; // Pointer to t_sphere, t_plane, or t_cylinder
-	t_token		type;
 }	t_object;
 
 typedef struct s_camera
