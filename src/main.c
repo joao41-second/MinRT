@@ -16,6 +16,9 @@ int	main(int ac, char **av, char **env)
 {
 	t_minirt	rt_struct;
 
+	(void)ac;
+	(void)av;
+	(void)env;
 	ft_start_alloc();
 	ft_free_all();
 	return (0);
