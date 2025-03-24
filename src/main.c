@@ -12,6 +12,7 @@
 
 #include "matrix/matrix.h"
 #include "minRT.h"
+#include "tuples/tuples.h"
 
 int	main(int ac, char **av, char **env)
 {
@@ -26,9 +27,15 @@ int	main(int ac, char **av, char **env)
 //	canva_inicializ(&rt_struct, 200, 100, c_new(0, 0, 0));
 
 	t_matrix mat1;
-
-	mat1 = mat_gener_trans(2, 1, 5);
+	
+	mat1 = mat_gener_trans(5, -3, 2);
 	mat_print(mat1);
+	t_point new =	mat_x_point(create_point(-3,4,  5), mat1);
+
+	printf("x%f y%f z%f",new.x,new.y,new.z);
+
+	
 	ft_free_all();
 	return (status);
+
 }

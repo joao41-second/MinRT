@@ -12,19 +12,23 @@
 
 #ifndef TUPLES_H
 # define TUPLES_H
-# include "../miniRT_struct.h"
 
 //TUPLES, VECTORS, POINTS
 # define W_POINT 1
 # define W_VECTOR 0
 # define EPSILON 0.00001
 
-typedef struct s_tuple
+typedef union s_tuple
 {
-	double	x;
-	double	y;
-	double	z;
-	double	w;
+
+	double	val[4];
+	struct
+	{
+		double	x;
+		double	y;
+		double	z;
+		double	w;
+	};
 }	t_tuple;
 
 typedef t_tuple		t_point;

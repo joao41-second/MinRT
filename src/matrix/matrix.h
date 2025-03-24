@@ -13,6 +13,7 @@
 #ifndef MATRIX_H
 # define MATRIX_H
 
+#include "../tuples/tuples.h"
 typedef struct s_matrix
 {
 	int		size;
@@ -38,6 +39,8 @@ double		mat_det2x2(t_matrix mat);
 double		mat_det(t_matrix mat);
 
 double		mat_cof(t_matrix mat, int line, int column);
+
+t_point mat_x_point(t_point point,t_matrix mat);
 
 t_matrix	mat_the_cof(t_matrix mat);
 

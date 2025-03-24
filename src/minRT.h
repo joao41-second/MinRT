@@ -23,6 +23,7 @@
 # include "../libft/minilibx-linux/mlx.h"
 # include "../libft/minilibx-linux/mlx_int.h"
 
+# include "./tuples/tuples.h"
 # include "./canvas/canvas.h"
 # include "./loop/loop.h"
 # include "./miniRT_struct.h"
