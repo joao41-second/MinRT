@@ -30,7 +30,7 @@ int	canva_loop_key(int keycode, void *param)
 int	canva_loop_mouse(int button, int x, int y, void *param)
 {
 	t_minirt	*rt_struct;
-	
+
 	(void)x;
 	(void)y;
 	(void)button;
