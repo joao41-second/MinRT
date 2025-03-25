@@ -25,14 +25,14 @@ int	main(int ac, char **av, char **env)
 //	canva_inicializ(&rt_struct, 200, 100, c_new(0, 0, 0));
 
 	t_matrix mat1;
-	//t_matrix inv;
+	t_matrix inv;
 	
-	mat1 = mat_gener_scal(2, 3, 4);
+	mat1 = mat_gener_scal(5, -3, 2);
 	mat_print(mat1);
-//	inv = mat_inv(mat1);
-	t_point new =	mat_x_tuple(create_vector(-4,6,  8), mat1);
+	inv = mat_inv(mat1);
+	t_point new =	mat_x_point(create_vector(-3,4,  5), inv);
 
-	printf("x%f y%f z%f , typ_mat  %d\n",new.x,new.y,new.z,mat1.flag);
+	printf("x%f y%f z%f",new.x,new.y,new.z);
 
 	
 	ft_free_all();

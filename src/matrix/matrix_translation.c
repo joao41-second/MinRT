@@ -30,16 +30,16 @@ void mat_x_point_aux(t_point *new_,t_matrix copy)
 	}
 }
 
-t_point mat_x_point(t_point point,t_matrix mat)
+t_point mat_x_tuple(t_tuple point,t_matrix mat)
 {
 	int c;
 	int l;
 	t_matrix copy;
 	t_point new_;
 
+	if(mat.size != 4 || (mat.flag == TRANS && point.w != 1))
+		return (create_point(point.val[0],point.val[1], point.val[2]));	
 	copy = mat_cp(mat);
-	if(copy.size != 4)
-		return (create_point(point.val[0],point.val[1], point.val[2]));
 	new_ = create_point(0, 0, 0);
 	l = -1;
 	while (++l < copy.size)

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
-#include "matrix.h"
 
 t_matrix	mat_the_cof(t_matrix mat)
 {

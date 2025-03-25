@@ -14,22 +14,12 @@
 # define MATRIX_H
 
 #include "../tuples/tuples.h"
-
-#define IDENTI 5
-#define TRANS 4
-#define SCAL 3
-
 typedef struct s_matrix
 {
 	int		size;
 	int		flag;
 	double	**matr;
 }			t_matrix;
-
-typedef t_matrix t_scaling;
-typedef t_matrix t_translation;
-typedef t_matrix t_identiy;
-
 
 /**
  * @brief this funncion generate the new matrix
@@ -39,11 +29,11 @@ typedef t_matrix t_identiy;
  */
 t_matrix	mat_gener(int x);
 
-t_identiy	mat_gener_identity(int x);
+t_matrix	mat_gener_identity(int x);
 
-t_translation	mat_gener_trans(double x,double y, double z);
+t_matrix	mat_gener_trans(double x,double y, double z);
 
-t_scaling	mat_gener_scal(double x,double y, double z);
+t_matrix	mat_gener_scal(double x,double y, double z);
 
 void		mat_trans(t_matrix *mat);
 
@@ -53,8 +43,7 @@ double		mat_det(t_matrix mat);
 
 double		mat_cof(t_matrix mat, int line, int column);
 
-t_point mat_x_tuple(t_tuple point,t_matrix mat);
-
+t_point mat_x_point(t_point point,t_matrix mat);
 
 t_matrix	mat_the_cof(t_matrix mat);
 

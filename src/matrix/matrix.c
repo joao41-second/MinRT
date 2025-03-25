@@ -33,6 +33,7 @@ t_matrix	mat_gener(int x)
 		}
 	}
 	matrix_.matr = matrix;
+	matrix_.flag = 0;
 	return (matrix_);
 }
 
@@ -58,6 +59,7 @@ t_matrix	mat_gener_identity(int x)
 		}
 	}
 	matrix_.matr = matrix;
+	matrix_.flag = IDENTI;
 	return (matrix_);
 }
 
@@ -68,6 +70,18 @@ t_matrix	mat_gener_trans(double x,double y, double z)
 	ret.matr[0][3] = x;
 	ret.matr[1][3] = y;
 	ret.matr[2][3] = z;
+	ret.flag = TRANS;
+	return (ret);
+}
+
+t_matrix	mat_gener_scal(double x,double y, double z)
+{
+	t_matrix ret;
+	ret = mat_gener_identity(4);
+	ret.matr[0][0] = x;
+	ret.matr[1][1] = y;
+	ret.matr[2][2] = z;
+	ret.flag = SCAL;
 	return (ret);
 }
 
