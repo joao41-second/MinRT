@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:44:00 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/25 10:42:31 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/25 12:38:05 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #define TRANS 40
 #define SCAL 30
 #define ROTA 20
+#define HEARING 10
 
 typedef struct s_matrix
 {
@@ -27,12 +28,24 @@ typedef struct s_matrix
 	double	**matr;
 }			t_matrix;
 
+typedef union s_shearing
+{
+	struct {
+		double x_y;
+		double x_z;
+		double y_x;
+		double y_z;
+		double z_x;
+		double z_y;
+	};
+	double all[6];
+} t_hearing;
+
 typedef t_matrix t_scaling;
 typedef t_matrix t_translation;
 typedef t_matrix t_identiy;
 typedef t_matrix t_rotation;
-
-
+typedef t_matrix t_mat_hearing;
 
 /**
  * @brief this funncion generate the new matrix
@@ -49,6 +62,8 @@ t_translation	mat_gener_trans(double x,double y, double z);
 t_scaling	mat_gener_scal(double x,double y, double z);
 
 t_rotation 	mat_gener_rota(char axis,double deg);
+
+t_mat_hearing 	mat_gener_hearing(t_hearing values);
 
 void		mat_trans(t_matrix *mat);
 
