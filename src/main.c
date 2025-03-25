@@ -27,7 +27,7 @@ int	main(int ac, char **av, char **env)
 
 	t_matrix mat1;
 	//t_matrix inv;
-	mat1 = mat_gener_rota('x', 45);
+	mat1 = mat_gener_rota('z', 90);
 	mat_print(mat1);
 //	inv = mat_inv(mat1);
 	t_point new =	mat_x_tuple(create_point(0,1,  0), mat1);

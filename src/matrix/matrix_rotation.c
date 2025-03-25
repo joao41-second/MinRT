@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 09:53:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/25 11:48:03 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/25 12:14:58 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minRT.h"
@@ -30,17 +30,17 @@ void mat_x_rota(t_matrix *mat,double rad)
 void mat_y_rota(t_matrix *mat,double rad)
 {
 	mat->matr[0][0] = cos(rad);
-	mat->matr[2][0] = sin(rad);
-	mat->matr[0][2] = -sin(rad);
-	mat->matr[3][3] = cos(rad);
+	mat->matr[2][0] = -sin(rad);
+	mat->matr[0][2] = sin(rad);
+	mat->matr[2][2] = cos(rad);
 }
 
 void mat_z_rota(t_matrix *mat,double rad)
 {
 	mat->matr[0][0] = cos(rad);
 	mat->matr[0][1] = -sin(rad);
-	mat->matr[1][1] = sin(rad);
-	mat->matr[1][2] = cos(rad);
+	mat->matr[1][0] = sin(rad);
+	mat->matr[1][1] = cos(rad);
 }
 
 t_rotation mat_gener_rota(char axis,double deg)
