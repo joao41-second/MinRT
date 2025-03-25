@@ -26,4 +26,7 @@ typedef union s_ray
 } t_ray;
 
 
+t_ray ray_gener(t_point point,t_vector dir);
+t_point ray_position(t_ray ray,double nb);
+	
 #endif

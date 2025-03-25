@@ -1,5 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
+/* ************************************************************************** *//*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -18,4 +17,13 @@ t_ray ray_gener(t_point point,t_vector dir)
 	ray.direction = dir;
 	ray.origin = point;
 	return (ray);
+}
+
+t_point ray_position(t_ray ray,double nb)
+{
+	t_point new;
+	new  = add_tuples(ray.origin, ray.direction);
+	if(nb == 0)
+		return (new);
+	return(scalar_mult_tuples(new, nb)); 
 }
