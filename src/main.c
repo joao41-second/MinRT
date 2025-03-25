@@ -1,5 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -19,7 +17,7 @@ int	main(int ac, char **av, char **env)
 	//t_minirt	rt_struct;
 	int			status;
 
-	status = 1;
+	status = 0;
 	(void)ac;
 	(void)av;
 	(void)env;

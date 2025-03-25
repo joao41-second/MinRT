@@ -13,11 +13,27 @@
 #include "../minRT.h"
 #include "matrix.h"
 
+void mat_x_point_aux(t_point *new_,t_matrix copy)
+{
+	double nb;
+	int c;
+	int l;
+
+	l = -1;
+	while (++l < copy.size)
+	{
+		c = -1;
+		nb = 0;
+		while (++c < copy.size)
+			nb += copy.matr[l][c];
+		new_->val[l] = nb;
+	}
+}
+
 t_point mat_x_point(t_point point,t_matrix mat)
 {
 	int c;
 	int l;
-	double nb;
 	t_matrix copy;
 	t_point new_;
 
@@ -30,16 +46,9 @@ t_point mat_x_point(t_point point,t_matrix mat)
 	{
 		c = -1;
 		while (++c < copy.size)
-			copy.matr[l][c] = copy.matr[l][c]  + point.val[c]/10;
+			copy.matr[l][c] = copy.matr[l][c]  * point.val[c];
 	}	
-	l = -1;
-	while (++l < copy.size)
-	{
-		c = -1;
-		nb = 0;
-		while (++c < copy.size)
-			nb += copy.matr[l][c];
-		new_.val[l] = nb;
-	}
+	mat_x_point_aux(&new_, copy);
+	mat_free(&copy);
 	return(new_);
 }
