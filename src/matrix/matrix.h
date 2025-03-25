@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:44:00 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/21 14:44:48 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/25 10:42:31 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 #include "../tuples/tuples.h"
 
-#define IDENTI 5
-#define TRANS 4
-#define SCAL 3
+#define IDENTI 50
+#define TRANS 40
+#define SCAL 30
+#define ROTA 20
 
 typedef struct s_matrix
 {
@@ -29,6 +30,8 @@ typedef struct s_matrix
 typedef t_matrix t_scaling;
 typedef t_matrix t_translation;
 typedef t_matrix t_identiy;
+typedef t_matrix t_rotation;
+
 
 
 /**
@@ -44,6 +47,8 @@ t_identiy	mat_gener_identity(int x);
 t_translation	mat_gener_trans(double x,double y, double z);
 
 t_scaling	mat_gener_scal(double x,double y, double z);
+
+t_rotation 	mat_gener_rota(char axis,double deg);
 
 void		mat_trans(t_matrix *mat);
 

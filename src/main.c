@@ -11,6 +11,7 @@
 #include "matrix/matrix.h"
 #include "minRT.h"
 #include "tuples/tuples.h"
+#include <math.h>
 
 int	main(int ac, char **av, char **env)
 {
@@ -26,11 +27,10 @@ int	main(int ac, char **av, char **env)
 
 	t_matrix mat1;
 	//t_matrix inv;
-	
-	mat1 = mat_gener_scal(2, 3, 4);
+	mat1 = mat_gener_rota('x', 45);
 	mat_print(mat1);
 //	inv = mat_inv(mat1);
-	t_point new =	mat_x_tuple(create_vector(-4,6,  8), mat1);
+	t_point new =	mat_x_tuple(create_point(0,1,  0), mat1);
 
 	printf("x%f y%f z%f , typ_mat  %d\n",new.x,new.y,new.z,mat1.flag);
 
