@@ -13,10 +13,21 @@
 #include "../minRT.h"
 #include "matrix.h"
 
+t_shearing mat_inicialaiz_sh()
+{
+	t_shearing ret;
+	ret.all[0] = 0;
+	ret.all[1] = 0;
+	ret.all[2] = 0;
+	ret.all[3] = 0;
+	ret.all[4] = 0;
+	ret.all[5] = 0;
+	return (ret);
+}
 
-t_mat_hearing 	mat_gener_hearing(t_hearing values)
+t_mat_shearing 	mat_gener_shearing(t_shearing values)
 {	
-	t_rotation ret;
+	t_mat_shearing ret;
 
 	ret = mat_gener_identity(4);
 	ret.matr[0][1] = values.x_y;
@@ -28,7 +39,7 @@ t_mat_hearing 	mat_gener_hearing(t_hearing values)
 	ret.matr[0][2] = values.z_x;
 	ret.matr[1][2] = values.z_y;
 
-	ret.flag = HEARING;
+	ret.flag = SHEARING;
 	return(ret);
 
 }

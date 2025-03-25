@@ -19,7 +19,7 @@
 #define TRANS 40
 #define SCAL 30
 #define ROTA 20
-#define HEARING 10
+#define SHEARING 10
 
 typedef struct s_matrix
 {
@@ -39,13 +39,13 @@ typedef union s_shearing
 		double z_y;
 	};
 	double all[6];
-} t_hearing;
+} t_shearing;
 
 typedef t_matrix t_scaling;
 typedef t_matrix t_translation;
 typedef t_matrix t_identiy;
 typedef t_matrix t_rotation;
-typedef t_matrix t_mat_hearing;
+typedef t_matrix t_mat_shearing;
 
 /**
  * @brief this funncion generate the new matrix
@@ -63,7 +63,8 @@ t_scaling	mat_gener_scal(double x,double y, double z);
 
 t_rotation 	mat_gener_rota(char axis,double deg);
 
-t_mat_hearing 	mat_gener_hearing(t_hearing values);
+
+t_mat_shearing 	mat_gener_shearing(t_shearing values);
 
 void		mat_trans(t_matrix *mat);
 
@@ -96,6 +97,8 @@ void		mat_clean(void);
 
 t_matrix	mat_cp(t_matrix mat);
 
+
+t_shearing mat_inicialaiz_sh();
 //----------------utils--------------//
 
 t_matrix	mat_exet(t_matrix mat1, t_matrix mat2, double f( int *,
