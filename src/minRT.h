@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/25 18:17:15 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/03/26 16:30:59 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include "./loop/loop.h"
 # include "./miniRT_struct.h"
 # include "./matrix/matrix.h"
+# include "./objects/objects.h"
 # include "./ray/ray.h"
 
 # include <asm-generic/errno.h>

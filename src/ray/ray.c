@@ -1,8 +1,6 @@
 /* ************************************************************************** *//*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:15:50 by jperpct           #+#    #+#             */
 /*   Updated: 2025/03/25 18:18:41 by jperpct          ###   ########.fr       */
@@ -26,4 +24,14 @@ t_point ray_position(t_ray ray,double nb)
 	if(nb == 0)
 		return (new);
 	return(scalar_mult_tuples(new, nb)); 
+}
+
+t_object_ ray_int_sphere(t_ray ray,t_sphere shp)
+{
+	t_object_ ret;
+	t_point point;
+
+	point = add_tuples(ray.direction, ray.origin);
+
+	return(ret);
 }
