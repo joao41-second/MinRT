@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_loop.c                                        :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 15:51:54 by jperpct          ###   ########.fr       */
+/*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
+/*   Updated: 2025/03/24 12:01:51 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 
-void	main_loop(t_minirt *rt_struct)
+void	parse_sphere(char *line, t_minirt *data)
 {
-	int	i;
-	int	a;
+}
 
-	i = 0;
-	while (i < 100)
-	{
-		a = 0;
-		while (a < 100)
-		{
-			canva_set_pixel(rt_struct, a, i, c_new(255.0, 1.0, 100.0));
-			a++;
-		}
-		i++;
-	}
-	canva_update(rt_struct);
+void	parse_plane(char *line, t_minirt *data)
+{
+}
+
+void	parse_cylinder(char *line, t_minirt *data)
+{
+}
+
+void	parse_comment(char *line, t_minirt *data)
+{
 }

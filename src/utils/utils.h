@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.c                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 12:47:07 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/03/25 23:18:19 by rerodrig         ###   ########.fr       */
+/*   Created: 2025/03/25 22:40:22 by rerodrig          #+#    #+#             */
+/*   Updated: 2025/03/25 22:40:59 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "tests.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-void	setUp(void)
-{
-}
+int	ft_isspace(char c);
+double	ft_atof(const char *str, char **endptr);
 
-void	tearDown(void)
-{
-}
-
-int	main(void)
-{
-	srand(time(NULL));
-	UNITY_BEGIN();
-	test_tuples();
-	test_ft_atof();
-	UNITY_END();
-	return (0);
-}
+#endif
