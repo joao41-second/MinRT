@@ -48,22 +48,77 @@ typedef t_matrix t_rotation;
 typedef t_matrix t_mat_shearing;
 
 /**
- * @brief this funncion generate the new matrix
+ * @brief this function generate the new matrix
  *
  * @param x size the matrix ex: 2 generate matrix 2X2 
  * @return matrix inicialized all nb 0
  */
 t_matrix	mat_gener(int x);
 
+/**
+ * @brief this function generate the new matrix the form
+ *  \1,0,0,0\
+ *  \0,1,0,0\
+ *  \0,0,1,0\
+ *  \0,0,0,1\
+ *
+ * @param x  size the matrix
+ * @return matrix inicialized
+ */
 t_identiy	mat_gener_identity(int x);
 
+/**
+ * @brief this function generate the matrix the type translation
+ *  \1,0,0,x\
+ *  \0,1,0,y\
+ *  \0,0,1,z\
+ *  \0,0,0,1\
+ *
+ * @param x double the point
+ * @param y double the point
+ * @param z double the point
+ * @return matrix inicialized
+ */
 t_translation	mat_gener_trans(double x,double y, double z);
 
+/**
+ * @brief this function generate the matrix the type scaling
+ *  \x,0,0,0\
+ *  \0,y,0,0\
+ *  \0,0,z,0\
+ *  \0,0,0,1\
+ *
+ * @param x 
+ * @param y 
+ * @param z 
+ * @return matrix inicialized
+ */
 t_scaling	mat_gener_scal(double x,double y, double z);
 
+/**
+ * @brief this function generate the new matrix the type rotation
+ *  \1, 0   ,   0    ,0\
+ *  \0,cos r, -sin r ,0\
+ *  \0,sin r,  cos r ,0\
+ *  \0, 0,      0    ,1\
+ *  not iqual all axis
+ * @param axis axis the rotation
+ * @param deg value in angele the 0 to 360 
+ * @return matriz inicialized
+ */
 t_rotation 	mat_gener_rota(char axis,double deg);
 
 
+/**
+ * @brief this function generate the new matrix the type shearing 
+ *  \1,x_y,x_z,0\
+ *  \y_x,1,y_z,0\
+ *  \z_x,z_y,1,0\
+ *  \0,0,0,1\
+ *
+ * @param values struct the values the z_y etc..
+ * @return matrix inicialized
+ */
 t_mat_shearing 	mat_gener_shearing(t_shearing values);
 
 void		mat_trans(t_matrix *mat);
