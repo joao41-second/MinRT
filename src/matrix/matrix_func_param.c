@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minRT.h"
-#include "matrix.h"
 
 double	mat_mult_matrix(int *y, int *x, t_matrix *mat1, t_matrix *mat2)
 {
@@ -51,7 +50,7 @@ double	mat_transposing(int *y, int*x, t_matrix *mat1, t_matrix *mat2)
 }
 
 t_matrix	mat_exet(t_matrix mat1, t_matrix mat2, double f( int*,
-			 int*, t_matrix*, t_matrix*))
+			int*, t_matrix*, t_matrix*))
 {
 	t_matrix	new_matrix;
 	int			x;
@@ -73,4 +72,21 @@ t_matrix	mat_exet(t_matrix mat1, t_matrix mat2, double f( int*,
 		}
 	}
 	return (new_matrix);
+}
+
+void	mat_print(const t_matrix matrix)
+{
+	int		x;
+	int		y;
+
+	y = -1;
+	while (++y < matrix.size)
+	{
+		x = -1;
+		while (++x < matrix.size)
+		{
+			printf("|  %10.5f ", matrix.matr[y][x]);
+		}
+		printf("\n");
+	}
 }

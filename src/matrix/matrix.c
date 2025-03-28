@@ -63,9 +63,10 @@ t_matrix	mat_gener_identity(int x)
 	return (matrix_);
 }
 
-t_matrix	mat_gener_trans(double x,double y, double z)
+t_matrix	mat_gener_trans(double x, double y, double z)
 {
-	t_matrix ret;
+	t_matrix	ret;
+
 	ret = mat_gener_identity(4);
 	ret.matr[0][3] = x;
 	ret.matr[1][3] = y;
@@ -74,9 +75,10 @@ t_matrix	mat_gener_trans(double x,double y, double z)
 	return (ret);
 }
 
-t_matrix	mat_gener_scal(double x,double y, double z)
+t_matrix	mat_gener_scal(double x, double y, double z)
 {
-	t_matrix ret;
+	t_matrix	ret;
+
 	ret = mat_gener_identity(4);
 	ret.matr[0][0] = x;
 	ret.matr[1][1] = y;
@@ -90,19 +92,3 @@ t_matrix	mat_multip(t_matrix mat1, t_matrix mat2)
 	return (mat_exet(mat1, mat2, mat_mult_matrix));
 }
 
-void	mat_print(const t_matrix matrix)
-{
-	int		x;
-	int		y;
-
-	y = -1;
-	while (++y < matrix.size)
-	{
-		x = -1;
-		while (++x < matrix.size)
-		{
-			printf("|  %10.5f ", matrix.matr[y][x]);
-		}
-		printf("\n");
-	}
-}

@@ -20,7 +20,6 @@
 
 typedef union s_tuple
 {
-
 	double	val[4];
 	struct
 	{
