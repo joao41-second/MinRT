@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   ray_struct.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 16:26:38 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/26 16:30:18 by jperpct          ###   ########.fr       */
+/*   Created: 2025/04/01 10:37:14 by jperpct           #+#    #+#             */
+/*   Updated: 2025/04/01 10:46:31 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minRT.h"
 
+#ifndef RAY_STRUCT_H
+#define RAY_STRUCT_H
 
-
-t_sphere sphere(t_point point_satrt , double ray_s)
+typedef union s_ray
 {
-	t_sphere new;
+	struct
+	{
+		t_tuple origin;
+		t_tuple direction;
+	};
+	t_tuple all[2];
+} t_ray;
 
-	new.center = point_satrt;
-	new.ray_s = ray_s;
-
-	return (new);
-}
+#endif

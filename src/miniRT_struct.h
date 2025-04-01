@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/24 14:28:22 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/01 11:25:31 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "./canvas/canvas_struct.h"
 # include "./tuples/tuples.h"
+# include "./ray/ray_struct.h"
 
 typedef struct s_object
 {
