@@ -11,6 +11,7 @@
 #include "minRT.h"
 #include "objects/objects.h"
 #include "ray/ray.h"
+#include "ray/ray_struct.h"
 #include "tuples/tuples.h"
 #include <math.h>
 
@@ -28,13 +29,13 @@ int	main(int ac, char **av, char **env)
 
 //	t_matrix mat1;
 //	t_shearing val1;
-	t_point new = ray_position( ray_gener(create_point(2, 3, 4), create_vector(1, 0, 0)),-1);
+	t_point new ;
 
 	t_sphere new_sph = sphere(create_point(0, 0, 0),1);
-	t_object_ interept = ray_int_sphere(ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1)),new_sph);
+	t_intersection interept = ray_int_sphere(ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1)),new_sph);
 
 	printf("the t value is %f and %f \n",interept.t[0],interept.t[1]);
-
+	new = interept.point[0];
 	printf("x%f y%f z%f , typ_mat  \n",new.x,new.y,new.z);
 
 	

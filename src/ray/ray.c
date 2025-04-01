@@ -8,7 +8,7 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
-#include <stdio.h>
+#include "ray_struct.h"
 
 double mutl_dub(double nb1,double nb2)
 {
@@ -31,21 +31,35 @@ t_point ray_position(t_ray ray,double nb)
 		return (new);
 	return(scalar_mult_tuples(new, nb)); 
 }
+
+t_point ray_t_to_point(t_point const point,double t)
+{
+	t_point new;
+	
+	new = point;
+	if(t*point.x != 0)
+		new.x = point.x + (t);
+
+	if(t*point.y != 0)
+		new.y = point.y + (t);
+	if(t*point.z != 0)
+		new.z = point.z + (t);
+	return (new);
+}
+
 // At2+By+C=0
 //
 //A=dx2+dy2+dz2
 //B=2[dx(px−cx)+dy(py−cy)+dz(pz−cz)]
 //C=(px−cx)2+(py−cy)2+(pz−cz)2−R2
 //
-t_object_ ray_int_sphere(t_ray ray,t_sphere shp)
+t_intersection ray_int_sphere(t_ray ray,t_sphere shp)
 {
-	t_object_ ret;
-	t_point point;
+	t_intersection ret;
 	double a_;
 	double b_;
-	double c_;
-	
-	ret.object = &shp;
+	double c_;	
+
 	a_ = ((ray.direction.x * ray.direction.x) + (ray.direction.y * ray.direction.y )+ (ray.direction.z * ray.direction.z)) ;
 
 	b_ = 2 * ((ray.direction.x * (ray.origin.x - shp.center.x)) +
@@ -55,8 +69,12 @@ t_object_ ray_int_sphere(t_ray ray,t_sphere shp)
 		((ray.origin.y - shp.center.y)*(ray.origin.y - shp.center.y)) +
 			((ray.origin.z - shp.center.z)*(ray.origin.z - shp.center.z))
 				- (shp.ray_s * shp.ray_s);
-	printf("a %f b %f c %f\n", a_,b_,c_);
+	ret.object = &shp;
+	ret.inter = (b_*b_) -4 * a_ * c_;
 	ret.t[1] = (-(b_) + sqrt((b_*b_) -4 * a_ * c_))/(2 * a_);
 	ret.t[0] = (-(b_) - sqrt((b_*b_) -4 * a_ * c_))/(2 * a_);
+	ret.ray_start = ray;
+	ret.point[1] = ray_t_to_point(ray.origin, ret.t[1]);
+	ret.point[0] = ray_t_to_point(ray.origin, ret.t[0]);
 	return(ret);
 }
