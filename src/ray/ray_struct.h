@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:37:14 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/01 15:14:44 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/01 17:15:58 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ typedef struct s_object_intersectd
 {
 	void *object;
 	t_list_ **ints;
-	t_list_ *max;
-	t_list_ *min;
+	double max;
+	double min;
 
 } t_obj_int;
 
@@ -62,5 +62,7 @@ typedef struct  s_intersections
 	t_list_ *max;
 	t_list_ *min;
 } t_intersections;
+
+
 
 #endif

@@ -39,7 +39,6 @@ t_point ray_t_to_point(t_point const point,double t)
 	new = point;
 	if(t*point.x != 0)
 		new.x = point.x + (t);
-
 	if(t*point.y != 0)
 		new.y = point.y + (t);
 	if(t*point.z != 0)

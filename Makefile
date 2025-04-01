@@ -14,7 +14,8 @@
 #WFLGS = -Wall -Wextra -Werror
 READ_FLG = -g 
 
-MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft
+MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft \
+	      -Llibft/ft_list
 FLGS = $(WFLGS) $(READ_FLG) $(MINILIB_FLG)
 
 VAL = valgrind --leak-check=full  
@@ -30,7 +31,7 @@ OBJDIR = Objs
 OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))
 
 # Libraries
-LIB = ./libft/ft_libft/libft.a ./libft/ft_printf/libftprintf.a ./libft/ft_free/ft_free.a \
+LIB = ./libft/ft_libft/libft.a ./libft/ft_printf/libftprintf.a ./libft/ft_free/ft_free.a ./libft/ft_list/list.a\
 ./libft/minilibx-linux/libmlx.a ./libft/minilibx-linux/libmlx_Linux.a  ./libft/ft_get_next_line/get_next_line.a\
 
 # Commands
@@ -56,6 +57,7 @@ $(LIB):
 	cd libft/ft_libft && make bonus 
 	cd libft/ft_printf && make 
 	cd libft/ft_get_next_line && make 
+	cd libft/ft_list && make 
 	cd libft/minilibx-linux && make
 
 # Main target
@@ -77,6 +79,7 @@ clean:
 	cd libft/ft_printf && make clean
 	cd libft/ft_get_next_line && make clean
 	cd libft/minilibx-linux && make clean
+	cd libft/ft_list && make clean 
 
 fclean: clean
 	$(RM) $(NAME)

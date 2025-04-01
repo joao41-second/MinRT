@@ -19,4 +19,6 @@ t_ray ray_gener(t_point point,t_vector dir);
 t_point ray_position(t_ray ray,double nb);
 
 t_intersection ray_int_sphere(t_ray ray,t_sphere shp);
+
+t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray);
 #endif

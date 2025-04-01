@@ -9,17 +9,17 @@
 /* ************************************************************************** */
 
 #include "minRT.h"
+#include "../libft/ft_list/list.h"
 #include "objects/objects.h"
-#include "ray/ray.h"
 #include "ray/ray_struct.h"
-#include "tuples/tuples.h"
-#include <math.h>
 
 int	main(int ac, char **av, char **env)
 {
 	//t_minirt	rt_struct;
 	int			status;
+	t_list_ *word_objects;
 
+	word_objects = NULL;
 	status = 0;
 	(void)ac;
 	(void)av;
@@ -30,9 +30,19 @@ int	main(int ac, char **av, char **env)
 //	t_matrix mat1;
 //	t_shearing val1;
 	t_point new ;
+	t_sphere sph;
+	t_sphere sph2;
+	t_obj_int intr_in_objc;
+	sph = sphere(create_point(0, 0, 0),1) ;
+	ft_add_node(&sph,&word_objects );
+	sph2 = sphere(create_point(0, 10, 0),1) ;
+	ft_add_node(&sph2,&word_objects);
+	
 
-	t_sphere new_sph = sphere(create_point(0, 0, 0),1);
-	t_intersection interept = ray_int_sphere(ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1)),new_sph);
+	t_intersection interept = ray_int_sphere(ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1)),sph);
+	
+	 ray_for_objects(t_list_ *objs_w,t_ray ray)
+	
 
 	printf("the t value is %f and %f \n",interept.t[0],interept.t[1]);
 	new = interept.point[0];
