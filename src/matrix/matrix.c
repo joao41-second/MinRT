@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 17:47:38 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/21 13:22:38 by jperpct          ###   ########.fr       */
+/*   Created: 2025/04/01 11:33:47 by jperpct           #+#    #+#             */
+/*   Updated: 2025/04/01 11:34:04 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,3 @@ t_matrix	mat_multip(t_matrix mat1, t_matrix mat2)
 {
 	return (mat_exet(mat1, mat2, mat_mult_matrix));
 }
-
