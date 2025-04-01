@@ -8,6 +8,7 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include <stdio.h>
 
 double mutl_dub(double nb1,double nb2)
 {
@@ -43,10 +44,10 @@ t_object_ ray_int_sphere(t_ray ray,t_sphere shp)
 	double a_;
 	double b_;
 	double c_;
-
 	
 	ret.object = &shp;
-	a_ = dot_product(&ray.direction,&ray.direction);
+	a_ = ((ray.direction.x * ray.direction.x) + (ray.direction.y * ray.direction.y )+ (ray.direction.z * ray.direction.z)) ;
+
 	b_ = 2 * ((ray.direction.x * (ray.origin.x - shp.center.x)) +
 			(ray.direction.y * (ray.origin.y - shp.center.y)) +
 				(ray.direction.z * (ray.origin.z - shp.center.z)));
@@ -54,7 +55,8 @@ t_object_ ray_int_sphere(t_ray ray,t_sphere shp)
 		((ray.origin.y - shp.center.y)*(ray.origin.y - shp.center.y)) +
 			((ray.origin.z - shp.center.z)*(ray.origin.z - shp.center.z))
 				- (shp.ray_s * shp.ray_s);
-	ret.t[0] = (-b_ + sqrt((b_*b_) - (4 * a_ * c_))/(2 * a_));
-	ret.t[1] = (-b_ - sqrt((b_*b_) - (4 * a_ * c_))/(2 * a_));
+	printf("a %f b %f c %f\n", a_,b_,c_);
+	ret.t[1] = (-(b_) + sqrt((b_*b_) -4 * a_ * c_))/(2 * a_);
+	ret.t[0] = (-(b_) - sqrt((b_*b_) -4 * a_ * c_))/(2 * a_);
 	return(ret);
 }
