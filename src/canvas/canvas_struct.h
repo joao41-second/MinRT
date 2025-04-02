@@ -40,7 +40,7 @@ typedef union s_color
 		double	green;
 		double	blue;
 	};
-	int			color[3];
+	double			color[3];
 }				t_color;
 
 #endif

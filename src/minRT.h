@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/27 03:34:04 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/01 12:16:15 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 
 # define TRUE 0
 # define FALSE 1
+
+# include "../libft/ft_libft/libft.h"
+# include "../libft/ft_free/ft_free.h"
+# include "../libft/ft_get_next_line/get_next_line_bonus.h"
+# include "../libft/ft_printf/ft_printf.h"
+# include "../libft/minilibx-linux/mlx.h"
+# include "../libft/minilibx-linux/mlx_int.h"
+
+# include "./tuples/tuples.h"
+# include "./canvas/canvas.h"
+# include "./loop/loop.h"
+# include "./miniRT_struct.h"
+# include "./matrix/matrix.h"
+# include "./tuples/tuples.h"
+# include "./parser/parser.h"
+# include "./parser/parser.h"
 
 # include <asm-generic/errno.h>
 # include <fcntl.h>
@@ -29,16 +45,5 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# include "../libft/ft_free/ft_free.h"
-# include "../libft/ft_get_next_line/get_next_line_bonus.h"
-# include "../libft/ft_libft/libft.h"
-# include "../libft/ft_printf/ft_printf.h"
-# include "../libft/minilibx-linux/mlx.h"
-# include "../libft/minilibx-linux/mlx_int.h"
-# include "./miniRT_struct.h"
-# include "./loop/loop.h"
-# include "./canvas/canvas.h"
-# include "./tuples/tuples.h"
-# include "./parser/parser.h"
 
 #endif
