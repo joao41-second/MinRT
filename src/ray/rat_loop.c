@@ -1,5 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   rat_loop.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -13,8 +11,6 @@
 #include "../minRT.h"
 #include "ray.h"
 #include "ray_struct.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 
 t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
@@ -48,15 +44,36 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 	return (save_points);
 }
 
-t_intersections ray_for_limts(t_lim_ran_int const limts,t_point s_point)
+t_intersections ray_for_limts(t_lim_ran_int const limts,t_point point, t_list_ *word)
 {
 	t_intersections ret;
-	double	add;
+	double	add_z;
+	double	add_x;
+	double	add_y;
+	t_obj_int test;
 
-	add = 0;
 	ret.inter = NULL;
 	ret.data = limts;
-
+	if(limts.unit != 0)
+	{
+		add_z = limts.z.l_min;
+		while (add_z < limts.z.l_max) 
+		{
+			add_y = limts.z.l_min;
+			while (add_y < limts.z.l_max)
+			{
+				add_x = limts.z.l_min;
+				while (add_x < limts.z.l_max)
+				{
+					test = ray_for_objects(word,ray_gener(point,ray_ang_to_vect(add_x, add_y, add_z)));
+					ft_add_node(&test,&ret.inter);
+					add_x +=limts.unit;
+				}
+				add_y +=limts.unit;
+			}
+			add_z +=limts.unit;
+		}
+	}
 	return(ret);
 }
 
