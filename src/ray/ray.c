@@ -77,3 +77,23 @@ t_intersection ray_int_sphere(t_ray ray,t_sphere shp)
 	ret.point[0] = ray_t_to_point(ray.origin, ret.t[0]);
 	return(ret);
 }
+
+double ray_model_venct(t_vector vect)
+{
+	double ret;
+
+	ret = sqrt(vect.x * vect.x + vect.y * vect.y + vect.z * vect.z);
+	return(ret);
+}
+
+t_tuple ray_ang_to_vect(double x,double y,double z)
+{
+	t_vector vect;
+	double module_v;
+
+	module_v = 1;
+	vect.z = 1*cos(z);
+	vect.x = 1*cos(x);
+	vect.y = 1*cos(y);
+	return(vect);
+}

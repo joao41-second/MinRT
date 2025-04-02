@@ -11,7 +11,9 @@
 #include "minRT.h"
 #include "../libft/ft_list/list.h"
 #include "objects/objects.h"
+#include "ray/ray.h"
 #include "ray/ray_struct.h"
+#include <stdio.h>
 
 int	main(int ac, char **av, char **env)
 {
@@ -35,19 +37,14 @@ int	main(int ac, char **av, char **env)
 	t_obj_int intr_in_objc;
 	sph = sphere(create_point(0, 0, 0),1) ;
 	ft_add_node(&sph,&word_objects );
-	sph2 = sphere(create_point(0, 10, 0),1) ;
+	sph2 = sphere(create_point(0, 0, 10),1) ;
 	ft_add_node(&sph2,&word_objects);
-	
+		
+	t_obj_int ok;
+	ok = ray_for_objects(word_objects,ray_gener(create_point(0,0,-5), create_vector(0,0,1)));
 
-	t_intersection interept = ray_int_sphere(ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1)),sph);
+	printf("max %f and min %f\n",ok.max,ok.min);
 	
-	 ray_for_objects(t_list_ *objs_w,t_ray ray)
-	
-
-	printf("the t value is %f and %f \n",interept.t[0],interept.t[1]);
-	new = interept.point[0];
-	printf("x%f y%f z%f , typ_mat  \n",new.x,new.y,new.z);
-
 	
 	ft_free_all();
 	return (status);

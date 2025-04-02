@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:37:14 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/01 17:15:58 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/02 11:40:11 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,28 @@ typedef struct s_intersection
 	t_tuple point[2];
 }	t_intersection;
 
+//________________________________limts______//
+
+typedef struct s_limt 
+{
+	double l_max;
+	double l_min;
+
+} t_limit;
+
 typedef struct s_limits_range_intersections 
 {
-	double l_Max_x;
-	double l_Nin_x;
-	double l_Max_y;
-	double l_Nin_y;
-	double l_Max_z;
-	double l_Nin_z;
+	t_limit x;
+	t_limit y;
+	t_limit z;
 	double unit;
-} t_limits_range_intersections;
+} t_lim_ran_int;
 
+//------------------------------------------//
 typedef struct s_object_intersectd
 {
 	void *object;
-	t_list_ **ints;
+	t_list_ *ints;
 	double max;
 	double min;
 
@@ -57,12 +64,9 @@ typedef struct s_object_intersectd
 
 typedef struct  s_intersections 
 {
-	t_limits_range_intersections data;	
-	t_list_ **objects;
-	t_list_ *max;
-	t_list_ *min;
+	t_lim_ran_int data;	
+	t_list_ *inter;
 } t_intersections;
-
 
 
 #endif
