@@ -16,8 +16,8 @@
 # define TRUE 0
 # define FALSE 1
 
-# define WALL_X 500:
-# define WALL_Y 500;
+# define WALL_X 500
+# define WALL_Y 500
 
 # include "../libft/ft_libft/libft.h"
 # include "../libft/ft_list/list.h"

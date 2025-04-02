@@ -52,6 +52,7 @@ typedef struct s_minirt
 {
 	t_canva		canva;
 	t_scene		scene;
+	t_list_		*word;
 }	t_minirt;
 
 #endif

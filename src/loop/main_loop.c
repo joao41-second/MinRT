@@ -11,22 +11,12 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include <fcntl.h>
 
 void	main_loop(t_minirt *rt_struct)
 {
-	int	i;
-	int	a;
 
-	i = 0;
-	while (i < 100)
-	{
-		a = 0;
-		while (a < 100)
-		{
-			canva_set_pixel(rt_struct, a, i, c_new(255.0, 1.0, 100.0));
-			a++;
-		}
-		i++;
-	}
+	ray_canva(create_point(0, 0, 0), rt_struct);
+
 	canva_update(rt_struct);
 }
