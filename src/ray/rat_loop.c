@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:27:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/02 11:47:30 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/02 13:01:03 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,12 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 t_intersections ray_for_limts(t_lim_ran_int const limts,t_point s_point)
 {
 	t_intersections ret;
-	
-	
+	double	add;
+
+	add = 0;
+	ret.inter = NULL;
+	ret.data = limts;
+
 	return(ret);
 }
 
