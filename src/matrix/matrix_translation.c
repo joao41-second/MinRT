@@ -47,6 +47,9 @@ t_point mat_x_tuple(t_tuple point,t_matrix mat)
 			copy.matr[l][c] = copy.matr[l][c]  * point.val[c];
 	}	
 	mat_x_point_aux(&new_, copy);
-	mat_free(&copy);
+//	mat_free(&copy);
 	return(new_);
 }
+
+
+

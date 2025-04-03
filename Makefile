@@ -12,7 +12,7 @@
 
 # Compiler flags
 #WFLGS = -Wall -Wextra -Werror
-READ_FLG = -g 
+READ_FLG =  
 
 MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft \
 	      -Llibft/ft_list

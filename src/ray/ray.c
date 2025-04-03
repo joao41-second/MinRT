@@ -7,6 +7,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ray.h"
 #include "../minRT.h"
 #include "ray_struct.h"
 
@@ -52,13 +53,22 @@ t_point ray_t_to_point(t_point const point,double t)
 //B=2[dx(px−cx)+dy(py−cy)+dz(pz−cz)]
 //C=(px−cx)2+(py−cy)2+(pz−cz)2−R2
 //
-t_intersection ray_int_sphere(t_ray ray,t_sphere shp)
+t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
 {
 	t_intersection ret;
 	double a_;
 	double b_;
-	double c_;	
+	double c_;
+	t_ray ray;
 
+	ray = ray_transform(ray_,shp.inv_transform);
+	//t_ray final =  ray_transform(ray_,shp.inv_transform);
+
+	//printf("%f %f %f point %f %f %f ray",
+	//		final.all[0].x, final.all[0].y, final.all[0].z,final.all[1].x, final.all[1].y, final.all[1].z);
+
+
+		   
 	a_ = ((ray.direction.x * ray.direction.x) + (ray.direction.y * ray.direction.y )+ (ray.direction.z * ray.direction.z)) ;
 
 	b_ = 2 * ((ray.direction.x * (ray.origin.x - shp.center.x)) +

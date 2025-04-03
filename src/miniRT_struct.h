@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/01 15:01:43 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/03 12:51:40 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "./canvas/canvas_struct.h"
 # include "./tuples/tuples.h"
 # include "./ray/ray_struct.h"
+# include "./matrix/matrix.h"
+# include "./objects/objects.h"
 
 typedef struct s_object
 {
@@ -53,6 +55,7 @@ typedef struct s_minirt
 	t_canva		canva;
 	t_scene		scene;
 	t_list_		*word;
+	t_ray	c_ray;
 }	t_minirt;
 
 #endif

@@ -43,7 +43,7 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 		}
 		if(objs_w->next == NULL)
 			break;
-		objs_w= objs_w->next;
+		objs_w = objs_w->next;
 	}
 
 	objs_w = ft_node_start(objs_w);	
@@ -87,11 +87,12 @@ void ray_canva(t_point point, t_minirt *rt_struct)
 {
 	double pix_size;
 	double metade;
-	int x;
-	int y;
+	double x;
+	double y;
 	double x_;
 	double y_;
 	t_tuple raiva;
+	t_tuple sub;
 	x = -1;
 	y = -1;
 	pix_size = WALL_SIZE / WALL_X;
@@ -99,13 +100,34 @@ void ray_canva(t_point point, t_minirt *rt_struct)
 	while (++y < WALL_Y) 
 	{
 		x = -1;
-		y_ = metade -pix_size * y;
+		y_ =( metade - y) *pix_size  ;
 		while(++x < WALL_X)
 		{
-			x_ = -metade - pix_size *x;
-			raiva = create_point(x_,y_, 1);			
-			printf("ola os raios sao %f %f %f\n", normalize(&raiva).x,normalize(&raiva).y,normalize(&raiva).z);
-			if(ray_for_objects(rt_struct->word,ray_gener(point,normalize(&raiva))).min != INT_MAX)
+			x_ = (-metade +  x) * pix_size;
+			raiva = create_point(x_,y_, WALL_Z);
+			sub = sub_tuples(raiva,rt_struct->c_ray.direction);
+
+			if(x == 0 && y == 0 )
+			{
+				printf("mini x mini y  sao %f %f %f\n",normalize(&sub).x,normalize(&sub).y,normalize(&sub).z);
+		//		printf("x and y %f %f \n",x_,y_);
+			}
+			if(x == 0 && y == WALL_Y-1)
+				{
+				printf("mini x mini y  sao %f %f %f\n",normalize(&sub).x,normalize(&sub).y,normalize(&sub).z);
+		///		printf("x and y %f %f \n",x_,y_);
+			}
+			if(x == WALL_X-1 && y == 0)
+			{
+				printf("mini x mini y  sao %f %f %f\n",normalize(&sub).x,normalize(&sub).y,normalize(&sub).z);
+		//		printf("x and y %f %f \n",x_,y_);
+			}
+			if( x == WALL_X-1 && y == WALL_Y-1)
+			{
+				printf("mini x mini y  sao %f %f %f\n",normalize(&sub).x,normalize(&sub).y,normalize(&sub).z);
+		//		printf("x and y %f %f \n",x_,y_);
+			}
+			if(ray_for_objects(rt_struct->word,ray_gener(point,normalize(&sub))).min != INT_MAX)
 			{
 				canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
 			}else

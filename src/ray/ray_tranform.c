@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   ray_tranform.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 16:26:38 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/03 12:44:53 by jperpct          ###   ########.fr       */
+/*   Created: 2025/04/03 12:12:41 by jperpct           #+#    #+#             */
+/*   Updated: 2025/04/03 12:46:47 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include "ray.h"
+#include "ray_struct.h"
 
 
 
-t_sphere sphere(t_point point_satrt , double ray_s)
+t_ray ray_transform(t_ray ray,t_matrix mat)
 {
-	t_sphere new;
+	t_ray new_ray;
+	new_ray = ray_gener(mat_x_tuple(ray.origin, mat), mat_x_tuple(ray.direction, mat) );
+	return(new_ray);
+}
 
-	new.center = point_satrt;
-	new.ray_s = ray_s;
-	new.transform = mat_gener(4);
-	new.inv_transform = mat_gener(4);
-
-	return (new);
+void ray_set_transform (t_sphere *sph,t_matrix mat)
+{
+	mat_free(&sph->transform);
+	mat_free(&sph->inv_transform);
+	sph->transform = mat_cp(mat);
+	sph->inv_transform = mat_cp(mat_inv(mat));
 }

@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/01 16:47:40 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/03 12:56:19 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define TRUE 0
 # define FALSE 1
 
-# define WALL_X 500
-# define WALL_Y 500
+# define WALL_X 100.0
+# define WALL_Y 100.0
 
 # include "../libft/ft_libft/libft.h"
 # include "../libft/ft_list/list.h"

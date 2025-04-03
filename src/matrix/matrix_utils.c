@@ -43,9 +43,7 @@ t_matrix	mat_cp(t_matrix mat)
 	t_matrix	tmp;
 	t_matrix	ret;
 
-	tmp = mat_gener(mat.size);
-	ret = mat_exet(mat, tmp, mat_copy);
-	mat_free (&tmp);
+	ret = mat_exet(mat, mat, mat_copy);
 	ret.flag = mat.flag;
 	return (ret);
 }
