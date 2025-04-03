@@ -16,7 +16,7 @@
 void	main_loop(t_minirt *rt_struct)
 {
 
-	ray_canva(create_point(0, 0, 0), rt_struct);
+	ray_canva(create_point(0, -2, 0), rt_struct);
 
 	canva_update(rt_struct);
 }
