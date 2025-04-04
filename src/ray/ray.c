@@ -83,8 +83,8 @@ t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
 	ret.t[1] = (-(b_) + sqrt((b_*b_) -4 * a_ * c_))/(2 * a_);
 	ret.t[0] = (-(b_) - sqrt((b_*b_) -4 * a_ * c_))/(2 * a_);
 	ret.ray_start = ray;
-	ret.point[1] = ray_t_to_point(ray.origin, ret.t[1]);
-	ret.point[0] = ray_t_to_point(ray.origin, ret.t[0]);
+	//ret.point[1] = ray_t_to_point(ray.origin, ret.t[1]);
+	//ret.point[0] = ray_t_to_point(ray.origin, ret.t[0]);
 	return(ret);
 }
 

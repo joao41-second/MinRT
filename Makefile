@@ -12,7 +12,7 @@
 
 # Compiler flags
 #WFLGS = -Wall -Wextra -Werror
-READ_FLG =  
+READ_FLG =  -O3 -march=native -flto -funroll-loops  
 
 MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft \
 	      -Llibft/ft_list
@@ -98,8 +98,6 @@ test_vall: all
 	make val -C tests
 
 
-
-
 s:
 	clear && make re && ./$(NAME)
 v:
@@ -112,3 +110,6 @@ g:
 	clear && gdb -tui ./$(NAME)
 t:
 	make re && cd ./minishell_tester  && ./tester
+pdf:
+	cd ~/Downloads/ && evince JamisBuck-TheRayTracer.pdf
+
