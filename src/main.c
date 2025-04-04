@@ -31,8 +31,9 @@ int	main(int ac, char **av, char **env)
 	sph = sphere(create_point(0, 0, 0),1) ;
 	ray_set_transform(&sph,mat_gener_scal(1, 1, 1) );
 	ft_add_node(&sph,&word_objects );
-//	sph2 = sphere(create_point(0, 0, 10),1) ;
-///	ft_add_node(&sph2,&word_objects);	
+	sph2 = sphere(create_point(0, 0.5, 0),1) ;
+	ray_set_transform(&sph2,mat_gener_scal(1, 1, 1) );
+	ft_add_node(&sph2,&word_objects);	
 ///
 	rt_struct.word = ft_node_start( word_objects); 
 
