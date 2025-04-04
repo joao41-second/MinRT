@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/03 12:56:19 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:51:13 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # include "./matrix/matrix.h"
 # include "./objects/objects.h"
 # include "./ray/ray.h"
+# include "./light/light.h"
 
 # include <asm-generic/errno.h>
 # include <fcntl.h>

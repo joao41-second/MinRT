@@ -1,0 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/04 13:57:01 by jperpct           #+#    #+#             */
+/*   Updated: 2025/04/04 13:58:36 by jperpct          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LIGHT_H
+#define LIGHT_H
+
+#include "../miniRT_struct.h"
+
+t_vector lig_normalize(t_point oring_ob,t_point p_the_obj);
+#endif
+
