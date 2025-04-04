@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minRT.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/03 12:56:19 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/04 12:39:43 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define TRUE 0
 # define FALSE 1
 
-# define WALL_X 100.0
-# define WALL_Y 100.0
+# define WALL_X 200.0
+# define WALL_Y 200.0
 
 # include "../libft/ft_libft/libft.h"
 # include "../libft/ft_list/list.h"

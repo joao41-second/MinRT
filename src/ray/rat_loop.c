@@ -18,7 +18,8 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 {
 	t_obj_int save_points;
 	t_intersection intr;
-	t_sphere *conv;
+	// t_sphere *conv;
+	t_object *obj;
 
 	save_points.max = INT_MAX;
 	save_points.min = INT_MAX;
@@ -27,8 +28,8 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 	while (objs_w != NULL)
 	{
 
-		conv = (t_sphere *)objs_w->content;
-		intr = ray_int_sphere(ray,*conv );
+		obj = (t_object *)objs_w->content;
+		intr = ray_int_object(ray,*obj );
 		if(intr.inter > 0)
 		{
 			if(intr.t[0] > save_points.max || save_points.max == INT_MAX )
@@ -109,31 +110,38 @@ void ray_canva(t_point point, t_minirt *rt_struct)
 
 			if(x == 0 && y == 0 )
 			{
-				printf("mini x mini y  sao %f %f %f\n",normalize(&sub).x,normalize(&sub).y,normalize(&sub).z);
+				printf("mini x mini y  sao %f %f %f\n",normalize(sub).x,normalize(sub).y,normalize(sub).z);
 		//		printf("x and y %f %f \n",x_,y_);
 			}
 			if(x == 0 && y == WALL_Y-1)
 				{
-				printf("mini x mini y  sao %f %f %f\n",normalize(&sub).x,normalize(&sub).y,normalize(&sub).z);
+				printf("mini x mini y  sao %f %f %f\n",normalize(sub).x,normalize(sub).y,normalize(sub).z);
 		///		printf("x and y %f %f \n",x_,y_);
 			}
 			if(x == WALL_X-1 && y == 0)
 			{
-				printf("mini x mini y  sao %f %f %f\n",normalize(&sub).x,normalize(&sub).y,normalize(&sub).z);
+				printf("mini x mini y  sao %f %f %f\n",normalize(sub).x,normalize(sub).y,normalize(sub).z);
 		//		printf("x and y %f %f \n",x_,y_);
 			}
 			if( x == WALL_X-1 && y == WALL_Y-1)
 			{
-				printf("mini x mini y  sao %f %f %f\n",normalize(&sub).x,normalize(&sub).y,normalize(&sub).z);
+				printf("mini x mini y  sao %f %f %f\n",normalize(sub).x,normalize(sub).y,normalize(sub).z);
 		//		printf("x and y %f %f \n",x_,y_);
 			}
-			if(ray_for_objects(rt_struct->word,ray_gener(point,normalize(&sub))).min != INT_MAX)
+			t_obj_int intersections = ray_for_objects(rt_struct->word, ray_gener(point, normalize(sub)));
+			if(intersections.min != INT_MAX)
 			{
+				t_object *closest_obj = (t_object *)intersections.ints->content;
+				
 				canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
+				//  if (closest_obj->type == OBJ_PLANE)
+				// 	 canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
+				//  else if (closest_obj->type == OBJ_SPHERE)
+				// 	 canva_set_pixel(rt_struct, x, y, c_new(255.0, 0.0, 0.0));
+				//  else
+				// 	 canva_set_pixel(rt_struct, x, y, c_new(255.0, 255.0, 255.0));
 			}else
-			{
 				canva_set_pixel(rt_struct, x, y, c_new(255.0, 255, 100.0));
-			}
 		}	
 	}
 }

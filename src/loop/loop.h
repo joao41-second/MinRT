@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:32:34 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 15:58:05 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/04 19:14:27 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define LOOP_H
 # include "../miniRT_struct.h"
 
-void	main_loop(t_minirt *rt_struct);
+void	loop(t_minirt *rt_struct);
 
 #endif

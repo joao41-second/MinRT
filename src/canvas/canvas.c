@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:29:56 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/24 14:29:57 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/04 19:14:36 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	canva_loop(t_minirt *rt_struct)
 {
-	main_loop(rt_struct);
+	loop(rt_struct);
 	return (1);
 }
 

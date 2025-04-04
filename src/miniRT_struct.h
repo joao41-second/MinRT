@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/03 12:51:40 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/04 02:46:26 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@
 # include "./matrix/matrix.h"
 # include "./objects/objects.h"
 
-typedef struct s_object
-{
-	void		*data; // Pointer to t_sphere, t_plane, or t_cylinder
-}	t_object;
+
 
 typedef struct s_camera
 {
