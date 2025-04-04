@@ -59,6 +59,7 @@ t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
 	double a_;
 	double b_;
 	double c_;
+	double temp;
 	t_ray ray;
 
 	ray = ray_transform(ray_,shp.inv_transform);
@@ -66,9 +67,7 @@ t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
 
 	//printf("%f %f %f point %f %f %f ray",
 	//		final.all[0].x, final.all[0].y, final.all[0].z,final.all[1].x, final.all[1].y, final.all[1].z);
-
-
-		   
+	   
 	a_ = ((ray.direction.x * ray.direction.x) + (ray.direction.y * ray.direction.y )+ (ray.direction.z * ray.direction.z)) ;
 
 	b_ = 2 * ((ray.direction.x * (ray.origin.x - shp.center.x)) +
@@ -80,11 +79,10 @@ t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
 				- (shp.ray_s * shp.ray_s);
 	ret.object = &shp;
 	ret.inter = (b_*b_) -4 * a_ * c_;
-	ret.t[1] = (-(b_) + sqrt((b_*b_) -4 * a_ * c_))/(2 * a_);
-	ret.t[0] = (-(b_) - sqrt((b_*b_) -4 * a_ * c_))/(2 * a_);
+	temp = sqrt(ret.inter);
+	ret.t[1] = (-(b_) + temp)/(2 * a_);
+	ret.t[0] = (-(b_) - temp)/(2 * a_);
 	ret.ray_start = ray;
-	//ret.point[1] = ray_t_to_point(ray.origin, ret.t[1]);
-	//ret.point[0] = ray_t_to_point(ray.origin, ret.t[0]);
 	return(ret);
 }
 

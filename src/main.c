@@ -34,7 +34,7 @@ int	main(int ac, char **av, char **env)
 //	sph2 = sphere(create_point(0, 0, 10),1) ;
 ///	ft_add_node(&sph2,&word_objects);	
 ///
-	rt_struct.word = word_objects;
+	rt_struct.word = ft_node_start( word_objects); 
 
 
 	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));	

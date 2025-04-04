@@ -38,14 +38,11 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 				save_points.min = intr.t[0];
 			if(intr.t[1] < save_points.min || save_points.max == INT_MAX )
 				save_points.min = intr.t[1];
-			ft_add_node(&intr,& save_points.ints);
 		}
 		if(objs_w->next == NULL)
 			break;
 		objs_w = objs_w->next;
 	}
-
-	objs_w = ft_node_start(objs_w);	
 	return (save_points);
 }
 
@@ -120,18 +117,8 @@ void ray_canva(t_point point, t_minirt *rt_struct)
 	pix_size = WALL_SIZE / WALL_X;
 	while (y < WALL_Y) 
 	{
-		ray_canva_loop_x(pix_size, y, rt_struct);
-		ray_canva_loop_x(pix_size, y+1, rt_struct);
-		ray_canva_loop_x(pix_size, y+2, rt_struct);
-		ray_canva_loop_x(pix_size, y+3, rt_struct);
-		ray_canva_loop_x(pix_size, y+4, rt_struct);
-		ray_canva_loop_x(pix_size, y+5, rt_struct);
-		ray_canva_loop_x(pix_size, y+6, rt_struct);
-		ray_canva_loop_x(pix_size, y+7, rt_struct);
-		ray_canva_loop_x(pix_size, y+8, rt_struct);
-		ray_canva_loop_x(pix_size, y+9, rt_struct);
-		ray_canva_loop_x(pix_size, y+10, rt_struct);
-		y +=11;
+		ray_canva_loop_x(pix_size, y, rt_struct);	
+		y +=1;
 	}
 }
 
