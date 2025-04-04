@@ -20,6 +20,7 @@ typedef struct s_sphere
 	t_point center;
 	t_matrix transform;
 	t_matrix inv_transform;
+	t_matrix inv_transpose ;
 
 		
 }	t_sphere;

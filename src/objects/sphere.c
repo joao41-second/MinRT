@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include "objects.h"
 
 
 
@@ -22,6 +23,16 @@ t_sphere sphere(t_point point_satrt , double ray_s)
 	new.ray_s = ray_s;
 	new.transform = mat_gener(4);
 	new.inv_transform = mat_gener(4);
+	new.inv_transpose = mat_gener(4);
 
 	return (new);
+}
+
+void sph_update_mat (t_sphere *sph)
+{
+	sph->inv_transform = mat_inv(sph->transform);
+	mat_free(&sph->inv_transpose);
+	sph->inv_transpose = mat_cp(sph->inv_transform);
+	mat_trans(&sph->inv_transpose);
+	
 }

@@ -27,6 +27,11 @@ void ray_set_transform (t_sphere *sph,t_matrix mat)
 {
 	mat_free(&sph->transform);
 	mat_free(&sph->inv_transform);
+	mat_free(&sph->inv_transpose);
 	sph->transform = mat_cp(mat);
 	sph->inv_transform = mat_cp(mat_inv(mat));
+	sph->inv_transpose = mat_cp(sph->inv_transform);
+	mat_trans(&sph->inv_transpose);
+	
+
 }

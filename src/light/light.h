@@ -15,6 +15,8 @@
 
 #include "../miniRT_struct.h"
 
-t_vector lig_normalize(t_point oring_ob,t_point p_the_obj);
+t_vector lig_normalize(t_sphere sph,t_point p_the_obj) ;
+
+t_vector lig_reflect(t_vector in ,t_vector normal);
 #endif
 

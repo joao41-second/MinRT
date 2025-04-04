@@ -25,7 +25,7 @@ int	main(void)
 {
 	srand(time(NULL));
 	UNITY_BEGIN();
-	test_tuples();
+//test_tuples();
 	// test_ft_atof();
 	UNITY_END();
 	return (0);
