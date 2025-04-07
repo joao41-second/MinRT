@@ -14,13 +14,15 @@
 #define OBJECTS_H
 
 #include "../miniRT_struct.h"
+
 typedef struct s_sphere 
 {
 	double	ray_s;
 	t_point center;
 	t_matrix transform;
-	t_matrix inv_transform;
-	t_matrix inv_transpose ;
+	t_matrix inv_transform;	t_matrix inv_transpose ;
+	float		diameter;
+	t_color		color;
 
 		
 }	t_sphere;

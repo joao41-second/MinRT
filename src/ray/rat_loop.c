@@ -94,7 +94,7 @@ void ray_canva_loop_x(double pix_size,double y,t_minirt *rt_struct)
 		x_ = (-HALF +  x) * pix_size;
 		use_the_memory = create_point(x_,y_, WALL_Z);
 		sub = sub_tuples(use_the_memory,rt_struct->c_ray.direction);
-		if(ray_for_objects(rt_struct->word,ray_gener(rt_struct->c_ray.origin,normalize(&sub))).min != INT_MAX)
+		if(ray_for_objects(rt_struct->word,ray_gener(rt_struct->c_ray.origin,normalize(sub))).min != INT_MAX)
 		{
 			canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
 		}

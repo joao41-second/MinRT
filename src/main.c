@@ -43,7 +43,7 @@ int	main(int ac, char **av, char **env)
 	printf("vect %f %f %f \n" ,new.x,new.y,new.z);
 
 
-//	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));	
+	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));	
 	return (status);
 
 }
