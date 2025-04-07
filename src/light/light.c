@@ -14,7 +14,7 @@ t_vector lig_normalize(t_sphere sph,t_point p_the_obj)
 	 obj_word = sub_tuples(obj_point, create_point(0, 0, 0));
 	 ret = mat_x_tuple(obj_word, sph.inv_transpose);
 	 ret.w = 0;
-//	ret = normalize(&ret);
+	ret = normalize(ret);
 	return (ret);
 }
 
@@ -38,15 +38,15 @@ t_color lig_lighting(t_mater mat,t_light luz,t_point point,t_vector norm,t_tuple
 	t_luz_dot_normal = dot_product(luztv, norm);
 	if(t_luz_dot_normal < 0)
 	{
-		diffuse = c_new(255,255,255);
-		sepcular = c_new(255,255,255);
+		diffuse = c_new(0,0,0);
+		sepcular = c_new(0,0,0);
 	}
 	else
 	{
 		diffuse = c_scalar_multipl(c_scalar_multipl(efectiv, mat.values.diffuse),t_luz_dot_normal);
 	 	reflect_dot_eye  = dot_product(lig_reflect(neg_tuple(luztv),norm),eyev);
 		if(reflect_dot_eye <= 0)	
-			sepcular = c_new(255,255,255);
+			sepcular = c_new(0,0,0);
 		else
 		{
 			fact  = pow(reflect_dot_eye,mat.values.shininess );

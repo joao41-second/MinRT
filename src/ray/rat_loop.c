@@ -23,6 +23,8 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 	save_points.max = INT_MAX;
 	save_points.min = INT_MAX;
 	save_points.ints = NULL;
+
+	save_points.object = objs_w->content;
 	while (objs_w != NULL)
 	{
 
@@ -35,9 +37,15 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 			if(intr.t[1] > save_points.max || save_points.max == INT_MAX )
 				save_points.max = intr.t[1];
 			if(intr.t[0] < save_points.min || save_points.max == INT_MAX )
+			{
 				save_points.min = intr.t[0];
+				save_points.object = objs_w->content;
+			}
 			if(intr.t[1] < save_points.min || save_points.max == INT_MAX )
+			{ 
 				save_points.min = intr.t[1];
+				save_points.object = objs_w->content;
+			}
 		}
 		if(objs_w->next == NULL)
 			break;
@@ -86,6 +94,9 @@ void ray_canva_loop_x(double pix_size,double y,t_minirt *rt_struct)
 	double y_;
 	t_tuple use_the_memory;
 	t_tuple sub;
+	t_ray ray;
+	t_obj_int obj_data;
+	t_color color;
 
 	x = -1;
 	y_ =( HALF - y) * pix_size  ;
@@ -94,13 +105,24 @@ void ray_canva_loop_x(double pix_size,double y,t_minirt *rt_struct)
 		x_ = (-HALF +  x) * pix_size;
 		use_the_memory = create_point(x_,y_, WALL_Z);
 		sub = sub_tuples(use_the_memory,rt_struct->c_ray.direction);
-		if(ray_for_objects(rt_struct->word,ray_gener(rt_struct->c_ray.origin,normalize(sub))).min != INT_MAX)
+		ray = ray_gener(rt_struct->c_ray.origin,normalize(sub));
+		obj_data = ray_for_objects(rt_struct->word,ray);
+		if(obj_data.min != INT_MAX)
 		{
-			canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
+			t_sphere *o = (t_sphere *) obj_data.object;
+			t_sphere ok = *o;
+			color = lig_lighting(o->matiral, rt_struct->luz, 
+					ray_position(ray, obj_data.min),
+					lig_normalize(*o,ray_position(ray, obj_data.min)),
+					neg_tuple(ray.direction));
+		//	obj_material_print(o->matiral);
+		//	printf("t is  %f \n",obj_data.min);
+		//	printf("color %f %f %f\n",color.color[0],color.color[1],color.color[2]);
+			canva_set_pixel(rt_struct, x, y, color);
 		}
 		else
 		{
-			canva_set_pixel(rt_struct, x, y, c_new(255.0, 255, 100.0));
+			canva_set_pixel(rt_struct, x, y, c_new(0, 0, 0));
 		}
 	}	
 }

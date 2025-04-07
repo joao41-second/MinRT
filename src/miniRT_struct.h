@@ -80,6 +80,7 @@ typedef struct s_minirt
 	t_scene		scene;
 	t_list_		*word;
 	t_ray	c_ray;
+	t_light 	luz;
 }	t_minirt;
 
 #endif

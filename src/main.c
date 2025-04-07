@@ -33,24 +33,24 @@ int	main(int ac, char **av, char **env)
 	t_sphere sph2;
 	t_obj_int intr_in_objc;
 	sph = sphere(create_point(0, 0, 0),1) ;
-	ray_set_transform(&sph,mat_gener_trans(0, 1,0) );
+	ray_set_transform(&sph,mat_gener_scal(1, 1, 1) );
 	ft_add_node(&sph,&word_objects );
-	sph2 = sphere(create_point(0, 0.5, 0),1) ;
-///	ray_set_transform(&sph2,mat_gener_scal(1, 1, 1) );
+	sph2 = sphere(create_point(0, 1.5, 0),0.1) ;
+	ray_set_transform(&sph2,mat_gener_scal(1, 1, 1) );
 	ft_add_node(&sph2,&word_objects);	
 	rt_struct.word = ft_node_start( word_objects); 
 
 	t_light ok;
 
-	ok = ligth_init(c_new(1,1,1), create_point(0, 0, -10));
+	rt_struct.luz = ligth_init(c_new(1,1,1), create_point(0, 1.5, 0));
 	
-        t_color cor = lig_lighting(sph.matiral, ok, create_point(0,0,0), create_vector(0,0,-1), create_vector(0,0,-1));
+        t_color cor = lig_lighting(sph.matiral, rt_struct.luz, create_point(0,0,0), create_vector(0,0,-1), create_vector(0,0,-1));
 
 	
-       printf("vect %f %f %f \n" ,cor.red,cor.green,cor.blue);
+       	printf("vect %f %f %f \n" ,cor.red*255,cor.green,cor.blue);
 
 
-//	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));	
+	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));	
 	return (status);
 
 }
