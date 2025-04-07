@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:38:54 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/03/24 11:03:08 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/04 20:21:52 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ t_tuple		neg_tuple(t_tuple tuple);
 t_tuple		scalar_mult_tuples(t_tuple t, double s);
 t_tuple		scalar_div_tuples(t_tuple t, double s);
 
-double		dot_product(t_tuple *a, t_tuple *b);
-double		magnitude(t_tuple *t);
-t_tuple		normalize(t_tuple *t);
-t_tuple		cross_product(t_tuple *a, t_tuple *b);
+double		dot_product(t_tuple a, t_tuple b);
+double		magnitude(t_tuple t);
+t_tuple		normalize(t_tuple t);
+t_tuple		cross_product(t_tuple a, t_tuple b);
 
 int			is_equal_double(double a, double b);
 int			is_equal_tuple(t_tuple a, t_tuple b);
