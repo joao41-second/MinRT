@@ -61,12 +61,7 @@ typedef struct s_camera
 	t_vector	pos;
 	t_vector	dir;
 }	t_camera;
-typedef struct s_light
-{
-	float		brightness;
-	t_color		color;
-	t_vector	pos;
-}	t_light;
+
 typedef struct s_world
 {
 	t_color		ambient;

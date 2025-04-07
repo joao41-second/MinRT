@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:26:38 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/03 12:44:53 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/07 12:22:55 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_sphere sphere(t_point point_satrt , double ray_s)
 	new.transform = mat_gener(4);
 	new.inv_transform = mat_gener(4);
 	new.inv_transpose = mat_gener(4);
+	new.matiral = obj_material_init(c_new(255,0,0), obj_init_values_material(0.1,0.9 , 0.9, 200));
 
 	return (new);
 }

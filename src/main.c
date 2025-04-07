@@ -39,6 +39,7 @@ int	main(int ac, char **av, char **env)
 	rt_struct.word = ft_node_start( word_objects); 
 	
 
+
 	t_vector new  =	lig_reflect(create_vector(1, -1, 0), create_vector(0, 1, 0));
 	printf("vect %f %f %f \n" ,new.x,new.y,new.z);
 
