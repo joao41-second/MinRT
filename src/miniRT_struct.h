@@ -26,14 +26,7 @@ typedef enum e_obj_type
 	OBJ_PLANE,
 	OBJ_CYLINDER
 }	t_obj_type;
-/*
-typedef struct s_sphere
-{
-	t_vector	center;
-	float		diameter;
-	t_color		color;
-}	t_sphere;
-*/
+
 typedef struct s_plane
 {
 	t_vector	point;
