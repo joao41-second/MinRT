@@ -113,11 +113,13 @@ void ray_canva_loop_x(double pix_size,double y,t_minirt *rt_struct)
 			t_sphere ok = *o;
 			color = lig_lighting(o->matiral, rt_struct->luz, 
 					ray_position(ray, obj_data.min),
-					lig_normalize(*o,ray_position(ray, obj_data.min)),
+					create_vector(1,1,52),
 					neg_tuple(ray.direction));
 		//	obj_material_print(o->matiral);
 		//	printf("t is  %f \n",obj_data.min);
-		//	printf("color %f %f %f\n",color.color[0],color.color[1],color.color[2]);
+		printf("ray %f %f %f \n", ray.direction.val[0] ,ray.direction.val[1],ray.direction.val[2]);
+	//	printf("point %f %f %f \n", ray_position(ray, obj_data.min).val[0], ray_position(ray, obj_data.min).val[1], ray_position(ray, obj_data.min).val[2]);
+			printf("color %f %f %f\n",color.color[0],color.color[1],color.color[2]);
 			canva_set_pixel(rt_struct, x, y, color);
 		}
 		else

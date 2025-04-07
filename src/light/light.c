@@ -53,7 +53,7 @@ t_color lig_lighting(t_mater mat,t_light luz,t_point point,t_vector norm,t_tuple
 			sepcular = c_scalar_multipl(c_scalar_multipl(luz.intenstiy, mat.values.specular), fact);
 		}
 	}
-	ret =c_adding(sepcular,c_adding(diffuse, amb_c));
+	ret = c_adding(sepcular,c_adding(diffuse, amb_c));
 	return (ret);
 }
 

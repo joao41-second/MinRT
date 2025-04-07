@@ -42,7 +42,7 @@ int	main(int ac, char **av, char **env)
 
 	t_light ok;
 
-	rt_struct.luz = ligth_init(c_new(1,1,1), create_point(0, 1.5, 0));
+	rt_struct.luz = ligth_init(c_new(1,1,1), create_point(0, 2, 0));
 	
         t_color cor = lig_lighting(sph.matiral, rt_struct.luz, create_point(0,0,0), create_vector(0,0,-1), create_vector(0,0,-1));
 
