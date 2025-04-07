@@ -7,9 +7,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "canvas/canvas_struct.h"
 #include "light/light.h"
 #include "matrix/matrix.h"
 #include "minRT.h"
+#include "objects/objects.h"
 #include "ray/ray.h"
 #include "ray/ray_struct.h"
 #include "tuples/tuples.h"
@@ -37,11 +39,15 @@ int	main(int ac, char **av, char **env)
 ///	ray_set_transform(&sph2,mat_gener_scal(1, 1, 1) );
 	ft_add_node(&sph2,&word_objects);	
 	rt_struct.word = ft_node_start( word_objects); 
+
+	t_light ok;
+
+	ok = ligth_init(c_new(1,1,1), create_point(0, 0, -10));
 	
+        t_color cor = lig_lighting(sph.matiral, ok, create_point(0,0,0), create_vector(0,0,-1), create_vector(0,0,-1));
 
-
-	t_vector new  =	lig_reflect(create_vector(1, -1, 0), create_vector(0, 1, 0));
-	printf("vect %f %f %f \n" ,new.x,new.y,new.z);
+	
+       printf("vect %f %f %f \n" ,cor.red,cor.green,cor.blue);
 
 
 //	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));	

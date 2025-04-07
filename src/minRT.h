@@ -39,8 +39,6 @@
 # include "./ray/ray.h"
 # include "./light/light.h"
 # include "./tuples/tuples.h"
-# include "./parser/parser.h"
-# include "./parser/parser.h"
 
 # include <asm-generic/errno.h>
 # include <fcntl.h>

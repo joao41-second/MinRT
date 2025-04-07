@@ -13,6 +13,7 @@
 #include "../minRT.h"
 #include "objects.h"
 
+
 t_light ligth_init(t_color intensty,t_point point)
 {
 	t_light ret;

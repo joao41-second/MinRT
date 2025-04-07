@@ -57,4 +57,6 @@ t_m_values obj_init_values_material(double ambient ,double diffuse, double sepcu
 
 void obj_material_print(t_mater mat);
 
+t_light ligth_init(t_color intensty,t_point point);
+
 #endif
