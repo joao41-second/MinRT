@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:47:07 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/03/25 23:18:19 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/07 09:48:30 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,20 @@ void	tearDown(void)
 {
 }
 
-int	main(void)
+int	main(int argv,char** argc)
 {
 	srand(time(NULL));
+	(void)argv;
 	UNITY_BEGIN();
-<<<<<<< HEAD
-//test_tuples();
-	// test_ft_atof();
-=======
+	if(ft_strncmp(argc[1],"light",ft_strlen("light")+5) == 0)
+	{
+		test_ligth();
+	}
+	else
+	{	
 	test_tuples();
 	test_ft_atof();
->>>>>>> main
+	}
 	UNITY_END();
 	return (0);
 }

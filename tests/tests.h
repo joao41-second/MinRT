@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:45:05 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/03/25 23:18:16 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/07 09:46:49 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@
 
 void	test_tuples(void);
 void	test_ft_atof(void);
+
+void	test_ligth(void);
 
 #endif /* TESTS_H */
