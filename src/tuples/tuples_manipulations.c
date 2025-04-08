@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include "tuples.h"
 
 //MANIPULATIONS -----------------------------------------------------
 
@@ -32,7 +33,8 @@ double	magnitude(t_tuple t)
 t_tuple	normalize(t_tuple t)
 {
 	const double	_magnitude = magnitude(t);
-
+	if(is_equal_double(_magnitude, 1))
+		return (t);
 	return (create_tuple(
 			(t.x / _magnitude),
 			(t.y / _magnitude),
