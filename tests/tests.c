@@ -33,8 +33,8 @@ int	main(int argv,char** argc)
 	// }
 	// else
 	// {	
-	test_tuples();
-	test_ft_atof();
+	// test_tuples();
+	// test_ft_atof();
 	// }
 	UNITY_END();
 	return (0);

@@ -11,9 +11,11 @@
 #******************************************************************************#
 
 # Compiler flags
-#WFLGS = -Wall -Wextra -Werror
+# WFLGS = -Wall -Wextra -Werror
+WFLGS = -Wall -Wextra -no-pie
 
-READ_FLG =  -O3 -march=native -flto -funroll-loops  -g -pg
+READ_FLG = -g
+# READ_FLG =  -O3 -march=native -flto -funroll-loops  -g -pg
 
 MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft \
 	      -Llibft/ft_list
@@ -37,7 +39,7 @@ LIB = ./libft/ft_libft/libft.a ./libft/ft_printf/libftprintf.a ./libft/ft_free/f
 
 # Commands
 AR = ar rcs
-CC = cc
+CC = gcc
 RM = rm -f
 CAT = cat number.txt
 

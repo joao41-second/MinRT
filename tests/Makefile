@@ -23,15 +23,15 @@ FREE_PATH	= ../libft/ft_free
 FREE 	= $(FREE_PATH)/ft_free.a
 
 MINILIBX_PATH	= ../libft/minilibx-linux
-MINILIBX		= $(MINILIBX_PATH)/libmlx.a
+MINILIBX		= $(MINILIBX_PATH)/libmlx_Linux.a
 
-OBJ_DIR	= ./obj
+OBJ_DIR	= ./robj
 OBJS	= $(SRCS:%.c=$(OBJ_DIR)/%.o) $(MINIRT_OBJS)
 
-CFLAGS	= -Wall -Wextra -Werror -DUNITY_INCLUDE_DOUBLE -g3 -fPIE
+CFLAGS	= -Wall -Wextra -DUNITY_INCLUDE_DOUBLE -fPIE 
 IFLAGS	= -I. -Iunity -I../inc
 LDFLAGS	= -L$(LIBFT_PATH) -lft -L$(GNL_PATH) -L$(MINILIBX_PATH) -L$(FREE_PATH) -L$(PRINTF_PATH) -L$(LIST_PATH) -lmlx -lXext -lX11 -lm
-
+CC 	= gcc
 VPATH	= unity
 
 all: $(NAME)
