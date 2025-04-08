@@ -10,6 +10,7 @@
 #include "ray.h"
 #include "../minRT.h"
 #include "ray_struct.h"
+#include <stdio.h>
 
 double mutl_dub(double nb1,double nb2)
 {
@@ -27,10 +28,10 @@ t_ray ray_gener(t_point point,t_vector dir)
 t_point ray_position(t_ray ray,double nb)
 {
 	t_point new;
-	new  = add_tuples(ray.origin, ray.direction);
+	new  =  add_tuples(create_point(nb, nb, nb),ray.origin);
 	if(nb == 0)
 		return (new);
-	return(scalar_mult_tuples(new, nb)); 
+	return(create_point(new.x * ray.direction.x, new.y * ray.direction.y, new.z * ray.direction.z)); 
 }
 
 t_point ray_t_to_point(t_point const point,double t)
@@ -83,6 +84,9 @@ t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
 	ret.t[1] = (-(b_) + temp)/(2 * a_);
 	ret.t[0] = (-(b_) - temp)/(2 * a_);
 	ret.ray_start = ray;
+
+	if(ret.inter > 0)
+		printf("the t0 %f and t1 %f \n",ret.t[0],ret.t[1]);
 	return(ret);
 }
 

@@ -107,19 +107,24 @@ void ray_canva_loop_x(double pix_size,double y,t_minirt *rt_struct)
 		sub = sub_tuples(use_the_memory,rt_struct->c_ray.direction);
 		ray = ray_gener(rt_struct->c_ray.origin,normalize(sub));
 		obj_data = ray_for_objects(rt_struct->word,ray);
+		t_point point;
 		if(obj_data.min != INT_MAX)
 		{
 			t_sphere *o = (t_sphere *) obj_data.object;
 			t_sphere ok = *o;
+			point = ray_position(ray, obj_data.min) ;
+			 
 			color = lig_lighting(o->matiral, rt_struct->luz, 
-					ray_position(ray, obj_data.min),
-					create_vector(1,1,52),
+					point,
+					lig_normalize(ok, point),
 					neg_tuple(ray.direction));
 		//	obj_material_print(o->matiral);
 		//	printf("t is  %f \n",obj_data.min);
 		printf("ray %f %f %f \n", ray.direction.val[0] ,ray.direction.val[1],ray.direction.val[2]);
-	//	printf("point %f %f %f \n", ray_position(ray, obj_data.min).val[0], ray_position(ray, obj_data.min).val[1], ray_position(ray, obj_data.min).val[2]);
-			printf("color %f %f %f\n",color.color[0],color.color[1],color.color[2]);
+		printf("ray_p %f %f %f \n", ray.origin.val[0] ,ray.origin.val[1],ray.origin.val[2]);
+		//printf("color %f %f %f\n",color.color[0],color.color[1],color.color[2]);
+		printf("vect norm %f %f %f \n", point.val[0],point.val[1],point.val[2]);
+		printf("t new %f \n",obj_data.min);
 			canva_set_pixel(rt_struct, x, y, color);
 		}
 		else
