@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:15:50 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/07 15:16:21 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:23:53 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ t_intersection ray_int_plane(t_ray ray, t_object *plane)
     return ret;
 }
 
+
 t_intersection ray_int_object(t_ray ray, t_object obj)
 {
     t_intersection intersection;
@@ -137,6 +138,8 @@ t_intersection ray_int_object(t_ray ray, t_object obj)
         intersection = ray_int_sphere(ray, obj.u_data.sphere);
     else if (obj.type == OBJ_PLANE)
         intersection = ray_int_plane(ray, &obj);
+	else if (obj.type == OBJ_TRIANGLE)
+		intersection = ray_int_triangle(ray, &obj);
     else
     {
         intersection.inter = 0;

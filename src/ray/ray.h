@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:11:18 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/07 21:41:25 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:30:48 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_point ray_position(t_ray ray_,double nb);
 
 t_intersection ray_int_sphere(t_ray ray,t_sphere shp);
 t_intersection ray_int_plane(t_ray ray, t_object *plane);
+t_intersection ray_int_triangle(t_ray ray, t_object *triangle);
 t_intersection ray_int_object(t_ray ray,t_object obj);
 
 t_tuple ray_ang_to_vect(double x,double y,double z);

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/08 00:23:33 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:36:27 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # define WALL_SIZE 7.0
 # define HALF WALL_Y/2 
 # define PIXEL_SIZE WALL_SIZE/WALL_X;
+
+#define MOUSE_LEFT_BUTTON 1
+
 
 # include "../libft/ft_libft/libft.h"
 # include "../libft/ft_list/list.h"

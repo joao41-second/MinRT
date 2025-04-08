@@ -40,6 +40,8 @@ void print_list_(t_list_ *list)
                 printf("Object type: Sphere\n");
             else if (obj->type == OBJ_PLANE)
                 printf("Object type: Plane\n");
+            else if (obj->type == OBJ_TRIANGLE)
+                printf("Object type: Triangle\n");
             else
                 printf("Object type: Unknown\n");
 
@@ -71,6 +73,25 @@ void print_list_(t_list_ *list)
                 {
                     printf("Plane data is NULL.\n");
                 }
+            }
+            else if (obj->type == OBJ_TRIANGLE)
+            {
+                t_triangle *triangle = &obj->u_data.triangle;
+                if (triangle != NULL)
+                {
+                    printf("Triangle: P1(%f, %f, %f), P2(%f, %f, %f), P3(%f, %f, %f)\n",
+                           triangle->p1.x, triangle->p1.y, triangle->p1.z,
+                           triangle->p2.x, triangle->p2.y, triangle->p2.z,
+                           triangle->p3.x, triangle->p3.y, triangle->p3.z);
+                }
+                else
+                {
+                    printf("Triangle data is NULL.\n");
+                }
+            }
+            else
+            {
+                printf("Unknown object type.\n");
             }
         }
         else
@@ -204,31 +225,14 @@ int	main(int ac, char **av, char **env)
 	t_plane pln = create_plane(create_point(1, 0, 0), 1);
 	t_object *obj_plane = create_object(&pln, OBJ_PLANE);
 	ray_set_transform_obj(obj_plane,mat_gener_rota('x', -1));
-    ft_add_node(obj_plane,&word_objects );
+    // ft_add_node(obj_plane,&word_objects );
 	print_list_(word_objects);	
 
-	t_object plane;
-    plane.type = OBJ_PLANE;
-    plane.u_data.plane.center = create_point(0, 0, 0);
-    plane.u_data.plane.normal = create_vector(0, 1, 0);
-    plane.u_data.plane.color = c_new(1, 0, 0);
-    plane.u_data.plane.transform = mat_gener_identity(4);
-    plane.u_data.plane.inv_transform = mat_gener_identity(4);
-    
-    t_ray r1 = ray_gener(create_point(0, 10, 0), create_vector(0, 0, 1));
-    t_ray r2 = ray_gener(create_point(0, 0, 0), create_vector(0, 0, 1));
-    t_ray r3 = ray_gener(create_point(0, 1, 0), create_vector(0, -1, 0));
-    t_ray r4 = ray_gener(create_point(0, -1, 0), create_vector(0, 1, 0));
-    
-    t_intersection intr1 = ray_int_plane(r1, &plane);
-    t_intersection intr2 = ray_int_plane(r2, &plane);
-    t_intersection intr3 = ray_int_plane(r3, &plane);
-    t_intersection intr4 = ray_int_plane(r4, &plane);
-    
-    printf("Intersections with parallel ray: %f\n", intr1.inter);
-    printf("Intersections with coplanar ray: %f\n", intr2.inter);
-    printf("Intersections from above: %f, t = %f\n", intr3.inter, intr3.t[0]);
-    printf("Intersections from below: %f, t = %f\n", intr4.inter, intr4.t[0]);
+    t_triangle tri = create_triangle(create_point(1,0,0), create_point(0,1,0), create_point(0,0,1));
+    t_object *obj_triangle = create_object(&tri, OBJ_TRIANGLE);
+    ft_add_node(obj_triangle,&word_objects );
+	print_list_(word_objects);	
+
 
 	rt_struct.word = word_objects;
 	

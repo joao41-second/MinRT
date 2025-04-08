@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:12:41 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/04 19:48:16 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:08:27 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ void ray_set_transform_obj(t_object *obj, t_matrix mat)
         mat_free(&plane->inv_transform);
         plane->transform = mat_cp(mat);
         plane->inv_transform = mat_cp(mat_inv(mat));
+    }
+    else if (obj->type == OBJ_TRIANGLE)
+    {
+        t_triangle *triangle = &obj->u_data.triangle;
+        mat_free(&triangle->transform);
+        mat_free(&triangle->inv_transform);
+        triangle->transform = mat_cp(mat);
+        triangle->inv_transform = mat_cp(mat_inv(mat));
     }
     else
     {

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 14:45:40 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/04 19:46:26 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:28:09 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_object *create_object(void *data, t_obj_type type)
         obj->u_data.sphere = *(t_sphere *)data; 
     else if (type == OBJ_PLANE)
         obj->u_data.plane = *(t_plane *)data;
+    else if (type == OBJ_TRIANGLE)
+        obj->u_data.triangle = *(t_triangle *)data;
     else
     {
         ft_printf( "Error: Unknown type\n");
