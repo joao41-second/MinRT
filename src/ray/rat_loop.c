@@ -101,7 +101,7 @@ void ray_canva(t_point point, t_minirt *rt_struct)
 	while (++y < WALL_Y) 
 	{
 		x = -1;
-		y_ =( metade - y) *pix_size  ;
+		y_ =( metade - y) *pix_size;
 		while(++x < WALL_X)
 		{
 			x_ = (-metade +  x) * pix_size;
@@ -133,13 +133,13 @@ void ray_canva(t_point point, t_minirt *rt_struct)
 			{
 				t_object *closest_obj = (t_object *)intersections.ints->content;
 				
-				canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
-				//  if (closest_obj->type == OBJ_PLANE)
-				// 	 canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
-				//  else if (closest_obj->type == OBJ_SPHERE)
-				// 	 canva_set_pixel(rt_struct, x, y, c_new(255.0, 0.0, 0.0));
-				//  else
-				// 	 canva_set_pixel(rt_struct, x, y, c_new(255.0, 255.0, 255.0));
+				// canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
+				 if (closest_obj->type == OBJ_PLANE)
+					 canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
+				 else if (closest_obj->type == OBJ_SPHERE)
+					 canva_set_pixel(rt_struct, x, y, c_new(255.0, 0.0, 0.0));
+				 else
+					 canva_set_pixel(rt_struct, x, y, c_new(255.0, 255.0, 255.0));
 			}else
 				canva_set_pixel(rt_struct, x, y, c_new(255.0, 255, 100.0));
 		}	

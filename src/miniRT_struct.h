@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/04 02:46:26 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:35:59 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,9 @@
 # include "./ray/ray_struct.h"
 # include "./matrix/matrix.h"
 # include "./objects/objects.h"
+# include "./camera/camera.h"
 
 
-
-typedef struct s_camera
-{
-	float		fov;
-	t_vector	pos;
-	t_vector	dir;
-}	t_camera;
 typedef struct s_light
 {
 	float		brightness;
@@ -53,6 +47,8 @@ typedef struct s_minirt
 	t_scene		scene;
 	t_list_		*word;
 	t_ray	c_ray;
+	int needs_render;
+	
 }	t_minirt;
 
 #endif

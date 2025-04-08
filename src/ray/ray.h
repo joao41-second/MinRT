@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:11:18 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/04 13:23:20 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/07 21:41:25 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include "../miniRT_struct.h"
 #include "ray_struct.h"
 
-#define WALL_SIZE 7.0
-#define WALL_Z 10.0
+
 
 
 t_ray ray_transform(t_ray ray,t_matrix t_matrix);

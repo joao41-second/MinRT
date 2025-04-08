@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/04 19:14:16 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:41:58 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	loop(t_minirt *rt_struct)
 
 	if(ok == 0)
 	{
-	rt_struct->c_ray = ray_gener( create_point(0, 0, -5), create_vector(0, 0, 1));
-	ft_pocket_new("canva");
-	ray_canva(create_point(0, 0, -5), rt_struct);
-	ft_free_all_pocket("canva");
+	rt_struct->c_ray = ray_gener( create_point(0, 0, 0), create_vector(0, 0, 1));
+	// ft_pocket_new("canva");
+	ray_canva(create_point(0, 0, -100), rt_struct);
+	// ft_free_all_pocket("canva");
 	}
 	ok++;
 

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:15:50 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/04 20:00:47 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/07 15:16:21 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ t_intersection ray_int_plane(t_ray ray, t_object *plane)
     }
     
     double t = -transformed_ray.origin.y / denom;
-    printf("Ray intersects the plane at t = %f\n", t);
+    // printf("Ray intersects the plane at t = %f\n", t);
     if (t < 0)
     {
         t_intersection ret;
