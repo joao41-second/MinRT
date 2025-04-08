@@ -13,7 +13,7 @@
 #include "../minRT.h"
 #include <time.h>
 
-void	main_loop(t_minirt *rt_struct)
+void	loop(t_minirt *rt_struct)
 {
 
 	static int ok = 0;

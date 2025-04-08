@@ -14,6 +14,6 @@
 # define LOOP_H
 # include "../miniRT_struct.h"
 
-void	main_loop(t_minirt *rt_struct);
+void	 loop(t_minirt *rt_struct);
 
 #endif

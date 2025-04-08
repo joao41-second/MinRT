@@ -14,7 +14,7 @@
 
 int	canva_loop(t_minirt *rt_struct)
 {
-	main_loop(rt_struct);
+	loop(rt_struct);
 	return (1);
 }
 

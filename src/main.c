@@ -33,7 +33,7 @@ int	main(int ac, char **av, char **env)
 	t_sphere sph2;
 	t_obj_int intr_in_objc;
 	sph = sphere(create_point(0, 0, 0),1) ;
-	ray_set_transform(&sph,mat_gener_scal(1, 1, 1) );
+	ray_set_transform(&sph,mat_gener_scal(1, 0.5, 0.5) );
 	ft_add_node(&sph,&word_objects );
 	sph2 = sphere(create_point(0, 1.5, 0),0.1) ;
 	ray_set_transform(&sph2,mat_gener_scal(1, 1, 1) );
