@@ -34,7 +34,7 @@ int	main(int ac, char **av, char **env)
 	//ray_set_transform(&sph,mat_multip(mat_gener_scal(1, 0.5, 1), mat_gener_rota('Z',(M_PI/5 ))));
 	ray_set_transform(&sph,mat_gener_scal(1, 1, 1));
 	ft_add_node(&sph,&word_objects );
-	sph2 = sphere(create_point(1, -1, 0),0.1) ;
+	sph2 = sphere(create_point(0, -1.5, 0),0.1) ;
 	ray_set_transform(&sph2,mat_gener_scal(1, 1, 1) );
 	ft_add_node(&sph2,&word_objects);	
 	
@@ -47,7 +47,7 @@ int	main(int ac, char **av, char **env)
  
 
 	t_color test;
-	rt_struct.luz = ligth_init(c_new(1,1,1), create_point(0, -10, 10));	
+	rt_struct.luz = ligth_init(c_new(1,1,1), create_point(0, -5, 5));	
 	test = lig_lighting(sph.matiral,
 			rt_struct.luz,
 			create_point(0,0,0), 
