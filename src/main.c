@@ -34,9 +34,9 @@ int	main(int ac, char **av, char **env)
 	//ray_set_transform(&sph,mat_multip(mat_gener_scal(1, 0.5, 1), mat_gener_rota('Z',(M_PI/5 ))));
 	ray_set_transform(&sph,mat_gener_scal(1, 1, 1));
 	ft_add_node(&sph,&word_objects );
-	//sph2 = sphere(create_point(0, 1.5, 0),0.1) ;
-	//ray_set_transform(&sph2,mat_gener_scal(1, 1, 1) );
-	//ft_add_node(&sph2,&word_objects);	
+	sph2 = sphere(create_point(1, -1, 0),0.1) ;
+	ray_set_transform(&sph2,mat_gener_scal(1, 1, 1) );
+	ft_add_node(&sph2,&word_objects);	
 	
 	rt_struct.word = ft_node_start( word_objects); 
 	t_light ok;

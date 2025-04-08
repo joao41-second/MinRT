@@ -85,8 +85,6 @@ t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
 	ret.t[0] = (-(b_) - temp)/(2 * a_);
 	ret.ray_start = ray;
 
-	if(ret.inter > 0)
-		printf("the t0 %f and t1 %f \n",ret.t[0],ret.t[1]);
 	return(ret);
 }
 

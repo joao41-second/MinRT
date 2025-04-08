@@ -23,7 +23,7 @@ void	loop(t_minirt *rt_struct)
 	clock_t inicio = clock();
 	rt_struct->c_ray = ray_gener( create_point(0, 0, 5), create_vector(0, 0, -1));
 //	ft_pocket_new("canva");
-	ray_canva(create_point(0, 0, 5), rt_struct);
+	ray_canva(create_point(0, 0, -5), rt_struct);
 //	ft_free_all_pocket("canva");
 	clock_t fim = clock();
     	double tempo_exec = (double)(fim - inicio) / CLOCKS_PER_SEC; // Converte para segundos
