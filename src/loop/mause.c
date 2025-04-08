@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_struct.h                                     :+:      :+:    :+:   */
+/*   mause.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/04 13:58:32 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/08 19:23:36 by jperpct          ###   ########.fr       */
+/*   Created: 2025/04/08 15:13:28 by jperpct           #+#    #+#             */
+/*   Updated: 2025/04/08 15:27:17 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_SRUCT_H
-#define LIGHT_SRUCT_H
+#include  "../minRT.h"
+#include <stdio.h>
 
-#include "../miniRT_struct.h"
-typedef struct s_computations 
+
+void mouse(t_minirt *rt_struct)
 {
-	void *object;
-	t_point point;
-	t_vector norm;
-	t_tuple eyev;
-	double 	t;
-	int 	inside;
-} t_computations;
-#endif 
+	static t_point p1;
+	static t_point p2;
+	int x;
+	int y;
+	mlx_mouse_get_pos(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, &x, &y);
+	printf("x %d y %d \n",x,y);
+
+}

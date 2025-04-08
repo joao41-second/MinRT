@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/07 12:10:02 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/08 19:50:02 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ t_m_values obj_init_values_material(double ambient ,double diffuse, double sepcu
 void obj_material_print(t_mater mat);
 
 t_light ligth_init(t_color intensty,t_point point);
+
 
 #endif

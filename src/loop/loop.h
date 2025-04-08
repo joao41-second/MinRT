@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:32:34 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/25 22:50:48 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:33:55 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,8 @@
 
 void	 loop(t_minirt *rt_struct);
 
+
+void mouse(t_minirt *rt_struct);
+
+void key_loop(int key, t_minirt *rt_structj);
 #endif

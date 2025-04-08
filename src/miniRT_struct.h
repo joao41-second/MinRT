@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/03 12:51:40 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/08 19:47:40 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "./ray/ray_struct.h"
 # include "./matrix/matrix.h"
 # include "./objects/objects.h"
+# include "./light/light_struct.h"
 
 typedef enum e_obj_type
 {

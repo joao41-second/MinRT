@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/04 14:51:13 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:13:32 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,6 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
+
+void start_word(t_minirt  *rt_struct);
 #endif
