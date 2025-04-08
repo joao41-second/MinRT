@@ -30,6 +30,7 @@ int norm_l(char *name,t_point point,t_point sph_p,t_vector chek)
 	int error;
 	static int nb;
 	t_vector test;
+	(void)sph_p;
 
 	sph = sphere(create_point(0, 0, 0),1);
 	test = lig_normalize(sph, point);

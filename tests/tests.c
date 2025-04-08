@@ -25,16 +25,17 @@ int	main(int argv,char** argc)
 {
 	srand(time(NULL));
 	(void)argv;
+	(void)argc;
 	UNITY_BEGIN();
-	if(ft_strncmp(argc[1],"light",ft_strlen("light")+5) == 0)
-	{
+	// if(ft_strncmp(argc[1],"light",ft_strlen("light")+5) == 0)
+	// {
 		test_ligth();
-	}
-	else
-	{	
+	// }
+	// else
+	// {	
 	test_tuples();
 	test_ft_atof();
-	}
+	// }
 	UNITY_END();
 	return (0);
 }

@@ -28,7 +28,7 @@ MINILIBX		= $(MINILIBX_PATH)/libmlx.a
 OBJ_DIR	= ./obj
 OBJS	= $(SRCS:%.c=$(OBJ_DIR)/%.o) $(MINIRT_OBJS)
 
-CFLAGS	= -Wall -Wextra -Werror -DUNITY_INCLUDE_DOUBLE -g3 
+CFLAGS	= -Wall -Wextra -Werror -DUNITY_INCLUDE_DOUBLE -g3 -fPIE
 IFLAGS	= -I. -Iunity -I../inc
 LDFLAGS	= -L$(LIBFT_PATH) -lft -L$(GNL_PATH) -L$(MINILIBX_PATH) -L$(FREE_PATH) -L$(PRINTF_PATH) -L$(LIST_PATH) -lmlx -lXext -lX11 -lm
 
