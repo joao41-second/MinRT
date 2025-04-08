@@ -33,6 +33,7 @@ int norm_l(char *name,t_point point,t_point sph_p,t_vector chek)
 
 	(void)sph_p;
 	error = 0;
+
 	sph = sphere(create_point(0, 0, 0),1);
 	test = lig_normalize(sph, point);
 	error += is_equal_tuple(test, chek);
