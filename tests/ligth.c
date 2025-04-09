@@ -43,6 +43,8 @@ int norm_l(char *name,t_point point,t_point sph_p,t_vector chek)
 
 }
 
+
+
 void _random()
 {	
 	t_minirt rt_struct;
@@ -50,10 +52,9 @@ void _random()
 	t_color color;
 	start_word(&rt_struct);
 
-	 ray = ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1));
+	 ray = ray_gener(create_point(0, 0, 0), create_vector(0, 0, 1));
 	 color = lig_color_at(&rt_struct, ray);
 	 printf("color %f %f %f \n",color.red,color.blue,color.green);
-
 
 }
 
