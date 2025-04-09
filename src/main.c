@@ -26,7 +26,7 @@ int	main(int ac, char **av, char **env)
 	t_color color;
 	start_word(&rt_struct);
 
-	 ray = ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1));
+	 ray = ray_gener(create_point(0, 0, 0), create_vector(0, 0, 0));
 	 color = lig_color_at(&rt_struct, ray);
 	 printf("color %f %f %f \n",color.red,color.blue,color.green);
 

@@ -28,10 +28,10 @@ t_ray ray_gener(t_point point,t_vector dir)
 t_point ray_position(t_ray ray,double nb)
 {
 	t_point new;
-	new  =  add_tuples(create_point(nb, nb, nb),ray.origin);
+	new  =  add_tuples(ray.origin, create_point(nb, nb, nb));
 	if(nb == 0)
 		return (new);
-	return(create_point(new.x * ray.direction.x, new.y * ray.direction.y, new.z * ray.direction.z)); 
+	return(create_point( ray.direction.x * new.x ,  ray.direction.y * new.y , ray.direction.z * new.z)); 
 }
 
 t_point ray_t_to_point(t_point const point,double t)
@@ -80,9 +80,20 @@ t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
 				- (shp.ray_s * shp.ray_s);
 	ret.object = &shp;
 	ret.inter = (b_*b_) -4 * a_ * c_;
-	temp = sqrt(ret.inter);
-	ret.t[1] = (-(b_) + temp)/(2 * a_);
-	ret.t[0] = (-(b_) - temp)/(2 * a_);
+	temp = sqrt(ret.inter);	
+
+	ret.t[1] = 0 ;
+	ret.t[0] = 0;
+
+	ret.t[1] += (-(b_) + temp)/(2 * a_);
+	ret.t[0] += (-(b_) - temp)/(2 * a_);
+	if(isnan(ret.t[0]))
+		ret.t[0] = 0;
+	if(isnan(ret.t[0]))
+		ret.t[0] = 0;
+
+
+
 	ret.ray_start = ray;
 
 	return(ret);

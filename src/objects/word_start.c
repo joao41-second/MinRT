@@ -24,12 +24,12 @@ void start_word(t_minirt  *rt_struct)
 	//ray_set_transform(&sph,mat_multip(mat_gener_scal(1, 0.5, 1), mat_gener_rota('Z',(M_PI/5 ))));
 	ray_set_transform(&sph,mat_gener_scal(1, 1, 1));
 	ft_add_node(&sph,&word_objects );
-	sph2 = sphere(create_point(0, 0, 0),1) ;
-	ray_set_transform(&sph2,mat_gener_scal(0.5, 0.5, 0.5) );
+	//sph2 = sphere(create_point(0, 0, 0),1) ;
+	//ray_set_transform(&sph2,mat_gener_scal(0.5, 0.5, 0.5) );
 	ft_add_node(&sph2,&word_objects);	
 	rt_struct->word = ft_node_start(word_objects);
 	rt_struct->luz = ligth_init(c_new(1,1,1), create_point(-10, 10, -10));	
-	rt_struct->c_ray = ray_gener( create_point(0,0, -5), create_vector(0, 0, 1));
+	rt_struct->c_ray = ray_gener( create_point(0,0, 0), create_vector(0, 0, 1));
 
 
 }

@@ -30,7 +30,7 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 
 		conv = (t_sphere *)objs_w->content;
 		intr = ray_int_sphere(ray,*conv );
-		if(intr.inter > 0)
+		if(intr.inter >= 0)
 		{
 			if(intr.t[0] > save_points.max || save_points.max == INT_MAX )
 				save_points.max = intr.t[0];
