@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.h                                             :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 14:32:34 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/25 22:50:48 by rerodrig         ###   ########.fr       */
+/*   Created: 2025/04/07 11:42:58 by jperpct           #+#    #+#             */
+/*   Updated: 2025/04/07 12:20:17 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LOOP_H
-# define LOOP_H
-# include "../miniRT_struct.h"
+#include "../minRT.h"
+#include "objects.h"
 
-void	 loop(t_minirt *rt_struct);
 
-#endif
+t_light ligth_init(t_color intensty,t_point point)
+{
+	t_light ret;
+	ret.intenstiy = intensty;
+	ret.point = point;
+	
+	return (ret);
+}
+

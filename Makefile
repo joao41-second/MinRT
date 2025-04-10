@@ -1,4 +1,4 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,13 +6,14 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/04/04 05:46:15 by rerodrig         ###   ########.fr        #
+#    Updated: 2025/03/20 14:39:52 by rerodrig         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 # Compiler flags
-# WFLGS = -Wall -Wextra -Werror
-READ_FLG = -g
+#WFLGS = -Wall -Wextra -Werror
+
+READ_FLG =  -O3 -march=native -flto -funroll-loops  -g -pg
 
 MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft \
 	      -Llibft/ft_list
@@ -66,13 +67,6 @@ $(NAME): $(LIB) $(OBJS)
 	@echo "╔══════════════════════════╗"
 	@echo "║ ✅ Compiled Successfully!║"
 	@echo "╚══════════════════════════╝"
-# New target to rebuild only the source files
-
-renew: $(OBJS)
-	$(CC) $(OBJS) $(LIB) $(FLGS) -o $(NAME)
-	@echo "╔══════════════════════════╗"
-	@echo "║ ✅ Renewed Successfully! ║"
-	@echo "╚══════════════════════════╝"
 
 # Phony targets
 .PHONY: all clean fclean re exec norm normi
@@ -105,12 +99,8 @@ test_vall: all
 	make val -C tests
 
 
-
-
 s:
 	clear && make re && ./$(NAME)
-n:
-	clear && make renew && ./$(NAME)
 v:
 	clear && make re && $(VAL) ./$(NAME)
 e:
@@ -121,3 +111,10 @@ g:
 	clear && gdb -tui ./$(NAME)
 t:
 	make re && cd ./minishell_tester  && ./tester
+
+pro:
+	gprof ./miniRT gmon.out > test.out && cat test.out
+
+pdf:
+	cd ~/Downloads/ && evince JamisBuck-TheRayTracer.pdf
+

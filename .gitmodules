@@ -13,3 +13,6 @@
 [submodule "libft/minilibx-linux"]
 	path = libft/minilibx-linux
 	url = https://github.com/42paris/minilibx-linux.git
+[submodule "libft/ft_list"]
+	path = libft/ft_list
+	url = git@github.com:joao41-second/ft_list.git

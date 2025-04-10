@@ -56,3 +56,6 @@ t_point mat_x_tuple(t_tuple point,t_matrix mat)
 //	mat_free(&copy);
 	return(new_);
 }
+
+
+

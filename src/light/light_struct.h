@@ -1,19 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.h                                             :+:      :+:    :+:   */
+/*   light_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 14:32:34 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/25 22:50:48 by rerodrig         ###   ########.fr       */
+/*   Created: 2025/04/04 13:58:32 by jperpct           #+#    #+#             */
+/*   Updated: 2025/04/04 13:59:55 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LOOP_H
-# define LOOP_H
-# include "../miniRT_struct.h"
-
-void	 loop(t_minirt *rt_struct);
-
-#endif
+#ifndef LIGHT_SRUCT_H
+#define LIGHT_SRUCT_H
+#endif 

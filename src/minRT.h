@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/08 17:36:27 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/04 14:51:13 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,9 @@
 # define TRUE 0
 # define FALSE 1
 
-# define WALL_X 400.0
-# define WALL_Y 400.0
-# define WALL_Z 10.0
-# define WALL_SIZE 7.0
+# define WALL_X 1000.0
+# define WALL_Y 1000.0
 # define HALF WALL_Y/2 
-# define PIXEL_SIZE WALL_SIZE/WALL_X;
-
-#define MOUSE_LEFT_BUTTON 1
-
 
 # include "../libft/ft_libft/libft.h"
 # include "../libft/ft_list/list.h"
@@ -43,6 +37,8 @@
 # include "./matrix/matrix.h"
 # include "./objects/objects.h"
 # include "./ray/ray.h"
+# include "./light/light.h"
+# include "./tuples/tuples.h"
 
 # include <asm-generic/errno.h>
 # include <fcntl.h>
