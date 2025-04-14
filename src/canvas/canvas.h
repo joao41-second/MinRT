@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:33:28 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/18 16:01:31 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/14 00:40:37 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CANVAS_H
 
 # include "../miniRT_struct.h"
-
+int	create_trgb(int t, int r, int g, int b);
 t_color	c_new(double red, double green, double blue);
 
 t_color	c_adding(t_color c1, t_color c2);

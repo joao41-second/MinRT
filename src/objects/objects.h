@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/07 12:10:02 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/14 17:49:54 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,68 @@ typedef struct s_light
 	t_vector	pos;
 }	t_light;
 
+
+typedef struct s_plane
+{
+	double	ray_s;
+	t_point		center;
+	t_vector	normal;
+	t_color		color;
+	t_matrix	transform;
+	t_matrix	inv_transform;
+}	t_plane;
+
+
+typedef struct s_axis {
+    t_point position; // Position of the axis origin
+    double length;    // Length of the axis
+    t_color color;    // Color of the axis
+} t_axis;
+
+typedef enum e_obj_type
+{
+	OBJ_SPHERE,
+	OBJ_PLANE,
+	OBJ_TRIANGLE,
+	OBJ_AXIS
+}	t_obj_type;
+
+typedef struct s_triangle 
+{
+	t_point p1;
+	t_point p2;
+	t_point p3;
+	t_vector normal;
+	t_vector edge1;
+	t_vector edge2;
+	t_color		color;
+	t_matrix transform;
+	t_matrix inv_transform;
+} t_triangle;
+
+
+typedef struct s_object
+{
+	t_obj_type		type;
+	union
+	{
+		t_plane		plane;
+		t_sphere	sphere;
+		t_triangle	triangle;
+		t_axis axis; // New axis type
+	}	u_data;
+	struct s_object	*next;
+}	t_object;
+
+t_plane create_plane(t_point center , double ray_s);
+t_triangle create_triangle(t_point p1, t_point p2, t_point p3);
+t_object *create_object(void *data, t_obj_type type);
+
+
+
+
+
+
 t_sphere sphere(t_point point_satrt , double ray_s);
 
 t_mater obj_material_init(t_color intensty,t_m_values values);
@@ -58,5 +120,6 @@ t_m_values obj_init_values_material(double ambient ,double diffuse, double sepcu
 void obj_material_print(t_mater mat);
 
 t_light ligth_init(t_color intensty,t_point point);
+
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tranform.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:12:41 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/03 12:46:47 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/14 18:06:50 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,38 @@ void ray_set_transform (t_sphere *sph,t_matrix mat)
 	mat_trans(&sph->inv_transpose);
 	
 
+}
+void ray_set_transform_obj(t_object *obj, t_matrix mat)
+{
+    if (obj->type == OBJ_SPHERE)
+    {
+        t_sphere *sphere = &obj->u_data.sphere;
+        mat_free(&sphere->transform);
+        mat_free(&sphere->inv_transform);
+        sphere->transform = mat_cp(mat);
+        sphere->inv_transform = mat_cp(mat_inv(mat));
+        sphere->inv_transpose = mat_cp(sphere->inv_transform);
+	    mat_trans(&sphere->inv_transpose);
+    }
+    else if (obj->type == OBJ_PLANE)
+    {
+        t_plane *plane = &obj->u_data.plane;
+        mat_free(&plane->transform);
+        mat_free(&plane->inv_transform);
+        plane->transform = mat_cp(mat);
+        plane->inv_transform = mat_cp(mat_inv(mat));
+    }
+    else if (obj->type == OBJ_TRIANGLE)
+    {
+        t_triangle *triangle = &obj->u_data.triangle;
+        mat_free(&triangle->transform);
+        mat_free(&triangle->inv_transform);
+        triangle->transform = mat_cp(mat);
+        triangle->inv_transform = mat_cp(mat_inv(mat));
+    }
+    else
+    {
+        ft_printf("Error: Unknown obj type.\n");
+        return;
+    }
 }

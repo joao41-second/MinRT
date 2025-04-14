@@ -1,4 +1,4 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,9 +6,9 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/03/20 14:39:52 by rerodrig         ###   ########.fr        #
+#    Updated: 2025/04/13 14:04:26 by rerodrig         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 # Compiler flags
 #WFLGS = -Wall -Wextra -Werror
@@ -68,6 +68,12 @@ $(NAME): $(LIB) $(OBJS)
 	@echo "║ ✅ Compiled Successfully!║"
 	@echo "╚══════════════════════════╝"
 
+renew: $(OBJS)
+	$(CC) $(OBJS) $(LIB) $(FLGS) -o $(NAME)
+	@echo "╔══════════════════════════╗"
+	@echo "║ ✅ Renewed Successfully! ║"
+	@echo "╚══════════════════════════╝"
+
 # Phony targets
 .PHONY: all clean fclean re exec norm normi
 
@@ -97,7 +103,8 @@ test: $(LIB) $(OBJS)
 
 test_vall: all
 	make val -C tests
-
+n:
+	clear && make renew && ./$(NAME)
 
 s:
 	clear && make re && ./$(NAME)
@@ -117,4 +124,7 @@ pro:
 
 pdf:
 	cd ~/Downloads/ && evince JamisBuck-TheRayTracer.pdf
+
+gprof:
+	gprof ./$(NAME) gmon.out > gprof_analysis.txt && cat gprof_analysis.txt
 

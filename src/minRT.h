@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/04 14:51:13 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/13 19:24:43 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@
 
 # define WALL_X 1000.0
 # define WALL_Y 1000.0
+# define WALL_Z 10.0
+# define WALL_SIZE 7.0
 # define HALF WALL_Y/2 
+# define PIXEL_SIZE WALL_SIZE/WALL_X;
 
+#define MOUSE_LEFT_BUTTON 1
 # include "../libft/ft_libft/libft.h"
 # include "../libft/ft_list/list.h"
 # include "../libft/ft_free/ft_free.h"
@@ -38,7 +42,7 @@
 # include "./objects/objects.h"
 # include "./ray/ray.h"
 # include "./light/light.h"
-# include "./tuples/tuples.h"
+# include "./camera/camera.h"
 
 # include <asm-generic/errno.h>
 # include <fcntl.h>
@@ -53,5 +57,8 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+
+void start_word(t_minirt  *rt_struct);
+void draw_navigator(t_minirt *rt_struct);
 
 #endif
