@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 13:57:01 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/04 13:58:36 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/15 14:33:44 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../miniRT_struct.h"
 #include "light_struct.h"
 
-t_vector lig_normalize(t_sphere sph,t_point p_the_obj) ;
+t_vector lig_normalize(t_object *obj,t_point p_the_obj) ;
 
 t_vector lig_reflect(t_vector in ,t_vector normal);
 

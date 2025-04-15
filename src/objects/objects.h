@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/14 17:49:54 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/15 14:26:42 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,16 @@ typedef struct s_plane
 	t_color		color;
 	t_matrix	transform;
 	t_matrix	inv_transform;
+	t_mater		 matiral;
 }	t_plane;
 
 
-typedef struct s_axis {
-    t_point position; // Position of the axis origin
-    double length;    // Length of the axis
-    t_color color;    // Color of the axis
-} t_axis;
 
 typedef enum e_obj_type
 {
 	OBJ_SPHERE,
 	OBJ_PLANE,
 	OBJ_TRIANGLE,
-	OBJ_AXIS
 }	t_obj_type;
 
 typedef struct s_triangle 
@@ -86,6 +81,7 @@ typedef struct s_triangle
 	t_color		color;
 	t_matrix transform;
 	t_matrix inv_transform;
+	t_mater		 matiral;
 } t_triangle;
 
 
@@ -97,7 +93,6 @@ typedef struct s_object
 		t_plane		plane;
 		t_sphere	sphere;
 		t_triangle	triangle;
-		t_axis axis; // New axis type
 	}	u_data;
 	struct s_object	*next;
 }	t_object;

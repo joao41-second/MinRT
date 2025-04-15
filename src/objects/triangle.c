@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:13:56 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/12 19:36:43 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/15 14:27:21 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_triangle create_triangle(t_point p1, t_point p2, t_point p3)
     triangle.normal = normalize(cross_product(triangle.edge1, triangle.edge2));
     triangle.transform = mat_gener_identity(4);
     triangle.inv_transform = mat_gener_identity(4);
+    triangle.matiral = obj_material_init(c_new(1,0.2,1), obj_init_values_material(0.1,0.9 , 0.9, 200));
     return (triangle);
 }
 

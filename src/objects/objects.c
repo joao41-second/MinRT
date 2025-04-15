@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 14:45:40 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/14 01:16:29 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/15 14:48:09 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,4 @@ t_object *create_object(void *data, t_obj_type type)
     }
 
     return obj;
-}
-
-t_object *create_axis(t_point position, double length, t_color color) {
-    t_axis *axis = malloc(sizeof(t_axis));
-    if (!axis) {
-        perror("Failed to allocate memory for axis");
-        return NULL;
-    }
-    axis->position = position;
-    axis->length = length;
-    axis->color = color;
-
-    t_object *object = malloc(sizeof(t_object));
-    if (!object) {
-        perror("Failed to allocate memory for object");
-        free(axis);
-        return NULL;
-    }
-    object->type = OBJ_AXIS;
-    object->u_data.axis = *axis;
-    object->next = NULL;
-    return object;
 }

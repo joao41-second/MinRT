@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 19:21:35 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/04 19:54:17 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/15 14:26:46 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ t_plane create_plane(t_point center, double ray_s)
     new.color = c_new(255, 0, 0);
     new.transform = mat_gener(4);
     new.inv_transform = mat_gener(4);
+    new.matiral = obj_material_init(c_new(1,0.2,1), obj_init_values_material(0.1,0.9 , 0.9, 200));
     return (new);
 }

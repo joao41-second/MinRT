@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/14 17:50:38 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:05:25 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void print_list_(t_list_ *list)
         if (current->content != NULL)
         {
             t_object *obj = (t_object *)current->content;
-
             printf("Debug: obj->data = %p\n", (void *)&obj->u_data);
             if (obj == NULL)
             {
@@ -28,8 +27,6 @@ void print_list_(t_list_ *list)
                 current = current->next;
                 continue;
             }
-
-            // Print the object type as a string
             if (obj->type == OBJ_SPHERE)
                 printf("Object type: Sphere\n");
             else if (obj->type == OBJ_PLANE)
@@ -38,8 +35,6 @@ void print_list_(t_list_ *list)
 				printf("Object type: Triangle\n");
             else
                 printf("Object type: Unknown\n");
-
-            // Additional logic for printing object details
             if (obj->type == OBJ_SPHERE)
             {
                 t_sphere *sphere = &obj->u_data.sphere;
@@ -50,9 +45,7 @@ void print_list_(t_list_ *list)
                            sphere->ray_s);
                 }
                 else
-                {
                     printf("Sphere data is NULL.\n");
-                }
             }
             else if (obj->type == OBJ_PLANE)
             {
@@ -64,13 +57,10 @@ void print_list_(t_list_ *list)
                            plane->normal.x, plane->normal.y, plane->normal.z);
                 }
                 else
-                {
                     printf("Plane data is NULL.\n");
-                }
             }
 			else if (obj->type == OBJ_TRIANGLE)
             {
-                printf("Object type: Triangle\n");
                 t_triangle *triangle = &obj->u_data.triangle;
                 if (triangle != NULL)
                 {
@@ -80,74 +70,15 @@ void print_list_(t_list_ *list)
                            triangle->p3.x, triangle->p3.y, triangle->p3.z);
                 }
                 else
-                {
                     printf("Triangle data is NULL.\n");
-                }
             }
         }
         else
-        {
             printf("Empty node.\n");
-        }
         current = current->next;
     }
 }
 
-void draw_cube(t_minirt *rt_struct, t_point position, t_color color, double scale)
-{
-    t_list_ *word_objects = NULL;
-
-    // Define the cube vertices
-    t_point cube_vertices[8] = {
-        create_point(-1, -1, -1), // Vertex 0
-        create_point(1, -1, -1),  // Vertex 1
-        create_point(1, 1, -1),   // Vertex 2
-        create_point(-1, 1, -1),  // Vertex 3
-        create_point(-1, -1, 1),  // Vertex 4
-        create_point(1, -1, 1),   // Vertex 5
-        create_point(1, 1, 1),    // Vertex 6
-        create_point(-1, 1, 1)    // Vertex 7
-    };
-
-    // Define the cube faces
-    int cube_faces[12][3] = {
-        {0, 1, 2}, {0, 2, 3}, // Front face
-        {4, 5, 6}, {4, 6, 7}, // Back face
-        {0, 1, 5}, {0, 5, 4}, // Bottom face
-        {2, 3, 7}, {2, 7, 6}, // Top face
-        {0, 3, 7}, {0, 7, 4}, // Left face
-        {1, 2, 6}, {1, 6, 5}  // Right face
-    };
-
-    // Create triangles for the cube
-    for (int i = 0; i < 12; i++) {
-        t_triangle tri = create_triangle(
-            cube_vertices[cube_faces[i][0]],
-            cube_vertices[cube_faces[i][1]],
-            cube_vertices[cube_faces[i][2]]
-        );
-        t_object *obj_triangle = create_object(&tri, OBJ_TRIANGLE);
-        ray_set_transform_obj(obj_triangle, mat_gener_scal(scale, scale, scale));
-        ray_set_transform_obj(obj_triangle, mat_gener_trans(position.x, position.y, position.z));
-        ft_add_node(obj_triangle, &word_objects);
-    }
-
-    // Add the cube to the scene
-    rt_struct->word = ft_node_start(word_objects);
-}
-
-void draw_axis_with_cubes(t_minirt *rt_struct)
-{
-    // Define positions for the cubes
-    t_point x_position = create_point(-1, -1, 0);
-    t_point y_position = create_point(-1, -1, 1);
-    t_point z_position = create_point(-1, -1, 1);
-
-    // Draw cubes for each axis
-    draw_cube(rt_struct, x_position, c_new(255, 0, 0), 0.5); // Red for X-axis
-    draw_cube(rt_struct, y_position, c_new(0, 255, 0), 0.5); // Green for Y-axis
-    draw_cube(rt_struct, z_position, c_new(0, 0, 255), 0.5); // Blue for Z-axis
-}
 void start_word(t_minirt  *rt_struct)
 {
 	t_sphere sph;
@@ -173,6 +104,11 @@ void start_word(t_minirt  *rt_struct)
     t_object *obj_triangle = create_object(&tri, OBJ_TRIANGLE);
 	ray_set_transform_obj(obj_triangle, mat_gener_scal(1, 2, 1));
     ft_add_node(obj_triangle,&word_objects );
+
+    t_triangle tri2 = create_triangle(create_point(-1,0,0), create_point(0,-1,-1), create_point(-1,0,0));
+    t_object *obj_triangle2 = create_object(&tri2, OBJ_TRIANGLE);
+	ray_set_transform_obj(obj_triangle2, mat_gener_scal(1, 1, 1));
+    ft_add_node(obj_triangle2,&word_objects );
 
 	print_list_(word_objects);	
 	// sph = sphere(create_point(0, 0, 0),1) ;
