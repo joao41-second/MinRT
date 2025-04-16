@@ -29,15 +29,15 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 	ft_start_alloc();
-	start_word(&rt_struct);
-
-	t_ray ray;
-	t_color color;
-	ray = ray_gener(create_point(0, 0, 0), create_vector(0, 0, 0));
-	color = lig_color_at(&rt_struct, ray);
-	printf("color %f %f %f \n",color.red,color.blue,color.green);
+	
+	// t_ray ray;
+	// t_color color;
+	// ray = ray_gener(create_point(0, 0, 0), create_vector(0, 0, 0));
+	// color = lig_color_at(&rt_struct, ray);
+	// printf("color %f %f %f \n",color.red,color.blue,color.green);
     //init camera
     camera_init(&rt_struct.scene.world.camera);
+	start_word(&rt_struct);
 
 	// rt_struct.needs_render = 1;
 	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(255, 0, 0));	

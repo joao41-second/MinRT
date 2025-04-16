@@ -139,51 +139,51 @@ void ray_canva_loop_x(double pix_size,double y,t_minirt *rt_struct)
 
 	x = -1;
 	y_ =( HALF - y) * pix_size  ;
-	// while(++x < WALL_X)
-	// {
-	// 	x_ = (-HALF +  x) * pix_size;
-	// 	use_the_memory = create_point(x_,y_, WALL_Z);
-	// 	sub = sub_tuples(use_the_memory,rt_struct->c_ray.direction);
-	// 	ray = ray_gener(rt_struct->c_ray.origin,normalize(sub));
-	// 	obj_data = ray_for_objects(rt_struct->word,ray);
-	// 	if(obj_data.min != INT_MAX)
-	// 	{
-	// 		t_sphere *o = (t_sphere *) obj_data.object;
-	// 		t_sphere ok = *o;
-	// 		color = lig_lighting(o->matiral, rt_struct->luz, 
-	// 				ray_position(ray, obj_data.min),
-	// 				create_vector(1,1,52),
-	// 				neg_tuple(ray.direction));
-	// 	//	obj_material_print(o->matiral);
-	// 	//	printf("t is  %f \n",obj_data.min);
-	// 	printf("ray %f %f %f \n", ray.direction.val[0] ,ray.direction.val[1],ray.direction.val[2]);
-	// //	printf("point %f %f %f \n", ray_position(ray, obj_data.min).val[0], ray_position(ray, obj_data.min).val[1], ray_position(ray, obj_data.min).val[2]);
-	// 		printf("color %f %f %f\n",color.color[0],color.color[1],color.color[2]);
-	// 		canva_set_pixel(rt_struct, x, y, color);
-	// 	}
-	// 	else
-	// 	{
-	// 		canva_set_pixel(rt_struct, x, y, c_new(0, 0, 0));
-	// 	}
-	// }	
 	while(++x < WALL_X)
-			{
-				// x_ = (-metade + x) * pix_size;
-				// raiva = create_point(x_, y_, WALL_Z);
-				// sub = sub_tuples(raiva, rt_struct->c_ray.direction);
-				// t_obj_int intersections = ray_for_objects(rt_struct->word, ray_gener(point, normalize(sub)));
-                t_ray ray = camera_generate_ray(&rt_struct->scene.world.camera, x, y);
-                // Check for intersections with objects in the scene
-                t_obj_int intersections = ray_for_objects(rt_struct->word, ray);
-				if(intersections.min != INT_MAX)
-				{
-					t_object *closest_obj = (t_object *)intersections.ints->content;
+	{
+		x_ = (-HALF +  x) * pix_size;
+		use_the_memory = create_point(x_,y_, WALL_Z);
+		sub = sub_tuples(use_the_memory,rt_struct->c_ray.direction);
+		ray = ray_gener(rt_struct->c_ray.origin,normalize(sub));
+		obj_data = ray_for_objects(rt_struct->word,ray);
+		if(obj_data.min != INT_MAX)
+		{
+			t_sphere *o = (t_sphere *) obj_data.object;
+			t_sphere ok = *o;
+			color = lig_lighting(o->matiral, rt_struct->luz, 
+					ray_position(ray, obj_data.min),
+					create_vector(1,1,52),
+					neg_tuple(ray.direction));
+			obj_material_print(o->matiral);
+			printf("t is  %f \n",obj_data.min);
+		printf("ray %f %f %f \n", ray.direction.val[0] ,ray.direction.val[1],ray.direction.val[2]);
+	//	printf("point %f %f %f \n", ray_position(ray, obj_data.min).val[0], ray_position(ray, obj_data.min).val[1], ray_position(ray, obj_data.min).val[2]);
+			printf("color %f %f %f\n",color.color[0],color.color[1],color.color[2]);
+			canva_set_pixel(rt_struct, x, y, color);
+		}
+		else
+		{
+			canva_set_pixel(rt_struct, x, y, c_new(0, 0, 0));
+		}
+	}	
+	// while(++x < WALL_X)
+	// 		{
+	// 			// x_ = (-metade + x) * pix_size;
+	// 			// raiva = create_point(x_, y_, WALL_Z);
+	// 			// sub = sub_tuples(raiva, rt_struct->c_ray.direction);
+	// 			// t_obj_int intersections = ray_for_objects(rt_struct->word, ray_gener(point, normalize(sub)));
+    //             t_ray ray = camera_generate_ray(&rt_struct->scene.world.camera, x, y);
+    //             // Check for intersections with objects in the scene
+    //             t_obj_int intersections = ray_for_objects(rt_struct->word, ray);
+	// 			if(intersections.min != INT_MAX)
+	// 			{
+	// 				t_object *closest_obj = (t_object *)intersections.ints->content;
 					
-					canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
-				}
-				else
-					canva_set_pixel(rt_struct, x, y, c_new(255.0, 255, 100.0));
-			}
+	// 				canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
+	// 			}
+	// 			else
+	// 				canva_set_pixel(rt_struct, x, y, c_new(255.0, 255, 100.0));
+	// 		}
 	
 
 }

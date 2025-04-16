@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/14 21:05:25 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:33:50 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ void start_word(t_minirt  *rt_struct)
 	
 	
 	rt_struct->word = ft_node_start(word_objects);
-	rt_struct->luz = ligth_init(c_new(1,1,1), create_point(-10, 10, -10));	
-	rt_struct->c_ray = ray_gener( create_point(0,0, 0), create_vector(0, 0, 1));
+	// rt_struct->luz = ligth_init(c_new(0,1,0), create_point(0, 10, 0));	
+	// rt_struct->c_ray = ray_gener( create_point(0,0, 0), create_vector(0, 0, 1));
 
 
 }

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:48:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/08 00:55:27 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:00:32 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void camera_init(t_camera *cam)
     cam->origin = create_point(0, 0, -10);
     cam->direction = create_vector(0, 0, 1);
     cam->aspect_ratio = (double)WALL_X/WALL_Y;
-    cam->fov = 60.0;
+    cam->fov = 10.0;
     camera_update_view(cam);
 }
 /**
