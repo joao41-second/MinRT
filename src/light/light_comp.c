@@ -76,3 +76,8 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray)
 		ret = c_new(0,0,0);
 	return(ret);
 }
+
+void lig_view_transform(t_tuple form,t_tuple to , t_tuple up)
+{
+
+}
