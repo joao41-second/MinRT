@@ -28,5 +28,7 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray);
 
 
 void lig_print_tuple(t_tuple tuple);
+
+void lig_view_transform(t_tuple form,t_tuple to , t_tuple up,t_matrix *mat, t_matrix trans);
 #endif
 

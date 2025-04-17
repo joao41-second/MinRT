@@ -7,7 +7,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "light/light.h"
+#include "matrix/matrix.h"
 #include "minRT.h"
+#include "tuples/tuples.h"
 
 int	main(int ac, char **av, char **env)
 {
@@ -33,6 +36,15 @@ int	main(int ac, char **av, char **env)
 
 
 	//canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));	
+	t_matrix ok ;
+
+	ok = mat_gener_identity(4);
+	
+	lig_view_transform(create_point(1, 3, 2), create_point(4, -2, 8), create_vector(1, 1, 0),&ok,mat_gener_trans(-1, -3, -2));
+
+	mat_print(ok);
+
+	 
 	return (status);
 
 }
