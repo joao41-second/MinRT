@@ -26,5 +26,7 @@ t_computations lig_prepare_computations( t_obj_int inter,t_ray ray);
 
 t_color lig_color_at(t_minirt *rt_struct, t_ray ray);
 
+
+void lig_print_tuple(t_tuple tuple);
 #endif
 

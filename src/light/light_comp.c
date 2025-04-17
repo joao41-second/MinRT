@@ -13,6 +13,16 @@
 #include "../minRT.h"
 #include "light.h"
 
+void lig_print_tuple(t_tuple tuple)
+{
+	if(tuple.w ==1)
+	{
+		printf( "point %f %f %f \n",tuple.x,tuple.y,tuple.z);
+	}else
+		printf( "vect %10.5f %f %f \n",tuple.x,tuple.y,tuple.z);
+
+}
+
 t_computations lig_prepare_computations( t_obj_int inter,t_ray ray)
 {
 	t_computations  ret;
@@ -22,6 +32,7 @@ t_computations lig_prepare_computations( t_obj_int inter,t_ray ray)
 	ret.t = inter.min;
 	ret.object = inter.object;
 	ret.point = ray_position(ray, ret.t);
+	
 	ret.eyev =  neg_tuple(ray.direction); //duvida do neg tuple
 	ret.norm = lig_normalize(*sph, ret.point);
 	if(dot_product(ret.norm, ret.eyev) < 0)
@@ -32,16 +43,6 @@ t_computations lig_prepare_computations( t_obj_int inter,t_ray ray)
 	else 
 		ret.inside = FALSE;
 	return(ret);
-}
-
-void lig_print_tuple(t_tuple tuple)
-{
-	if(tuple.w ==1)
-	{
-		printf( "point %f %f %f \n",tuple.x,tuple.y,tuple.z);
-	}else
-		printf( "vect %10.5f %f %f \n",tuple.x,tuple.y,tuple.z);
-
 }
 
 void lig_print_computations(t_computations comp)
@@ -60,12 +61,13 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray)
 	t_color ret;
 	t_computations compt;;
 	t_sphere sph;
+	t_obj_int ray_in_obj;
 
 	//printf("color mat %f %f %f \n",)
-	
-	if(ray_for_objects(rt_struct->word, ray).min != INT_MAX )
+	ray_in_obj = ray_for_objects(rt_struct->word, ray);
+	if(ray_in_obj.min != INT_MAX )
 	{
-		compt =  lig_prepare_computations(ray_for_objects(rt_struct->word, ray),ray); 
+		compt =  lig_prepare_computations(ray_in_obj,ray); 
 		lig_print_computations(compt);
 		ret =  lig_lighting(sph.matiral,rt_struct->luz,compt.point,compt.norm,compt.eyev);
 		printf (" the insied is %d\n",compt.inside );

@@ -68,7 +68,6 @@ void normalize_(void)
 	check += norm_l(name,create_point(0,0,0),create_point(0, 0, 0),create_vector(0, 0, 0));
 	_random();
 	
-
 	if(check == 0)
 		printf(" %s: good tests ok",name);
 }

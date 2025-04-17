@@ -17,6 +17,14 @@ t_tuple	create_tuple(double x, double y, double z, double w)
 {
 	t_tuple	tuple;
 
+	if(x == -0)
+		x = 0;
+	if(y == -0)
+		y = 0;
+	if(z == -0)
+		z = 0;
+	if(w == -0)
+		w = 0;
 	tuple.x = x;
 	tuple.y = y;
 	tuple.z = z;

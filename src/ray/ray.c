@@ -28,7 +28,10 @@ t_ray ray_gener(t_point point,t_vector dir)
 t_point ray_position(t_ray ray,double nb)
 {
 	t_point new;
-	new  =  add_tuples(ray.origin, create_point(nb, nb, nb));
+	new  =  add_tuples( ray.origin,create_point(nb, nb, nb));
+
+	lig_print_tuple(new);
+
 	if(nb == 0)
 		return (new);
 	return(create_point( ray.direction.x * new.x ,  ray.direction.y * new.y , ray.direction.z * new.z)); 
@@ -88,12 +91,11 @@ t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
 	ret.t[1] += (-(b_) + temp)/(2 * a_);
 	ret.t[0] += (-(b_) - temp)/(2 * a_);
 	if(isnan(ret.t[0]))
-		ret.t[0] = 0;
-	if(isnan(ret.t[0]))
-		ret.t[0] = 0;
+		ret.t[0] = + ret.t[0];
+	if(isnan(ret.t[1]))
+		ret.t[1] = + ret.t[1];
 
-
-
+	//printf("the ret 1 = %f \n",ret.t[1]);
 	ret.ray_start = ray;
 
 	return(ret);
