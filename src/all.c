@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   all.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/18 12:49:14 by jperpct           #+#    #+#             */
+/*   Updated: 2025/04/18 13:00:17 by jperpct          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
@@ -84,6 +96,9 @@ void print_list_(t_list_ *list)
 
 */
 
+#include "canvas/canvas_struct.h"
+#include "light/light.h"
+#include "light/light_struct.h"
 #include "minRT.h"
 int	canva_loops(t_minirt *rt_struct)
 {
@@ -92,7 +107,7 @@ int	canva_loops(t_minirt *rt_struct)
 
 	// if(ok == 0)
 	// {
-	rt_struct->c_ray = ray_gener( create_point(0, 0, 0), create_vector(0, 0, 1));
+	//rt_struct->c_ray = ray_gener( create_point(0, 0, 0), create_vector(0, 0, 1));
 	ft_pocket_new("canva");
 	
 	// Inlined implementation of ray_canva function
@@ -114,21 +129,16 @@ int	canva_loops(t_minirt *rt_struct)
 			x = -1;
 			while(++x < WALL_X)
 			{
-                t_ray ray = camera_generate_ray(&rt_struct->scene.world.camera, x, y);
-                t_obj_int intersections = ray_for_objects(rt_struct->word, ray);
-				if(intersections.min != INT_MAX)
-				{
-					///t_object *closest_obj = (t_object *)intersections.ints->content;
-					
-					canva_set_pixel(rt_struct, x, y, c_new(1.0, 0.0, 0.0));
-				}
-				else 
-					canva_set_pixel(rt_struct, x, y, c_new(1, 1, 1)); 
-			}	
+                		t_ray ray = camera_generate_ray(&rt_struct->scene.world.camera, x, y);
+	 			t_color	color = lig_color_at(rt_struct, ray);
+				if(color.red == 1 && color.green ==0 && color.blue == 0)	
+				{}
+				else
+					printf("color %f %f %f \n",color.red,color.blue,color.green);
+				canva_set_pixel(rt_struct, x, y, color);
+			}
 		}
 	
-        // clock_t fim = clock();
-    	// double tempo_exec = (double)(fim - inicio) / CLOCKS_PER_SEC; // Converte para segundos
 	canva_update(rt_struct);
 
 	return (1);
@@ -187,41 +197,25 @@ int	main(int ac, char **av, char **env)
 	t_obj_int intr_in_objc;
 	t_object *obj_sphere;
 
-	sph = sphere(create_point(0, 0, 50),1) ;
+	sph = sphere(create_point(0, 0, 20),1) ;
 	obj_sphere = create_object(&sph, OBJ_SPHERE);
-    ray_set_transform_obj(obj_sphere, mat_gener_scal(1, 1, 1));
+    	ray_set_transform_obj(obj_sphere, mat_gener_scal(1, 1, 1));
 	ft_add_node(obj_sphere,&word_objects );
 
-	t_plane pln = create_plane(create_point(1, 0, 0), 1);
-	t_object *obj_plane = create_object(&pln, OBJ_PLANE);
-	ray_set_transform_obj(obj_plane,mat_gener_rota('x', -1));
-    ft_add_node(obj_plane,&word_objects );
+//	t_plane pln = create_plane(create_point(1, 0, 0), 1);
+//	t_object *obj_plane = create_object(&pln, OBJ_PLANE);
+//	ray_set_transform_obj(obj_plane,mat_gener_rota('x', -1));
+//   	 ft_add_node(obj_plane,&word_objects );
 //	print_list_(word_objects);	
 
-	t_object plane;
-    plane.type = OBJ_PLANE;
-    plane.u_data.plane.center = create_point(0, 0, 0);
-    plane.u_data.plane.normal = create_vector(0, 1, 0);
-    plane.u_data.plane.color = c_new(1, 0, 0);
-    plane.u_data.plane.transform = mat_gener_identity(4);
-    plane.u_data.plane.inv_transform = mat_gener_identity(4);
     
-    t_ray r1 = ray_gener(create_point(0, 10, 0), create_vector(0, 0, 1));
-    t_ray r2 = ray_gener(create_point(0, 0, 0), create_vector(0, 0, 1));
-    t_ray r3 = ray_gener(create_point(0, 1, 0), create_vector(0, -1, 0));
-    t_ray r4 = ray_gener(create_point(0, -1, 0), create_vector(0, 1, 0));
     
-    t_intersection intr1 = ray_int_plane(r1, &plane);
-    t_intersection intr2 = ray_int_plane(r2, &plane);
-    t_intersection intr3 = ray_int_plane(r3, &plane);
-    t_intersection intr4 = ray_int_plane(r4, &plane);
-    
-    printf("Intersections with parallel ray: %f\n", intr1.inter);
-    printf("Intersections with coplanar ray: %f\n", intr2.inter);
-    printf("Intersections from above: %f, t = %f\n", intr3.inter, intr3.t[0]);
-    printf("Intersections from below: %f, t = %f\n", intr4.inter, intr4.t[0]);
 
-	rt_struct.word = word_objects;
+	// rt_struct.word = ft_node_start(word_objects);
+
+	start_word(&rt_struct);
+
+//	 rt_struct.word = ft_node_start(word_objects);
 	
     //init camera
     camera_init(&rt_struct.scene.world.camera);

@@ -15,6 +15,7 @@
 #define RAY_STRUCT_H
 
 #include "../miniRT_struct.h"
+#include "../objects/objects.h"
 
 typedef union s_ray
 {
@@ -32,7 +33,8 @@ typedef struct s_intersection
 	double t[2];
 	double inter;
 	t_ray  ray_start;
-	t_tuple point[2];
+	t_tuple point[2];	
+	t_mater mat;
 }	t_intersection;
 
 //________________________________limts______//
@@ -59,6 +61,7 @@ typedef struct s_object_intersectd
 	t_list_ *ints;
 	double max;
 	double min;
+	t_mater mat;
 
 } t_obj_int;
 
@@ -66,6 +69,7 @@ typedef struct  s_intersections
 {
 	t_lim_ran_int data;	
 	t_list_ *inter;
+	t_mater mat;
 } t_intersections;
 
 

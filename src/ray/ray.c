@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:15:50 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/07 15:16:21 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/18 12:58:53 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_point ray_position(t_ray ray,double nb)
 	t_point new;
 	new  =  add_tuples( ray.origin,create_point(nb, nb, nb));
 
-	lig_print_tuple(new);
+//	lig_print_tuple(new);
 
 	if(nb == 0)
 		return (new);
@@ -147,9 +147,16 @@ t_intersection ray_int_object(t_ray ray, t_object obj)
     t_intersection intersection;
 
     if (obj.type == OBJ_SPHERE)
+    {
         intersection = ray_int_sphere(ray, obj.u_data.sphere);
+	intersection.mat = obj.u_data.sphere.matiral;
+    }
     else if (obj.type == OBJ_PLANE)
+    {
         intersection = ray_int_plane(ray, &obj);
+
+
+    }
     else
     {
         intersection.inter = 0;

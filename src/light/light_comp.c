@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/08 20:56:15 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/18 12:57:26 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,11 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray)
 	t_sphere sph;
 	t_obj_int ray_in_obj;
 
-	//printf("color mat %f %f %f \n",)
 	ray_in_obj = ray_for_objects(rt_struct->word, ray);
 	if(ray_in_obj.min != INT_MAX )
 	{
 		compt =  lig_prepare_computations(ray_in_obj,ray); 
-		lig_print_computations(compt);
-		ret =  lig_lighting(sph.matiral,rt_struct->luz,compt.point,compt.norm,compt.eyev);
-		printf (" the insied is %d\n",compt.inside );
+		ret =  lig_lighting(ray_in_obj.mat,rt_struct->luz,compt.point,compt.norm,compt.eyev);
 	}
 	else
 		ret = c_new(0,0,0);

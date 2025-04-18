@@ -48,6 +48,7 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 				save_points.object = objs_w->content;
 			}
 		}
+		save_points.mat = intr.mat;
 		if(objs_w->next == NULL)
 			break;
 		objs_w = objs_w->next;

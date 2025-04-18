@@ -6,17 +6,13 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:48:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/08 00:55:27 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/18 12:28:22 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../minRT.h"
 #include "camera.h"
-
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
 
 /**
  * Initializes the camera with default parameters and updates its view.
@@ -30,8 +26,8 @@
  */
 void camera_init(t_camera *cam)
 {
-    cam->origin = create_point(0, 0, -10);
-    cam->direction = create_vector(0, 0, 1);
+    cam->origin = create_point(3,-0.5, 0);
+    cam->direction = create_vector(-1, 0, 1);
     cam->aspect_ratio = (double)WALL_X/WALL_Y;
     cam->fov = 60.0;
     camera_update_view(cam);

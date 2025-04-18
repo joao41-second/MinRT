@@ -13,9 +13,11 @@
 #ifndef MINIRT_STRUCT_H
 # define MINIRT_STRUCT_H
 
+
 # include "../libft/ft_list/lsit_struct.h"
 # include "./canvas/canvas_struct.h"
 # include "./tuples/tuples.h"
+# include "./matrix/matrix.h"
 # include "./ray/ray_struct.h"
 # include "./matrix/matrix.h"
 # include "./objects/objects.h"
