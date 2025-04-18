@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/16 12:33:50 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:11:18 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void start_word(t_minirt  *rt_struct)
     t_triangle tri2 = create_triangle(create_point(-1,0,0), create_point(0,-1,-1), create_point(-1,0,0));
     t_object *obj_triangle2 = create_object(&tri2, OBJ_TRIANGLE);
 	ray_set_transform_obj(obj_triangle2, mat_gener_scal(1, 1, 1));
-    ft_add_node(obj_triangle2,&word_objects );
+    // ft_add_node(obj_triangle2,&word_objects );
 
 	print_list_(word_objects);	
 	// sph = sphere(create_point(0, 0, 0),1) ;
@@ -122,8 +122,9 @@ void start_word(t_minirt  *rt_struct)
 	
 	
 	rt_struct->word = ft_node_start(word_objects);
-	// rt_struct->luz = ligth_init(c_new(0,1,0), create_point(0, 10, 0));	
+	rt_struct->luz = ligth_init(c_new(0,1,0), create_point(0, 10, 0));	
 	// rt_struct->c_ray = ray_gener( create_point(0,0, 0), create_vector(0, 0, 1));
-
+    //init camera
+    camera_init(&rt_struct->scene.world.camera);
 
 }

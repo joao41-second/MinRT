@@ -33,7 +33,7 @@ void camera_init(t_camera *cam)
     cam->origin = create_point(0, 0, -10);
     cam->direction = create_vector(0, 0, 1);
     cam->aspect_ratio = (double)WALL_X/WALL_Y;
-    cam->fov = 10.0;
+    cam->fov = 30.0;
     camera_update_view(cam);
 }
 /**

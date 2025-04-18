@@ -1,12 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   rat_loop.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 17:27:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/02 13:01:03 by jperpct          ###   ########.fr       */
+/*   Created: 2025/04/02 13:01:03 by jperpct           #+#    #+#             */
+/*   Updated: 2025/04/18 15:12:03 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minRT.h"
 #include "ray.h"
@@ -16,39 +19,39 @@
 
 t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 {
-	t_obj_int save_points;
-	t_intersection intr;
-	// t_sphere *conv;
-	t_object *obj;
+    t_obj_int save_points;
+    t_intersection intr;
+    t_object *obj;
 
-	save_points.max = INT_MAX;
-	save_points.min = INT_MAX;
-	save_points.ints = NULL;
-	objs_w = ft_node_start(objs_w);	
-	while (objs_w != NULL)
-	{
-
-		obj = (t_object *)objs_w->content;
-		intr = ray_int_object(ray,*obj );
-		if(intr.inter > 0)
-		{
-			if(intr.t[0] > save_points.max || save_points.max == INT_MAX )
-				save_points.max = intr.t[0];
-			if(intr.t[1] > save_points.max || save_points.max == INT_MAX )
-				save_points.max = intr.t[1];
-			if(intr.t[0] < save_points.min || save_points.max == INT_MAX )
-				save_points.min = intr.t[0];
-			if(intr.t[1] < save_points.min || save_points.max == INT_MAX )
-				save_points.min = intr.t[1];
-			ft_add_node(&intr,& save_points.ints);
-		}
+    save_points.max = INT_MAX;
+    save_points.min = INT_MAX;
+    save_points.ints = NULL;
+    objs_w = ft_node_start(objs_w);
+    while (objs_w != NULL)
+    {
+        obj = (t_object *)objs_w->content;
+        // printf("Debug: Checking object of type %d\n", obj->type);
+        intr = ray_int_object(ray, *obj);
+        if (intr.inter > 0)
+        {
+            // printf("Debug: Intersection found with t[0] = %f, t[1] = %f\n", intr.t[0], intr.t[1]);
+            if (intr.t[0] > save_points.max || save_points.max == INT_MAX)
+                save_points.max = intr.t[0];
+            if (intr.t[1] > save_points.max || save_points.max == INT_MAX)
+                save_points.max = intr.t[1];
+            if (intr.t[0] < save_points.min || save_points.max == INT_MAX)
+                save_points.min = intr.t[0];
+            if (intr.t[1] < save_points.min || save_points.max == INT_MAX)
+                save_points.min = intr.t[1];
+            ft_add_node(&intr, &save_points.ints);
+        }
 		if(objs_w->next == NULL)
-			break;
+		break;
 		objs_w = objs_w->next;
-	}
+    }
 
-	objs_w = ft_node_start(objs_w);	
-	return (save_points);
+    objs_w = ft_node_start(objs_w);
+    return (save_points);
 }
 
 

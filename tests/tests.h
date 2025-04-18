@@ -31,7 +31,7 @@
 
 void	test_tuples(void);
 void	test_ft_atof(void);
-
+void    test_ray_for_objects(void);
 void	test_ligth(void);
 
 #endif /* TESTS_H */

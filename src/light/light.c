@@ -34,13 +34,13 @@ t_vector lig_normalize(t_object *obj,t_point p_the_obj)
     else if (obj->type == OBJ_PLANE) 
     {
         t_plane *plane = &obj->u_data.plane;
-        // For planes, the normal is constant and does not depend on the point
-        ret = mat_x_tuple(create_vector(0, 1, 0), plane->inv_transform);
+		obj_point = mat_x_tuple(p_the_obj, plane->inv_transform);
+        obj_word = sub_tuples(obj_point, create_point(0, 0, 0));
+        ret = mat_x_tuple(obj_word, plane->inv_transpose);
     }
     else if (obj->type == OBJ_TRIANGLE) 
     {
         t_triangle *triangle = &obj->u_data.triangle;
-        // For triangles, the normal is calculated using the cross product of two edges
         t_vector edge1 = sub_tuples(triangle->p2, triangle->p1);
         t_vector edge2 = sub_tuples(triangle->p3, triangle->p1);
         ret = normalize(cross_product(edge1, edge2));
@@ -84,6 +84,10 @@ t_color lig_lighting(t_mater mat,t_light luz,t_point point,t_vector norm,t_tuple
 			sepcular = c_scalar_multipl(c_scalar_multipl(luz.intenstiy, mat.values.specular), fact);
 		}
 	}
+	// printf("Effective color: R=%f, G=%f, B=%f\n", efectiv.red, efectiv.green, efectiv.blue);
+	// printf("Ambient color: R=%f, G=%f, B=%f\n", amb_c.red, amb_c.green, amb_c.blue);
+	// printf("Diffuse color: R=%f, G=%f, B=%f\n", diffuse.red, diffuse.green, diffuse.blue);
+	// printf("Specular color: R=%f, G=%f, B=%f\n", sepcular.red, sepcular.green, sepcular.blue);
 	ret = c_adding(sepcular,c_adding(diffuse, amb_c));
 	return (ret);
 }

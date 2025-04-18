@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:13:56 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/16 12:57:20 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/18 13:48:02 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_triangle create_triangle(t_point p1, t_point p2, t_point p3)
     triangle.normal = normalize(cross_product(triangle.edge1, triangle.edge2));
     triangle.transform = mat_gener_identity(4);
     triangle.inv_transform = mat_gener_identity(4);
-    triangle.matiral = obj_material_init(c_new(1,0.2,1), obj_init_values_material(0.1,0.9 , 0.9, 200));
+    triangle.matiral = obj_material_init(c_new(0.0, 1.0, 0.0), obj_init_values_material(0.1,0.9 , 0.9, 200));
     return (triangle);
 }
 //precomputed normal
@@ -85,7 +85,7 @@ t_intersection ray_int_triangle(t_ray ray, t_object *obj)
     }
     ret.inter = 1;
     ret.t[0] = t;
-    ret.t[1] = -1; // Triangles have only one intersection
+    ret.t[1] = -1;
     ret.object = obj;
     return ret;
 }

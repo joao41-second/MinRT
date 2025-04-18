@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/15 14:26:42 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/17 07:46:57 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_plane
 	t_color		color;
 	t_matrix	transform;
 	t_matrix	inv_transform;
+	t_matrix 	inv_transpose;
 	t_mater		 matiral;
 }	t_plane;
 
@@ -81,6 +82,7 @@ typedef struct s_triangle
 	t_color		color;
 	t_matrix transform;
 	t_matrix inv_transform;
+	t_matrix 	inv_transpose;
 	t_mater		 matiral;
 } t_triangle;
 
