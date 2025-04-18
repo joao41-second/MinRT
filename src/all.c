@@ -82,8 +82,10 @@ void print_list_(t_list_ *list)
     }
 }
 
+*/
 
-int	canva_loop(t_minirt *rt_struct)
+#include "minRT.h"
+int	canva_loops(t_minirt *rt_struct)
 {
 	// loop(rt_struct);
     static int ok = 0;
@@ -105,45 +107,33 @@ int	canva_loop(t_minirt *rt_struct)
         x = -1;
         y = -1;
         if (!rt_struct->needs_render)
-        return (1); 
+       	 return (1); 
         rt_struct->needs_render = 0;
 		while (++y < WALL_Y) 
 		{
 			x = -1;
-			// y_ = (metade - y) * pix_size;
 			while(++x < WALL_X)
 			{
-				// x_ = (-metade + x) * pix_size;
-				// raiva = create_point(x_, y_, WALL_Z);
-				// sub = sub_tuples(raiva, rt_struct->c_ray.direction);
-				// t_obj_int intersections = ray_for_objects(rt_struct->word, ray_gener(point, normalize(sub)));
                 t_ray ray = camera_generate_ray(&rt_struct->scene.world.camera, x, y);
-                // Check for intersections with objects in the scene
                 t_obj_int intersections = ray_for_objects(rt_struct->word, ray);
 				if(intersections.min != INT_MAX)
 				{
-					t_object *closest_obj = (t_object *)intersections.ints->content;
+					///t_object *closest_obj = (t_object *)intersections.ints->content;
 					
-					canva_set_pixel(rt_struct, x, y, c_new(255.0, 1.0, 100.0));
+					canva_set_pixel(rt_struct, x, y, c_new(1.0, 0.0, 0.0));
 				}
-				else
-					canva_set_pixel(rt_struct, x, y, c_new(255.0, 255, 100.0));
+				else 
+					canva_set_pixel(rt_struct, x, y, c_new(1, 1, 1)); 
 			}	
 		}
 	
         // clock_t fim = clock();
     	// double tempo_exec = (double)(fim - inicio) / CLOCKS_PER_SEC; // Converte para segundos
-    	// printf("Tempo de execução: %.6f segundos\n", tempo_exec);
-	
-	ft_free_all_pocket("canva");
-	// }
-	// ok++;
-
 	canva_update(rt_struct);
 
 	return (1);
 }
-
+/*
 int canva_loop_key(int keycode, void *param) {
     t_minirt *rt_struct = (t_minirt *)param;
 
@@ -177,7 +167,7 @@ int canva_loop_mouse(int button, int x, int y, void *param) {
 
     return (1);
 }
-
+*/
 int	main(int ac, char **av, char **env)
 {
 	t_minirt	rt_struct;
@@ -206,7 +196,7 @@ int	main(int ac, char **av, char **env)
 	t_object *obj_plane = create_object(&pln, OBJ_PLANE);
 	ray_set_transform_obj(obj_plane,mat_gener_rota('x', -1));
     ft_add_node(obj_plane,&word_objects );
-	print_list_(word_objects);	
+//	print_list_(word_objects);	
 
 	t_object plane;
     plane.type = OBJ_PLANE;
@@ -244,9 +234,9 @@ int	main(int ac, char **av, char **env)
             &rt_struct.canva.canva.bits_per_pixel,
             &rt_struct.canva.canva.line_length,
             &rt_struct.canva.canva.endian);
-    mlx_key_hook(rt_struct.canva.mlx_wind, canva_loop_key, &rt_struct);
-    mlx_mouse_hook(rt_struct.canva.mlx_wind, canva_loop_mouse, &rt_struct);
-    mlx_loop_hook(rt_struct.canva.mlx, canva_loop, &rt_struct);
+ //   mlx_key_hook(rt_struct.canva.mlx_wind, canva_loop_key, &rt_struct);
+  //  mlx_mouse_hook(rt_struct.canva.mlx_wind, canva_loop_mouse, &rt_struct);
+    mlx_loop_hook(rt_struct.canva.mlx, canva_loops, &rt_struct);
     mlx_hook(rt_struct.canva.mlx_wind,
         17, 01, &mlx_loop_end, rt_struct.canva.mlx);
     mlx_loop(rt_struct.canva.mlx);
@@ -257,4 +247,4 @@ int	main(int ac, char **av, char **env)
 	
 	
 	return (status);
-}*/
+}

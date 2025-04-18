@@ -11,7 +11,7 @@
 #include "matrix/matrix.h"
 #include "minRT.h"
 #include "tuples/tuples.h"
-
+/*
 int	main(int ac, char **av, char **env)
 {
 	t_minirt	rt_struct;
@@ -47,4 +47,4 @@ int	main(int ac, char **av, char **env)
 	 
 	return (status);
 
-}
+}*/
