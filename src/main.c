@@ -7,11 +7,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "camara_m/camara_m.h"
 #include "light/light.h"
 #include "matrix/matrix.h"
 #include "minRT.h"
 #include "tuples/tuples.h"
-/*
+#include <math.h>
+
 int	main(int ac, char **av, char **env)
 {
 	t_minirt	rt_struct;
@@ -23,28 +25,32 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	(void)env;
+
 	ft_start_alloc();
-	start_word(&rt_struct);
-	t_ray ray;
-	t_color color;
+    	rt_struct.needs_render = 1;
 	start_word(&rt_struct);
 
-	 ray = ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1));
-	 color = lig_color_at(&rt_struct, ray);
-	 printf("color %f %f %f \n",color.red,color.blue,color.green);
 
 
 
+
+	
 	//canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));	
 	t_matrix ok ;
 
 	ok = mat_gener_identity(4);
+
+	t_point point = create_point(0,10.5,-5);
+	t_matrix mat2 = mat_gener_trans(-point.x, -point.y, -point.z);
 	
-	lig_view_transform(create_point(1, 3, 2), create_point(4, -2, 8), create_vector(1, 1, 0),&ok,mat_gener_trans(-1, -3, -2));
+	lig_view_transform(point, create_point(0,1,0), create_vector(0, 1, 0),&ok,mat2);
 
+        rt_struct.cam_m = cm_init(400, 400, M_PI/3, ok);
+
+
+	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));	
 	mat_print(ok);
-
 	 
 	return (status);
 
-}*/
+}

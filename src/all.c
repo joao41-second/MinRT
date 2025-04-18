@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:49:14 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/18 13:00:17 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/18 21:33:32 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,8 @@ int canva_loop_mouses(int button, int x, int y, void *param) {
     return (1);
 }
 
+
+/*
 int	main(int ac, char **av, char **env)
 {
 	t_minirt	rt_struct;
@@ -242,4 +244,4 @@ int	main(int ac, char **av, char **env)
 	
 	
 	return (status);
-}
+} */

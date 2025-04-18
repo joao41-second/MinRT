@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/18 10:44:05 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/18 21:41:18 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # include "./ray/ray.h"
 # include "./light/light.h"
 # include "./tuples/tuples.h"
+#include "./camara_m/camara_m.h"
 
 # include <asm-generic/errno.h>
 # include <fcntl.h>

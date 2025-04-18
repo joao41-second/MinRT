@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/18 12:35:05 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/18 21:44:02 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void start_word(t_minirt  *rt_struct)
 
 	word_objects = NULL;
 	sph = sphere(create_point(0, 0, 0),1) ;
-	ray_set_transform(&sph,mat_gener_scal(1, 1, 1));
+	ray_set_transform(&sph,mat_gener_scal( 0.1, 0.1, 0.1));
  	t_object *obj_sphere = create_object(&sph, OBJ_SPHERE);
 	ft_add_node(obj_sphere,&word_objects );
 	sph2 = sphere(create_point(0, 0, 3),1) ;
-	ray_set_transform(&sph2,mat_gener_scal(0.5, 0.5, 0.5) );
+	ray_set_transform(&sph2,mat_gener_scal(0.1, 0.1, 0.1) );
  	t_object *obj_sphere2 = create_object(&sph2, OBJ_SPHERE);
 	ft_add_node(obj_sphere2,&word_objects);	
 	t_plane pln = create_plane(create_point(1, 0, 0), 1);
