@@ -26,8 +26,8 @@
  */
 void camera_init(t_camera *cam)
 {
-    cam->origin = create_point(3,-0.5, 0);
-    cam->direction = create_vector(-1, 0, 1);
+    cam->origin = create_point(2,0, 0);
+    cam->direction = create_vector(-1, 0, 0);
     cam->aspect_ratio = (double)WALL_X/WALL_Y;
     cam->fov = 60.0;
     camera_update_view(cam);

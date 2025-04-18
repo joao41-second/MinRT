@@ -78,6 +78,7 @@ typedef struct s_plane
 	t_color		color;
 	t_matrix	transform;
 	t_matrix	inv_transform;
+	t_mater		matiral;
 }	t_plane;
 
 

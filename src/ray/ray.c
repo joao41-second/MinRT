@@ -154,6 +154,7 @@ t_intersection ray_int_object(t_ray ray, t_object obj)
     else if (obj.type == OBJ_PLANE)
     {
         intersection = ray_int_plane(ray, &obj);
+	intersection.mat = obj.u_data.plane.matiral;
 
 
     }

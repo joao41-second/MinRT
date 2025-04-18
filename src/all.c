@@ -19,6 +19,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#define MOUSE_LEFT_BUTTON 1
 /*
 #include "matrix/matrix.h"
 #include "minRT.h"
@@ -143,8 +144,8 @@ int	canva_loops(t_minirt *rt_struct)
 
 	return (1);
 }
-/*
-int canva_loop_key(int keycode, void *param) {
+
+int canva_loop_keys(int keycode, void *param) {
     t_minirt *rt_struct = (t_minirt *)param;
 
     if (keycode == KEY_UP || keycode == KEY_DOWN || 
@@ -163,7 +164,7 @@ int canva_loop_key(int keycode, void *param) {
 }
 
 
-int canva_loop_mouse(int button, int x, int y, void *param) {
+int canva_loop_mouses(int button, int x, int y, void *param) {
     t_minirt *rt_struct = (t_minirt *)param;
 
     if (button == MOUSE_LEFT_BUTTON) { // Rotate on left mouse click/drag
@@ -177,7 +178,7 @@ int canva_loop_mouse(int button, int x, int y, void *param) {
 
     return (1);
 }
-*/
+
 int	main(int ac, char **av, char **env)
 {
 	t_minirt	rt_struct;
@@ -228,8 +229,8 @@ int	main(int ac, char **av, char **env)
             &rt_struct.canva.canva.bits_per_pixel,
             &rt_struct.canva.canva.line_length,
             &rt_struct.canva.canva.endian);
- //   mlx_key_hook(rt_struct.canva.mlx_wind, canva_loop_key, &rt_struct);
-  //  mlx_mouse_hook(rt_struct.canva.mlx_wind, canva_loop_mouse, &rt_struct);
+    mlx_key_hook(rt_struct.canva.mlx_wind, canva_loop_keys, &rt_struct);
+    mlx_mouse_hook(rt_struct.canva.mlx_wind, canva_loop_mouses, &rt_struct);
     mlx_loop_hook(rt_struct.canva.mlx, canva_loops, &rt_struct);
     mlx_hook(rt_struct.canva.mlx_wind,
         17, 01, &mlx_loop_end, rt_struct.canva.mlx);
