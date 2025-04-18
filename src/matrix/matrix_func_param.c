@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_func_param.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 13:01:18 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/21 13:42:26 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/04 19:37:16 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../minRT.h"
 
 double	mat_mult_matrix(int *y, int *x, t_matrix *mat1, t_matrix *mat2)

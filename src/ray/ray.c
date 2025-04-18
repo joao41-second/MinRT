@@ -1,11 +1,15 @@
-/* ************************************************************************** *//*                                                                            */
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:15:50 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/25 18:18:41 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:16:21 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "ray.h"
 #include "../minRT.h"
@@ -101,13 +105,71 @@ t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
 	return(ret);
 }
 
+t_intersection ray_int_plane(t_ray ray, t_object *plane)
+{
+    t_ray transformed_ray = ray_transform(ray, plane->u_data.plane.inv_transform);
+    
+    double denom = dot_product(transformed_ray.direction, create_vector(0, 1, 0));
+    
+    if (fabs(denom) < EPSILON)
+    {
+        t_intersection ret;
+        ret.inter = 0;
+        ret.t[0] = -1;
+        ret.t[1] = -1;
+        ret.object = NULL;
+        return ret;
+    }
+    
+    double t = -transformed_ray.origin.y / denom;
+    // printf("Ray intersects the plane at t = %f\n", t);
+    if (t < 0)
+    {
+        t_intersection ret;
+        ret.inter = 0;
+        ret.t[0] = -1;
+        ret.t[1] = -1;
+        ret.object = NULL;
+        return ret;
+    }
+    
+    t_intersection ret;
+    ret.inter = 1;
+    ret.t[0] = t;
+    ret.t[1] = -1;
+    ret.object = plane;
+    
+    return ret;
+}
+
+t_intersection ray_int_object(t_ray ray, t_object obj)
+{
+    t_intersection intersection;
+
+    if (obj.type == OBJ_SPHERE)
+        intersection = ray_int_sphere(ray, obj.u_data.sphere);
+    else if (obj.type == OBJ_PLANE)
+        intersection = ray_int_plane(ray, &obj);
+    else
+    {
+        intersection.inter = 0;
+        intersection.object = NULL;
+        intersection.t[0] = -1;
+        intersection.t[1] = -1;
+    }
+
+    return intersection;
+}
 double ray_model_venct(t_vector vect)
 {
 	double ret;
-
+	
 	ret = sqrt(vect.x * vect.x + vect.y * vect.y + vect.z * vect.z);
 	return(ret);
 }
+
+
+
 
 t_tuple ray_ang_to_vect(double x,double y,double z)
 {
@@ -120,3 +182,6 @@ t_tuple ray_ang_to_vect(double x,double y,double z)
 	vect.y = 1*cos(y);
 	return(vect);
 }
+
+
+

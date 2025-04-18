@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:42:58 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/08 21:04:16 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/18 10:29:56 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "objects.h"
-
 
 t_light ligth_init(t_color intensty,t_point point)
 {

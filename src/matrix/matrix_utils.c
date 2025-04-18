@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:11:40 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/21 13:40:43 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/04 10:56:30 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

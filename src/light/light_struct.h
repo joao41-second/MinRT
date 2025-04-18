@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 13:58:32 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/08 19:23:36 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/18 10:45:20 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define LIGHT_SRUCT_H
 
 #include "../miniRT_struct.h"
+
 typedef struct s_computations 
 {
 	void *object;
@@ -23,4 +24,5 @@ typedef struct s_computations
 	double 	t;
 	int 	inside;
 } t_computations;
+
 #endif 

@@ -1,4 +1,4 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,9 +6,9 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/03/20 14:39:52 by rerodrig         ###   ########.fr        #
+#    Updated: 2025/04/04 05:46:15 by rerodrig         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 # Compiler flags
 # WFLGS = -Wall -Wextra -Werror
@@ -69,6 +69,13 @@ $(NAME): $(LIB) $(OBJS)
 	@echo "╔══════════════════════════╗"
 	@echo "║ ✅ Compiled Successfully!║"
 	@echo "╚══════════════════════════╝"
+# New target to rebuild only the source files
+
+renew: $(OBJS)
+	$(CC) $(OBJS) $(LIB) $(FLGS) -o $(NAME)
+	@echo "╔══════════════════════════╗"
+	@echo "║ ✅ Renewed Successfully! ║"
+	@echo "╚══════════════════════════╝"
 
 # Phony targets
 .PHONY: all clean fclean re exec norm normi
@@ -103,6 +110,8 @@ test_vall: all
 
 s:
 	clear && make re && ./$(NAME)
+n:
+	clear && make renew && ./$(NAME)
 v:
 	clear && make re && $(VAL) ./$(NAME)
 e:

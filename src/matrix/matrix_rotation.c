@@ -3,13 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_rotation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 09:53:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/25 12:37:12 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/18 10:27:59 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../minRT.h"
+#include <math.h>
 
 double	deg_to_radians(double deg)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/08 19:50:02 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/18 10:41:39 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 #define OBJECTS_H
 
 #include "../miniRT_struct.h"
+
+typedef struct s_cylinder
+{
+	t_vector	center;
+	t_vector	axis;
+	float		diameter;
+	float		height;
+	t_color		color;
+}	t_cylinder;
+
 
 typedef struct s_mat_values 
 {
@@ -59,5 +69,41 @@ void obj_material_print(t_mater mat);
 
 t_light ligth_init(t_color intensty,t_point point);
 
+
+typedef struct s_plane
+{
+	double	ray_s;
+	t_point		center;
+	t_vector	normal;
+	t_color		color;
+	t_matrix	transform;
+	t_matrix	inv_transform;
+}	t_plane;
+
+
+
+t_plane create_plane(t_point center , double ray_s);
+
+
+typedef enum e_obj_type
+{
+	OBJ_SPHERE,
+	OBJ_PLANE,
+	OBJ_CYLINDER
+}	t_obj_type;
+
+typedef struct s_object
+{
+	t_obj_type		type;
+	union
+	{
+		t_plane		plane;
+		t_sphere	sphere;
+		t_cylinder	cylinder;
+	}	u_data;
+	struct s_object	*next;
+}	t_object;
+
+t_object *create_object(void *data, t_obj_type type);
 
 #endif

@@ -18,7 +18,8 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 {
 	t_obj_int save_points;
 	t_intersection intr;
-	t_sphere *conv;
+	// t_sphere *conv;
+	t_object *obj;
 
 	save_points.max = INT_MAX;
 	save_points.min = INT_MAX;
@@ -28,9 +29,9 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 	while (objs_w != NULL)
 	{
 
-		conv = (t_sphere *)objs_w->content;
-		intr = ray_int_sphere(ray,*conv );
-		if(intr.inter >= 0)
+		obj = (t_object *)objs_w->content;
+		intr = ray_int_object(ray,*obj );
+		if(intr.inter > 0)
 		{
 			if(intr.t[0] > save_points.max || save_points.max == INT_MAX )
 				save_points.max = intr.t[0];
@@ -134,7 +135,6 @@ void ray_canva( t_minirt *rt_struct)
 	double y;
 	t_tuple raiva;
 	t_tuple sub;
-
 	y = 0;
 	pix_size = WALL_SIZE / WALL_X;
 	while (y < WALL_Y) 
