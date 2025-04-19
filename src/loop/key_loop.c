@@ -14,13 +14,21 @@
 
 void key_loop(int key, t_minirt *rt_structj)
 {
+
+	t_matrix ok ;
+
+	ok = mat_gener_identity(4);
+
+	t_point point = create_point(0,1,-5);
+	
+
 	if(key == 119)	
 	{
-		rt_structj->c_ray.origin.y +=0.008;
+		point.y +=0.008;
 	}
 	if(key == 115)	
 	{
-			rt_structj->c_ray.origin.y-=0.008;
+		point.y-=0.008;
 	}
 	if(key == 100)	
 	{
@@ -38,7 +46,6 @@ void key_loop(int key, t_minirt *rt_structj)
 	{
 		rt_structj->c_ray.origin.z-=0.008;
 	}
-
 
 
 
@@ -68,7 +75,14 @@ void key_loop(int key, t_minirt *rt_structj)
 		rt_structj->c_ray.direction.x -=0.1;
 	}
 
+	t_matrix mat2 = mat_gener_trans(-point.x, -point.y, -point.z);
+	lig_view_transform(point, create_point(0,10,0), create_vector(0, 1, 0),&ok,mat2);
+
+        rt_structj->cam_m = cm_init(400, 400, M_PI/2, ok);
+
+
+
 	
 
-	printf("key %d %f %f %f \n",key,rt_structj->c_ray.origin.x,rt_structj->c_ray.origin.y,rt_structj->c_ray.origin.z);
+	printf("key %d %f %f %f \n",key,point.x,point.y,point.z);
 }
