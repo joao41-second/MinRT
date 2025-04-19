@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:29:56 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/15 13:32:27 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/19 12:25:00 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,25 @@ int canva_loop_key(int keycode, void *param)
         keycode == KEY_LEFT || keycode == KEY_RIGHT || 
         keycode == KEY_W || keycode == KEY_S) {
         camera_move(&rt_struct->scene.world.camera, keycode);
-    } 
+    }
+    else if (keycode == NUMKEY_1) { // Rotate camera left (yaw)
+        camera_rotate(&rt_struct->scene.world.camera, -ROTATION_SPEED, 0);
+    }
+    else if (keycode == NUMKEY_2) { // Rotate camera right (yaw)
+        camera_rotate(&rt_struct->scene.world.camera, ROTATION_SPEED, 0);
+    }
+    else if (keycode == NUMKEY_3) { // Rotate camera up (pitch)
+        camera_rotate(&rt_struct->scene.world.camera, 0, -ROTATION_SPEED);
+    }
+    else if (keycode == NUMKEY_4) { // Rotate camera down (pitch)
+        camera_rotate(&rt_struct->scene.world.camera, 0, ROTATION_SPEED);
+    }
+    else if (keycode == NUMKEY_5) { // Rotate camera counterclockwise (roll)
+        camera_rotate(&rt_struct->scene.world.camera, 0, 0); // Implement roll logic if needed
+    }
+    else if (keycode == NUMKEY_6) { // Rotate camera clockwise (roll)
+        camera_rotate(&rt_struct->scene.world.camera, 0, 0); // Implement roll logic if needed
+    }
     else if (keycode == NUMPAD_1) {  
         set_front_view(&rt_struct->scene.world.camera);
     }
@@ -97,11 +115,11 @@ int canva_loop_key(int keycode, void *param)
 int canva_loop_mouse(int button, int x, int y, void *param) {
     t_minirt *rt_struct = (t_minirt *)param;
     if (button == MOUSE_LEFT_BUTTON) { 
-        camera_rotate(&rt_struct->scene.world.camera,
-                      (double)x / WALL_X - 0.5,
-                      (double)y / WALL_Y - 0.5);
-                      canva_update(rt_struct);
-        printf("Camera rotated\n");
+        // camera_rotate(&rt_struct->scene.world.camera,
+        //               (double)x / WALL_X - 0.5,
+        //               (double)y / WALL_Y - 0.5);
+        // canva_update(rt_struct);
+        printf("Camera rotated at x: %d, y: %d\n", x, y);
     }
     return (1);
 }
@@ -116,8 +134,7 @@ void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 			&rt_struct->canva.canva.bits_per_pixel,
 			&rt_struct->canva.canva.line_length,
 			&rt_struct->canva.canva.endian);
-    printf("test --------------------------------------------------------------------------");
-	print_list_(rt_struct->word);	
+
 	mlx_key_hook(rt_struct->canva.mlx_wind, canva_loop_key, rt_struct);
 	mlx_mouse_hook(rt_struct->canva.mlx_wind, canva_loop_mouse, rt_struct);
 	mlx_loop_hook(rt_struct->canva.mlx, canva_loop, rt_struct);

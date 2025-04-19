@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 19:21:35 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/17 08:09:48 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/19 10:58:38 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_plane create_plane(t_point center, double ray_s)
     new.transform = mat_gener(4);
     new.inv_transform = mat_gener(4);
     new.inv_transpose = mat_gener(4);
-    new.matiral = obj_material_init(c_new(0.0, 0.0, 1.0), obj_init_values_material(0.1,0.9 , 0.9, 200));
+    new.matiral = obj_material_init(c_new(0.0, 0.5, 1.0), obj_init_values_material(0.1,0.9 , 0.9, 200));
     return (new);
 }
 

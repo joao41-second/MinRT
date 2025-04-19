@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 10:38:04 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/15 12:29:17 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/19 11:07:36 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ typedef struct s_line {
 	int sx, sy;
 	int err;
 } t_line;
+
 
 #endif

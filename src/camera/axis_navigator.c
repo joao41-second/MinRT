@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 10:34:47 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/15 13:24:35 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/19 11:39:28 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,7 +256,20 @@ void	draw_orientation_cube(t_minirt *rt_struct)
 		i++;
 	}
 }
+void draw_cube_labels(t_minirt *rt) {
+	float axes[3][3] = {{0.5, 0, 0}, {0, 0.5, 0}, {0, 0, 0.5}};
+	t_point screen;
+	int i = 0;
 
+	while (i < 3) {
+		screen = proj_point(&rt->scene.world.camera, 
+							create_point(axes[i][0], axes[i][1], axes[i][2]));
+		char *label = (i == 0) ? "X" : (i == 1) ? "Y" : "Z";
+		mlx_string_put(rt->canva.mlx, rt->canva.mlx_wind, 
+					   (int)screen.x + 5, (int)screen.y, 0x00FFFFFF, label);
+		i++;
+	}
+}
 /**
  * Main function to draw the complete navigator
  * This should be called in your canva_loop function

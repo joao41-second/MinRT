@@ -39,7 +39,7 @@ int	main(int ac, char **av, char **env)
 	start_word(&rt_struct);
 
 	// rt_struct.needs_render = 1;
-	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(255, 0, 0));	
+	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(1.0, 0, 0));	
 	return (status);
 
 }

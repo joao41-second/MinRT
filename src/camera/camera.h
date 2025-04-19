@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 00:49:55 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/14 18:15:15 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/19 10:49:07 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "keys.h"
 
 # define DEFAULT_FOV 60.0
-# define MOUSE_SENSITIVITY 0.2
+# define ROTATION_SPEED 0.5
 # define MOVE_SPEED 1.0
 
 typedef struct s_camera {
@@ -32,7 +32,7 @@ typedef struct s_camera {
     t_matrix     inv_view_matrix;
 } t_camera;
 
-void        camera_init(t_camera *cam);
+void camera_init(t_camera *cam, t_point origin, t_vector direction, double fov);
 void        camera_update_view(t_camera *cam);
 t_ray       camera_generate_ray(t_camera *cam, double x, double y);
 // Camera transformations

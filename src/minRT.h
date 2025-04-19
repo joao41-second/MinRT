@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/17 08:06:22 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/19 11:07:52 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define TRUE 0
 # define FALSE 1
 
-# define WALL_X 500.0
-# define WALL_Y 500.0
+# define WALL_X 1000.0
+# define WALL_Y 1000.0
 # define WALL_Z 10.0
 # define WALL_SIZE 7.0
 # define HALF WALL_Y/2 
@@ -61,5 +61,5 @@
 void start_word(t_minirt  *rt_struct);
 void draw_navigator(t_minirt *rt_struct);
 void print_list_(t_list_ *list);
-
+void draw_cube_labels(t_minirt *rt_struct);
 #endif
