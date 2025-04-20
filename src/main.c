@@ -40,10 +40,10 @@ int	main(int ac, char **av, char **env)
 
 	ok = mat_gener_identity(4);
 
-	t_point point = create_point(0,1,-5);
+	t_point point = create_point(50,50,0);
 	t_matrix mat2 = mat_gener_trans(-point.x, -point.y, -point.z);
 	
-	lig_view_transform(point, create_point(0,10,0), create_vector(0, 1, 0),&ok,mat2);
+	lig_view_transform(point, create_point(0,1,0), create_vector(0, 1, 0),&ok,mat2);
 
         rt_struct.cam_m = cm_init(400, 400, M_PI/2, ok);
 
