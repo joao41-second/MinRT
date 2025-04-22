@@ -36,9 +36,8 @@ int	main(int ac, char **av, char **env)
 
 	ok = mat_gener_identity(4);
 
-	t_point point = create_point(0,1.5,-5);
-
-	ok = lig_view_transform(point, create_point(0,1,0), create_vector(0, 1, 0));
+	t_point point = create_point(1,1,-5);
+	ok = lig_view_transform(point, create_point(1,1,1), create_vector(0, 1, 0));
 
         rt_struct.cam_m = cm_init( WALL_X ,WALL_Y , M_PI/2, ok);
 

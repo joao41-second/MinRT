@@ -95,6 +95,7 @@ void cm_windo_put(t_minirt *rt_struct,int x_,int y_)
 	t_color color;
 
 	y = -1;
+	rt_struct->cam =  cm_ray_for_pixel(rt_struct->cam_m, x_/2, y_ /2);
 	while (++y < y_) 
 	{
 		x = -1;
@@ -107,6 +108,6 @@ void cm_windo_put(t_minirt *rt_struct,int x_,int y_)
 		
 		}
 	
-	}
+	} 
 
 }

@@ -61,6 +61,7 @@ typedef struct s_minirt
 	t_list_		*word;
 	t_ray	c_ray;
 	t_light 	luz;
+	t_ray cam;
 	int needs_render;
 	
 }	t_minirt;

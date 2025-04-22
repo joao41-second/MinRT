@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include <stdio.h>
 #include <time.h>
 
 void	loop(t_minirt *rt_struct)
@@ -27,7 +28,14 @@ void	loop(t_minirt *rt_struct)
 	cm_windo_put(rt_struct, WALL_X ,  WALL_Y );
 
   	canva_update(rt_struct);
+char *str;
+
+asprintf(&str, "cord: %f %f %f \n dir: %f %f %f",
+		rt_struct->cam.origin.x,rt_struct->cam.origin.y,rt_struct->cam.origin.z,
+
+		rt_struct->cam.direction.x,rt_struct->cam.direction.y,rt_struct->cam.direction.z);
+
 	mlx_string_put(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, 10, 10,
-			create_trgb(1, 255, 255, 2), "ola");
+			create_trgb(1, 255, 255, 2), str);
 
 };
