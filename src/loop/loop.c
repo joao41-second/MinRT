@@ -25,6 +25,9 @@ void	loop(t_minirt *rt_struct)
 //    	printf("Tempo de execução: %.6f segundos\n", tempo_exec);
 		
 	cm_windo_put(rt_struct, WALL_X ,  WALL_Y );
+
   	canva_update(rt_struct);
+	mlx_string_put(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, 10, 10,
+			create_trgb(1, 255, 255, 2), "ola");
 
 };

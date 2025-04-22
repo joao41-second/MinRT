@@ -33,4 +33,7 @@ void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base);
 
 void	canva_update(t_minirt *rt_struct);
 
+
+int	create_trgb(int t, int r, int g, int b);
+
 #endif
