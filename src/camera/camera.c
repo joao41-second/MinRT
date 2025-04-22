@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../minRT.h"
 #include "camera.h"
 
@@ -24,13 +23,13 @@
  * @param width The width of the camera's viewport.
  * @param height The height of the camera's viewport.
  */
-void camera_init(t_camera *cam)
+void	camera_init(t_camera *cam)
 {
-    cam->origin = create_point(2,0, 0);
-    cam->direction = create_vector(-1, 0, 0);
-    cam->aspect_ratio = (double)WALL_X/WALL_Y;
-    cam->fov = 60.0;
-    camera_update_view(cam);
+	cam->origin = create_point(2, 0, 0);
+	cam->direction = create_vector(-1, 0, 0);
+	cam->aspect_ratio = (double) WALL_X / WALL_Y;
+	cam->fov = 60.0;
+	camera_update_view(cam);
 }
 /**
  * Rotates the camera based on the given delta values for x and y.
@@ -42,15 +41,17 @@ void camera_init(t_camera *cam)
  * @param dx Change in the x-direction for rotation.
  * @param dy Change in the y-direction for rotation.
  */
-void camera_rotate(t_camera *camera, double dx, double dy)
+
+void	camera_rotate(t_camera *camera, double dx, double dy)
 {
-    double sensitivity = MOUSE_SENSITIVITY;
-    
-    dx *= sensitivity;
-    dy *= sensitivity;
-    camera->direction.x += dx;
-    camera->direction.y += dy;
-    camera_update_view(camera);
+	double	sensitivity;
+
+	sensitivity = MOUSE_SENSITIVITY;
+	dx *= sensitivity;
+	dy *= sensitivity;
+	camera->direction.x += dx;
+	camera->direction.y += dy;
+	camera_update_view(camera);
 }
 
 /**
@@ -60,9 +61,11 @@ void camera_rotate(t_camera *camera, double dx, double dy)
  * direction. The inverse of the view matrix is also computed for further
  * transformations.
  *
- * @param cam Pointer to the camera structure whose view matrices are to be updated.
+ * @param cam Pointer to the camera structure 
+ * whose view matrices are to be updated.
  */
-void camera_update_view(t_camera *cam)
+
+void 	camera_update_view(t_camera *cam)
 {
     t_vector up = create_vector(0, 1, 0);
     t_vector forward = normalize(cam->direction);

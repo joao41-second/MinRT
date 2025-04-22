@@ -6,48 +6,46 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/18 12:57:26 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/22 09:50:14 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "light.h"
 
-void lig_print_tuple(t_tuple tuple)
+void	lig_print_tuple(t_tuple tuple)
 {
-	if(tuple.w ==1)
+	if (tuple.w == 1)
 	{
-		printf( "point %f %f %f \n",tuple.x,tuple.y,tuple.z);
-	}else
-		printf( "vect %10.5f %f %f \n",tuple.x,tuple.y,tuple.z);
-
+		printf("point %f %f %f \n", tuple.x, tuple.y, tuple.z);
+	}
+	else
+		printf("vect %10.5f %f %f \n", tuple.x, tuple.y, tuple.z);
 }
 
-t_computations lig_prepare_computations( t_obj_int inter,t_ray ray)
+t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 {
-	t_computations  ret;
-	t_sphere 	*sph;
+	t_computations	ret;
+	t_sphere	*sph;
 
-	sph  = inter.object;
+	sph = inter.object;
 	ret.t = inter.min;
 	ret.object = inter.object;
 	ret.point = ray_position(ray, ret.t);
-	
-	ret.eyev =  neg_tuple(ray.direction); //duvida do neg tuple
+	ret.eyev = neg_tuple(ray.direction);
 	ret.norm = lig_normalize(*sph, ret.point);
-	if(dot_product(ret.norm, ret.eyev) < 0)
+	if (dot_product(ret.norm, ret.eyev) < 0)
 	{
 		ret.norm = neg_tuple(ret.norm);
 		ret.inside = TRUE;
 	}
-	else 
+	else
 		ret.inside = FALSE;
-	return(ret);
+	return (ret);
 }
 
-void lig_print_computations(t_computations comp)
+void	lig_print_computations(t_computations comp)
 {
-
 	printf("point ");
 	lig_print_tuple(comp.point);
 	printf("eyev ");
@@ -56,33 +54,33 @@ void lig_print_computations(t_computations comp)
 	lig_print_tuple(comp.norm);
 }
 
-t_color lig_color_at(t_minirt *rt_struct, t_ray ray)
+t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 {
-	t_color ret;
-	t_computations compt;;
-	t_sphere sph;
-	t_obj_int ray_in_obj;
+	t_color			ret;
+	t_computations		compt;
+	t_sphere 		sph;
+	t_obj_int	 ray_in_obj;
 
 	ray_in_obj = ray_for_objects(rt_struct->word, ray);
-	if(ray_in_obj.min != INT_MAX )
+	if (ray_in_obj.min != INT_MAX)
 	{
-		compt =  lig_prepare_computations(ray_in_obj,ray); 
-		ret =  lig_lighting(ray_in_obj.mat,rt_struct->luz,compt.point,compt.norm,compt.eyev);
+		compt = lig_prepare_computations(ray_in_obj, ray);
+		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz,
+				compt.point, compt.norm, compt.eyev);
 	}
 	else
-		ret = c_new(0,0,0);
-	return(ret);
+		ret = c_new(0, 0, 0);
+	return (ret);
 }
 
 void lig_view_transform(t_tuple form,t_tuple to , t_tuple up,t_matrix *mat, t_matrix trans)
 {
+	t_tuple	forward;
+	t_tuple	up_n;
+	t_tuple	left;
+	t_tuple	true_up;
 
-	t_tuple forward;
-	t_tuple up_n;
-	t_tuple left;
-	t_tuple true_up;
-
-	forward = normalize(sub_tuples(to,form));
+	forward = normalize(sub_tuples(to, form));
 	up_n = normalize(up);
 	left = cross_product(forward, up_n);
 	true_up = cross_product(left, forward);
@@ -98,7 +96,5 @@ void lig_view_transform(t_tuple form,t_tuple to , t_tuple up,t_matrix *mat, t_ma
 	mat->matr[2][0] = -forward.x;
 	mat->matr[2][1] = -forward.y;
 	mat->matr[2][2] = -forward.z;
-	
 	*mat = mat_multip(*mat, trans);
-
 }
