@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:13:29 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/08 21:14:47 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/23 16:51:26 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int norm_l(char *name,t_point point,t_point sph_p,t_vector chek)
 
 }
 
-int lig_lighting_test(t_light LUZ ,t_vector vct,t_vector eyev)
+int lig_lighting_test(t_light LUZ ,t_vector vct,t_vector eyev,t_color resp)
 {
 	static int nb;
 	int error;
@@ -52,16 +52,16 @@ int lig_lighting_test(t_light LUZ ,t_vector vct,t_vector eyev)
 	t_computations comp;
 	t_ray ray;
 	t_light luz;
+	t_color color;
 
 	error = 0;
 	mat  = obj_material_init(c_new(1,1,1), obj_init_values_material(0.1, 0.9, 0.9, 200));
-
 	comp.eyev = eyev;
 	comp.norm  = vct;
 	comp.point = create_point(0, 0, 0);
-
-	
-
+	color  = lig_lighting(mat, luz, comp);
+	if(c_chek_iqual_color(color, resp) != TRUE)
+		error++;
 	nb++;
 	return( error_("lig_lighting",nb,&error));
 
@@ -98,6 +98,10 @@ void normalize_(void)
 	
 	if(check == 0)
 		printf( COLOR_GREEN" %s: good normalize_ tests ok\n"COLOR_RESET,name);
+	check = 0;
+
+	check += lig_lighting_test(ligth_init(c_new(1,1,1), 
+		create_point(0, 0, -10)), create_vector(0, 0, 0),create_vector(0, 0, 0),c_new(1,0,0));
 
 }
 
