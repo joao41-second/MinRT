@@ -1,5 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -40,10 +38,12 @@ int	canva_loop_mouse(int button, int x, int y, void *param)
 	(void)x;
 	(void)y;
 	(void)button;
-	printf("x %d and %d \n",x,y);
+//	printf("x %d and %d \n",x,y);
 	rt_struct = (t_minirt *) param;
 	mlx_mouse_get_pos(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, &x, &y);
-	printf("x %d y %d \n",x,y);
+//	printf("x %d y %d \n",x,y);
+	
+	mouse(rt_struct);
 	return (1);
 }
 

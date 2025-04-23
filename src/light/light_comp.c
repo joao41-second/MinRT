@@ -88,7 +88,6 @@ t_matrix lig_view_transform(t_tuple form,t_tuple to , t_tuple up)
 	left = cross_product(forward, up_n);
 	true_up = cross_product( forward,left);
 
-	lig_print_tuple(true_up);
 
 	mat.matr[0][0] = left.x;
 	mat.matr[0][1] = left.y;
@@ -102,11 +101,7 @@ t_matrix lig_view_transform(t_tuple form,t_tuple to , t_tuple up)
 	mat.matr[2][1] = -forward.y;
 	mat.matr[2][2] = -forward.z;
 
-	mat_print(  mat_gener_trans(-form.x, -form.y, -form.z) );
-	printf("\n");
 
-	mat_print(  mat);
-	printf("\n");
 	mat = mat_multip( mat_gener_trans(-form.x, -form.y, -form.z),mat_cp(mat));
 	return(mat);
 }

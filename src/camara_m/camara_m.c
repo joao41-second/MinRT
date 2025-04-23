@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:30 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/23 09:25:18 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/23 10:24:23 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void cm_pixel_size(t_camera_ms *ret)
 
 	temp = 4 / ret->y;
 	
-	printf("o hsize e %f \n", temp);
+	//printf("o hsize e %f \n", temp);
 	ret->pixel_size = temp /(ret->half_width * 2)  ;
 }
 
@@ -72,7 +72,6 @@ t_ray cm_ray_for_pixel (t_camera_ms cam, double px, double py)
 	t_tuple pixel;
 	t_tuple origin;
 		
-	printf("check the values %f %f \n",cam.half_height,cam.pixel_size);
 
 
 	xoffset = (px + 0.5) * cam.pixel_size;
@@ -100,8 +99,6 @@ void cm_windo_put(t_minirt *rt_struct,int x_,int y_)
 
 	y = -1;
 	rt_struct->cam =  cm_ray_for_pixel(rt_struct->cam_m, (double)x_/2, (double)y_ /2);
-	mat_print(rt_struct->cam_m.tranform_matrix);
-	printf("\n");
 	while (++y < y_) 
 	{
 		x = -1;

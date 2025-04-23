@@ -63,6 +63,7 @@ typedef struct s_minirt
 	t_light 	luz;
 	t_ray cam;
 	int needs_render;
+	t_point point;
 	
 }	t_minirt;
 

@@ -6,10 +6,11 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/22 11:22:40 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/23 10:52:07 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "loop.h"
 #include "../minRT.h"
 #include <stdio.h>
 #include <time.h>
@@ -25,12 +26,13 @@ void	loop(t_minirt *rt_struct)
  //   	double tempo_exec = (double)(fim - inicio) / CLOCKS_PER_SEC; // Converte para segundos
 //    	printf("Tempo de execução: %.6f segundos\n", tempo_exec);
 		
+mouse(rt_struct)	;
 	cm_windo_put(rt_struct, WALL_X ,  WALL_Y );
 
   	canva_update(rt_struct);
-char *str;
+		char *str;
 
-asprintf(&str, "cord: %f %f %f \n dir: %f %f %f",
+		asprintf(&str, "cord: %f %f %f \n dir: %f %f %f",
 		rt_struct->cam.origin.x,rt_struct->cam.origin.y,rt_struct->cam.origin.z,
 
 		rt_struct->cam.direction.x,rt_struct->cam.direction.y,rt_struct->cam.direction.z);
