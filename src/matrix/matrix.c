@@ -68,6 +68,12 @@ t_matrix	mat_gener_trans(double x, double y, double z)
 	t_matrix	ret;
 
 	ret = mat_gener_identity(4);
+	if(x == -0)
+		x = 0;
+	if(y == -0)
+		y = 0;
+	if(z == -0)
+		z = 0;
 	ret.matr[0][3] = x;
 	ret.matr[1][3] = y;
 	ret.matr[2][3] = z;

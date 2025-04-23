@@ -12,6 +12,7 @@
 #include "matrix/matrix.h"
 #include "minRT.h"
 #include "tuples/tuples.h"
+#include <X11/X.h>
 #include <math.h>
 #include <stdio.h>
 
@@ -36,16 +37,22 @@ int	main(int ac, char **av, char **env)
 
 	ok = mat_gener_identity(4);
 
-	t_point point = create_point(1,1,-5);
-	ok = lig_view_transform(point, create_point(1,1,1), create_vector(0, 1, 0));
+	t_point point = create_point(-2,-2,1);
+	ok = lig_view_transform(point, create_point(0,0,0), create_vector(0, 1,0));
 
         rt_struct.cam_m = cm_init( WALL_X ,WALL_Y , M_PI/2, ok);
 
-	mat_print(ok);
+	t_ray ray  =  cm_ray_for_pixel(rt_struct.cam_m, 200, 200);
+
+	lig_print_tuple(ray.origin);
+	
 	printf("\n");
 
-	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));	
-	mat_print(ok); 
+	lig_print_tuple(ray.direction);
+
+	printf("\n");
+
+	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));
 	return (status);
 
 }

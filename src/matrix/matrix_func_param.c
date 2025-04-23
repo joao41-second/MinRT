@@ -32,7 +32,7 @@ double	mat_mult_matrix(int *y, int *x, t_matrix *mat1, t_matrix *mat2)
 	i = -1;
 	while (++i < mat1->size)
 	{
-		ret = ret + (m1[i] * m2[i]);
+		ret = ret + m1[i] * m2[i];
 	}
 	ft_free_all_pocket("mult");
 	return (ret);

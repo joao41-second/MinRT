@@ -6,13 +6,14 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:30 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/22 11:32:04 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/23 09:25:18 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "camara_m.h"
 
 #include "../minRT.h"
+#include <stdio.h>
 
 void cm_pixel_size(t_camera_ms *ret)
 {
@@ -20,7 +21,7 @@ void cm_pixel_size(t_camera_ms *ret)
 	double aspect;
 
 	half_view = tan(ret->field_of_view /2);
-	aspect = ret->half_height / ret->half_width;
+	aspect = ret->x / ret->y;
 
 	if (aspect >= 1)
 	{
@@ -33,7 +34,12 @@ void cm_pixel_size(t_camera_ms *ret)
 		ret->half_height = half_view;
 		ret->half_width = half_view * aspect;
 	}
-	ret->pixel_size = (ret->half_width * 2) / ret->half_height;
+	double temp;
+
+	temp = 4 / ret->y;
+	
+	printf("o hsize e %f \n", temp);
+	ret->pixel_size = temp /(ret->half_width * 2)  ;
 }
 
 t_camera_ms cm_init(double x , double y,double field_of_view,t_matrix const tranform)
@@ -65,6 +71,9 @@ t_ray cm_ray_for_pixel (t_camera_ms cam, double px, double py)
 
 	t_tuple pixel;
 	t_tuple origin;
+		
+	printf("check the values %f %f \n",cam.half_height,cam.pixel_size);
+
 
 	xoffset = (px + 0.5) * cam.pixel_size;
 	yoffset = (py + 0.5) * cam.pixel_size;
@@ -72,13 +81,8 @@ t_ray cm_ray_for_pixel (t_camera_ms cam, double px, double py)
 	x_word = cam.half_width - xoffset;
 	y_word = cam.half_height - yoffset;
 
-
-
-
 	pixel = mat_x_tuple(create_point(x_word, y_word, -1), cam.inv_tranform_matrix);
 	origin = mat_x_tuple(cam.loc, cam.inv_tranform_matrix);
-
-
 
 	ret.origin = origin;
 	ret.direction = normalize(sub_tuples(pixel,origin));
@@ -95,7 +99,9 @@ void cm_windo_put(t_minirt *rt_struct,int x_,int y_)
 	t_color color;
 
 	y = -1;
-	rt_struct->cam =  cm_ray_for_pixel(rt_struct->cam_m, x_/2, y_ /2);
+	rt_struct->cam =  cm_ray_for_pixel(rt_struct->cam_m, (double)x_/2, (double)y_ /2);
+	mat_print(rt_struct->cam_m.tranform_matrix);
+	printf("\n");
 	while (++y < y_) 
 	{
 		x = -1;
@@ -103,9 +109,7 @@ void cm_windo_put(t_minirt *rt_struct,int x_,int y_)
 		{
 			ray = cm_ray_for_pixel(rt_struct->cam_m, x,y);	
 	 		color = lig_color_at(rt_struct, ray);
-
-			canva_set_pixel(rt_struct, x, y, color);
-		
+			canva_set_pixel(rt_struct, x, y, color);	
 		}
 	
 	} 
