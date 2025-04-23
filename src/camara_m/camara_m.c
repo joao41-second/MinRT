@@ -13,7 +13,6 @@
 //#include "camara_m.h"
 
 #include "../minRT.h"
-#include <stdio.h>
 
 void cm_pixel_size(t_camera_ms *ret)
 {
@@ -106,6 +105,14 @@ void cm_windo_put(t_minirt *rt_struct,int x_,int y_)
 		{
 			ray = cm_ray_for_pixel(rt_struct->cam_m, x,y);	
 	 		color = lig_color_at(rt_struct, ray);
+			
+		//	if(color.blue > 1)
+		//		color.blue = 1;
+		//	if(color.green > 1)
+		//		color.green = 1;
+		//	if(color.red > 1)
+		//		color.red = 1;
+
 			canva_set_pixel(rt_struct, x, y, color);	
 		}
 	

@@ -59,15 +59,13 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 {
 	t_color			ret;
 	t_computations		compt;
-	t_sphere 		sph;
 	t_obj_int	 ray_in_obj;
 
 	ray_in_obj = ray_for_objects(rt_struct->word, ray);
 	if (ray_in_obj.min != INT_MAX)
 	{
 		compt = lig_prepare_computations(ray_in_obj, ray);
-		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz,
-				compt.point, compt.norm, compt.eyev);
+		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz,compt);
 	}
 	else
 		ret = c_new(1, 0, 0);

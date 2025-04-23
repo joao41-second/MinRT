@@ -20,8 +20,8 @@ t_vector lig_normalize(t_sphere sph,t_point p_the_obj) ;
 t_vector lig_reflect(t_vector in ,t_vector normal);
 
 
-t_color lig_lighting(t_mater mat,t_light luz,t_point point,t_vector norm,t_tuple eyev);
 
+t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp);
 t_computations lig_prepare_computations( t_obj_int inter,t_ray ray);
 
 t_color lig_color_at(t_minirt *rt_struct, t_ray ray);

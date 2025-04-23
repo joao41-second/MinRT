@@ -29,8 +29,6 @@ t_tuple	neg_tuple(t_tuple tuple)
 {
 	t_tuple ret;
 
-
-
 	ret = create_tuple(-(tuple.x), -(tuple.y), -(tuple.z), -(tuple.w));
 	if(ret.val[0] == -0)
 		ret.val[0] = +0;

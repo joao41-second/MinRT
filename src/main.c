@@ -44,13 +44,6 @@ int	main(int ac, char **av, char **env)
 
 	t_ray ray  =  cm_ray_for_pixel(rt_struct.cam_m, 200, 200);
 
-	lig_print_tuple(ray.origin);
-	
-	printf("\n");
-
-	lig_print_tuple(ray.direction);
-
-	printf("\n");
 
 	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));
 	return (status);

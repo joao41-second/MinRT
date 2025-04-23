@@ -41,14 +41,15 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 			{
 				save_points.min = intr.t[0];
 				save_points.object = objs_w->content;
+				save_points.mat = intr.mat;
 			}
 			if(intr.t[1] < save_points.min || save_points.max == INT_MAX )
 			{ 
 				save_points.min = intr.t[1];
 				save_points.object = objs_w->content;
+				save_points.mat = intr.mat;
 			}
 		}
-		save_points.mat = intr.mat;
 		if(objs_w->next == NULL)
 			break;
 		objs_w = objs_w->next;
@@ -116,11 +117,11 @@ void ray_canva_loop_x(double pix_size,double y,t_minirt *rt_struct)
 			t_sphere ok = *o;
 			point = ray_position(ray, obj_data.min) ;
 			 
-			color = lig_lighting(o->matiral, rt_struct->luz, 
-					point,
-					lig_normalize(ok, point),
-					neg_tuple(ray.direction));
-			canva_set_pixel(rt_struct, x, y, color);
+		//	color = lig_lighting(o->matiral, rt_struct->luz, 
+		//			point,
+			//		lig_normalize(ok, point),
+			///		neg_tuple(ray.direction));
+		//	canva_set_pixel(rt_struct, x, y, color);
 		}
 		else
 		{
