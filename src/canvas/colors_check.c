@@ -18,13 +18,13 @@ int c_chek_iqual_color(t_color a , t_color b)
 {
 	int i;
 	i = 0;
-	if(a.color[i] == b.color[i])
+	if(fabs(a.color[i] - b.color[i]) < EPSILON)
 	{
 		i++;
-		if(a.color[i] == b.color[i])
+		if(fabs(a.color[i] - b.color[i]) < EPSILON)
 		{
 			i++;;
-			if(a.color[i] == b.color[i])
+			if(fabs(a.color[i] - b.color[i]) < EPSILON )
 				return (TRUE);
 		}
 	}

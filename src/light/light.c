@@ -50,8 +50,16 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 
 
 	luztv = normalize(sub_tuples(luz.point, comp.point));
+	lig_print_tuple(luztv);
 	amb_c = c_scalar_multipl(efectiv, mat.values.amb);
-	t_luz_dot_normal = dot_product(luztv, comp.norm);
+
+	t_luz_dot_normal = fabs( dot_product( comp.norm,luztv));
+	printf("\n");
+	lig_print_tuple(luztv);
+
+	lig_print_tuple(comp.norm);
+
+	printf("luz_dot %f \n",t_luz_dot_normal);
 		
 	if(t_luz_dot_normal == -0)
 		t_luz_dot_normal = 0;
@@ -74,9 +82,11 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	}
 	
 	ret = c_adding(sepcular, c_adding(diffuse, amb_c));
-//	c_print(sepcular);
-//	c_print(diffuse);
-//	c_print(amb_c);
+	printf("\n");
+	c_print(efectiv);
+	c_print(sepcular);
+	c_print(diffuse);
+	c_print(amb_c);
 	
 	return (ret);
 }

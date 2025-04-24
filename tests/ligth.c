@@ -93,15 +93,31 @@ void normalize_(void)
 	check += norm_l(name,create_point(0,0,0),create_point(0, 0, 0),create_vector(0, 0, 0));
 	
 	check += norm_l(name,create_point(sqrt(3)/3, sqrt(3)/3 , 
-				sqrt(3)/3),create_point(0, 0, 0),create_vector(sqrt(3)/3, sqrt(3)/3,  sqrt(3)/3));
-	
+				sqrt(3)/3),create_point(0, 0, 0),create_vector(sqrt(3)/3, sqrt(3)/3,  sqrt(3)/3));	
 	if(check == 0)
 		printf( COLOR_GREEN" %s: good normalize_ tests ok\n"COLOR_RESET,name);
 	check = 0;
 
-	check += lig_lighting_test(ligth_init(c_new(1,1,1), 
-		create_point(0, 0, -10)), create_vector(0, 0, -1),create_vector(0, 0, -1),c_new(1.9,1.9,1.9));
+	check += lig_lighting_test(ligth_init(c_new(1,1,1),create_point(0, 0, -10)),
+			create_vector(0, 0, -1),create_vector(0, 0, -1),c_new(1.9,1.9,1.9));
 
+	check += lig_lighting_test(ligth_init(c_new(1,1,1),
+				create_point(0, 0,-10)), create_vector(0, 0, -1),
+			create_vector(0,  M_SQRT2/2, -M_SQRT2/2),c_new(1,1,1));
+
+	check += lig_lighting_test(ligth_init(c_new(1,1,1),
+				create_point(0, 10,-10)), create_vector(0, 0, -1),
+			create_vector(0,  0, -1),c_new(0.736396 ,0.736396 ,0.736396 ));
+
+	check += lig_lighting_test(ligth_init(c_new(1,1,1),
+				create_point(0, 10,-10)), create_vector(0, 0, -1),
+			create_vector(0,  -M_SQRT2/2, -M_SQRT2/2),c_new(1.6364,1.6364,1.6364));
+
+	check += lig_lighting_test(ligth_init(c_new(1,1,1),
+				create_point(0, 0,10)), create_vector(0, 0, -1),
+			create_vector(0,  0, -1),c_new(0.1,0.1,0.1));
+	if(check == 0)
+		printf( COLOR_GREEN" %s: good lig_lighting_test_ tests ok\n"COLOR_RESET,name);
 }
 
 void	test_ligth(void)
