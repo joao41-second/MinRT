@@ -169,4 +169,5 @@ double				mat_transposing(int *y, int *x, t_matrix *mat1,
 
 t_matrix			mat_matrix_signal(int size);
 
+void mat_not_neg_zero(t_matrix *mat);
 #endif

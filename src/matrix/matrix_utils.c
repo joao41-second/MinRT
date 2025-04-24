@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include "matrix.h"
 
 void	mat_get_file(char *file, t_matrix mat)
 {
@@ -58,6 +59,7 @@ void	mat_trans(t_matrix *mat)
 	mat_free(mat);
 	*mat = ret;
 	mat_free(&tmp);
+
 }
 
 void	mat_free(t_matrix *matrix)
@@ -99,4 +101,18 @@ void	mat_matsh_matrix(t_matrix *mat, char math, double nb)
 				mat->matr[l][c] = temp / nb;
 		}
 	}
+}
+
+void mat_not_neg_zero(t_matrix *mat)
+{
+	int x;
+	int y;
+	y = -1;
+	while (++y < mat->size)
+	{
+		x = -1;
+		while(++x < mat->size)
+			if(mat->matr[y][x] == -0) 
+				mat->matr[y][x] = 0;
+	}	
 }

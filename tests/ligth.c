@@ -60,7 +60,6 @@ int lig_lighting_test(t_light luz ,t_vector norm,t_vector eyev,t_color resp)
 	color  = lig_lighting(mat, luz, comp);
 	if(c_chek_iqual_color(color, resp) != TRUE)
 		error++;
-	printf("color %f %f %f \n",color.red,color.blue,color.green);
 	nb++;
 	return( error_("lig_lighting",nb,&error));
 
@@ -73,12 +72,54 @@ void _random()
 	t_ray ray;
 	t_color color;
 	start_word(&rt_struct);
-	 ray = ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1));
+	ray = ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1));
 	 color = lig_color_at(&rt_struct, ray);
-	 printf("color %f %f %f \n",color.red,color.blue,color.green);
+
+}
+int lig_reflect_test(t_vector norm,t_vector vect,t_vector resp)
+{
+	static int nb;
+	int error;
+
+	error = 0;
+
+	
+	if(!is_equal_tuple( lig_reflect(vect,norm),resp))
+		error++;
+	nb++;
+	return( error_("lig_reflect",nb,&error));
 
 }
 
+int lig_normalize_test(t_sphere sph,t_point point,t_tuple resp)
+{
+	static int nb;
+	int error;
+
+	error = 0;
+
+	lig_print_tuple( lig_normalize(sph,point));
+	mat_print(sph.inv_transform);
+	if(!is_equal_tuple(lig_normalize(sph,point),resp))
+		error++;
+	nb++;
+	return( error_("lig_reflect",nb,&error));
+
+}
+void normalize_test_()
+{
+	int check;
+	t_sphere sph;
+
+	check = 0;
+	sph = sphere(create_point(0, 0, 0),1);
+	ray_set_transform(&sph,mat_gener_trans(0, 1, 0) );
+	check += lig_normalize_test(sph, create_point(0, 1.70711, -1.70711), create_vector(0, 0.70711, -0.70711));
+	if(check == 0)
+		printf(COLOR_GREEN" %s: good lig_reflect tests ok\n"COLOR_RESET,"ligt");	
+	check = 0;
+	
+}
 void normalize_(void)
 {
 	char *name;
@@ -87,37 +128,38 @@ void normalize_(void)
 	name = "ligth";
 	check = 0;
 	check += norm_l(name,create_point(1,0,0),create_point(0, 0, 0),create_vector(1, 0, 0));
-
 	check += norm_l(name,create_point(0,1,0),create_point(0, 0, 0),create_vector(0, 1, 0));
-
-	check += norm_l(name,create_point(0,0,0),create_point(0, 0, 0),create_vector(0, 0, 0));
-	
+	check += norm_l(name,create_point(0,0,0),create_point(0, 0, 0),create_vector(0, 0, 0));	
 	check += norm_l(name,create_point(sqrt(3)/3, sqrt(3)/3 , 
 				sqrt(3)/3),create_point(0, 0, 0),create_vector(sqrt(3)/3, sqrt(3)/3,  sqrt(3)/3));	
 	if(check == 0)
 		printf( COLOR_GREEN" %s: good normalize_ tests ok\n"COLOR_RESET,name);
 	check = 0;
-
 	check += lig_lighting_test(ligth_init(c_new(1,1,1),create_point(0, 0, -10)),
 			create_vector(0, 0, -1),create_vector(0, 0, -1),c_new(1.9,1.9,1.9));
-
 	check += lig_lighting_test(ligth_init(c_new(1,1,1),
 				create_point(0, 0,-10)), create_vector(0, 0, -1),
 			create_vector(0,  M_SQRT2/2, -M_SQRT2/2),c_new(1,1,1));
-
 	check += lig_lighting_test(ligth_init(c_new(1,1,1),
 				create_point(0, 10,-10)), create_vector(0, 0, -1),
 			create_vector(0,  0, -1),c_new(0.736396 ,0.736396 ,0.736396 ));
-
 	check += lig_lighting_test(ligth_init(c_new(1,1,1),
 				create_point(0, 10,-10)), create_vector(0, 0, -1),
 			create_vector(0,  -M_SQRT2/2, -M_SQRT2/2),c_new(1.6364,1.6364,1.6364));
-
 	check += lig_lighting_test(ligth_init(c_new(1,1,1),
 				create_point(0, 0,10)), create_vector(0, 0, -1),
 			create_vector(0,  0, -1),c_new(0.1,0.1,0.1));
 	if(check == 0)
 		printf( COLOR_GREEN" %s: good lig_lighting_test_ tests ok\n"COLOR_RESET,name);
+	check = 0;
+	
+	check += lig_reflect_test(create_vector(0,1,0),create_vector(1, -1, 0), create_vector(1, 1, 0));
+
+	check += lig_reflect_test(create_vector(M_SQRT2/2,M_SQRT2/2,0),create_vector(0,-1, 0), create_vector(1, 0, 0));
+
+	if(check == 0)
+		printf( COLOR_GREEN" %s: good lig_reflect tests ok\n"COLOR_RESET,"ligt");
+	normalize_test_();
 }
 
 void	test_ligth(void)

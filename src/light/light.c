@@ -24,6 +24,7 @@ t_vector	lig_normalize(t_sphere sph, t_point p_the_obj)
 	t_point		temp;
 
 	obj_point = mat_x_tuple(p_the_obj, sph.inv_transform);
+	lig_print_tuple(obj_point);
 
 	obj_word = sub_tuples(obj_point, create_point(0, 0, 0));
 	ret = mat_x_tuple(obj_word, sph.inv_transpose);	
@@ -47,14 +48,10 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	double	fact;
 	
 	efectiv = c_multipl(mat.color, luz.intenstiy);	
-
-
 	luztv = normalize(sub_tuples(luz.point, comp.point));
 	amb_c = c_scalar_multipl(efectiv, mat.values.amb);
 	t_luz_dot_normal = dot_product( luztv,comp.norm);
-
-
-		
+	
 	if(t_luz_dot_normal == -0)
 		t_luz_dot_normal = 0;
 	if (t_luz_dot_normal < 0)
@@ -64,13 +61,6 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	}
 	else
 	{
-		printf("sim \n");
-
-		c_print(efectiv);
-		printf("color diffuse tuple %f \n",mat.values.diffuse);
-
-		printf("color luz normal %f \n",t_luz_dot_normal);
-
 		diffuse = c_scalar_multipl(efectiv,mat.values.diffuse * t_luz_dot_normal);
 		reflect_dot_eye = dot_product(lig_reflect(neg_tuple(luztv),comp.norm), comp.eyev);
 
@@ -83,12 +73,7 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 		}
 	}
 	
-	ret = c_adding(sepcular, c_adding(diffuse, amb_c));
-	printf("\n");
-	c_print(sepcular);
-	c_print(diffuse);
-	c_print(amb_c);
-	
+	ret = c_adding(sepcular, c_adding(diffuse, amb_c));	
 	return (ret);
 }
 

@@ -34,9 +34,19 @@ t_matrix	mat_the_cof(t_matrix mat)
 t_matrix	mat_inv(t_matrix mat)
 {
 	t_matrix	invertd;
+	int x;
+	int y;
 
 	invertd = mat_the_cof(mat);
 	mat_trans(&invertd);
 	mat_matsh_matrix(&invertd, '/', mat_det(mat));
+	y = -1;
+	while (++y < mat.size)
+	{
+		x = -1;
+		while(++x < mat.size)
+			if(invertd.matr[y][x] == -0) 
+				invertd.matr[y][x] = 0;
+	}	
 	return (invertd);
 }

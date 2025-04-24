@@ -32,8 +32,9 @@ void ray_set_transform (t_sphere *sph,t_matrix mat)
 	sph->inv_transform = mat_cp(mat_inv(mat));
 	sph->inv_transpose = mat_cp(sph->inv_transform);
 	mat_trans(&sph->inv_transpose);
-	
-
+	mat_not_neg_zero(&sph->inv_transform);
+	mat_not_neg_zero(&sph->transform);
+	mat_not_neg_zero(&sph->inv_transpose);	
 }
 
 void ray_set_transform_obj(t_object *obj, t_matrix mat)
