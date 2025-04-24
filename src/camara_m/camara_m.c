@@ -53,7 +53,7 @@ t_camera_ms cm_init(double x , double y,double field_of_view,t_matrix const tran
 	ret.half_width = x;
 	ret.half_height = y;
 	ret.loc = create_point(0, 0, 0);
-	ret.dir = create_vector(0,0, 1);
+	ret.dir = create_vector(0,0, 0);
 	cm_pixel_size(&ret);
 	return(ret);
 }
@@ -105,14 +105,6 @@ void cm_windo_put(t_minirt *rt_struct,int x_,int y_)
 		{
 			ray = cm_ray_for_pixel(rt_struct->cam_m, x,y);	
 	 		color = lig_color_at(rt_struct, ray);
-			
-		//	if(color.blue > 1)
-		//		color.blue = 1;
-		//	if(color.green > 1)
-		//		color.green = 1;
-		//	if(color.red > 1)
-		//		color.red = 1;
-
 			canva_set_pixel(rt_struct, x, y, color);	
 		}
 	

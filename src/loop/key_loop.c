@@ -17,30 +17,37 @@ void key_loop(int key, t_minirt *rt_structj)
 
 	t_matrix ok ;
 
-	ok = mat_gener_identity(4);
+	ok = mat_gener_identity(0);
+
 
 	t_point point = create_point(0,1,-5);
-	int x;
-x = -5	;
+static	double x;
+static	double z = -0.8;
+static	double y;
 	if(key == 49)
 	{
-		rt_structj->luz.point = create_point(x, 5, 5);
+		
+		y+=0.1;
 	}
 
 	if(key == 50)
 	{
-		rt_structj->luz.point = create_point(x, -5, 5);
+		y-=0.1;
 	}
 
 	if(key == 51)
 	{
-		rt_structj->luz.point = create_point(x, -5, -5);
+
+		z+=0.1;
 	}
 
 	if(key == 52)
 	{
-		rt_structj->luz.point = create_point(x, 5, -5);
+
+		z-=0.1;
 	}
+
+	rt_structj->luz.point = create_point(x, y, z);
 
 	if(key == KEY_W)
 	{

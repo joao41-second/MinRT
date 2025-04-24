@@ -30,3 +30,8 @@ int c_chek_iqual_color(t_color a , t_color b)
 	}
 	return  (FALSE);
 }
+
+void c_print(t_color color)
+{
+	 printf("color %f %f %f \n",color.red,color.blue,color.green);
+}

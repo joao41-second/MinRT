@@ -45,11 +45,16 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	t_color	sepcular;
 	double	reflect_dot_eye;
 	double	fact;
+	
+	efectiv = c_multipl(mat.color, luz.intenstiy);	
 
-	efectiv = c_multipl(mat.color, luz.intenstiy);
+
 	luztv = normalize(sub_tuples(luz.point, comp.point));
 	amb_c = c_scalar_multipl(efectiv, mat.values.amb);
 	t_luz_dot_normal = dot_product(luztv, comp.norm);
+		
+	if(t_luz_dot_normal == -0)
+		t_luz_dot_normal = 0;
 	if (t_luz_dot_normal < 0)
 	{
 		diffuse = c_new(1, 1, 1);
@@ -57,20 +62,22 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	}
 	else
 	{
-		diffuse = c_scalar_multipl(c_scalar_multipl(efectiv,
-					mat.values.diffuse), t_luz_dot_normal);
-		reflect_dot_eye = dot_product(lig_reflect(neg_tuple(luztv),
-					comp.norm), comp.eyev);
+		diffuse = c_scalar_multipl(c_scalar_multipl(efectiv,mat.values.diffuse), t_luz_dot_normal);
+		reflect_dot_eye = dot_product(lig_reflect(neg_tuple(luztv),comp.norm), comp.eyev);
 		if (reflect_dot_eye <= 0)
 			sepcular = c_new(1, 1, 1);
 		else
 		{
 			fact = pow(reflect_dot_eye, mat.values.shininess);
-			sepcular = c_scalar_multipl(c_scalar_multipl(luz.intenstiy,
-						mat.values.specular), fact);
+			sepcular = c_scalar_multipl(c_scalar_multipl(luz.intenstiy,mat.values.specular), fact);
 		}
 	}
+	
 	ret = c_adding(sepcular, c_adding(diffuse, amb_c));
+//	c_print(sepcular);
+//	c_print(diffuse);
+//	c_print(amb_c);
+	
 	return (ret);
 }
 

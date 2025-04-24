@@ -1,5 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ligth.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -44,24 +42,25 @@ int norm_l(char *name,t_point point,t_point sph_p,t_vector chek)
 
 }
 
-int lig_lighting_test(t_light LUZ ,t_vector vct,t_vector eyev,t_color resp)
+int lig_lighting_test(t_light luz ,t_vector norm,t_vector eyev,t_color resp)
 {
 	static int nb;
 	int error;
 	t_mater mat;
 	t_computations comp;
 	t_ray ray;
-	t_light luz;
 	t_color color;
 
 	error = 0;
 	mat  = obj_material_init(c_new(1,1,1), obj_init_values_material(0.1, 0.9, 0.9, 200));
 	comp.eyev = eyev;
-	comp.norm  = vct;
+	comp.norm  = norm;
 	comp.point = create_point(0, 0, 0);
+	
 	color  = lig_lighting(mat, luz, comp);
 	if(c_chek_iqual_color(color, resp) != TRUE)
 		error++;
+	printf("color %f %f %f \n",color.red,color.blue,color.green);
 	nb++;
 	return( error_("lig_lighting",nb,&error));
 
@@ -101,7 +100,7 @@ void normalize_(void)
 	check = 0;
 
 	check += lig_lighting_test(ligth_init(c_new(1,1,1), 
-		create_point(0, 0, -10)), create_vector(0, 0, 0),create_vector(0, 0, 0),c_new(1,0,0));
+		create_point(0, 0, -10)), create_vector(0, 0, -1),create_vector(0, 0, -1),c_new(1.9,1.9,1.9));
 
 }
 
