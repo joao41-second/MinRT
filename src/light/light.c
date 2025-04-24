@@ -50,40 +50,41 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 
 
 	luztv = normalize(sub_tuples(luz.point, comp.point));
-	lig_print_tuple(luztv);
 	amb_c = c_scalar_multipl(efectiv, mat.values.amb);
+	t_luz_dot_normal = dot_product( luztv,comp.norm);
 
-	t_luz_dot_normal = fabs( dot_product( comp.norm,luztv));
-	printf("\n");
-	lig_print_tuple(luztv);
 
-	lig_print_tuple(comp.norm);
-
-	printf("luz_dot %f \n",t_luz_dot_normal);
 		
 	if(t_luz_dot_normal == -0)
 		t_luz_dot_normal = 0;
 	if (t_luz_dot_normal < 0)
 	{
-		diffuse = c_new(1, 1, 1);
-		sepcular = c_new(1, 1, 1);
+		diffuse = c_new(0, 0, 0);
+		sepcular = c_new(0, 0, 0);
 	}
 	else
 	{
-		diffuse = c_scalar_multipl(c_scalar_multipl(efectiv,mat.values.diffuse), t_luz_dot_normal);
+		printf("sim \n");
+
+		c_print(efectiv);
+		printf("color diffuse tuple %f \n",mat.values.diffuse);
+
+		printf("color luz normal %f \n",t_luz_dot_normal);
+
+		diffuse = c_scalar_multipl(efectiv,mat.values.diffuse * t_luz_dot_normal);
 		reflect_dot_eye = dot_product(lig_reflect(neg_tuple(luztv),comp.norm), comp.eyev);
+
 		if (reflect_dot_eye <= 0)
-			sepcular = c_new(1, 1, 1);
+			sepcular = c_new(0, 0, 0);
 		else
 		{
 			fact = pow(reflect_dot_eye, mat.values.shininess);
-			sepcular = c_scalar_multipl(c_scalar_multipl(luz.intenstiy,mat.values.specular), fact);
+			sepcular = c_scalar_multipl(luz.intenstiy,mat.values.specular* fact);
 		}
 	}
 	
 	ret = c_adding(sepcular, c_adding(diffuse, amb_c));
 	printf("\n");
-	c_print(efectiv);
 	c_print(sepcular);
 	c_print(diffuse);
 	c_print(amb_c);
