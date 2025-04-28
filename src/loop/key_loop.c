@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/08 18:06:42 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/28 11:09:07 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void key_loop(int key, t_minirt *rt_structj)
 {
-
+	return;
 	t_matrix ok ;
 
 	ok = mat_gener_identity(0);
 
 
 	t_point point = create_point(0,1,-5);
-static	double x;
-static	double z = -0.8;
-static	double y;
+	static	double x;
+	static	double z = -0.8;
+	static	double y;
 	if(key == 49)
 	{
 		
@@ -80,5 +80,5 @@ static	double y;
 
 	
 
-	printf("key %d %f %f %f \n",key,point.x,point.y,point.z);
+//	printf("key %d %f %f %f \n",key,point.x,point.y,point.z);
 }

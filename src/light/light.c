@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:34:08 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/22 09:42:36 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/28 11:24:54 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,16 @@ t_vector	lig_normalize(t_sphere sph, t_point p_the_obj)
 	t_point		obj_word;
 	t_point		temp;
 
+
+	printf(" o objeto \n");
+	lig_print_tuple(p_the_obj);
+
 	obj_point = mat_x_tuple(p_the_obj, sph.inv_transform);
-	lig_print_tuple(obj_point);
+	 
 
-	obj_word = sub_tuples(obj_point, create_point(0, 0, 0));
-	ret = mat_x_tuple(obj_word, sph.inv_transpose);	
+	obj_word = sub_tuples(obj_point, create_point(0, 0, 0));	
 
-	ret.w = 0;
+	ret = mat_x_tuple(obj_word, sph.inv_transform);	
 
 	ret = normalize(create_vector(ret.x, ret.y, ret.z));
 	return (ret);

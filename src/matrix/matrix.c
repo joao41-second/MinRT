@@ -96,4 +96,20 @@ t_matrix	mat_gener_scal(double x, double y, double z)
 t_matrix	mat_multip(t_matrix mat1, t_matrix mat2)
 {
 	return (mat_exet(mat1, mat2, mat_mult_matrix));
+int x;
+int y;
+t_matrix new;
+
+new  = mat_gener(mat1.size);
+y= -1;
+while (++y < mat1.size) 
+{
+	x = -1;
+	while (++x < mat1.size) 
+	{
+		new.matr[y][x] = (mat1.matr[y][0]*mat2.matr[0][x]) +  
+				(mat1.matr[y][1]*mat2.matr[1][x]) + (mat1.matr[y][2]*mat2.matr[2][x])+(mat1.matr[y][3]*mat2.matr[3][x]);
+	}	
+}
+return(new);
 }

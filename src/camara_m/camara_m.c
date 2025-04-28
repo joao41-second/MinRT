@@ -98,6 +98,7 @@ void cm_windo_put(t_minirt *rt_struct,int x_,int y_)
 
 	y = -1;
 	rt_struct->cam =  cm_ray_for_pixel(rt_struct->cam_m, (double)x_/2, (double)y_ /2);
+
 	while (++y < y_) 
 	{
 		x = -1;

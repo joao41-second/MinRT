@@ -12,13 +12,14 @@
 
 #include "../minRT.h"
 #include <math.h>
+#include <stdio.h>
 
 double	deg_to_radians(double deg)
 {
-	double	ret;
+	//double	ret;
 
-	ret = deg * M_PI / 180;
-	return (ret);
+	//ret = deg * M_PI / 180;
+	return (deg);
 }
 
 void	mat_x_rota(t_matrix *mat, double rad)

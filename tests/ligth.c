@@ -81,9 +81,7 @@ int lig_reflect_test(t_vector norm,t_vector vect,t_vector resp)
 	static int nb;
 	int error;
 
-	error = 0;
-
-	
+	error = 0;	
 	if(!is_equal_tuple( lig_reflect(vect,norm),resp))
 		error++;
 	nb++;
@@ -97,15 +95,18 @@ int lig_normalize_test(t_sphere sph,t_point point,t_tuple resp)
 	int error;
 
 	error = 0;
-
-	lig_print_tuple( lig_normalize(sph,point));
-	mat_print(sph.inv_transform);
 	if(!is_equal_tuple(lig_normalize(sph,point),resp))
 		error++;
+
+	lig_print_tuple(lig_normalize(sph,point));	
+	lig_print_tuple(point);
+	lig_print_tuple(resp);
+
 	nb++;
 	return( error_("lig_reflect",nb,&error));
 
 }
+
 void normalize_test_()
 {
 	int check;
@@ -115,11 +116,15 @@ void normalize_test_()
 	sph = sphere(create_point(0, 0, 0),1);
 	ray_set_transform(&sph,mat_gener_trans(0, 1, 0) );
 	check += lig_normalize_test(sph, create_point(0, 1.70711, -1.70711), create_vector(0, 0.70711, -0.70711));
-	if(check == 0)
-		printf(COLOR_GREEN" %s: good lig_reflect tests ok\n"COLOR_RESET,"ligt");	
-	check = 0;
 	
+	ray_set_transform(&sph, mat_multip(mat_gener_scal(1, 0.5, 1),mat_gener_rota('z',M_PI/5)));
+
+	check += lig_normalize_test(sph, create_point(0, M_SQRT2/2, -M_SQRT2/2), create_vector(0, 0.97014, -0.24254));
+	if(check == 0)
+		printf(COLOR_GREEN" %s: good lig_normalize tests ok\n"COLOR_RESET,"ligt");	
+	check = 0;	
 }
+
 void normalize_(void)
 {
 	char *name;
