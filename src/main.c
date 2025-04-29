@@ -32,12 +32,12 @@ int	main(int ac, char **av, char **env)
     	rt_struct.needs_render = 1;
 	start_word(&rt_struct);
 	
-	//canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));	
 	t_matrix ok ;
 
 	ok = mat_gener_identity(4);
 
-	rt_struct.point = create_point(0,5,0);
+	rt_struct.point = create_point(2,0,0);
+
 	ok = lig_view_transform(rt_struct.point, create_point(0,0,0), create_vector(0, 0,-1));
 
         rt_struct.cam_m = cm_init( WALL_X ,WALL_Y , M_PI/2, ok);

@@ -28,7 +28,7 @@ void start_word(t_minirt  *rt_struct)
 	sph = sphere(create_point(0, 0, 0),1) ;
 	ray_set_transform(&sph,mat_gener_scal( 1, 1, 1));
  	t_object *obj_sphere = create_object(&sph, OBJ_SPHERE);
-	//ft_add_node(obj_sphere,&word_objects );
+	ft_add_node(obj_sphere,&word_objects );
 
 	sph2 = sphere(create_point(3, 3, 3),1) ;
 	ray_set_transform(&sph2,mat_gener_scal(0.5, 0.5, 0.5) );
@@ -45,7 +45,7 @@ void start_word(t_minirt  *rt_struct)
 	t_plane pln = create_plane(create_point(-10, -10, 0), 0.5);
 	t_object *obj_plane = create_object(&pln, OBJ_PLANE);
 	ray_set_transform_obj(obj_plane,mat_gener_rota('z', 1));
- 	//ft_add_node(obj_plane,&word_objects );
+ //	ft_add_node(obj_plane,&word_objects );
 
 
 	rt_struct->word = ft_node_start(word_objects);

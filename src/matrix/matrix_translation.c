@@ -35,9 +35,7 @@ t_point mat_x_tuple(t_tuple point,t_matrix mat)
 	double va4;
 	double va3;
 	double va2;
-	if(mat.size != 4)
-		return (create_point(0, 0, 0));
-
+	
 	va1 = (point.val[0]*mat.matr[0][0]) + (point.val[1]*mat.matr[0][1]) + (point.val[2]*mat.matr[0][2]) + (point.val[3]*mat.matr[0][3]);
 
 	va2 = (point.val[0]*mat.matr[1][0]) + (point.val[1]*mat.matr[1][1]) + (point.val[2]*mat.matr[1][2])  + (point.val[3]*mat.matr[1][3]);

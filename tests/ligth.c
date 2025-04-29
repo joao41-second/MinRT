@@ -96,20 +96,15 @@ int lig_normalize_test(t_sphere sph,t_point point,t_tuple resp)
 	
 	t_tuple var = lig_normalize(sph,point);
 	error = 0;
-	
+
+	//lig_print_tuple(var);
+
+	//lig_print_tuple(resp);
+
 	if(!is_equal_tuple(var,resp))
 		error++;
 
 
-//	mat_print(sph.transform);
-//
-//	printf("inv trasform \n");
-//	mat_print(sph.inv_transform);
-//	printf("transpose \n");
-//	mat_print(sph.inv_transpose);
-	lig_print_tuple(var);	
-//	lig_print_tuple(point);
-	lig_print_tuple(resp);
 
 	nb++;
 	return( error_("lig_reflect",nb,&error));
@@ -123,7 +118,20 @@ void normalize_test_()
 
 	check = 0;
 	sph = sphere(create_point(0, 0, 0),1);
+
+	ray_set_transform(&sph,mat_gener_scal(1,1, 1)) ;
+
+	check += lig_normalize_test(sph, create_point(1, 0, 0), create_vector(1, 0, 0));
+
+	check += lig_normalize_test(sph, create_point(0, 1, 0), create_vector(0, 1, 0));
+
+	check += lig_normalize_test(sph, create_point(0, 0, 1), create_vector(0, 0, 1));
+
+	check += lig_normalize_test(sph, create_point(sqrt(3)/3, sqrt(3)/3,sqrt(3)/3 ), create_vector(  sqrt(3)/3,  sqrt(3)/3, sqrt(3)/3));
+
 	ray_set_transform(&sph,mat_gener_trans(0, 1, 0) );
+
+
 	check += lig_normalize_test(sph, create_point(0, 1.70711, -0.70711), create_vector(0, 0.70711, -0.70711));
 	
 	ray_set_transform(&sph, mat_multip(mat_gener_scal(1, 0.5, 1),mat_gener_rota('z',M_PI/5)));

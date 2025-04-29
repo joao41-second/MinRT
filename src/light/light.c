@@ -14,7 +14,6 @@
 #include "../minRT.h"
 #include "light_struct.h"
 #include <math.h>
-#include <stdio.h>
 
 t_vector	lig_normalize(t_sphere sph, t_point p_the_obj)
 {
@@ -28,12 +27,10 @@ t_vector	lig_normalize(t_sphere sph, t_point p_the_obj)
 
 	obj_word = sub_tuples(obj_point, create_point(0, 0, 0));	
 	
-	lig_print_tuple(obj_word);
-	mat_print(sph.inv_transpose);
-
 	ret = mat_x_tuple(obj_word, sph.inv_transpose);	
 
 	ret = normalize(create_vector(ret.x, ret.y, ret.z));
+
 	return (ret);
 }
 
