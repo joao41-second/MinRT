@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/22 09:50:14 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/29 18:37:26 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,19 @@ t_matrix lig_view_transform(t_tuple form,t_tuple to , t_tuple up)
 	t_matrix mat;
 	
 	mat = mat_gener_identity(4);
+	
 	forward = normalize(sub_tuples(to, form));
 	up_n = normalize(up);
-	left = cross_product(forward, up_n);
-	true_up = cross_product( forward,left);
+	
+
+	left = cross_product( forward,up_n);
+
+
+
+	lig_print_tuple(left);
+
+	true_up = cross_product(left,forward);
+	
 
 
 	mat.matr[0][0] = left.x;
@@ -100,6 +109,6 @@ t_matrix lig_view_transform(t_tuple form,t_tuple to , t_tuple up)
 	mat.matr[2][2] = -forward.z;
 
 
-	mat = mat_multip( mat_gener_trans(-form.x, -form.y, -form.z),mat_cp(mat));
+	mat = mat_multip( mat_cp(mat),mat_gener_trans(-form.x, -form.y, -form.z));
 	return(mat);
 }

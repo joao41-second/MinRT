@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:47:07 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/07 09:48:30 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:23:41 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argv,char** argc)
 	// if(ft_strncmp(argc[1],"light",ft_strlen("light")+5) == 0)
 	// {
 		test_ligth();
+		test_view_trasfomr();
 	// }
 	// else
 	// {	
