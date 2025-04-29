@@ -58,6 +58,7 @@ void	mat_trans(t_matrix *mat)
 	ret = mat_exet(*mat, tmp, mat_transposing);
 	mat_free(mat);
 	*mat = ret;
+
 	mat_free(&tmp);
 
 }
