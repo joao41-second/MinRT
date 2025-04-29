@@ -30,8 +30,8 @@ void start_word(t_minirt  *rt_struct)
  	t_object *obj_sphere = create_object(&sph, OBJ_SPHERE);
 	ft_add_node(obj_sphere,&word_objects );
 
-	sph2 = sphere(create_point(3, 3, 3),1) ;
-	ray_set_transform(&sph2,mat_gener_scal(0.5, 0.5, 0.5) );
+	sph2 = sphere(create_point(0.5, -0.5, 0),1) ;
+	ray_set_transform(&sph2,mat_gener_scal(1, 1, 1) );
  	t_object *obj_sphere2 = create_object(&sph2, OBJ_SPHERE);
 	ft_add_node(obj_sphere2,&word_objects);	
 
