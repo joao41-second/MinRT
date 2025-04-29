@@ -38,18 +38,16 @@ t_point mat_x_tuple(t_tuple point,t_matrix mat)
 	if(mat.size != 4)
 		return (create_point(0, 0, 0));
 
-	va1 = (point.val[0]*mat.matr[0][0]) + (point.val[1]*mat.matr[0][1]) + (point.val[2]*mat.matr[0][2]);
+	va1 = (point.val[0]*mat.matr[0][0]) + (point.val[1]*mat.matr[0][1]) + (point.val[2]*mat.matr[0][2]) + (point.val[3]*mat.matr[0][3]);
 
-	va2 = (point.val[0]*mat.matr[1][0]) + (point.val[1]*mat.matr[1][1]) + (point.val[2]*mat.matr[1][2]);
+	va2 = (point.val[0]*mat.matr[1][0]) + (point.val[1]*mat.matr[1][1]) + (point.val[2]*mat.matr[1][2])  + (point.val[3]*mat.matr[1][3]);
 
-	va3 = (point.val[0]*mat.matr[2][0]) + (point.val[1]*mat.matr[2][1]) + (point.val[2]*mat.matr[2][2]);
+	va3 = (point.val[0]*mat.matr[2][0]) + (point.val[1]*mat.matr[2][1]) + (point.val[2]*mat.matr[2][2]) + (point.val[3]*mat.matr[2][3]);
 
-	va4 = (point.val[0]*mat.matr[3][0]) + (point.val[1]*mat.matr[3][1]) + (point.val[2]*mat.matr[3][2]);
+	va4 = (point.val[0]*mat.matr[3][0]) + (point.val[1]*mat.matr[3][1]) + (point.val[2]*mat.matr[3][2])  + (point.val[3]*mat.matr[3][3]);
 
-	if(va4 == 0)
-		va4 = 1;
 
-	return(create_point(va1/va4, va2/va4, va3/va4));
+	return(create_tuple(va1, va2, va3,va4));
 }
 
 

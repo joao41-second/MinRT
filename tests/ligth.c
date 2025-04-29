@@ -101,14 +101,14 @@ int lig_normalize_test(t_sphere sph,t_point point,t_tuple resp)
 		error++;
 
 
-	mat_print(sph.transform);
-
-	printf("inv trasform \n");
-	mat_print(sph.inv_transform);
-	printf("transpose \n");
-	mat_print(sph.inv_transpose);
+//	mat_print(sph.transform);
+//
+//	printf("inv trasform \n");
+//	mat_print(sph.inv_transform);
+//	printf("transpose \n");
+//	mat_print(sph.inv_transpose);
 	lig_print_tuple(var);	
-	lig_print_tuple(point);
+//	lig_print_tuple(point);
 	lig_print_tuple(resp);
 
 	nb++;
