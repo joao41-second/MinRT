@@ -21,11 +21,7 @@ t_vector	lig_normalize(t_sphere sph, t_point p_the_obj)
 	t_vector	ret;
 	t_point		obj_point;
 	t_point		obj_word;
-	t_point		temp;
 
-
-	printf(" o objeto \n");
-	lig_print_tuple(p_the_obj);
 
 	obj_point = mat_x_tuple(p_the_obj, sph.inv_transform);
 	 
