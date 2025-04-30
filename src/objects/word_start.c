@@ -21,7 +21,7 @@ void start_word(t_minirt  *rt_struct)
 	t_obj_int intr_in_objc;
 	t_list_ *word_objects;
 
-	t_point luz = create_point(5, 5,0);
+	t_point luz = create_point(-10, 10,-10);
 	
 
 	word_objects = NULL;
@@ -30,7 +30,7 @@ void start_word(t_minirt  *rt_struct)
  	t_object *obj_sphere = create_object(&sph, OBJ_SPHERE);
 	ft_add_node(obj_sphere,&word_objects );
 
-	sph2 = sphere(create_point(0.5, -0.5, 0),1) ;
+	sph2 = sphere(create_point(-0.5, -0.5, -0.5),1) ;
 	ray_set_transform(&sph2,mat_gener_scal(1, 1, 1) );
  	t_object *obj_sphere2 = create_object(&sph2, OBJ_SPHERE);
 	ft_add_node(obj_sphere2,&word_objects);	

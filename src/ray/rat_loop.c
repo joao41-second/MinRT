@@ -40,13 +40,14 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 			if(intr.t[0] < save_points.min || save_points.max == INT_MAX )
 			{
 				save_points.min = intr.t[0];
-				save_points.object = objs_w->content;
+				save_points.object = intr.object;
 				save_points.mat = intr.mat;
 			}
 			if(intr.t[1] < save_points.min || save_points.max == INT_MAX )
 			{ 
 				save_points.min = intr.t[1];
-				save_points.object = objs_w->content;
+
+				save_points.object = intr.object;
 				save_points.mat = intr.mat;
 			}
 		}

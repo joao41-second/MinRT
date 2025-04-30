@@ -150,6 +150,7 @@ t_intersection ray_int_object(t_ray ray, t_object obj)
     {
         intersection = ray_int_sphere(ray, obj.u_data.sphere);
 	intersection.mat = obj.u_data.sphere.matiral;
+
     }
     else if (obj.type == OBJ_PLANE)
     {
