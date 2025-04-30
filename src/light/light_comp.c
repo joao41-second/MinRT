@@ -90,7 +90,6 @@ t_matrix lig_view_transform(t_tuple form,t_tuple to , t_tuple up)
 
 
 
-	lig_print_tuple(left);
 
 	true_up = cross_product(left,forward);
 	

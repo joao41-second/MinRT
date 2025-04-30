@@ -6,13 +6,13 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/04/30 15:18:49 by jperpct          ###   ########.fr        #
+#    Updated: 2025/04/30 16:43:32 by jperpct          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler flags
 # WFLGS = -Wall -Wextra -Werror
-WFLGS = -Wall -Wextra -Werror
+#WFLGS = -Wall -Wextra -Werror
 
 READ_FLG = -g
 # READ_FLG =  -O3 -march=native -flto -funroll-loops  -g -pg

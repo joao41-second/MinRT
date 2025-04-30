@@ -6,15 +6,15 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/30 15:26:57 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/30 16:51:48 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "../minRT.h"
+#include <stdio.h>
 
 void key_loop(int key, t_minirt *rt_structj)
 {
-	return;
 //	t_matrix ok ;
 
 //	ok = mat_gener_identity(0);
@@ -24,61 +24,44 @@ void key_loop(int key, t_minirt *rt_structj)
 	static	double x;
 	static	double z = -0.8;
 	static	double y;
-	if(key == 49)
-	{
-		
-		y+=0.1;
-	}
+	
 
-	if(key == 50)
-	{
-		y-=0.1;
-	}
-
-	if(key == 51)
-	{
-
-		z+=0.1;
-	}
-
-	if(key == 52)
-	{
-
-		z-=0.1;
-	}
-
-	rt_structj->luz.point = create_point(x, y, z);
 
 	if(key == KEY_W)
 	{
-		rt_structj->point.x +=0.1;
+		x+=0.1;
 	}
 
 	if(key == KEY_S)
 	{
-		rt_structj->point.x -=0.1;
+		x-=0.1;
 	}
 
 	if(key == KEY_D)
 	{
-		rt_structj->point.y +=0.1;
 	}
 
 	if(key == KEY_A)
 	{
-		rt_structj->point.y -=0.1;
 	}
 
+	t_matrix ok ;
 
 
-//	t_matrix mat2 = mat_gener_trans(-point.x, -point.y, -point.z);
-//	lig_view_transform(point, create_point(0,10,0), create_vector(0, 1, 0),&ok,mat2);
+	ok = mat_gener_identity(4);
 
- //       rt_structj->cam_m = cm_init(400, 400, M_PI/2, ok);
+	rt_structj->point = create_point(0,0,-2);
+
+	ok = lig_view_transform(rt_structj->point, create_point(0,0,0), create_vector(0, 1,0));
+
+	ok = mat_multip( ok,mat_gener_rota('z',x));
+
+        rt_structj->cam_m = cm_init( WALL_X ,WALL_Y , M_PI/2, ok);
+	if(is_equal_double(x, 6.5))
+		x = 0;
+	printf("rota %f\n",x);
 
 
 
-	
 
-//	printf("key %d %f %f %f \n",key,point.x,point.y,point.z);
 }

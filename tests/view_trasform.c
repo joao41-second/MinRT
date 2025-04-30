@@ -21,19 +21,9 @@ int lig_view_transform_test( t_tuple form, t_tuple to ,t_tuple up, t_matrix repo
 	
 	error = 0;
 	t_matrix mat;
-
 	mat = lig_view_transform(form, to, up);
-
-
-
-	mat_print(mat);
-	printf("\n");
-	mat_print(repons);
-
 	if(mat_iqual(mat, repons) == FALSE)
 		error++;
-
-
 	nb++;
 	return( error_("view_trasform",nb,&error));
 }
