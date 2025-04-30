@@ -12,6 +12,7 @@
 
 
 #include "tests.h"
+#include <math.h>
 #include <stdio.h>
 
 int lig_view_transform_test( t_tuple form, t_tuple to ,t_tuple up, t_matrix repons)
@@ -26,6 +27,26 @@ int lig_view_transform_test( t_tuple form, t_tuple to ,t_tuple up, t_matrix repo
 		error++;
 	nb++;
 	return( error_("view_trasform",nb,&error));
+}
+
+
+int cm_init_test(double x , double y ,double next,double result)
+{
+	int error;
+	
+	error = 0;
+	static int nb;
+	t_camera_ms cam;
+	cam  = cm_init(x, y, next, mat_gener(4));
+
+	printf("pixe %f \n",cam.pixel_size);
+
+	if(!is_equal_double(cam.pixel_size, result))
+	{
+		error++;
+	}
+
+	return( error_("camara_cm",nb,&error));
 }
 
 void view_transform_tests()
@@ -61,6 +82,15 @@ void view_transform_tests()
 
 	if(check == 0)
 		printf( COLOR_GREEN" %s: good tests ok\n"COLOR_RESET,"view_trasform");
+	
+
+	check = 0;
+	check += cm_init_test(200, 125, M_PI/2, 0.01);
+
+	check += cm_init_test(125, 200, M_PI/2, 0.01);
+
+	if(check == 0)
+		printf( COLOR_GREEN" %s: good tests ok\n"COLOR_RESET,"cm_init");
 }
 
 void	test_view_trasfomr(void)

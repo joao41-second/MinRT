@@ -33,12 +33,9 @@ void cm_pixel_size(t_camera_ms *ret)
 		ret->half_height = half_view;
 		ret->half_width = half_view * aspect;
 	}
-	double temp;
 
-	temp = 4 / ret->y;
 	
-	//printf("o hsize e %f \n", temp);
-	ret->pixel_size = temp /(ret->half_width * 2)  ;
+	ret->pixel_size = (ret->half_width * 2) / ret->x ;
 }
 
 t_camera_ms cm_init(double x , double y,double field_of_view,t_matrix const tranform)
