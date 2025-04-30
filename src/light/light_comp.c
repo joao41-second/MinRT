@@ -68,7 +68,7 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz,compt);
 	}
 	else
-		ret = c_new(1, 0, 0);
+		ret = c_new(0, 0, 0);
 	return (ret);
 }
 
