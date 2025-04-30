@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/30 15:14:49 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/30 15:31:25 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void start_word(t_minirt  *rt_struct)
 	t_sphere sph;
 	t_sphere sph2;	
 	t_sphere sph3;
-	t_obj_int intr_in_objc;
 	t_list_ *word_objects;
 
 	t_point luz = create_point(-10, 10,-10);

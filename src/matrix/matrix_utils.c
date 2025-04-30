@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:11:40 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/04 10:56:30 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:30:05 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	mat_get_file(char *file, t_matrix mat)
 
 t_matrix	mat_cp(t_matrix mat)
 {
-	t_matrix	tmp;
 	t_matrix	ret;
 
 	ret = mat_exet(mat, mat, mat_copy);
@@ -65,13 +64,11 @@ void	mat_trans(t_matrix *mat)
 
 void	mat_free(t_matrix *matrix)
 {
-	int		x_;
 	int		y_;
 
 	y_ = -1;
 	while (++y_ < matrix->size)
 	{
-		x_ = -1;
 		ft_free(matrix->matr[y_]);
 	}
 	ft_free(matrix);

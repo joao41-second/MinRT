@@ -20,9 +20,7 @@ int	main(int ac, char **av, char **env)
 {
 	t_minirt	rt_struct;
 	int			status;
-	t_list_ *word_objects;
 
-	word_objects = NULL;
 	status = 0;
 	(void)ac;
 	(void)av;
@@ -42,7 +40,6 @@ int	main(int ac, char **av, char **env)
 
         rt_struct.cam_m = cm_init( WALL_X ,WALL_Y , M_PI/2, ok);
 
-	t_ray ray  =  cm_ray_for_pixel(rt_struct.cam_m, 200, 200);
 
 
 	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(0, 0, 0));

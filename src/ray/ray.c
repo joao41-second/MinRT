@@ -6,14 +6,12 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:15:50 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/30 15:16:29 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/30 15:32:55 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "ray.h"
 #include "../minRT.h"
-#include "ray_struct.h"
 
 double mutl_dub(double nb1,double nb2)
 {
@@ -62,9 +60,7 @@ double ray_model_venct(t_vector vect)
 t_tuple ray_ang_to_vect(double x,double y,double z)
 {
 	t_vector vect;
-	double module_v;
 
-	module_v = 1;
 	vect.z = 1*cos(z);
 	vect.x = 1*cos(x);
 	vect.y = 1*cos(y);
