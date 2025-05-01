@@ -45,11 +45,10 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 	return (ret);
 }
 
-t_color lig_shade_hit(t_vector luz,t_computations comp)
+t_color lig_shade_hit(t_obj_int obj,t_light luz,t_computations comp)
 {
-	t_color ret;
-	
-	ret= c_new(0, 0, 0);
+	t_color ret;	
+	ret = lig_lighting(obj.mat,luz,comp);
 	return(ret);
 }
 
@@ -88,16 +87,10 @@ t_matrix lig_view_transform(t_tuple form,t_tuple to , t_tuple up)
 	forward = normalize(sub_tuples(to, form));
 	up_n = normalize(up);
 	
-
 	left = cross_product( forward,up_n);
-
-
-
 
 	true_up = cross_product(left,forward);
 	
-
-
 	mat.matr[0][0] = left.x;
 	mat.matr[0][1] = left.y;
 	mat.matr[0][2] = left.z;
@@ -109,7 +102,6 @@ t_matrix lig_view_transform(t_tuple form,t_tuple to , t_tuple up)
 	mat.matr[2][0] = -forward.x;
 	mat.matr[2][1] = -forward.y;
 	mat.matr[2][2] = -forward.z;
-
 
 	mat = mat_multip( mat_cp(mat),mat_gener_trans(-form.x, -form.y, -form.z));
 	return(mat);

@@ -50,9 +50,6 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	efectiv = c_multipl(mat.color, luz.intenstiy);	
 	luztv = normalize(sub_tuples(luz.point, comp.point));
 	amb_c = c_scalar_multipl(efectiv, mat.values.amb);
-	c_print(efectiv);
-	printf("values and %f \n",mat.values.amb);
-	c_print(amb_c);
 	t_luz_dot_normal = dot_product( luztv,comp.norm);
 
 	

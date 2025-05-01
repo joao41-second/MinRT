@@ -11,11 +11,10 @@ int test_shade_it(t_ray ray, t_color ret,t_minirt rt)
 	
 	t_color color;
 	color  = lig_color_at(&rt,ray);
-
-	printf("testig\n");
-	c_print(color);
-	printf("valor final\n");
-	c_print(ret);
+//	printf("testig\n");
+//	c_print(color);
+//	printf("valor final\n");
+///	c_print(ret);
 
 	printf("end\n");
 	if(c_chek_iqual_color(color, ret) == FALSE)
