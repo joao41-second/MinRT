@@ -70,6 +70,7 @@ void obj_material_print(t_mater mat);
 t_light ligth_init(t_color intensty,t_point point);
 
 
+
 typedef struct s_plane
 {
 	double	ray_s;

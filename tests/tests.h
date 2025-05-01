@@ -36,5 +36,6 @@ void	test_ligth(void);
 
 void	test_view_trasfomr(void);
 
+void	test_word(void);
 
 #endif /* TESTS_H */
