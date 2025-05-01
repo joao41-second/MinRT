@@ -33,5 +33,5 @@ int c_chek_iqual_color(t_color a , t_color b)
 
 void c_print(t_color color)
 {
-	 printf("color %f %f %f \n",color.red,color.blue,color.green);
+	 printf("color %f %f %f \n",color.red,color.green,color.blue);
 }

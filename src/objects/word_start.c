@@ -66,12 +66,14 @@ void start_word_test(t_minirt  *rt_struct,double ambinet)
 	word_objects = NULL;
 	sph = sphere(create_point(0, 0, 0),1) ;
 	sph.matiral.values.amb = ambinet;
+
+
+	sph.matiral = obj_material_init(c_new(0.8,1,0.6), obj_init_values_material(ambinet, 0.7, 0.2, 200));
 	ray_set_transform(&sph,mat_gener_scal( 1, 1, 1));
  	t_object *obj_sphere = create_object(&sph, OBJ_SPHERE);
 	ft_add_node(obj_sphere,&word_objects );
 
 	sph2 = sphere(create_point(0, 0, 0),1) ;
-	sph2.matiral = obj_material_init(c_new(0.8,1,0.6), obj_init_values_material(ambinet, 0.7, 0.2, 200));
 	ray_set_transform(&sph2,mat_gener_scal(0.5, 0.5, 0.5) );
  	t_object *obj_sphere2 = create_object(&sph2, OBJ_SPHERE);
 	ft_add_node(obj_sphere2,&word_objects);	

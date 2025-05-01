@@ -30,7 +30,7 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 	t_sphere	*sph;
 
 	sph = inter.object;
-	ret.t = inter.min;
+	ret.t = inter.max;
 	ret.object = inter.object;
 	ret.point = ray_position(ray, ret.t);
 	ret.eyev = neg_tuple(ray.direction);
@@ -43,6 +43,14 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 	else
 		ret.inside = FALSE;
 	return (ret);
+}
+
+t_color lig_shade_hit(t_vector luz,t_computations comp)
+{
+	t_color ret;
+	
+	ret= c_new(0, 0, 0);
+	return(ret);
 }
 
 void	lig_print_computations(t_computations comp)
@@ -62,13 +70,8 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 	t_obj_int	 ray_in_obj;
 
 	ray_in_obj = ray_for_objects(rt_struct->word, ray);
-	if (ray_in_obj.min != INT_MAX)
-	{
-		compt = lig_prepare_computations(ray_in_obj, ray);
-		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz,compt);
-	}
-	else
-		ret = c_new(0, 0, 0);
+	compt = lig_prepare_computations(ray_in_obj, ray);
+	ret = lig_lighting(ray_in_obj.mat, rt_struct->luz,compt);
 	return (ret);
 }
 

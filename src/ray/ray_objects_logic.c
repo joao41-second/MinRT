@@ -31,25 +31,25 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray)
 		intr = ray_int_object(ray,*obj );
 		if(intr.inter > 0)
 		{
-			if(intr.t[0] > save_points.max || save_points.max == INT_MAX )
+			if(intr.t[0] >= save_points.max || save_points.max == INT_MAX )
 			{
 				save_points.max = intr.t[0];
 				save_points.object = intr.object;
 				save_points.mat = intr.mat;
 			}
-			if(intr.t[1] > save_points.max || save_points.max == INT_MAX )
+			if(intr.t[1] >= save_points.max || save_points.max == INT_MAX )
 			{
 				save_points.object = intr.object;
 				save_points.mat = intr.mat;	
 				save_points.max = intr.t[1];
 			}
-			if(intr.t[0] < save_points.min || save_points.max == INT_MAX )
+			if(intr.t[0] <= save_points.min || save_points.max == INT_MAX )
 			{
 				save_points.min = intr.t[0];
 				save_points.object = intr.object;
 				save_points.mat = intr.mat;
 			}
-			if(intr.t[1] < save_points.min || save_points.max == INT_MAX )
+			if(intr.t[1] <= save_points.min || save_points.max == INT_MAX )
 			{ 
 				save_points.min = intr.t[1];
 

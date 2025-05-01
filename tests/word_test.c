@@ -1,4 +1,5 @@
 #include "tests.h"
+#include <stdio.h>
 
 
 int test_shade_it(t_ray ray, t_color ret,t_minirt rt)
@@ -10,7 +11,13 @@ int test_shade_it(t_ray ray, t_color ret,t_minirt rt)
 	
 	t_color color;
 	color  = lig_color_at(&rt,ray);
+
+	printf("testig\n");
 	c_print(color);
+	printf("valor final\n");
+	c_print(ret);
+
+	printf("end\n");
 	if(c_chek_iqual_color(color, ret) == FALSE)
 		error++;	
 	nb++;
@@ -26,15 +33,15 @@ void word_test()
 	t_minirt rt;
 	double ** mat = mat_gener(4).matr ;
 
-	start_word_test(&rt,0.2);
+	start_word_test(&rt,0.1);
 
 	check = 0;
 	check += test_shade_it( ray_gener(create_point(0, 0, -5), create_vector(0, 1, 0)), c_new(0,0,0),rt);
 
-	check += test_shade_it( ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1)), c_new(0.38066,0.47583,0.2855),rt);
+	check += test_shade_it( ray_gener(create_point(0, 0, -5), create_vector(0, 0, 1)), c_new(0.380661,0.475826,0.285496),rt);
 
 	start_word_test(&rt,1);
-	check += test_shade_it( ray_gener(create_point(0, 0, 0.75), create_vector(0, 0, -1)), c_new(1,0.2,0.5),rt);
+	check += test_shade_it( ray_gener(create_point(0, 0, 0.75), create_vector(0, 0, -1)), c_new(0.8,1,0.6),rt);
 	
 
 
