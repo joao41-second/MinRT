@@ -61,5 +61,6 @@
 
 void start_word(t_minirt  *rt_struct);
 
-void start_word_test(t_minirt  *rt_struct,double ambinet);
+
+void start_word_test(t_minirt  *rt_struct,double ambinet,t_color color);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/29 18:37:26 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/01 17:28:44 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 {
 	t_computations	ret;
 	t_sphere	*sph;
+	double test;
 
 	sph = inter.object;
 	ret.t = inter.max;
@@ -35,7 +36,10 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 	ret.point = ray_position(ray, ret.t);
 	ret.eyev = neg_tuple(ray.direction);
 	ret.norm = lig_normalize(*sph, ret.point);
-	if (dot_product(ret.norm, ret.eyev) < 0)
+	test = dot_product(ret.norm, ret.eyev);
+	if(test == -0)
+		test = 0;
+	if (test < 0)
 	{
 		ret.norm = neg_tuple(ret.norm);
 		ret.inside = TRUE;
