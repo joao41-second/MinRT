@@ -36,7 +36,7 @@ int	main(int ac, char **av, char **env)
 
 	rt_struct.point = create_point(0,0,2);
 
-	ok = lig_view_transform(rt_struct.point, create_point(0,0,0), create_vector(0,1,0));
+	ok = lig_view_transform(rt_struct.point, create_point(0,1,0), create_vector(0,1,0));
 
 
 

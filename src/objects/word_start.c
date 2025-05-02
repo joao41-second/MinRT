@@ -20,7 +20,7 @@ void start_word(t_minirt  *rt_struct)
 	t_sphere sph3;
 	t_list_ *word_objects;
 
-	t_point luz = create_point(0, 5,-5);
+	t_point luz = create_point(0, 3,-3);
 	
 
 	word_objects = NULL;

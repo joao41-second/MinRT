@@ -24,7 +24,7 @@ t_sphere sphere(t_point point_satrt , double ray_s)
 	new.transform = mat_gener(4);
 	new.inv_transform = mat_gener(4);
 	new.inv_transpose = mat_gener(4);
-	new.matiral = obj_material_init(c_new(1,0,0), obj_init_values_material(0.5,0.9 , 0.5, 200));
+	new.matiral = obj_material_init(c_new(1,0,0), obj_init_values_material(0.01,0.7 , 0.3, 200));
 	return (new);
 }
 

@@ -24,15 +24,11 @@ t_vector	lig_normalize(t_sphere sph, t_point p_the_obj)
 
 
 	obj_point = mat_x_tuple(p_the_obj, sph.inv_transform);
-	 
-
-	obj_word = sub_tuples(obj_point, create_point(0, 0, 0));	
-	
+	obj_word = sub_tuples(obj_point, create_tuple(0, 0, 0,0));		
 	ret = mat_x_tuple(obj_word, sph.inv_transpose);	
+	ret.w = 0;
 
-	ret = normalize(create_vector(ret.x, ret.y, ret.z));
-
-	return (ret);
+	return (normalize(ret));
 }
 
 t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
@@ -50,6 +46,7 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	efectiv = c_multipl(mat.color, luz.intenstiy);	
 	luztv = normalize(sub_tuples(luz.point, comp.point));
 	amb_c = c_scalar_multipl(efectiv, mat.values.amb);
+
 	t_luz_dot_normal = dot_product( luztv,comp.norm);
 
 	
@@ -73,9 +70,6 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 		}
 	
 	}
-
-
-
 	ret = c_adding(c_adding(  sepcular, amb_c), diffuse);	
 	return (ret);
 }
