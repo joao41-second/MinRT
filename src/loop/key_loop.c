@@ -29,12 +29,12 @@ void key_loop(int key, t_minirt *rt_structj)
 
 	if(key == KEY_W)
 	{
-		x+=0.1;
+		x+=0.01;
 	}
 
 	if(key == KEY_S)
 	{
-		x-=0.1;
+		x-=0.01;
 	}
 
 	if(key == KEY_D)
@@ -53,11 +53,11 @@ void key_loop(int key, t_minirt *rt_structj)
 	rt_structj->point = create_point(0,0,-2);
 
 	ok = lig_view_transform(rt_structj->point, create_point(0,0,0), create_vector(0, 1,0));
-
-	ok = mat_multip( ok,mat_gener_rota('z',x));
+	
+	ok = mat_multip( mat_gener_rota('x',x * (180/M_PI)),ok);
 
         rt_structj->cam_m = cm_init( WALL_X ,WALL_Y , M_PI/2, ok);
-	if(is_equal_double(x, 6.5))
+	if(is_equal_double(x, 360))
 		x = 0;
 	printf("rota %f\n",x);
 
