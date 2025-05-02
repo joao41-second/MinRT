@@ -21,7 +21,7 @@ void key_loop(int key, t_minirt *rt_structj)
 
 
 //	t_point point = create_point(0,1,-5);
-	static	double x;
+	static	double x = 0.054;
 	static	double z = -0.8;
 	static	double y;
 	
@@ -29,12 +29,12 @@ void key_loop(int key, t_minirt *rt_structj)
 
 	if(key == KEY_W)
 	{
-		x+=0.01;
+		x+=0.001;
 	}
 
 	if(key == KEY_S)
 	{
-		x-=0.01;
+		x-=0.001;
 	}
 
 	if(key == KEY_D)
@@ -50,7 +50,7 @@ void key_loop(int key, t_minirt *rt_structj)
 
 	ok = mat_gener_identity(4);
 
-	rt_structj->point = create_point(0,0,-2);
+	rt_structj->point = create_point(0,0,2);
 
 	ok = lig_view_transform(rt_structj->point, create_point(0,0,0), create_vector(0, 1,0));
 	

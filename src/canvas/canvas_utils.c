@@ -36,7 +36,7 @@ int	create_trgb(int t, int r, int g, int b)
 
 void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base )
 {
- 	my_mlx_pixel_put(&rt_struct->canva.canva, x, y, create_trgb(1,
+ 	my_mlx_pixel_put(&rt_struct->canva.canva, x, y, create_trgb(3,
 			(int)(base.red*255), (int)(base.green*255), (int)(base.blue*255)));
 }
 

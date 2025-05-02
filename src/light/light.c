@@ -64,20 +64,19 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	{
 		diffuse = c_scalar_multipl(efectiv,mat.values.diffuse * t_luz_dot_normal);
 		reflect_dot_eye = dot_product(lig_reflect(neg_tuple(luztv),comp.norm), comp.eyev);
-
-
 		if (reflect_dot_eye <= 0)
-			sepcular = c_new(0, 0, 0);
+		sepcular = c_new(0, 0, 0);
 		else
 		{
-			fact = pow(reflect_dot_eye, mat.values.shininess);
-			sepcular = c_scalar_multipl(luz.intenstiy,mat.values.specular* fact);
-
+		fact = pow(reflect_dot_eye, mat.values.shininess);
+		sepcular = c_scalar_multipl(luz.intenstiy,mat.values.specular* fact);
 		}
-	}
 	
+	}
 
-	ret = c_adding(sepcular, c_adding(diffuse, amb_c));	
+
+
+	ret = c_adding(c_adding(  sepcular, amb_c), diffuse);	
 	return (ret);
 }
 
