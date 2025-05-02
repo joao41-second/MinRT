@@ -43,10 +43,11 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	double	reflect_dot_eye;
 	double	fact;
 	
-	efectiv = c_multipl(mat.color, luz.intenstiy);	
+	efectiv = c_multipl(mat.color, luz.intenstiy) ;
 	luztv = normalize(sub_tuples(luz.point, comp.point));
-	amb_c = c_scalar_multipl(efectiv, mat.values.amb);
+//	amb_c = c_scalar_multipl(efectiv, mat.values.amb);
 
+	amb_c = c_multipl(efectiv,c_new(mat.values.amb, mat.values.amb, mat.values.amb));
 	t_luz_dot_normal = dot_product( luztv,comp.norm);
 
 	
