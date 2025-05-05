@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:13:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 13:59:02 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 14:00:27 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ int	create_trgb(int t, int r, int g, int b)
 void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base )
 {
 	base.color[0] = base.color[0] * 255;
-
 	base.color[1] = base.color[1] * 255;
-
 	base.color[2] = base.color[2] * 255;
 	if (base.color[0] > 255)
 		base.color[0] = 255;
@@ -48,15 +46,15 @@ void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base )
 		base.color[1] = 255;
 	if (base.color[2] > 255)
 		base.color[2] = 255;
-	if(base.color[0] < 0)
+	if (base.color[0] < 0)
 		base.color[0] = 0;
-	if(base.color[1] < 0)
+	if (base.color[1] < 0)
 		base.color[1] = 0;
-	if(base.color[2] < 0)
+	if (base.color[2] < 0)
 		base.color[2] = 0;
 	my_mlx_pixel_put(&rt_struct->canva.canva, x, y, create_trgb(3,
 			(int)(base.red),
-			(int)(base.green ), (int)(base.blue )));
+			(int)(base.green), (int)(base.blue)));
 }
 
 void	canva_update(t_minirt *rt_struct)
