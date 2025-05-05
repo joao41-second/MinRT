@@ -1,4 +1,3 @@
-/*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -7,14 +6,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "camara_m/camara_m.h"
-#include "light/light.h"
-#include "matrix/matrix.h"
 #include "minRT.h"
-#include "tuples/tuples.h"
-#include <X11/X.h>
-#include <math.h>
-#include <stdio.h>
 
 int	main(int ac, char **av, char **env)
 {

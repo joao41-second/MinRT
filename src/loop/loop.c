@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/30 15:28:08 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 09:04:35 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	loop(t_minirt *rt_struct)
  //   	double tempo_exec = (double)(fim - inicio) / CLOCKS_PER_SEC; // Converte para segundos
 //    	printf("Tempo de execução: %.6f segundos\n", tempo_exec);
 		
-//mouse(rt_struct)	;
+mouse(rt_struct)	;
 	cm_windo_put(rt_struct, WALL_X ,  WALL_Y );
 
   		canva_update(rt_struct);
