@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 09:53:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/18 10:27:59 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:49:25 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 
 double	deg_to_radians(double deg)
 {
-	//double	ret;
-
-	//ret = deg * M_PI / 180;
 	return (deg);
 }
 
