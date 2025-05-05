@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 19:21:35 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/05 02:49:15 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/05 14:34:16 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_plane create_plane(t_point center, double ray_s)
     plane.transform = mat_gener(4);
     plane.inv_transform = mat_gener(4);
     plane.inv_transpose = mat_gener(4);
-    plane.matiral = obj_material_init(c_new(0,1,1), obj_init_values_material(0.1,0.6 , 0.3, 100));
+    // plane.matiral = obj_material_init(c_new(0,1,1), obj_init_values_material(0.1,0.6 , 0.3, 100));
     // Debugging: Print the initial transformation matrices
     printf("Plane Initial Transform:\n");
     mat_print(plane.transform);

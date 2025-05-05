@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 02:46:00 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:06:32 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
     }
     else if (obj->type == OBJ_PLANE)
     {
-        ret.norm = obj->u_data.plane.base_normal;
+		ret.norm = lig_normalize_obj(*obj, ret.point);
+        // ret.norm = obj->u_data.plane.base_normal;
     }
     else if (obj->type == OBJ_TRIANGLE)
 	{
-		t_triangle *triangle = &obj->u_data.triangle;
-		ret.norm = triangle->normal;
+		ret.norm = lig_normalize_obj(*obj, ret.point);
+		// t_triangle *triangle = &obj->u_data.triangle;
+		// ret.norm = triangle->normal;
 	}
     else
     {

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 02:25:13 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:20:42 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,37 +74,37 @@
  */
 void set_top_view(t_camera *cam)
 {
-    cam->origin = create_point(0, 10, 0);
+    cam->origin = create_point(0, 100, 0);
     cam->direction = create_vector(0, -1, 0);
     camera_update_view(cam);
 }
 void set_front_view(t_camera *cam)
 {
-    cam->origin = create_point(0, 0, -10);
+    cam->origin = create_point(0, 0, -100);
     cam->direction = create_vector(0, 0, 1);
     camera_update_view(cam);
 }
 void set_right_view(t_camera *cam)
 {
-    cam->origin = create_point(10, 0, 0);
+    cam->origin = create_point(100, 0, 0);
     cam->direction = create_vector(-1, 0, 0);
     camera_update_view(cam);
 }
 void set_left_view(t_camera *cam)
 {
-    cam->origin = create_point(-10, 0, 0);
+    cam->origin = create_point(-100, 0, 0);
     cam->direction = create_vector(1, 0, 0);
     camera_update_view(cam);
 }
 void set_back_view(t_camera *cam)
 {
-    cam->origin = create_point(0, 0, 10);
+    cam->origin = create_point(0, 0, 100);
     cam->direction = create_vector(0, 0, -1);
     camera_update_view(cam);
 }
 void set_bottom_view(t_camera *cam)
 {
-    cam->origin = create_point(0, -10, 0);
+    cam->origin = create_point(0, -100, 0);
     cam->direction = create_vector(0, 1, 0);
     camera_update_view(cam);
 }
@@ -183,17 +183,32 @@ int key_loop(int keycode, t_minirt *rt_struct)
 
     // Iterate over objects to find a plane
     t_object *plane = NULL;
+    t_object *sphere = NULL;
     while (current)
     {
         t_object *obj = (t_object *)current->content;
         if (obj->type == OBJ_PLANE)
         {
             plane = obj;
-            print_plane(&obj->u_data.plane);
+            // print_plane(&obj->u_data.plane);
             break;
         }
+        // else if ( obj->type == OBJ_SPHERE)
+        // {
+        //     sphere = obj;
+        //     break;
+        // }
         current = current->next;
     }
+
+    // if (sphere)
+    // {
+    //     if (keycode == KEY_Q)
+    //     {
+    //         sphere->u_data.sphere.center.z += 10;
+    //     }
+    //     canva_update(rt_struct);
+    // }
 
     // Ensure the plane exists before applying transformations
     if (plane)
@@ -203,8 +218,12 @@ int key_loop(int keycode, t_minirt *rt_struct)
         } else if (keycode == KEY_X) { // Rotate plane around X-axis
             rotate_plane(plane, 'x', ROTATION_SPEED, &rt_struct->scene.world.camera);
         } else if (keycode == KEY_Y) { // Rotate plane around Y-axis
-            rotate_plane(plane, 'y', ROTATION_SPEED, &rt_struct->scene.world.camera);
-        } else if (keycode == KEY_R) { // Reset plane transformations
+            rotate_plane(plane, 'y', ROTATION_SPEED, &rt_struct->scene.world.camera);}
+        else if (keycode == KEY_MINUS){
+            plane->u_data.plane.center.y += 10;
+            
+        }
+        else if (keycode == KEY_R) { // Reset plane transformations
             ray_reset_transform_obj(plane);
         }
         canva_update(rt_struct);

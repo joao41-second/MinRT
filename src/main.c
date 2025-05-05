@@ -35,15 +35,15 @@ int	main(int ac, char **av, char **env)
 	ok = mat_gener_identity(4);
 
 	//init camera
-	t_point origin = create_point(0, 0, -10);
-	t_vector direction = create_vector(0,  0, 1);
+	t_point origin = create_point(0, 0, 10);
+	t_vector direction = create_vector(0,  0, -1);
 	double fov = 30.0;
 
 	camera_init(&rt_struct.scene.world.camera, origin, direction, fov);
 
-	rt_struct.point = create_point(0,0,-10);
+	rt_struct.point = create_point(0,0,2);
 
-	ok = lig_view_transform(rt_struct.point, create_point(0,0,0), create_vector(0,1,0));
+	ok = lig_view_transform(rt_struct.point, create_point(0,1,0), create_vector(0,1,0));
 
 	ok = mat_multip( mat_gener_rota('x',0.054 * (180/M_PI)),ok);
 

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/04 12:23:21 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/05 12:46:12 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	loop(t_minirt *rt_struct)
 		char *str;
 	
 
-		asprintf(&str, "cord: %f %f %f  dir: %f %f %f",rt_struct->cam.origin.x,rt_struct->cam.origin.y,rt_struct->cam.origin.z,rt_struct->cam.direction.x,rt_struct->cam.direction.y,rt_struct->cam.direction.z);
+		asprintf(&str, "cam cord: %f %f %f  dir: %f %f %f",rt_struct->scene.world.camera.origin.x,rt_struct->scene.world.camera.origin.y,rt_struct->scene.world.camera.origin.z,rt_struct->scene.world.camera.direction.x,rt_struct->scene.world.camera.direction.y,rt_struct->scene.world.camera.direction.z);
 
 		mlx_string_put(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, 10, 10,create_trgb(1, 255, 255, 2), str);
 	asprintf(&str, "cord: %f %f %f ",rt_struct->luz.point.x,rt_struct->luz.point.y,rt_struct->luz.point.z);

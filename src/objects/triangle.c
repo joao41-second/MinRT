@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:13:56 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/05 02:50:16 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/05 14:33:48 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_triangle create_triangle(t_point p1, t_point p2, t_point p3)
     triangle.transform = mat_gener(4);
     triangle.inv_transform = mat_gener(4);
     triangle.inv_transpose = mat_gener(4);
-    triangle.matiral = obj_material_init(c_new(0,1,0), obj_init_values_material(0.1,0.6 , 0.3, 100));
+    // triangle.matiral = obj_material_init(c_new(0,1,0), obj_init_values_material(0.1,0.6 , 0.3, 100));
     return (triangle);
 }
 //precomputed normal
