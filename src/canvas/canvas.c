@@ -59,7 +59,7 @@ void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 			&rt_struct->canva.canva.line_length,
 			&rt_struct->canva.canva.endian);
 
-	start_word(rt_struct);
+	// start_word(rt_struct);
 	mlx_key_hook(rt_struct->canva.mlx_wind, canva_loop_key, rt_struct);
 	mlx_mouse_hook(rt_struct->canva.mlx_wind, canva_loop_mouse, rt_struct);
 	mlx_loop_hook(rt_struct->canva.mlx, canva_loop, rt_struct);

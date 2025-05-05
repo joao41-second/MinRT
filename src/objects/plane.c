@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 19:21:35 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/30 15:31:55 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 02:49:15 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,23 @@ t_vector local_intersect_plane(t_object *plane, t_ray ray)
 }
 t_plane create_plane(t_point center, double ray_s)
 {
-    t_plane new;
+    t_plane plane;
 
-    new.center = center;
-    new.ray_s = ray_s;
-    new.normal = create_vector(0, 1, 0);
-    new.color = c_new(255, 0, 0);
-    new.transform = mat_gener(4);
-    new.inv_transform = mat_gener(4);
-    new.matiral = obj_material_init(c_new(1,1,1), obj_init_values_material(0.0,0.9 , 0.9, 200));
-    
-    return (new);
+    plane.center = center;
+    plane.ray_s = ray_s;
+    plane.base_normal = create_vector(0, 1, 0); // Default normal
+    plane.normal = plane.base_normal;
+    plane.transform = mat_gener(4);
+    plane.inv_transform = mat_gener(4);
+    plane.inv_transpose = mat_gener(4);
+    plane.matiral = obj_material_init(c_new(0,1,1), obj_init_values_material(0.1,0.6 , 0.3, 100));
+    // Debugging: Print the initial transformation matrices
+    printf("Plane Initial Transform:\n");
+    mat_print(plane.transform);
+    printf("Plane Initial Inverse Transform:\n");
+    mat_print(plane.inv_transform);
+    printf("Plane Initial Inverse Transpose:\n");
+    mat_print(plane.inv_transpose);
+
+    return plane;
 }

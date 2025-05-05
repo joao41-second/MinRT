@@ -33,8 +33,9 @@ int norm_l(char *name,t_point point,t_point sph_p,t_vector chek)
 	(void)sph_p;
 	error = 0;
 	sph = sphere(create_point(0, 0, 0),1);
+
 	ray_set_transform(&sph,mat_gener_scal( 1, 1, 1));
-	test = lig_normalize(sph, point);
+	test = lig_normalize_obj(*(t_object *)&sph, point);
 	if (!is_equal_tuple(test, chek))
 		error ++;
 	nb++;

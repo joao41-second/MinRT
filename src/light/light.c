@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:34:08 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/01 18:13:48 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 02:53:33 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,89 @@
 #include <math.h>
 #include <stdio.h>
 
-t_vector	lig_normalize(t_sphere sph, t_point p_the_obj)
+// t_vector	lig_normalize(t_sphere sph, t_point p_the_obj)
+// {
+// 	t_vector	ret;
+// 	t_point		obj_point;
+// 	t_point		obj_word;
+
+
+// 	obj_point = mat_x_tuple(p_the_obj, sph.inv_transform);
+	 
+
+// 	obj_word = sub_tuples(obj_point, create_point(0, 0, 0));	
+	
+// 	ret = mat_x_tuple(obj_word, sph.inv_transpose);	
+
+// 	ret = normalize(create_vector(ret.x, ret.y, ret.z));
+
+// 	return (ret);
+// }
+void mat_fprint(FILE *file, t_matrix mat)
 {
-	t_vector	ret;
-	t_point		obj_point;
-	t_point		obj_word;
+    if (!file)
+        return;
 
-
-	obj_point = mat_x_tuple(p_the_obj, sph.inv_transform);
-	obj_word = sub_tuples(obj_point, create_tuple(0, 0, 0,0));		
-	ret = mat_x_tuple(obj_word, sph.inv_transpose);	
-	ret.w = 0;
-
-	return (normalize(ret));
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            fprintf(file, "%f ", mat.matr[i][j]);
+        }
+        fprintf(file, "\n");
+    }
+    fprintf(file, "\n");
 }
+t_vector lig_normalize_obj(t_object obj, t_point p_the_obj)
+{
+    t_vector ret;
+    t_point obj_point;
+    t_point obj_word;
+    FILE *debug_file = fopen("debug_normals.log", "a");
+
+    if (obj.type == OBJ_SPHERE)
+    {
+        obj_point = mat_x_tuple(p_the_obj, obj.u_data.sphere.inv_transform);
+        obj_word = sub_tuples(obj_point, create_tuple(0, 0, 0,0));
+        ret = mat_x_tuple(obj_word, obj.u_data.sphere.inv_transpose);
+		ret.w = 0;
+    }
+    else if (obj.type == OBJ_PLANE)
+    {
+        obj_point = mat_x_tuple(p_the_obj, obj.u_data.plane.inv_transform);
+        obj_word = sub_tuples(obj_point, create_point(0, 0, 0));
+        ret = mat_x_tuple(obj_word, obj.u_data.plane.inv_transpose);
+
+        // if (debug_file)
+        // {
+        //     fprintf(debug_file, "Plane Point: (%f, %f, %f)\n", obj_point.x, obj_point.y, obj_point.z);
+        //     fprintf(debug_file, "Plane Normal Before Normalize: (%f, %f, %f)\n", ret.x, ret.y, ret.z);
+        //     fprintf(debug_file, "Plane Transform:\n");
+        //     mat_fprint(debug_file, obj.u_data.plane.transform);
+        //     fprintf(debug_file, "Plane Inverse Transform:\n");
+        //     mat_fprint(debug_file, obj.u_data.plane.inv_transform);
+        //     fprintf(debug_file, "Plane Inverse Transpose:\n");
+        //     mat_fprint(debug_file, obj.u_data.plane.inv_transpose);
+        // }
+    }
+	else if (obj.type == OBJ_TRIANGLE)
+	{
+		obj_point = mat_x_tuple(p_the_obj, obj.u_data.triangle.inv_transform);
+		obj_word = sub_tuples(obj_point, create_point(0, 0, 0));
+		ret = mat_x_tuple(obj_word, obj.u_data.triangle.inv_transpose);
+	}
+    else
+    {
+        ret = create_vector(0, 0, 0);
+    }
+    // if (debug_file)
+    // {
+    //     fprintf(debug_file, "Plane Normal After Normalize: (%f, %f, %f)\n", ret.x, ret.y, ret.z);
+    //     fclose(debug_file); // Close the debug file
+    // }
+    return normalize(ret);
+}
+
 
 t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 {
@@ -50,6 +119,12 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	amb_c = c_multipl(efectiv,c_new(mat.values.amb, mat.values.amb, mat.values.amb));
 	t_luz_dot_normal = dot_product( luztv,comp.norm);
 
+	    // // Debugging: Print material properties
+		// printf("Material Color: (%f, %f, %f)\n", mat.color.red, mat.color.green, mat.color.blue);
+		// printf("Ambient: %f, Diffuse: %f, Specular: %f, Shininess: %f\n",
+		// 	   mat.values.amb, mat.values.diffuse, mat.values.specular, mat.values.shininess);
+	
+			   
 	
 	if(t_luz_dot_normal == -0)
 		t_luz_dot_normal = 0;

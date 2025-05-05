@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/18 10:41:39 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 02:50:03 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,14 @@ typedef struct s_plane
 	double	ray_s;
 	t_point		center;
 	t_vector	normal;
+	t_vector	base_normal;
 	t_color		color;
 	t_matrix	transform;
 	t_matrix	inv_transform;
+	t_matrix	inv_transpose;
 	t_mater		matiral;
 }	t_plane;
+
 
 
 
@@ -91,8 +94,26 @@ typedef enum e_obj_type
 {
 	OBJ_SPHERE,
 	OBJ_PLANE,
-	OBJ_CYLINDER
+	OBJ_CYLINDER,
+	OBJ_TRIANGLE,
 }	t_obj_type;
+
+typedef struct s_triangle 
+{
+	t_point p1;
+	t_point p2;
+	t_point p3;
+	t_vector normal;
+	t_vector edge1;
+	t_vector edge2;
+	t_color		color;
+	t_matrix transform;
+	t_matrix inv_transform;
+	t_matrix	inv_transpose;
+	t_mater		 matiral;
+} t_triangle;
+
+t_triangle create_triangle(t_point p1, t_point p2, t_point p3);
 
 typedef struct s_object
 {
@@ -102,6 +123,7 @@ typedef struct s_object
 		t_plane		plane;
 		t_sphere	sphere;
 		t_cylinder	cylinder;
+		t_triangle	triangle;
 	}	u_data;
 	struct s_object	*next;
 }	t_object;

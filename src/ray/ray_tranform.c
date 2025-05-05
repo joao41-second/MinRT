@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:12:41 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/30 15:04:28 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/01 15:46:08 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,4 @@ void ray_set_transform (t_sphere *sph,t_matrix mat)
 	mat_not_neg_zero(&sph->transform);
 	mat_not_neg_zero(&sph->inv_transpose);	
 }
-
 

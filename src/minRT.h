@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/30 15:00:50 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/01 23:37:56 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define TRUE 0
 # define FALSE 1
 
-# define WALL_X 400
-# define WALL_Y 400
+# define WALL_X 1000
+# define WALL_Y 1000
 # define WALL_Z 10.0
 # define WALL_SIZE 7.0
 # define HALF WALL_Y/2 
@@ -43,6 +43,7 @@
 # include "./light/light.h"
 # include "./tuples/tuples.h"
 #include "./camara_m/camara_m.h"
+#include "./camera/camera.h"
 
 # include <asm-generic/errno.h>
 # include <fcntl.h>
@@ -60,6 +61,9 @@
 
 
 void start_word(t_minirt  *rt_struct);
+void draw_navigator(t_minirt *rt_struct);
+void print_list_(t_list_ *list);
+void draw_cube_labels(t_minirt *rt_struct);
 
 
 void start_word_test(t_minirt  *rt_struct,double ambinet,t_color color);

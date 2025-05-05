@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/30 15:28:08 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/04 12:23:21 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	loop(t_minirt *rt_struct)
 	cm_windo_put(rt_struct, WALL_X ,  WALL_Y );
 
   		canva_update(rt_struct);
-
+		draw_navigator(rt_struct);
+		draw_cube_labels(rt_struct);
 		char *str;
 	
 

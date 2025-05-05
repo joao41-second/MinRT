@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_comp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/01 17:28:44 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 02:46:00 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,64 @@ void	lig_print_tuple(t_tuple tuple)
 		printf("vect %10.5f %f %f \n", tuple.x, tuple.y, tuple.z);
 }
 
+// t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
+// {
+// t_computations	ret;
+// t_sphere	*sph;
+// double test;
+
+// sph = inter.object;
+// ret.t = inter.min;
+// if(inter.min >= 0)
+// 	ret.t = 0;
+// ret.object = inter.object;
+// ret.point = ray_position(ray, ret.t);
+// ret.eyev = neg_tuple(ray.direction);
+// ret.norm = lig_normalize(*sph, ret.point);
+// test = dot_product(ret.norm, ret.eyev);
+// if(test == -0)
+// 	test = 0;
+// if (test < 0)
+// {
+// 	ret.norm = neg_tuple(ret.norm);
+// 	ret.inside = TRUE;
+// }
+// else
+// 	ret.inside = FALSE;
+// return (ret);
+// }
 t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 {
-	t_computations	ret;
-	t_sphere	*sph;
+    t_computations	ret;
+    t_object		*obj;
 	double test;
 
-	sph = inter.object;
-	ret.t = inter.min;
+    obj = inter.object;
+    // fprintf(stdout, "Debug: Object type in lig_prepare_computations: %d\n", obj->type);
+    ret.t = inter.min;
 	if(inter.min >= 0)
 		ret.t = 0;
-	ret.object = inter.object;
-	ret.point = ray_position(ray, ret.t);
-	ret.eyev = neg_tuple(ray.direction);
-	ret.norm = lig_normalize(*sph, ret.point);
+    ret.object = inter.object;
+    ret.point = ray_position(ray, ret.t);
+    ret.eyev = neg_tuple(ray.direction);
+    if (obj->type == OBJ_SPHERE)
+    {
+        ret.norm = lig_normalize_obj(*obj, ret.point);
+    }
+    else if (obj->type == OBJ_PLANE)
+    {
+        ret.norm = obj->u_data.plane.base_normal;
+    }
+    else if (obj->type == OBJ_TRIANGLE)
+	{
+		t_triangle *triangle = &obj->u_data.triangle;
+		ret.norm = triangle->normal;
+	}
+    else
+    {
+        // fprintf(stderr, "Error: Unknown object type (%d) in lig_prepare_computations\n", obj->type);
+        ret.norm = create_vector(0, 0, 0);
+    }
 	test = dot_product(ret.norm, ret.eyev);
 	if(test == -0)
 		test = 0;
@@ -48,8 +92,12 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 	}
 	else
 		ret.inside = FALSE;
-	return (ret);
+
+    return (ret);
 }
+
+
+
 
 t_color lig_shade_hit(t_obj_int obj,t_light luz,t_computations comp)
 {
