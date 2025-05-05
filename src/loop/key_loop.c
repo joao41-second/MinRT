@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 09:23:22 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 09:31:52 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void key_loop(int key, t_minirt *rt_structj)
 
 	ok = lig_view_transform(rt_structj->point, create_point(0,0,0), create_vector(0, 1,0));
 	
-	ok = mat_multip( mat_gener_rota('x',x * (180/M_PI)),ok);
+	ok = mat_multip( mat_gener_rota('y',x * (180/M_PI)),ok);
 
         rt_structj->cam_m = cm_init( WALL_X ,WALL_Y , M_PI/2, ok);
 	printf("o x e %f \n",x);
