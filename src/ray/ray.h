@@ -33,7 +33,6 @@ t_obj_int ray_for_objects(t_list_ *objs_w,t_ray ray);
 
 void ray_canva( t_minirt *rt_struct);
 
-void ray_set_transform (t_sphere *sph,t_matrix mat);
 void ray_set_transform_obj (t_object *obj,t_matrix mat);
 
 

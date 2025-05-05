@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:12:41 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/30 15:04:28 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:52:09 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_ray ray_transform(t_ray ray,t_matrix mat)
 	return(new_ray);
 }
 
-void ray_set_transform (t_sphere *sph,t_matrix mat)
+void ray_set_transform_sph (t_object *sph,t_matrix mat)
 {
 	mat_free(&sph->transform);
 	mat_free(&sph->inv_transform);
@@ -37,4 +37,18 @@ void ray_set_transform (t_sphere *sph,t_matrix mat)
 	mat_not_neg_zero(&sph->inv_transpose);	
 }
 
-
+void ray_set_transform_obj(t_object *obj, t_matrix mat)
+{
+    if (obj->type == OBJ_SPHERE)
+    {
+	ray_set_transform_sph(obj,mat );
+    }
+    else if (obj->type == OBJ_PLANE)
+    {
+    }
+    else
+    {
+        ft_printf("Error: Unknown obj type.\n");
+        return;
+    }
+}

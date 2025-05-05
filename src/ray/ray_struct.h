@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:37:14 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/02 11:40:11 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:18:42 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_limits_range_intersections
 typedef struct s_object_intersectd
 {
 	void *object;
+	t_obj_type type;
 	t_list_ *ints;
 	double max;
 	double min;

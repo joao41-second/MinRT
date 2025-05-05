@@ -18,16 +18,14 @@
 //B=2[dx(px−cx)+dy(py−cy)+dz(pz−cz)]
 //C=(px−cx)2+(py−cy)2+(pz−cz)2−R2
 //
-t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
+t_intersection ray_int_sphere(t_ray ray,t_sphere shp)
 {
 	t_intersection ret;
 	double a_;
 	double b_;
 	double c_;
 	double temp;
-	t_ray ray;
 
-	ray = ray_transform(ray_,shp.inv_transform);	   
 	a_ = ((ray.direction.x * ray.direction.x) + (ray.direction.y * ray.direction.y )+ (ray.direction.z * ray.direction.z)) ;
 
 	b_ = 2 * ((ray.direction.x * (ray.origin.x - shp.center.x)) +
@@ -48,40 +46,4 @@ t_intersection ray_int_sphere(t_ray ray_,t_sphere shp)
 	return(ret);
 }
 
-t_intersection ray_int_plane(t_ray ray, t_object *plane)
-{
-    t_ray transformed_ray = ray_transform(ray, plane->u_data.plane.inv_transform);
-    
-    double denom = dot_product(transformed_ray.direction, create_vector(0, 1, 0));
-    
-    if (fabs(denom) < EPSILON)
-    {
-        t_intersection ret;
-        ret.inter = 0;
-        ret.t[0] = -1;
-        ret.t[1] = -1;
-        ret.object = NULL;
-        return ret;
-    }
-    
-    double t = -transformed_ray.origin.y / denom;
-    // printf("Ray intersects the plane at t = %f\n", t);
-    if (t < 0)
-    {
-        t_intersection ret;
-        ret.inter = 0;
-        ret.t[0] = -1;
-        ret.t[1] = -1;
-        ret.object = NULL;
-        return ret;
-    }
-    
-    t_intersection ret;
-    ret.inter = 1;
-    ret.t[0] = t;
-    ret.t[1] = -1;
-    ret.object = plane;
-    
-    return ret;
-}
 

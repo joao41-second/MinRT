@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/01 17:28:44 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:45:28 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ void	lig_print_tuple(t_tuple tuple)
 t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 {
 	t_computations	ret;
-	t_sphere	*sph;
+	t_object	*obj;
 	double test;
 
-	sph = inter.object;
+	obj = inter.object;
 	ret.t = inter.min;
 	if(inter.min >= 0)
 		ret.t = 0;
 	ret.object = inter.object;
 	ret.point = ray_position(ray, ret.t);
 	ret.eyev = neg_tuple(ray.direction);
-	ret.norm = lig_normalize(*sph, ret.point);
+	ret.norm = lig_normalize(*obj, ret.point);
 	test = dot_product(ret.norm, ret.eyev);
 	if(test == -0)
 		test = 0;

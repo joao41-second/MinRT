@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:13:28 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 10:30:06 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:02:50 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void mouse(t_minirt *rt_struct)
 	x = 0;
 	y = 0;
 	mlx_mouse_get_pos(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,&x, &y);
-	printf(" x %d %d vauses: %f \n",x,y,x_);
+//	printf(" x %d %d vauses: %f \n",x,y,x_);
 	if(y != WALL_Y/2){
 	if(y < WALL_Y/2)
 		y_-=0.0001 * abs(WALL_Y /2 -y );
