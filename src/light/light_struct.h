@@ -11,18 +11,18 @@
 /* ************************************************************************** */
 
 #ifndef LIGHT_SRUCT_H
-#define LIGHT_SRUCT_H
+# define LIGHT_SRUCT_H
 
-#include "../miniRT_struct.h"
+# include "../miniRT_struct.h"
 
-typedef struct s_computations 
+typedef struct s_computations
 {
-	void *object;
-	t_point point;
-	t_vector norm;
-	t_tuple eyev;
-	double 	t;
-	int 	inside;
-} t_computations;
+	void		*object;
+	t_point		point;
+	t_vector	norm;
+	t_tuple		eyev;
+	double		t;
+	int			inside;
+}				t_computations;
 
-#endif 
+#endif

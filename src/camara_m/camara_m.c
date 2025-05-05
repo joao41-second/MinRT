@@ -6,13 +6,12 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:30 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 12:51:25 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:08:24 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "camara_m.h"
-
 #include "../minRT.h"
+#include "../ray/ray_struct.h"
 
 void	cm_pixel_size(t_camera_ms *ret)
 {

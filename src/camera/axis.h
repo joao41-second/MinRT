@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 10:38:04 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/19 11:07:36 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:02:46 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@
  */
 typedef struct s_line
 {
-	int x0, y0;
-	int x1, y1;
-	int dx, dy;
-	int sx, sy;
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
 	int	err;
 }		t_line;
 

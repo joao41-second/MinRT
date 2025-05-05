@@ -13,15 +13,11 @@
 #include "../minRT.h"
 #include "objects.h"
 
-
-
-t_sphere sphere(t_point point_satrt , double ray_s)
+t_sphere	sphere(t_point point_satrt, double ray_s)
 {
-	t_sphere new;
+	t_sphere	new;
 
 	new.center = point_satrt;
 	new.ray_s = ray_s;
 	return (new);
 }
-
-	
