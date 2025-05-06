@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 15:20:42 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:48:21 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ int key_loop(int keycode, t_minirt *rt_struct)
         t_object *obj = (t_object *)current->content;
         if (obj->type == OBJ_PLANE)
         {
-            plane = obj;
+            plane = obj;    return (1);
             // print_plane(&obj->u_data.plane);
             break;
         }

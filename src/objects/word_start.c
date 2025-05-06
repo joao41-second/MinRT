@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 15:06:47 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:13:19 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void start_word(t_minirt  *rt_struct)
 	t_sphere sph3;
 	t_list_ *word_objects;
 
-	t_point luz = create_point(0, -0.5,0);
+	t_point luz = create_point(0, -1,0);
 	
 
 	word_objects = NULL;
 	sph = sphere(create_point(0, 0, 0),1) ;
 	ray_set_transform(&sph,mat_gener_scal( 1, 1, 1));
-	sph.matiral = obj_material_init(c_new(0.9,0,0), obj_init_values_material(0.1,0.6, 0.3, 1000));
+	sph.matiral = obj_material_init(c_new(1,0.2,1), obj_init_values_material(0.1,0.6, 0.3, 100));
  	t_object *obj_sphere = create_object(&sph, OBJ_SPHERE);
 	ft_add_node(obj_sphere,&word_objects );
 
@@ -63,7 +63,7 @@ void start_word(t_minirt  *rt_struct)
     // ft_add_node(obj_triangle2,&word_objects );
 
 	rt_struct->word = ft_node_start(word_objects);
-	rt_struct->luz = ligth_init(c_new(1,1,1), luz);	
+	rt_struct->luz = ligth_init(c_new(2,2,2), luz);	
 
 
 }

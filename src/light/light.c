@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:34:08 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 02:53:33 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:56:01 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ t_vector lig_normalize_obj(t_object obj, t_point p_the_obj)
     }
     else if (obj.type == OBJ_PLANE)
     {
-        obj_point = mat_x_tuple(p_the_obj, obj.u_data.plane.inv_transform);
-        obj_word = sub_tuples(obj_point, create_point(0, 0, 0));
-        ret = mat_x_tuple(obj_word, obj.u_data.plane.inv_transpose);
-
+		obj_point = mat_x_tuple(p_the_obj, obj.u_data.plane.inv_transform);
+		t_vector obj_normal = create_vector(0, 1, 0);
+		ret = mat_x_tuple(obj_normal, obj.u_data.plane.inv_transpose);
+		ret.w = 0; 
+		ret = normalize(ret);
         // if (debug_file)
         // {
         //     fprintf(debug_file, "Plane Point: (%f, %f, %f)\n", obj_point.x, obj_point.y, obj_point.z);
@@ -138,11 +139,11 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 		diffuse = c_scalar_multipl(efectiv,mat.values.diffuse * t_luz_dot_normal);
 		reflect_dot_eye = dot_product(lig_reflect(neg_tuple(luztv),comp.norm), comp.eyev);
 		if (reflect_dot_eye <= 0)
-		sepcular = c_new(0, 0, 0);
+			sepcular = c_new(0, 0, 0);
 		else
 		{
-		fact = pow(reflect_dot_eye, mat.values.shininess);
-		sepcular = c_scalar_multipl(luz.intenstiy,mat.values.specular* fact);
+			fact = pow(reflect_dot_eye, mat.values.shininess);
+			sepcular = c_scalar_multipl(luz.intenstiy,mat.values.specular* fact);
 		}
 	
 	}
