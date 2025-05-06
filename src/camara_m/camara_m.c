@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:30 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:08:24 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/06 14:04:05 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,13 @@ t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
 	t_ray	ret;
 	double	xoffset;
 	double	yoffset;
-	double	x_word;
-	double	y_word;
 	t_tuple	pixel;
 	t_tuple	origin;
 
 	xoffset = (px + 0.5) * cam.pixel_size;
 	yoffset = (py + 0.5) * cam.pixel_size;
-	x_word = cam.half_width - xoffset;
-	y_word = cam.half_height - yoffset;
-	pixel = mat_x_tuple(create_point(x_word, y_word, -1),
+	pixel = mat_x_tuple(create_point(cam.half_width
+				- xoffset, cam.half_height - yoffset, -1),
 			cam.inv_tranform_matrix);
 	origin = mat_x_tuple(cam.loc, cam.inv_tranform_matrix);
 	ret.origin = origin;

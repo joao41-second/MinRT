@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 11:38:59 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 14:05:23 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:58:08 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,3 @@ t_vector	lig_normalize(t_object obj, t_point p_the_obj)
 	}
 	return (ret);
 }
-
-

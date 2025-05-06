@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:50:13 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:52:06 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:58:49 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minRT.h"
@@ -55,4 +55,19 @@ t_point	mat_x_tuple(t_tuple point, t_matrix mat)
 		+ (point.val[2] * mat.matr[3][2])
 		+ (point.val[3] * mat.matr[3][3]);
 	return (create_tuple(va1, va2, va3, va4));
+}
+
+void	mat_not_neg_zero(t_matrix *mat)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < mat->size)
+	{
+		x = -1;
+		while (++x < mat->size)
+			if (mat->matr[y][x] == -0)
+				mat->matr[y][x] = 0;
+	}
 }

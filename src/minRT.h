@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:06:22 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/06 14:06:57 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # define WALL_Y 400
 # define WALL_Z 10.0
 # define WALL_SIZE 7.0
-# define HALF WALL_Y / 2
-# define PIXEL_SIZE WALL_SIZE / WALL_X;
 
 # include "../libft/ft_free/ft_free.h"
 # include "../libft/ft_get_next_line/get_next_line_bonus.h"

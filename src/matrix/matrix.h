@@ -169,7 +169,7 @@ double				mat_transposing(int *y, int *x, t_matrix *mat1,
 
 t_matrix			mat_matrix_signal(int size);
 
-void mat_not_neg_zero(t_matrix *mat);
+void				mat_not_neg_zero(t_matrix *mat);
 
-int mat_iqual(t_matrix mat1, t_matrix mat2);
+int					mat_iqual(t_matrix mat1, t_matrix mat2);
 #endif

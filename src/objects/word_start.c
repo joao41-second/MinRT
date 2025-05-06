@@ -6,14 +6,14 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 15:58:54 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:41:30 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "objects.h"
 
-void start_word(t_minirt  *rt_struct)
+void	start_word(t_minirt *rt_struct)
 {
 	t_sphere	sph;
 	t_list_		*word_objects;

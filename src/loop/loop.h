@@ -14,9 +14,9 @@
 # define LOOP_H
 # include "../miniRT_struct.h"
 
-void	 loop(t_minirt *rt_struct);
+void	loop(t_minirt *rt_struct);
 
-void mouse(t_minirt *rt_struct);
+void	mouse(t_minirt *rt_struct);
 
-void key_loop(int key, t_minirt *rt_struct);
+void	key_loop(int key, t_minirt *rt_struct);
 #endif

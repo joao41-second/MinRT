@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:12:42 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/06 14:05:49 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	loop(t_minirt *rt_struct)
 {
 	char	*str;
 
-//	mouse(rt_struct);
 	cm_windo_put(rt_struct, WALL_X, WALL_Y);
 	canva_update(rt_struct);
 	asprintf(&str, "cord: %f %f %f  dir: %f %f %f",
@@ -30,5 +29,5 @@ void	loop(t_minirt *rt_struct)
 		rt_struct->luz.point.y, rt_struct->luz.point.z);
 	mlx_string_put(rt_struct->canva.mlx,
 		rt_struct->canva.mlx_wind,
-		20, 20,create_trgb(1, 255, 255, 2), str);
+		20, 20, create_trgb(1, 255, 255, 2), str);
 }

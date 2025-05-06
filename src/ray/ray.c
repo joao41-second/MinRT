@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 13:02:18 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/06 13:02:21 by jperpct          ###   ########.fr       */
+/*   Created: 2025/05/06 14:01:13 by jperpct           #+#    #+#             */
+/*   Updated: 2025/05/06 14:02:10 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../minRT.h"
 
 t_ray	ray_gener(t_point point, t_vector dir)
