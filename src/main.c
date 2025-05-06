@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 11:32:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/01 12:02:58 by jperpct          ###   ########.fr       */
+/*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
+/*   Updated: 2025/05/05 16:45:06 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minRT.h"
 
-// canva_inicializ(&rt_struct, 200, 100, c_new(0, 0, 0));
 int	main(int ac, char **av, char **env)
 {
-	t_minirt	*rt_struct;
+	t_minirt	rt_struct;
+	t_matrix	ok ;
 	int			status;
 
 	status = 0;
@@ -23,8 +23,14 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 	ft_start_alloc();
-	rt_struct = (t_minirt *)ft_malloc(sizeof(t_minirt), NULL);
-	status = parser(av[1], rt_struct);
-	ft_free_all();
+	rt_struct.needs_render = 1;
+	start_word(&rt_struct);
+	ok = mat_gener_identity(4);
+	rt_struct.point = create_point(0, 0, 2);
+	ok = lig_view_transform(rt_struct.point,
+			create_point(0, 1, 0), create_vector(0, 1, 0));
+	ok = mat_multip(mat_gener_rota('x', 0.054 * (180 / M_PI)), ok);
+	rt_struct.cam_m = cm_init(WALL_X, WALL_Y, M_PI / 2, ok);
+	canva_inicializ(&rt_struct, WALL_X, WALL_Y, c_new(0, 0, 0));
 	return (status);
 }

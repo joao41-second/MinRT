@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 14:29:56 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/25 22:49:57 by rerodrig         ###   ########.fr       */
+/*   Created: 2025/05/05 12:39:58 by jperpct           #+#    #+#             */
+/*   Updated: 2025/05/05 12:40:16 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../minRT.h"
 
 int	canva_loop(t_minirt *rt_struct)
 {
-	main_loop(rt_struct);
+	loop(rt_struct);
+	return (1);
+}
+
+int	canva_mause_loop(t_minirt *rt_struct)
+{
+	mouse(rt_struct);
 	return (1);
 }
 
@@ -23,7 +28,7 @@ int	canva_loop_key(int keycode, void *param)
 	t_minirt	*rt_struct;
 
 	rt_struct = (t_minirt *)param;
-	printf("the key is %d \n", keycode);
+	key_loop(keycode, rt_struct);
 	return (1);
 }
 
@@ -35,6 +40,8 @@ int	canva_loop_mouse(int button, int x, int y, void *param)
 	(void)y;
 	(void)button;
 	rt_struct = (t_minirt *) param;
+	mlx_mouse_get_pos(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, &x, &y);
+	mouse(rt_struct);
 	return (1);
 }
 
@@ -49,6 +56,7 @@ void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 			&rt_struct->canva.canva.bits_per_pixel,
 			&rt_struct->canva.canva.line_length,
 			&rt_struct->canva.canva.endian);
+	start_word(rt_struct);
 	mlx_key_hook(rt_struct->canva.mlx_wind, canva_loop_key, rt_struct);
 	mlx_mouse_hook(rt_struct->canva.mlx_wind, canva_loop_mouse, rt_struct);
 	mlx_loop_hook(rt_struct->canva.mlx, canva_loop, rt_struct);

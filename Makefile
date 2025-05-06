@@ -1,4 +1,4 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,15 +6,19 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/03/20 14:39:52 by rerodrig         ###   ########.fr        #
+#    Updated: 2025/04/30 16:43:32 by jperpct          ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 # Compiler flags
+# WFLGS = -Wall -Wextra -Werror
 #WFLGS = -Wall -Wextra -Werror
-READ_FLG = -g 
 
-MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft
+READ_FLG = -g
+# READ_FLG =  -O3 -march=native -flto -funroll-loops  -g -pg
+
+MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft \
+	      -Llibft/ft_list
 FLGS = $(WFLGS) $(READ_FLG) $(MINILIB_FLG)
 
 VAL = valgrind --leak-check=full  
@@ -30,12 +34,12 @@ OBJDIR = Objs
 OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))
 
 # Libraries
-LIB = ./libft/ft_libft/libft.a ./libft/ft_printf/libftprintf.a ./libft/ft_free/ft_free.a \
+LIB = ./libft/ft_libft/libft.a ./libft/ft_printf/libftprintf.a ./libft/ft_free/ft_free.a ./libft/ft_list/list.a\
 ./libft/minilibx-linux/libmlx.a ./libft/minilibx-linux/libmlx_Linux.a  ./libft/ft_get_next_line/get_next_line.a\
 
 # Commands
 AR = ar rcs
-CC = cc
+CC = gcc
 RM = rm -f
 CAT = cat number.txt
 
@@ -56,6 +60,7 @@ $(LIB):
 	cd libft/ft_libft && make bonus 
 	cd libft/ft_printf && make 
 	cd libft/ft_get_next_line && make 
+	cd libft/ft_list && make 
 	cd libft/minilibx-linux && make
 
 # Main target
@@ -63,6 +68,13 @@ $(NAME): $(LIB) $(OBJS)
 	$(CC) $(OBJS) $(LIB) $(FLGS) -o $(NAME)
 	@echo "╔══════════════════════════╗"
 	@echo "║ ✅ Compiled Successfully!║"
+	@echo "╚══════════════════════════╝"
+# New target to rebuild only the source files
+
+renew: $(OBJS)
+	$(CC) $(OBJS) $(LIB) $(FLGS) -o $(NAME)
+	@echo "╔══════════════════════════╗"
+	@echo "║ ✅ Renewed Successfully! ║"
 	@echo "╚══════════════════════════╝"
 
 # Phony targets
@@ -77,6 +89,7 @@ clean:
 	cd libft/ft_printf && make clean
 	cd libft/ft_get_next_line && make clean
 	cd libft/minilibx-linux && make clean
+	cd libft/ft_list && make clean 
 
 fclean: clean
 	$(RM) $(NAME)
@@ -95,10 +108,10 @@ test_vall: all
 	make val -C tests
 
 
-
-
 s:
 	clear && make re && ./$(NAME)
+n:
+	clear && make renew && ./$(NAME)
 v:
 	clear && make re && $(VAL) ./$(NAME)
 e:
@@ -109,3 +122,10 @@ g:
 	clear && gdb -tui ./$(NAME)
 t:
 	make re && cd ./minishell_tester  && ./tester
+
+pro:
+	gprof ./miniRT gmon.out > test.out && cat test.out
+
+pdf:
+	cd ~/Downloads/ && evince JamisBuck-TheRayTracer.pdf
+

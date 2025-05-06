@@ -6,11 +6,12 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:07:37 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/04 20:22:24 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:00:18 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include "tuples.h"
 
 //MANIPULATIONS -----------------------------------------------------
 
@@ -33,6 +34,10 @@ t_tuple	normalize(t_tuple t)
 {
 	const double	_magnitude = magnitude(t);
 
+	if (is_equal_double(_magnitude, 1))
+		return (t);
+	if (is_equal_tuple(t, create_vector(0, 0, 0)))
+		return (t);
 	return (create_tuple(
 			(t.x / _magnitude),
 			(t.y / _magnitude),

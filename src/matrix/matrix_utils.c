@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:11:40 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/21 13:40:43 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:58:54 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include "matrix.h"
 
 void	mat_get_file(char *file, t_matrix mat)
 {
@@ -40,12 +41,9 @@ void	mat_get_file(char *file, t_matrix mat)
 
 t_matrix	mat_cp(t_matrix mat)
 {
-	t_matrix	tmp;
 	t_matrix	ret;
 
-	tmp = mat_gener(mat.size);
-	ret = mat_exet(mat, tmp, mat_copy);
-	mat_free (&tmp);
+	ret = mat_exet(mat, mat, mat_copy);
 	ret.flag = mat.flag;
 	return (ret);
 }
@@ -64,13 +62,11 @@ void	mat_trans(t_matrix *mat)
 
 void	mat_free(t_matrix *matrix)
 {
-	int		x_;
 	int		y_;
 
 	y_ = -1;
 	while (++y_ < matrix->size)
 	{
-		x_ = -1;
 		ft_free(matrix->matr[y_]);
 	}
 	ft_free(matrix);

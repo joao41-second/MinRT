@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:44:00 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/25 12:38:05 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:31:07 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,4 +169,7 @@ double				mat_transposing(int *y, int *x, t_matrix *mat1,
 
 t_matrix			mat_matrix_signal(int size);
 
+void				mat_not_neg_zero(t_matrix *mat);
+
+int					mat_iqual(t_matrix mat1, t_matrix mat2);
 #endif
