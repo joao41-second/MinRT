@@ -33,9 +33,9 @@ double	magnitude(t_tuple t)
 t_tuple	normalize(t_tuple t)
 {
 	const double	_magnitude = magnitude(t);
-	if(is_equal_double(_magnitude, 1))
+	if (is_equal_double(_magnitude, 1))
 		return (t);
-	if(is_equal_tuple(t, create_vector(0, 0, 0)))
+	if (is_equal_tuple(t, create_vector(0, 0, 0)))
 		return (t);
 		
 	return (create_tuple(

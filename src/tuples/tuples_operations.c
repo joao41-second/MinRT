@@ -27,16 +27,16 @@ t_tuple	sub_tuples(t_tuple a, t_tuple b)
 
 t_tuple	neg_tuple(t_tuple tuple)
 {
-	t_tuple ret;
+	t_tuple	ret;
 
 	ret = create_tuple(-(tuple.x), -(tuple.y), -(tuple.z), -(tuple.w));
-	if(ret.val[0] == -0)
+	if (ret.val[0] == -0)
 		ret.val[0] = +0;
-	if(ret.val[1] == -0)
+	if (ret.val[1] == -0)
 		ret.val[1] = +0;
-	if(ret.val[2] == -0)
+	if (ret.val[2] == -0)
 		ret.val[2] = +0;
-	if(ret.val[3] == -0)
+	if (ret.val[3] == -0)
 		ret.val[3] = +0;
 	return (ret);
 }

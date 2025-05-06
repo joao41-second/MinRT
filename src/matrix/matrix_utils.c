@@ -57,9 +57,7 @@ void	mat_trans(t_matrix *mat)
 	ret = mat_exet(*mat, tmp, mat_transposing);
 	mat_free(mat);
 	*mat = ret;
-
 	mat_free(&tmp);
-
 }
 
 void	mat_free(t_matrix *matrix)
@@ -101,16 +99,17 @@ void	mat_matsh_matrix(t_matrix *mat, char math, double nb)
 	}
 }
 
-void mat_not_neg_zero(t_matrix *mat)
+void	mat_not_neg_zero(t_matrix *mat)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
+
 	y = -1;
 	while (++y < mat->size)
 	{
 		x = -1;
-		while(++x < mat->size)
-			if(mat->matr[y][x] == -0) 
+		while (++x < mat->size)
+			if (mat->matr[y][x] == -0)
 				mat->matr[y][x] = 0;
-	}	
+	}
 }

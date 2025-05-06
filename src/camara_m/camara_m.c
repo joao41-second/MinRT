@@ -66,35 +66,32 @@ t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
 	yoffset = (py + 0.5) * cam.pixel_size;
 	x_word = cam.half_width - xoffset;
 	y_word = cam.half_height - yoffset;
-	pixel = mat_x_tuple(create_point(x_word, y_word, -1)
-			, cam.inv_tranform_matrix);
+	pixel = mat_x_tuple(create_point(x_word, y_word, -1),
+			cam.inv_tranform_matrix);
 	origin = mat_x_tuple(cam.loc, cam.inv_tranform_matrix);
 	ret.origin = origin;
 	ret.direction = normalize(sub_tuples(pixel, origin));
 	return (ret);
 }
 
-
-void cm_windo_put(t_minirt *rt_struct,int x_,int y_)
+void	cm_windo_put(t_minirt *rt_struct, int x_, int y_)
 {
-	int x;
-	int y;
-	t_ray ray;
-	t_color color;
+	t_color	color;
+	t_ray	ray;
+	int		x;
+	int		y;
 
 	y = -1;
-	rt_struct->cam =  cm_ray_for_pixel(rt_struct->cam_m, (double)x_/2, (double)y_ /2);
-
-	while (++y < y_) 
+	rt_struct->cam = cm_ray_for_pixel(rt_struct->cam_m,
+			(double)x_ / 2, (double)y_ / 2);
+	while (++y < y_)
 	{
 		x = -1;
-		while (++x < x_) 
+		while (++x < x_)
 		{
-			ray = cm_ray_for_pixel(rt_struct->cam_m, x,y);	
-	 		color = lig_color_at(rt_struct, ray);
-			canva_set_pixel(rt_struct, x, y, color);	
+			ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
+			color = lig_color_at(rt_struct, ray);
+			canva_set_pixel(rt_struct, x, y, color);
 		}
-	
-	} 
-
+	}
 }

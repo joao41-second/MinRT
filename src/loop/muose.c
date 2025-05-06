@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "../minRT.h"
 
-void	mouse_rotaitio(t_minirt *rt_struct, int x_, int y_)
+void	mouse_rotaitio(t_minirt *rt_struct, double *x_, double *y_)
 {
 	int				x;
 	int				y;
@@ -22,16 +22,16 @@ void	mouse_rotaitio(t_minirt *rt_struct, int x_, int y_)
 	if (y != WALL_Y / 2)
 	{
 		if (y < WALL_Y / 2)
-			y_ -= 0.0001 * abs(WALL_Y / 2 - y);
+			*y_ -= 0.0001 * abs(WALL_Y / 2 - y);
 		if (y > WALL_Y / 2)
-			y_ += 0.0001 * abs(WALL_Y / 2 - y);
+			*y_ += 0.0001 * abs(WALL_Y / 2 - y);
 	}
 	if (x != WALL_X / 2)
 	{
 		if (x < WALL_X / 2)
-			x_ -= 0.00001 * abs(WALL_X / 2 - x);
+			*x_ -= 0.00001 * abs(WALL_X / 2 - x);
 		if (x > WALL_X / 2)
-			x_ += 0.00001 * abs(WALL_X / 2 - x);
+			*x_ += 0.00001 * abs(WALL_X / 2 - x);
 	}
 	if (x != WALL_X / 2 || y != WALL_Y / 2)
 		mlx_mouse_move(rt_struct->canva.mlx,
@@ -41,11 +41,12 @@ void	mouse_rotaitio(t_minirt *rt_struct, int x_, int y_)
 void	mouse(t_minirt *rt_struct)
 {
 	t_matrix		ok;
-	static double	x_ = -0.054;
-	static double	y_ = -0.054;
+	static double	x_ = 0.054;
+	static double	y_ = 0.054;
 
 	ok = mat_gener_identity(4);
-	mouse_rotaitio(rt_struct, x_, y_);
+	mouse_rotaitio(rt_struct, &x_, &y_);
+	rt_struct->point = create_point(0, 0, 2);
 	ok = lig_view_transform(rt_struct->point, create_point(0, 0, 0),
 			create_vector(0, 1, 0));
 	ok = mat_multip(mat_gener_rota('x', y_ * (180 / M_PI)), ok);
