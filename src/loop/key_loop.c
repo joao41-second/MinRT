@@ -20,4 +20,12 @@ void	key_loop(int key, t_minirt *rt_struct)
 	{
 		mlx_loop_end(rt_struct->canva.mlx);
 	}
+	if (key == KEY_O)
+	{
+		rt_struct->luz.point.x+=0.1;
+	}
+	if (key == KEY_L)
+	{
+		rt_struct->luz.point.x-=0.1;
+	}
 }

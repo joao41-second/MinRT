@@ -16,8 +16,8 @@
 # define TRUE 0
 # define FALSE 1
 
-# define WALL_X 400
-# define WALL_Y 400
+# define WALL_X 1000
+# define WALL_Y 750
 # define WALL_Z 10.0
 # define WALL_SIZE 7.0
 

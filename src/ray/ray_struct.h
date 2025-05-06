@@ -61,6 +61,7 @@ typedef struct s_object_intersectd
 	t_list_			*ints;
 	double			max;
 	double			min;
+	double 			shadow;
 	t_mater			mat;
 
 }					t_obj_int;

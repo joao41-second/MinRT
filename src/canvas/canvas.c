@@ -19,7 +19,7 @@ int	canva_loop(t_minirt *rt_struct)
 
 int	canva_mause_loop(t_minirt *rt_struct)
 {
-	mouse(rt_struct);
+	//mouse(rt_struct);
 	return (1);
 }
 
@@ -41,7 +41,7 @@ int	canva_loop_mouse(int button, int x, int y, void *param)
 	(void)button;
 	rt_struct = (t_minirt *) param;
 	mlx_mouse_get_pos(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, &x, &y);
-	mouse(rt_struct);
+//	mouse(rt_struct);
 	return (1);
 }
 

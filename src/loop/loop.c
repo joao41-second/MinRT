@@ -16,7 +16,8 @@
 void	loop(t_minirt *rt_struct)
 {
 	char	*str;
-
+	
+//	mouse(rt_struct);
 	cm_windo_put(rt_struct, WALL_X, WALL_Y);
 	canva_update(rt_struct);
 	asprintf(&str, "cord: %f %f %f  dir: %f %f %f",

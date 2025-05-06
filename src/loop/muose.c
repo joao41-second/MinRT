@@ -41,13 +41,13 @@ void	mouse_rotaitio(t_minirt *rt_struct, double *x_, double *y_)
 void	mouse(t_minirt *rt_struct)
 {
 	t_matrix		ok;
-	static double	x_ = 0.054;
-	static double	y_ = 0.054;
+	static double	x_ = 0;
+	static double	y_ = 0;
 
 	ok = mat_gener_identity(4);
 	mouse_rotaitio(rt_struct, &x_, &y_);
-	rt_struct->point = create_point(0, 0, 2);
-	ok = lig_view_transform(rt_struct->point, create_point(0, 0, 0),
+	rt_struct->point = create_point(0, 3, 1);
+ok = lig_view_transform(rt_struct->point, create_point(0, 1, 0),
 			create_vector(0, 1, 0));
 	ok = mat_multip(mat_gener_rota('x', y_ * (180 / M_PI)), ok);
 	ok = mat_multip(mat_gener_rota('y', x_ * (180 / M_PI)), ok);

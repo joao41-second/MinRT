@@ -39,6 +39,7 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 	ret.eyev = neg_tuple(ray.direction);
 	ret.norm = lig_normalize(*obj, ret.point);
 	test = dot_product(ret.norm, ret.eyev);
+	ret.t_luz = inter.shadow;
 	if (test == -0)
 		test = 0;
 	if (test < 0)
@@ -74,9 +75,12 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 	t_computations		compt;
 	t_obj_int			ray_in_obj;
 	t_color				ret;
+	t_ray				luz;
 
 	ret = c_new(0, 0, 0);
-	ray_in_obj = ray_for_objects(rt_struct->word, ray);
+	luz = ray;
+	luz.direction = normalize(rt_struct->luz.point);
+	ray_in_obj = ray_for_objects(rt_struct->word, ray,luz);
 	if (ray_in_obj.min < 0)
 	{
 		compt = lig_prepare_computations(ray_in_obj, ray);

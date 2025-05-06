@@ -26,11 +26,11 @@ int	main(int ac, char **av, char **env)
 	rt_struct.needs_render = 1;
 	start_word(&rt_struct);
 	ok = mat_gener_identity(4);
-	rt_struct.point = create_point(0, 2, 1);
+	rt_struct.point = create_point(0, 0,10);
 	ok = lig_view_transform(rt_struct.point,
 			create_point(0, 1, 0), create_vector(0, 1, 0));
 	ok = mat_multip(mat_gener_rota('x', 0.054 * (180 / M_PI)), ok);
-	rt_struct.cam_m = cm_init(WALL_X, WALL_Y, M_PI / 2, ok);
+	rt_struct.cam_m = cm_init(WALL_X, WALL_Y, M_PI / 3, ok);
 	canva_inicializ(&rt_struct, WALL_X, WALL_Y, c_new(0, 0, 0));
 	return (status);
 }
