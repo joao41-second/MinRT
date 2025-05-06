@@ -16,4 +16,8 @@ void	key_loop(int key, t_minirt *rt_struct)
 {
 	(void)key;
 	(void)rt_struct;
+	if (key == KEY_ESC)
+	{
+		mlx_loop_end(rt_struct->canva.mlx);
+	}
 }
