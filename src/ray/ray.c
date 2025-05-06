@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 18:15:50 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:40:18 by jperpct          ###   ########.fr       */
+/*   Created: 2025/05/06 13:02:18 by jperpct           #+#    #+#             */
+/*   Updated: 2025/05/06 13:02:21 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
-
-double	mutl_dub(double nb1, double nb2)
-{
-	return (nb1 * nb2);
-}
 
 t_ray	ray_gener(t_point point, t_vector dir)
 {

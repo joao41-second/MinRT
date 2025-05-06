@@ -6,11 +6,15 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:54:58 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:28:33 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:05:23 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
+
+void ray_for_objects_organize()
+{
+}
 
 t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray)
 {
@@ -29,29 +33,15 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray)
 		if (intr.inter > 0)
 		{
 			if (intr.t[0] >= save_points.max || save_points.max == INT_MAX)
-			{
 				save_points.max = intr.t[0];
-				save_points.object = obj;
-				save_points.mat = obj->matiral;
-			}
 			if (intr.t[1] >= save_points.max || save_points.max == INT_MAX)
-			{
 				save_points.max = intr.t[1];
-				save_points.object = obj;
-				save_points.mat = obj->matiral;
-			}
 			if (intr.t[0] <= save_points.min || save_points.max == INT_MAX)
-			{
 				save_points.min = intr.t[0];
-				save_points.object = obj;
-				save_points.mat = obj->matiral;
-			}
 			if (intr.t[1] <= save_points.min || save_points.max == INT_MAX)
-			{
 				save_points.min = intr.t[1];
-				save_points.object = obj;
-				save_points.mat = obj->matiral;
-			}
+			save_points.object = obj;
+			save_points.mat = obj->matiral;
 		}
 		if (objs_w->next == NULL)
 			break ;
