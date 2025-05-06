@@ -26,7 +26,7 @@ int	main(int ac, char **av, char **env)
 	rt_struct.needs_render = 1;
 	start_word(&rt_struct);
 	ok = mat_gener_identity(4);
-	rt_struct.point = create_point(0, 0, 2);
+	rt_struct.point = create_point(0, 2, 1);
 	ok = lig_view_transform(rt_struct.point,
 			create_point(0, 1, 0), create_vector(0, 1, 0));
 	ok = mat_multip(mat_gener_rota('x', 0.054 * (180 / M_PI)), ok);

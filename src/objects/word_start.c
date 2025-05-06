@@ -21,7 +21,7 @@ void	start_word(t_minirt *rt_struct)
 	t_object	*obj_sphere;
 	t_point		luz;
 
-	luz = create_point(0, 3, -3);
+	luz = create_point(0, 0, -3);
 	mat1 = obj_material_init(c_new(1, 0, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 	word_objects = NULL;
