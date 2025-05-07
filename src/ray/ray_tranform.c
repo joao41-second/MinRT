@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:12:41 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:28:01 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/07 11:44:02 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,27 @@ void	ray_set_transform_sph(t_object *sph, t_matrix mat)
 	mat_not_neg_zero(&sph->transform);
 	mat_not_neg_zero(&sph->inv_transpose);
 }
+void	ray_set_transform_pln(t_object *pln, t_matrix mat)
+{
+	mat_free(&pln->transform);
+	mat_free(&pln->inv_transform);
+	mat_free(&pln->inv_transpose);
+
+	pln->transform = mat_cp(mat);
+	pln->inv_transform = mat_inv(mat);
+	pln->inv_transpose = mat_cp(pln->inv_transform);
+	mat_trans(&pln->inv_transpose);
+
+	t_vector transformed_normal = mat_x_tuple(pln->u_data.plane.normal, pln->inv_transpose);
+	pln->u_data.plane.normal = normalize(transformed_normal);
+	mat_not_neg_zero(&pln->inv_transform);
+	mat_not_neg_zero(&pln->transform);
+	mat_not_neg_zero(&pln->inv_transpose);	
+	printf("Plane transform applied:\n");
+	mat_print(pln->transform);
+	printf("Updated plane normal: (%f, %f, %f)\n", pln->u_data.plane.normal.x, pln->u_data.plane.normal.y, pln->u_data.plane.normal.z);
+
+}
 
 void	ray_set_transform_obj(t_object *obj, t_matrix mat)
 {
@@ -45,5 +66,24 @@ void	ray_set_transform_obj(t_object *obj, t_matrix mat)
 	}
 	else if (obj->type == OBJ_PLANE)
 	{
+		ray_set_transform_pln(obj, mat);
+	}
+	else if (obj->type == OBJ_TRIANGLE)
+    {
+        mat_free(&obj->transform);
+        mat_free(&obj->inv_transform);
+        obj->transform = mat_cp(mat);
+        obj->inv_transform = mat_cp(mat_inv(mat));
+    }
+	else if (obj->type == OBJ_CYLINDER)
+	{
+		mat_free(&obj->transform);
+		mat_free(&obj->inv_transform);
+		obj->transform = mat_cp(mat);
+		obj->inv_transform = mat_cp(mat_inv(mat));
+	}
+	else
+	{
+		printf("Unknown object type for transformation.\n");
 	}
 }

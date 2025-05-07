@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camara_m.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:30 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/06 14:04:05 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/07 10:19:09 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ void	cm_pixel_size(t_camera_ms *ret)
 	ret->pixel_size = (ret->half_width * 2) / ret->x ;
 }
 
-t_camera_ms	cm_init(double x, double y,
-		double field_of_view,
-		t_matrix const tranform)
+t_camera_ms cm_init(double x, double y, double field_of_view, t_matrix const tranform)
 {
 	t_camera_ms	ret;
 
@@ -86,7 +84,8 @@ void	cm_windo_put(t_minirt *rt_struct, int x_, int y_)
 		x = -1;
 		while (++x < x_)
 		{
-			ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
+			ray = camera_generate_ray(&rt_struct->scene.world.camera, x, y);
+			// ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
 			color = lig_color_at(rt_struct, ray);
 			canva_set_pixel(rt_struct, x, y, color);
 		}

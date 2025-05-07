@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ray_objects_logic.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:54:58 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/06 13:37:16 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/07 11:48:58 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "ray_struct.h"
 
-void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points)
+void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,t_object *obj)
 {
 	if (intr.t[0] >= save_points->max || save_points->max == INT_MAX)
 		save_points->max = intr.t[0];
@@ -23,6 +23,11 @@ void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points)
 		save_points->min = intr.t[0];
 	if (intr.t[1] <= save_points->min || save_points->max == INT_MAX)
 		save_points->min = intr.t[1];
+	if(save_points->max != INT_MAX)
+	{
+		save_points->object = obj;
+		save_points->mat = obj->matiral;
+	}
 }
 
 t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray)
@@ -41,9 +46,9 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray)
 		intr = ray_int_object(ray,*obj);
 		if (intr.inter > 0)
 		{
-			ray_for_objects_organize(intr, &save_points);
-			save_points.object = obj;
-			save_points.mat = obj->matiral;
+			ray_for_objects_organize(intr, &save_points,obj);
+			// save_points.shadow = shadow.inter;
+			return (save_points);
 		}
 		if (objs_w->next == NULL)
 			break ;
@@ -64,7 +69,21 @@ t_intersection	ray_int_object(t_ray ray, t_object obj)
 		intersection.mat = obj.matiral;
 	}
 	else if (obj.type == OBJ_PLANE)
+    {
+        intersection = ray_int_plane(ray, obj.u_data.plane);
+		intersection.mat = obj.matiral;
+		intersection.object = &obj; 
+    }
+	else if (obj.type == OBJ_TRIANGLE)
 	{
+		intersection = ray_int_triangle(ray, obj);
+		intersection.mat = obj.matiral;
+		intersection.object = &obj; 
+	}
+	else if (obj.type == OBJ_CYLINDER) {
+		intersection = ray_int_cylinder(ray_, obj.u_data.cylinder);
+		intersection.mat = obj.matiral;
+		intersection.object = &obj;
 	}
 	else
 	{
