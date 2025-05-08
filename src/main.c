@@ -25,7 +25,7 @@ int	main(int ac, char **av, char **env)
 	ft_start_alloc();
 	start_word(&rt_struct);
 	ok = mat_gener_identity(4);
-	rt_struct.point = create_point(1, 2,10);
+	rt_struct.point = create_point(1, 2,5);
 	ok = lig_view_transform(rt_struct.point,
 			create_point(0, 0, 0), create_vector(0, 1, 0));
 	rt_struct.cam_m = cm_init(WALL_X, WALL_Y, M_PI / 3, ok);

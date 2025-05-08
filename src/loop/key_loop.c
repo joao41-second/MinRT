@@ -30,6 +30,14 @@ void muve_cam(int key,t_minirt *rt_struct)
 	{
 		rt_struct->point.y -= 0.1;
 	}
+	if(key == KEY_UP )
+	{
+		rt_struct->point.z += 0.1;
+	}
+	if(key == KEY_DOWN )
+	{
+		rt_struct->point.z -= 0.1;
+	}
 }
 
 void rota_cam(int key,t_minirt *rt_struct)
