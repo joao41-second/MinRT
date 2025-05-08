@@ -45,6 +45,7 @@ typedef struct s_camera_m
 	t_vector	dir;
 
 	t_matrix	tranform_matrix;
+	t_mat_calculate	calculate;
 	t_matrix	inv_tranform_matrix;
 	double		half_width;
 	double		half_height;

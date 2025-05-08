@@ -172,4 +172,6 @@ t_matrix			mat_matrix_signal(int size);
 void				mat_not_neg_zero(t_matrix *mat);
 
 int					mat_iqual(t_matrix mat1, t_matrix mat2);
+
+void	mat_set_multip(t_matrix *resolt,t_matrix mat1, t_matrix mat2);
 #endif

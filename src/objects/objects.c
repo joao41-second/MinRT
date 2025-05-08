@@ -13,6 +13,21 @@
 #include "../minRT.h"
 #include "objects.h"
 
+t_mat_calculate obj_mat_calulate_init()
+{
+	t_mat_calculate ret;
+	int x;
+
+	x = -1;
+	while (++x < 6)
+	{
+		ret.mat[x] = mat_gener(4);	
+	}
+
+	return (ret);
+}
+
+
 t_object	*create_object(void *data, t_obj_type type, t_mater mat)
 {
 	t_object	*obj;
@@ -23,6 +38,7 @@ t_object	*create_object(void *data, t_obj_type type, t_mater mat)
 	obj->inv_transform = mat_gener(4);
 	obj->inv_transpose = mat_gener(4);
 	obj->matiral = mat;
+	obj->mat_calculate = obj_mat_calulate_init();
 	if (type == OBJ_SPHERE)
 		obj->u_data.sphere = *(t_sphere *)data;
 	else if (type == OBJ_PLANE)

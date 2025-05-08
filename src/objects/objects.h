@@ -66,6 +66,22 @@ typedef enum e_obj_type
 	OBJ_CYLINDER
 }					t_obj_type;
 
+typedef union s_matrix_cal
+{
+
+	t_matrix 		mat[7];
+	struct 
+	{
+		t_matrix		restl;
+		t_matrix		restl_temp;
+		t_scaling		scal;
+		t_translation		tras;
+		t_rotation		rot_x;
+		t_rotation		rot_y;
+		t_rotation		rot_z;
+	};
+} 	t_mat_calculate;
+
 typedef struct s_object
 {
 	t_obj_type		type;
@@ -79,7 +95,10 @@ typedef struct s_object
 	t_matrix		transform;
 	t_matrix		inv_transform;
 	t_matrix		inv_transpose;
-}					t_object;
+	
+	t_mat_calculate		mat_calculate;
+
+	}					t_object;
 
 t_sphere			sphere(t_point point_satrt, double ray_s);
 
