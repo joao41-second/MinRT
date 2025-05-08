@@ -19,8 +19,8 @@ void	loop(t_minirt *rt_struct)
 	
 	//mouse(rt_struct);
 	
-	mat_set_view_transform(&rt_struct->cam_m.tranform_matrix, rt_struct->point, 
-			create_point(0, 1, 0), create_vector(0, 1, 0));
+//	mat_set_view_transform(&rt_struct->cam_m.tranform_matrix, rt_struct->point, 
+//			create_point(0, 1, 0), create_vector(0, 1, 0));
 
 	mat_set_multip(&rt_struct->cam_m.tranform_matrix,mat_gener_rota('x', rt_struct->rota_x),mat_cp(rt_struct->cam_m.tranform_matrix));
 	cm_update(&rt_struct->cam_m);

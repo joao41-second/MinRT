@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "../minRT.h"
 #include "matrix.h"
+#include <stdio.h>
 
 void	mat_x_point_aux(t_point *new_, double copy[4][4], int size)
 {
@@ -35,9 +36,15 @@ t_point	mat_x_tuple(t_tuple point, t_matrix mat)
 	double	va4;
 	double	va3;
 	double	va2;
-
+	
+	va1 = 0;
+	va2 = 0;	
+	va3 = 0;
+	va4 = 0;
+	mat_print(mat);
 	if (mat.size != 4)
 		return (create_tuple(0, 0, 0, 0));
+	
 	va1 = (point.val[0] * mat.matr[0][0])
 		+ (point.val[1] * mat.matr[0][1])
 		+ (point.val[2] * mat.matr[0][2])
@@ -54,6 +61,9 @@ t_point	mat_x_tuple(t_tuple point, t_matrix mat)
 		+ (point.val[1] * mat.matr[3][1])
 		+ (point.val[2] * mat.matr[3][2])
 		+ (point.val[3] * mat.matr[3][3]);
+	
+	printf("ok %f %f \n", point.val[0], mat.matr[0][0]);
+	printf("db %f \n", point.val[0] * mat.matr[0][0]);
 	return (create_tuple(va1, va2, va3, va4));
 }
 

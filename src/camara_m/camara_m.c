@@ -71,6 +71,12 @@ t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
 	origin = mat_x_tuple(cam.loc, cam.inv_tranform_matrix);
 	ret.origin = origin;
 	ret.direction = normalize(sub_tuples(pixel, origin));
+	lig_print_tuple(pixel);
+	lig_print_tuple(cam.loc);
+
+	lig_print_tuple(origin);
+
+
 	return (ret);
 }
 
