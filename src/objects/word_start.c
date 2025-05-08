@@ -27,7 +27,7 @@ void	start_word(t_minirt *rt_struct)
 	t_object	*obj_sphere3;
 	t_point		luz;
 
-	luz = create_point(1, 2, 10);
+	luz = create_point(-20, 0, 0);
 	mat1 = obj_material_init(c_new(1, 0, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 	word_objects = NULL;
@@ -68,10 +68,9 @@ void	start_word(t_minirt *rt_struct)
 		t_vector direction = create_vector(0,  0, -1);
 		double fov = 100.0;
 	
-		camera_init(&rt_struct->scene.world.camera, origin, direction, fov);
 	
 	rt_struct->word = ft_node_start(word_objects);
-	rt_struct->luz = ligth_init(c_new(2, 2, 2), luz);
+	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
 }
 
 /*void start_word_test(t_minirt  *rt_struct,double ambinet,t_color color)
