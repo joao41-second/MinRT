@@ -71,24 +71,43 @@ t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
 	return (ret);
 }
 
-void	cm_windo_put(t_minirt *rt_struct, int x_, int y_)
+void cm_pixle_paint(t_minirt *rt_struct ,int min_y,int min_x,int scal)
 {
-	t_color	color;
+	int x;
+	int y;
+	
+	y = -1;
+	while (++y < scal)
+	{
+		x = -1;
+		while (++x < scal)
+		{	
+			canva_set_pixel(rt_struct, min_x+x, min_y+y, rt_struct->color);	
+		}
+	}
+
+}
+
+void	cm_windo_put(t_minirt *rt_struct, int x_, int y_,int resul)
+{
 	t_ray	ray;
 	int		x;
 	int		y;
 
-	y = -1;
+	y = 0;
 	rt_struct->cam = cm_ray_for_pixel(rt_struct->cam_m,
 			(double)x_ / 2, (double)y_ / 2);
-	while (++y < y_)
+	while (y < y_)
 	{
-		x = -1;
-		while (++x < x_)
+		x = 0;
+		while (x < x_)
 		{
 			ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
-			color = lig_color_at(rt_struct, ray);
-			canva_set_pixel(rt_struct, x, y, color);
+			rt_struct->color = lig_color_at(rt_struct, ray);
+			cm_pixle_paint(rt_struct, y, x, resul);
+
+			x+=resul;
 		}
+		y+=resul;
 	}
 }

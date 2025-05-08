@@ -62,8 +62,8 @@ typedef struct s_minirt
 	t_ray		cam;
 	int			needs_render;
 	t_point		point;
-	int			x;
-	int			y;
+	t_color 	color;
+
 }				t_minirt;
 
 #endif

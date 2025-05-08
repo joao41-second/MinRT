@@ -15,8 +15,8 @@
 
 # include "../miniRT_struct.h"
 
-void		cm_windo_put(t_minirt *rt_struct, int x_, int y_);
 
+void	cm_windo_put(t_minirt *rt_struct, int x_, int y_,int resul);
 t_camera_ms	cm_init(double x, double y, double field_of_view,
 				t_matrix tranform);
 
