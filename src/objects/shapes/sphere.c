@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:26:38 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 11:50:06 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/08 13:27:43 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minRT.h"
-#include "objects.h"
+#include "../../minRT.h"
+#include "../objects.h"
 
 t_sphere	sphere(t_point point_satrt, double ray_s)
 {

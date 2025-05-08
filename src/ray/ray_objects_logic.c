@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:54:58 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 11:48:58 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:15:12 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,t_obje
 	}
 }
 
+//aqui se returnarmos (save_points) com intr.inter > 0  os objectos renderizam pela ordem de inicializaçao e nao pela objerct.origin
 t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray)
 {
 	t_intersection	intr;
@@ -39,16 +40,14 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray)
 	save_points.max = INT_MAX;
 	save_points.min = INT_MAX;
 	save_points.ints = NULL;
-	save_points.object = objs_w->content;
+	save_points.object = NULL;
 	while (objs_w != NULL)
 	{
 		obj = (t_object *)objs_w->content;
 		intr = ray_int_object(ray,*obj);
-		if (intr.inter > 0)
+		if (intr.inter && intr.t[0] < save_points.min)
 		{
 			ray_for_objects_organize(intr, &save_points,obj);
-			// save_points.shadow = shadow.inter;
-			return (save_points);
 		}
 		if (objs_w->next == NULL)
 			break ;
@@ -63,28 +62,16 @@ t_intersection	ray_int_object(t_ray ray, t_object obj)
 	t_ray			ray_;
 
 	ray_ = ray_transform(ray, obj.inv_transform);
+	intersection.mat = obj.matiral;
+	intersection.object = &obj;
 	if (obj.type == OBJ_SPHERE)
-	{
 		intersection = ray_int_sphere(ray_, obj.u_data.sphere);
-		intersection.mat = obj.matiral;
-	}
 	else if (obj.type == OBJ_PLANE)
-    {
         intersection = ray_int_plane(ray, obj.u_data.plane);
-		intersection.mat = obj.matiral;
-		intersection.object = &obj; 
-    }
 	else if (obj.type == OBJ_TRIANGLE)
-	{
 		intersection = ray_int_triangle(ray, obj);
-		intersection.mat = obj.matiral;
-		intersection.object = &obj; 
-	}
-	else if (obj.type == OBJ_CYLINDER) {
+	else if (obj.type == OBJ_CYLINDER)
 		intersection = ray_int_cylinder(ray_, obj.u_data.cylinder);
-		intersection.mat = obj.matiral;
-		intersection.object = &obj;
-	}
 	else
 	{
 		intersection.inter = 0;

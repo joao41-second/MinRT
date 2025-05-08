@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:12:41 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 11:44:02 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/08 10:04:26 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,34 @@ void	ray_set_transform_pln(t_object *pln, t_matrix mat)
 	printf("Updated plane normal: (%f, %f, %f)\n", pln->u_data.plane.normal.x, pln->u_data.plane.normal.y, pln->u_data.plane.normal.z);
 
 }
+void	ray_set_transform_tri(t_object *tri, t_matrix mat)
+{
+	mat_free(&tri->transform);
+	mat_free(&tri->inv_transform);
+	mat_free(&tri->inv_transpose);
+
+	tri->transform = mat_cp(mat);
+	tri->inv_transform = mat_cp(mat_inv(mat));
+	tri->inv_transpose = mat_cp(tri->inv_transform);
+	mat_trans(&tri->inv_transpose);
+	mat_not_neg_zero(&tri->inv_transform);
+	mat_not_neg_zero(&tri->transform);
+	mat_not_neg_zero(&tri->inv_transpose);
+}
+void	ray_set_transform_cyl(t_object *cyl, t_matrix mat)
+{
+	mat_free(&cyl->transform);
+	mat_free(&cyl->inv_transform);
+	mat_free(&cyl->inv_transpose);
+
+	cyl->transform = mat_cp(mat);
+	cyl->inv_transform = mat_cp(mat_inv(mat));
+	cyl->inv_transpose = mat_cp(cyl->inv_transform);
+	mat_trans(&cyl->inv_transpose);
+	mat_not_neg_zero(&cyl->inv_transform);
+	mat_not_neg_zero(&cyl->transform);
+	mat_not_neg_zero(&cyl->inv_transpose);
+}		
 
 void	ray_set_transform_obj(t_object *obj, t_matrix mat)
 {

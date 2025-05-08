@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:45:06 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/08 15:09:28 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av, char **env)
 	rt_struct.needs_render = 1;
 	start_word(&rt_struct);
 	ok = mat_gener_identity(4);
-	rt_struct.point = create_point(0, 0, 2);
+	rt_struct.point = create_point(0, 0, 5);
 	ok = lig_view_transform(rt_struct.point,
 			create_point(0, 1, 0), create_vector(0, 1, 0));
 	ok = mat_multip(mat_gener_rota('x', 0.054 * (180 / M_PI)), ok);
