@@ -14,7 +14,6 @@
 
 void mat_set_clear(t_matrix	*matrix_)
 {
-	double		**matrix;
 	int			x_;
 	int			y_;
 	int 			x;
@@ -26,15 +25,13 @@ void mat_set_clear(t_matrix	*matrix_)
 		x_ = -1;
 		while (++x_ < x)
 		{
-			matrix[y_][x_] = 0;
+			matrix_->matr[y_][x_] = 0;
 		}
 	}
-	matrix_->matr = matrix;
 	matrix_->flag = 0;
 }
 void mat_set_identity(t_matrix	*matrix_)
 {
-	double		**matrix;
 	int			x_;
 	int			y_;
 	int 			x;
@@ -46,12 +43,11 @@ void mat_set_identity(t_matrix	*matrix_)
 		x_ = -1;
 		while (++x_ < x)
 		{
-			matrix[y_][x_] = 0;
+			matrix_->matr[y_][x_] = 0;
 			if (y_ == x_)
-				matrix[y_][x_] = 1;
+				matrix_->matr[y_][x_] = 1;
 		}
 	}
-	matrix_->matr = matrix;
 	matrix_->flag = IDENTI;
 }
 
@@ -100,3 +96,37 @@ void	mat_set_multip(t_matrix *resolt,t_matrix mat1, t_matrix mat2)
 	}
 }
 
+void	mat_set_view_transform(t_matrix *mat_,t_tuple form, t_tuple to, t_tuple up)
+{
+	static t_matrix	mat;
+	static t_matrix	trans;
+	static int chek = 0;
+	
+	if(chek == 0)
+	{
+		mat = mat_gener(4);
+		trans = mat_gener(4);
+		chek = 1;
+	}
+
+	mat_set_identity(&mat);
+	t_tuple		forward;
+	t_tuple		left;
+	t_tuple		true_up;
+
+	forward = normalize(sub_tuples(to, form));
+	left = cross_product(forward, normalize(up));
+	true_up = cross_product(left, forward);
+	mat.matr[0][0] = left.x;
+	mat.matr[0][1] = left.y;
+	mat.matr[0][2] = left.z;
+	mat.matr[1][0] = true_up.x;
+	mat.matr[1][1] = true_up.y;
+	mat.matr[1][2] = true_up.z;
+	mat.matr[2][0] = -forward.x;
+	mat.matr[2][1] = -forward.y;
+	mat.matr[2][2] = -forward.z;
+	
+	mat_set_trans(&trans, -form.x, -form.y, -form.z);
+	mat_set_multip(mat_, mat, trans);
+}

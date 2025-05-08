@@ -18,6 +18,10 @@ void	loop(t_minirt *rt_struct)
 	char	*str;
 	
 //	mouse(rt_struct);
+	
+//	mat_set_view_transform(&rt_struct->cam_m.tranform_matrix, rt_struct->point, 
+//			create_point(0, 1, 0), create_vector(0, 1, 0));
+//	cm_update(&rt_struct->cam_m);
 	cm_windo_put(rt_struct, WALL_X, WALL_Y,3);
 	canva_update(rt_struct);
 	asprintf(&str, "cord: %f %f %f  dir: %f %f %f",

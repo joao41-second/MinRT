@@ -174,4 +174,6 @@ void				mat_not_neg_zero(t_matrix *mat);
 int					mat_iqual(t_matrix mat1, t_matrix mat2);
 
 void	mat_set_multip(t_matrix *resolt,t_matrix mat1, t_matrix mat2);
+
+void	mat_set_view_transform(t_matrix *mat_,t_tuple form, t_tuple to, t_tuple up);
 #endif

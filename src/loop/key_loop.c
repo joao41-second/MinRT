@@ -12,6 +12,18 @@
 
 #include "../minRT.h"
 
+void muve_cam(int ket,t_minirt *rt_struct)
+{
+	if(ket == KEY_W )
+	{
+		rt_struct->point.x += 0.1;
+	}
+	if(ket == KEY_S )
+	{
+		rt_struct->point.x -= 0.1;
+	}
+}
+
 void	key_loop(int key, t_minirt *rt_struct)
 {
 	(void)key;
@@ -28,4 +40,6 @@ void	key_loop(int key, t_minirt *rt_struct)
 	{
 		rt_struct->luz.point.x-=0.1;
 	}
+
+
 }

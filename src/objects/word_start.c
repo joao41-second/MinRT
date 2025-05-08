@@ -20,6 +20,8 @@ void	start_word(t_minirt *rt_struct)
 	t_list_		*word_objects;
 	t_mater		mat1;
 	t_mater		mat2;
+
+	t_mater		mat3;
 	t_object	*obj_sphere;
 	t_object	*obj_sphere2;
 	t_object	*obj_sphere3;
@@ -41,9 +43,12 @@ void	start_word(t_minirt *rt_struct)
 	obj_sphere2 = create_object(&sph2, OBJ_SPHERE, mat2);
 	ray_set_transform_obj(obj_sphere2,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(1, -1, 0)));
 	ft_add_node(obj_sphere2, &word_objects);
+	mat3 = obj_material_init(c_new(0, 1, 1),
+			obj_init_values_material(0.1, 0.6, 0.3, 100));
+
 
 	sph2 = sphere(create_point(0, 0, 0), 1);
-	obj_sphere3 = create_object(&sph2, OBJ_SPHERE, mat2);
+	obj_sphere3 = create_object(&sph2, OBJ_SPHERE, mat3);
 	ray_set_transform_obj(obj_sphere3,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(1, 1, 0)));
 	ft_add_node(obj_sphere3, &word_objects);
 
