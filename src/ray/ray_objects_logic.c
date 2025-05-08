@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_objects_logic.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:54:58 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/06 13:37:16 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/07 11:48:58 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 		if (intr.inter > 0)
 		{
 			ray_for_objects_organize(intr, &save_points,obj);
-			save_points.shadow = shadow.inter;
+
 			return (save_points);
 		}
 		if (objs_w->next == NULL)
@@ -74,7 +74,21 @@ t_intersection	ray_int_object(t_ray ray, t_object obj)
 		intersection.mat = obj.matiral;
 	}
 	else if (obj.type == OBJ_PLANE)
+    {
+        intersection = ray_int_plane(ray, obj.u_data.plane);
+		intersection.mat = obj.matiral;
+		intersection.object = &obj; 
+    }
+	else if (obj.type == OBJ_TRIANGLE)
 	{
+		intersection = ray_int_triangle(ray, obj);
+		intersection.mat = obj.matiral;
+		intersection.object = &obj; 
+	}
+	else if (obj.type == OBJ_CYLINDER) {
+		intersection = ray_int_cylinder(ray_, obj.u_data.cylinder);
+		intersection.mat = obj.matiral;
+		intersection.object = &obj;
 	}
 	else
 	{

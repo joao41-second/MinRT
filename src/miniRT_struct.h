@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:11:40 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/07 11:54:31 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,6 @@
 # include "./camera/camera.h"
 # include "./light/light_struct.h"
 # include "./objects/objects.h"
-
-typedef struct s_world
-{
-	t_color		ambient;
-	t_camera	camera;
-	t_light		light;
-}				t_world;
-
-typedef struct s_scene
-{
-	t_object	*objects;
-	t_world		world;
-}				t_scene;
 
 typedef struct s_camera_m
 {
@@ -51,6 +38,20 @@ typedef struct s_camera_m
 	double		half_height;
 	double		pixel_size;
 }				t_camera_ms;
+
+
+typedef struct s_world
+{
+	t_color		ambient;
+	t_camera	camera;
+	t_light		light;
+}				t_world;
+
+typedef struct s_scene
+{
+	t_object	*objects;
+	t_world		world;
+}				t_scene;
 
 typedef struct s_minirt
 {

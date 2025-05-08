@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   word_start.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/06 13:41:30 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/07 12:35:16 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,24 @@ void	start_word(t_minirt *rt_struct)
 	ray_set_transform_obj(obj_sphere3,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(1, 1, 0)));
 	ft_add_node(obj_sphere3, &word_objects);
 
+	t_plane pln = create_plane(create_point(0, 0, 0), 0.5);
+	t_object *obj_plane = create_object(&pln, OBJ_PLANE, mat1);
+
+	ft_add_node(obj_plane,&word_objects );
+	
+	t_triangle tri1 = create_triangle(create_point(0, 0, 0), create_point(1, 1, 0), create_point(1, 0, 0));
+	t_object *obj_triangle1 = create_object(&tri1, OBJ_TRIANGLE, mat1);
+	obj_triangle1->matiral = obj_material_init(c_new(1.0, 0, 1.0), obj_init_values_material(0.1, 0.6, 0.9, 200));
+	ray_set_transform_obj(obj_triangle1, mat_gener_scal(1, 1, 1));
+//	ft_add_node(obj_triangle1, &word_objects);
+
+		//init camera
+		t_point origin = create_point(0, 1, 10);
+		t_vector direction = create_vector(0,  0, -1);
+		double fov = 100.0;
+	
+		camera_init(&rt_struct->scene.world.camera, origin, direction, fov);
+	
 	rt_struct->word = ft_node_start(word_objects);
 	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
 }

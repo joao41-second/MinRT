@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 14:45:40 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/05 15:48:27 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/07 11:46:28 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,9 @@ t_object	*create_object(void *data, t_obj_type type, t_mater mat)
 		obj->u_data.sphere = *(t_sphere *)data;
 	else if (type == OBJ_PLANE)
 		obj->u_data.plane = *(t_plane *)data;
+	else if (type == OBJ_TRIANGLE)
+        obj->u_data.triangle = *(t_triangle *)data;
+	else if (type == OBJ_CYLINDER)
+		obj->u_data.cylinder = *(t_cylinder *)data;
 	return (obj);
 }
