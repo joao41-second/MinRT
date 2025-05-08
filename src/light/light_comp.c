@@ -32,8 +32,6 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 
 	obj = inter.object;
 	ret.t = inter.min;
-	if (inter.min >= 0)
-		ret.t = 0;
 	ret.object = inter.object;
 	ret.point = ray_position(ray, ret.t);
 	ret.eyev = neg_tuple(ray.direction);

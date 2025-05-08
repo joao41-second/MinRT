@@ -65,6 +65,8 @@ typedef struct s_minirt
 	int			needs_render;
 	t_point		point;
 	t_color 	color;
+	double		rota_x;
+	double		rota_y;
 
 }				t_minirt;
 

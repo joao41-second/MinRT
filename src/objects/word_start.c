@@ -27,7 +27,7 @@ void	start_word(t_minirt *rt_struct)
 	t_object	*obj_sphere3;
 	t_point		luz;
 
-	luz = create_point(0, 5, 0);
+	luz = create_point(1, 2, 10);
 	mat1 = obj_material_init(c_new(1, 0, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 	word_objects = NULL;
@@ -55,7 +55,7 @@ void	start_word(t_minirt *rt_struct)
 	t_plane pln = create_plane(create_point(0, 0, 0), 0.5);
 	t_object *obj_plane = create_object(&pln, OBJ_PLANE, mat1);
 
-	ft_add_node(obj_plane,&word_objects );
+//	ft_add_node(obj_plane,&word_objects );
 	
 	t_triangle tri1 = create_triangle(create_point(0, 0, 0), create_point(1, 1, 0), create_point(1, 0, 0));
 	t_object *obj_triangle1 = create_object(&tri1, OBJ_TRIANGLE, mat1);
@@ -71,7 +71,7 @@ void	start_word(t_minirt *rt_struct)
 		camera_init(&rt_struct->scene.world.camera, origin, direction, fov);
 	
 	rt_struct->word = ft_node_start(word_objects);
-	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
+	rt_struct->luz = ligth_init(c_new(2, 2, 2), luz);
 }
 
 /*void start_word_test(t_minirt  *rt_struct,double ambinet,t_color color)

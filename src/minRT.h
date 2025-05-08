@@ -18,8 +18,8 @@
 
 # define WALL_X 1000
 # define WALL_Y 750
-# define WALL_Z 10.0
-# define WALL_SIZE 7.0
+# define WALL_Z 1.0
+# define WALL_SIZE 1.0
 
 # include "../libft/ft_free/ft_free.h"
 # include "../libft/ft_get_next_line/get_next_line_bonus.h"

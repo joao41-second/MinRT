@@ -21,8 +21,11 @@ void	loop(t_minirt *rt_struct)
 	
 	mat_set_view_transform(&rt_struct->cam_m.tranform_matrix, rt_struct->point, 
 			create_point(0, 1, 0), create_vector(0, 1, 0));
+
+	mat_set_multip(&rt_struct->cam_m.tranform_matrix,mat_gener_rota('x', rt_struct->rota_x),mat_cp(rt_struct->cam_m.tranform_matrix));
 	cm_update(&rt_struct->cam_m);
 	cm_windo_put(rt_struct, WALL_X, WALL_Y,3);
+
 	canva_update(rt_struct);
 	asprintf(&str, "cord: %f %f %f  dir: %f %f %f",
 		rt_struct->cam.origin.x, rt_struct->cam.origin.y,

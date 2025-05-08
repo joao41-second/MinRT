@@ -32,6 +32,26 @@ void muve_cam(int key,t_minirt *rt_struct)
 	}
 }
 
+void rota_cam(int key,t_minirt *rt_struct)
+{
+	if(key == KEY_E )
+	{
+		rt_struct->rota_x += 0.1;
+	}
+	if(key == KEY_Q )
+	{
+		rt_struct->rota_x -= 0.1;
+	}
+	if(key == KEY_K )
+	{
+		rt_struct->rota_y+= 0.1;
+	}
+	if(key == KEY_R )
+	{
+		rt_struct->rota_y -= 0.1;
+	}
+}
+
 void	key_loop(int key, t_minirt *rt_struct)
 {
 	(void)key;
@@ -49,4 +69,5 @@ void	key_loop(int key, t_minirt *rt_struct)
 		rt_struct->luz.point.x-=0.1;
 	}
 	muve_cam(key,rt_struct);
+	rota_cam(key,rt_struct);
 }

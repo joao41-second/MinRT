@@ -20,15 +20,18 @@ void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,t_obje
 	if (intr.t[1] >= save_points->max || save_points->max == INT_MAX)
 		save_points->max = intr.t[1];
 	if (intr.t[0] <= save_points->min || save_points->max == INT_MAX)
-		save_points->min = intr.t[0];
-	if (intr.t[1] <= save_points->min || save_points->max == INT_MAX)
-		save_points->min = intr.t[1];
-	if(save_points->max != INT_MAX)
 	{
+		save_points->min = intr.t[0];
 		save_points->object = obj;
 		save_points->mat = obj->matiral;
 	}
-}
+	if (intr.t[1] <= save_points->min || save_points->max == INT_MAX)
+	{
+		save_points->min = intr.t[1];
+		save_points->object = obj;
+		save_points->mat = obj->matiral;
+	}
+	}
 
 
 t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
@@ -52,7 +55,6 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 		{
 			ray_for_objects_organize(intr, &save_points,obj);
 
-			return (save_points);
 		}
 		if (objs_w->next == NULL)
 			break ;
@@ -75,9 +77,8 @@ t_intersection	ray_int_object(t_ray ray, t_object obj)
 	}
 	else if (obj.type == OBJ_PLANE)
     {
-        intersection = ray_int_plane(ray, obj.u_data.plane);
+     	   intersection = ray_int_plane(ray, obj.u_data.plane);
 		intersection.mat = obj.matiral;
-		intersection.object = &obj; 
     }
 	else if (obj.type == OBJ_TRIANGLE)
 	{
