@@ -22,16 +22,16 @@ void	mouse_rotaitio(t_minirt *rt_struct)
 	if (y != WALL_Y / 2)
 	{
 		if (y < WALL_Y / 2)
-			rt_struct->rota_y -= 0.0001 * abs(WALL_Y / 2 - y);
+			rt_struct->rota_y += 0.001 * abs(WALL_Y / 2 - y);
 		if (y > WALL_Y / 2)
-			rt_struct->rota_y += 0.0001 * abs(WALL_Y / 2 - y);
+			rt_struct->rota_y -= 0.001 * abs(WALL_Y / 2 - y);
 	}
 	if (x != WALL_X / 2)
 	{
 		if (x < WALL_X / 2)
-			rt_struct->rota_x -= 0.0001 * abs(WALL_X / 2 - x);
+			rt_struct->rota_x += 0.001 * abs(WALL_X / 2 - x);
 		if (x > WALL_X / 2)
-			rt_struct->rota_x += 0.0001 * abs(WALL_X / 2 - x);
+			rt_struct->rota_x -= 0.001 * abs(WALL_X / 2 - x);
 	}
 	if (x != WALL_X / 2 || y != WALL_Y / 2)
 		mlx_mouse_move(rt_struct->canva.mlx,
