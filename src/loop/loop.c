@@ -20,12 +20,13 @@ void	loop(t_minirt *rt_struct)
 	//mouse(rt_struct);
 	
 	mat_set_view_transform(&rt_struct->cam_m.tranform_matrix, create_point(0, 1.5,-5), 
-			create_point(0, 0, 0), create_vector(0, 1, 1));
+			create_point(0, 0, 0), create_vector(0, 1, 0));
 
 	mat_set_multip(&rt_struct->cam_m.tranform_matrix,mat_gener_rota('x', rt_struct->rota_x),mat_cp(rt_struct->cam_m.tranform_matrix));
 
 	mat_set_multip(&rt_struct->cam_m.tranform_matrix,mat_gener_rota('y', rt_struct->rota_y),mat_cp(rt_struct->cam_m.tranform_matrix));
-	mat_set_multip(&rt_struct->cam_m.tranform_matrix,mat_gener_trans(rt_struct->point.x, rt_struct->point.y, rt_struct->point.z),mat_cp(rt_struct->cam_m.tranform_matrix));
+	mat_set_multip(&rt_struct->cam_m.tranform_matrix,mat_cp(rt_struct->cam_m.tranform_matrix),
+			mat_gener_trans(rt_struct->point.x, rt_struct->point.y, rt_struct->point.z));
 	cm_update(&rt_struct->cam_m);
 	cm_windo_put(rt_struct, WALL_X, WALL_Y,2);
 
