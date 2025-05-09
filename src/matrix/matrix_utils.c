@@ -12,6 +12,7 @@
 
 #include "../minRT.h"
 #include "matrix.h"
+#include <stdio.h>
 
 void	mat_get_file(char *file, t_matrix mat)
 {
@@ -93,8 +94,12 @@ void	mat_matsh_matrix(t_matrix *mat, char math, double nb)
 				mat->matr[l][c] = temp - nb;
 			if (math == '*')
 				mat->matr[l][c] = temp * nb;
-			if (math == '/')
-				mat->matr[l][c] = temp / nb;
+			if (math == '/'){
+				if(nb != 0)
+					mat->matr[l][c] = temp / nb;
+				else 	
+					mat->matr[l][c] = temp ;
+			}
 		}
 	}
 }

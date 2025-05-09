@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include "matrix.h"
 
 t_matrix	mat_the_cof(t_matrix mat)
 {
@@ -39,7 +40,9 @@ t_matrix	mat_inv(t_matrix mat)
 
 	invertd = mat_the_cof(mat);
 	mat_trans(&invertd);
+
 	mat_matsh_matrix(&invertd, '/', mat_det(mat));
+
 	y = -1;
 	while (++y < mat.size)
 	{

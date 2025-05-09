@@ -41,7 +41,6 @@ t_point	mat_x_tuple(t_tuple point, t_matrix mat)
 	va2 = 0;	
 	va3 = 0;
 	va4 = 0;
-	mat_print(mat);
 	if (mat.size != 4)
 		return (create_tuple(0, 0, 0, 0));
 	
@@ -62,8 +61,6 @@ t_point	mat_x_tuple(t_tuple point, t_matrix mat)
 		+ (point.val[2] * mat.matr[3][2])
 		+ (point.val[3] * mat.matr[3][3]);
 	
-	printf("ok %f %f \n", point.val[0], mat.matr[0][0]);
-	printf("db %f \n", point.val[0] * mat.matr[0][0]);
 	return (create_tuple(va1, va2, va3, va4));
 }
 
