@@ -58,6 +58,8 @@
 # define KEY_K		107
 # define KEY_J		106
 # define KEY_Y		121
+# define KEY_U 		117
+
 # define KEY_ESC    65307
 
 #endif
