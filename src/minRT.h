@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/08 10:21:27 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/09 09:46:56 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include "../libft/minilibx-linux/mlx.h"
 # include "../libft/minilibx-linux/mlx_int.h"
 
+# include "./miniRT_struct.h"
 # include "./tuples/tuples.h"
 # include "./matrix/matrix.h"
 # include "./ray/ray.h"
@@ -37,7 +38,6 @@
 # include "./canvas/canvas.h"
 # include "./light/light.h"
 # include "./loop/loop.h"
-# include "./miniRT_struct.h"
 # include "./objects/objects.h"
 # include "./camera/camera.h"
 # include <asm-generic/errno.h>

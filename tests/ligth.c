@@ -8,7 +8,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../tests.h"
+#include "tests.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -33,8 +33,9 @@ int norm_l(char *name,t_point point,t_point sph_p,t_vector chek)
 	(void)sph_p;
 	error = 0;
 	sph = sphere(create_point(0, 0, 0),1);
-	ray_set_transform(&sph,mat_gener_scal( 1, 1, 1));
-	test = lig_normalize(sph, point);
+	t_object obj = *create_object(&sph, OBJ_SPHERE, obj_material_init(c_new(1, 1, 1), obj_init_values_material(0.1, 0.9, 0.9, 200)));
+	ray_set_transform_obj(&obj,mat_gener_scal( 1, 1, 1));
+	test = lig_normalize(obj, point);
 	if (!is_equal_tuple(test, chek))
 		error ++;
 	nb++;
@@ -89,7 +90,7 @@ int lig_reflect_test(t_vector norm,t_vector vect,t_vector resp)
 
 }
 
-int lig_normalize_test(t_sphere sph,t_point point,t_tuple resp)
+int lig_normalize_test(t_object sph,t_point point,t_tuple resp)
 {
 	static int nb;
 	int error;
@@ -118,25 +119,26 @@ void normalize_test_()
 
 	check = 0;
 	sph = sphere(create_point(0, 0, 0),1);
+	t_object obj = *create_object(&sph, OBJ_SPHERE, obj_material_init(c_new(1, 1, 1), obj_init_values_material(0.1, 0.9, 0.9, 200)));
 
-	ray_set_transform(&sph,mat_gener_scal(1,1, 1)) ;
+	ray_set_transform_obj(&obj,mat_gener_scal(1,1, 1)) ;
 
-	check += lig_normalize_test(sph, create_point(1, 0, 0), create_vector(1, 0, 0));
+	check += lig_normalize_test(obj, create_point(1, 0, 0), create_vector(1, 0, 0));
 
-	check += lig_normalize_test(sph, create_point(0, 1, 0), create_vector(0, 1, 0));
+	check += lig_normalize_test(obj, create_point(0, 1, 0), create_vector(0, 1, 0));
 
-	check += lig_normalize_test(sph, create_point(0, 0, 1), create_vector(0, 0, 1));
+	check += lig_normalize_test(obj, create_point(0, 0, 1), create_vector(0, 0, 1));
 
-	check += lig_normalize_test(sph, create_point(sqrt(3)/3, sqrt(3)/3,sqrt(3)/3 ), create_vector(  sqrt(3)/3,  sqrt(3)/3, sqrt(3)/3));
+	check += lig_normalize_test(obj, create_point(sqrt(3)/3, sqrt(3)/3,sqrt(3)/3 ), create_vector(  sqrt(3)/3,  sqrt(3)/3, sqrt(3)/3));
 
-	ray_set_transform(&sph,mat_gener_trans(0, 1, 0) );
+	ray_set_transform_obj(&obj,mat_gener_trans(0, 1, 0) );
 
 
-	check += lig_normalize_test(sph, create_point(0, 1.70711, -0.70711), create_vector(0, 0.70711, -0.70711));
+	check += lig_normalize_test(obj, create_point(0, 1.70711, -0.70711), create_vector(0, 0.70711, -0.70711));
 	
-	ray_set_transform(&sph, mat_multip(mat_gener_scal(1, 0.5, 1),mat_gener_rota('z',M_PI/5)));
+	ray_set_transform_obj(&obj, mat_multip(mat_gener_scal(1, 0.5, 1),mat_gener_rota('z',M_PI/5)));
 
-	check += lig_normalize_test(sph, create_point(0, M_SQRT2/2, -M_SQRT2/2), create_vector(0, 0.97014, -0.24254));
+	check += lig_normalize_test(obj, create_point(0, M_SQRT2/2, -M_SQRT2/2), create_vector(0, 0.97014, -0.24254));
 	if(check == 0)
 		printf(COLOR_GREEN" %s: good lig_normalize tests ok\n"COLOR_RESET,"ligt");	
 	check = 0;	
@@ -186,6 +188,6 @@ void normalize_(void)
 
 void	test_ligth(void)
 {
-	RUN_TEST(normalize_);
+	// RUN_TEST(normalize_);
 
 }

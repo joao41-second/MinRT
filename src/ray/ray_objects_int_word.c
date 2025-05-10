@@ -160,6 +160,10 @@ t_intersection ray_int_triangle(t_ray ray, t_object obj)
     ret.inter = 1;
     ret.t[0] = t;
     ret.t[1] = -1;
+    ret.object = &obj;
+    // printf("Debug: det: %f, u: %f, v: %f, t: %f\n", det, u, v, t);
+    // printf("Debug: Triangle edges: edge1(%f, %f, %f), edge2(%f, %f, %f)\n", obj.u_data.triangle.edge1.x, obj.u_data.triangle.edge1.y, obj.u_data.triangle.edge1.z, obj.u_data.triangle.edge2.x, obj.u_data.triangle.edge2.y, obj.u_data.triangle.edge2.z);
+    // printf("Debug: Ray origin: (%f, %f, %f), direction: (%f, %f, %f)\n", transformed_ray.origin.x, transformed_ray.origin.y, transformed_ray.origin.z, transformed_ray.direction.x, transformed_ray.direction.y, transformed_ray.direction.z);
     return ret;
 }
 

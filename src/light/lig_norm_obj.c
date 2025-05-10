@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 11:38:59 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/08 15:07:06 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:26:34 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_vector	lig_normalize(t_object obj, t_point p_the_obj)
 	else if (obj.type == OBJ_PLANE)
 		ret = lig_normalize_plane(obj, p_the_obj);
 	else if (obj.type == OBJ_TRIANGLE) 
-		ret = lig_normalize_sph(obj, p_the_obj);
+		ret = lig_normalize_tri(obj, p_the_obj);
 	else if (obj.type == OBJ_CYLINDER)
 	{
 		ret = lig_normalize_sph(obj, p_the_obj);

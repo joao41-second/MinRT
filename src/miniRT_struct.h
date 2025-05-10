@@ -6,12 +6,12 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 11:54:31 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:29:46 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_STRUCT_H
-# define MINIRT_STRUCT_H
+#define MINIRT_STRUCT_H
 
 # include "./tuples/tuples.h"
 # include "./matrix/matrix.h"
