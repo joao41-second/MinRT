@@ -36,7 +36,7 @@ void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,t_obje
 		save_points->object = obj;
 		save_points->mat = obj->matiral;
 		}
-	}
+		}
 	}
 
 
@@ -60,7 +60,6 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 		if (intr.inter > 0)
 		{
 			ray_for_objects_organize(intr, &save_points,obj);
-
 		}
 		if (objs_w->next == NULL)
 			break ;

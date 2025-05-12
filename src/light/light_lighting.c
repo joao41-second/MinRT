@@ -48,10 +48,10 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	}
 	else
 		lig_specular_and_difuse(&light, comp, mat, luz);
-	if(comp.t_luz > 0)
+	if(comp.t_luz < 0)
 	{
-	//	light.diffuse = c_new(0, 0, 0);
-	//	light.sepcular = c_new(0, 0, 0);
+		//light.diffuse = c_new(0, 0, 0);
+		//light.sepcular = c_new(0, 0, 0);
 	}
 	light.ret = c_adding(c_adding(light.sepcular, light.amb_c), light.diffuse);
 	return (light.ret);

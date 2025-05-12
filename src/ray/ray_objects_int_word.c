@@ -64,7 +64,6 @@ t_intersection ray_int_plane(t_ray ray, t_plane plane)
     ac = sub_tuples(plane.point3, plane.point1);
 	
     norm = cross_product(ab, ac);
-    norm = normalize(norm);
 
  
     a = -(norm.x*ray.origin.x + norm.y * ray.origin.y + norm.z*ray.origin.z);
@@ -87,7 +86,7 @@ t_intersection ray_int_plane(t_ray ray, t_plane plane)
 	
 
     if(b != 0 && t >= 0)
-    	ret.inter = -1;
+    	ret.inter = 1;
 	    
 
     ret.object = &plane;
