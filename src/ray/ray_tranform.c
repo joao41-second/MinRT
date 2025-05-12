@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:12:41 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/08 10:04:26 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/12 14:41:11 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,33 @@ void	ray_set_transform_sph(t_object *sph, t_matrix mat)
 	mat_not_neg_zero(&sph->transform);
 	mat_not_neg_zero(&sph->inv_transpose);
 }
-void	ray_set_transform_pln(t_object *pln, t_matrix mat)
+void ray_set_transform_pln(t_object *pln, t_matrix mat)
 {
-	mat_free(&pln->transform);
-	mat_free(&pln->inv_transform);
-	mat_free(&pln->inv_transpose);
+    mat_free(&pln->transform);
+    mat_free(&pln->inv_transform);
+    mat_free(&pln->inv_transpose);
 
-	pln->transform = mat_cp(mat);
-	pln->inv_transform = mat_inv(mat);
-	pln->inv_transpose = mat_cp(pln->inv_transform);
-	mat_trans(&pln->inv_transpose);
+    pln->transform = mat_cp(mat);
+    pln->inv_transform = mat_inv(mat);
+    pln->inv_transpose = mat_cp(pln->inv_transform);
+    mat_trans(&pln->inv_transpose);
 
-	t_vector transformed_normal = mat_x_tuple(pln->u_data.plane.normal, pln->inv_transpose);
-	pln->u_data.plane.normal = normalize(transformed_normal);
-	mat_not_neg_zero(&pln->inv_transform);
-	mat_not_neg_zero(&pln->transform);
-	mat_not_neg_zero(&pln->inv_transpose);	
-	printf("Plane transform applied:\n");
-	mat_print(pln->transform);
-	printf("Updated plane normal: (%f, %f, %f)\n", pln->u_data.plane.normal.x, pln->u_data.plane.normal.y, pln->u_data.plane.normal.z);
+    mat_not_neg_zero(&pln->inv_transform);
+    mat_not_neg_zero(&pln->transform);
+    mat_not_neg_zero(&pln->inv_transpose);
+    
+    t_vector base_normal = create_vector(0, 1, 0);
+    pln->u_data.plane.normal = mat_x_tuple(base_normal, pln->inv_transpose);
+    pln->u_data.plane.center = mat_x_tuple(create_point(0, 0, 0), pln->transform);
 
+	
+    
+    printf("Plane transform applied:\n");
+    mat_print(pln->transform);
+    printf("Updated plane normal: (%f, %f, %f)\n", 
+           pln->u_data.plane.normal.x, pln->u_data.plane.normal.y, pln->u_data.plane.normal.z);
+    printf("Updated plane center: (%f, %f, %f)\n", 
+           pln->u_data.plane.center.x, pln->u_data.plane.center.y, pln->u_data.plane.center.z);
 }
 void	ray_set_transform_tri(t_object *tri, t_matrix mat)
 {

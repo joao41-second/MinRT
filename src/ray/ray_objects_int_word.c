@@ -55,34 +55,73 @@ t_intersection	ray_int_sphere(t_ray ray, t_sphere shp)
 // - O is the ray origin
 // - D is the ray direction
 // - t is the distance from the ray origin to the intersection point
-t_intersection ray_int_plane(t_ray ray, t_plane plane)
-{
-    t_intersection  ret;
-    double          denom;
 
-    denom = dot_product(plane.normal, ray.direction);
+
+t_intersection ray_int_plane(t_ray ray, t_object *plane)
+{
+    t_intersection ret;
+    // t_ray transformed_ray = ray_transform(ray, plane->inv_transform);
+    double denom = ray.direction.y;
+    
     if (fabs(denom) < EPSILON)
     {
         ret.inter = 0;
         ret.t[0] = -1;
         ret.t[1] = -1;
         ret.object = NULL;
+        ret.ray_start = ray;
         return ret;
     }
-    double t = dot_product(plane.normal, sub_tuples(plane.center, ray.origin)) / denom;
+    
+    double t = -ray.origin.y / denom;
+    
     if (t < 0)
     {
         ret.inter = 0;
         ret.t[0] = -1;
         ret.t[1] = -1;
         ret.object = NULL;
+        ret.ray_start = ray;
         return ret;
     }
+
     ret.inter = 1;
     ret.t[0] = t;
     ret.t[1] = -1;
-    return (ret);
+    ret.object = plane;
+    ret.ray_start = ray;
+    return ret;
 }
+
+// t_intersection ray_int_plane(t_ray ray, t_object plane)
+// {
+//     t_intersection  ret;
+//     double          denom;
+
+//     denom = dot_product(plane.u_data.plane.normal, ray.direction);
+//     if (fabs(denom) < EPSILON)
+//     {
+//         ret.inter = 0;
+//         ret.t[0] = -1;
+//         ret.t[1] = -1;
+//         ret.object = NULL;
+//         return ret;
+//     }
+//     double t = dot_product(plane.u_data.plane.normal, sub_tuples(plane.u_data.plane.center, ray.origin)) / denom;
+//     if (t < 0)
+//     {
+//         ret.inter = 0;
+//         ret.t[0] = -1;
+//         ret.t[1] = -1;
+//         ret.object = NULL;
+//         return ret;
+//     }
+//     ret.inter = 1;
+//     ret.t[0] = t;
+//     ret.t[1] = -1;
+//     return (ret);
+
+// }
 
 // ---->edges
 // edge1 = P2 - P1
@@ -103,7 +142,7 @@ t_intersection ray_int_plane(t_ray ray, t_plane plane)
 // t = f * (edge2 • q)
 // If t < 0, intersection is behind the ray origin
 // If all conditions are satisfied, the ray intersects the triangle
-t_intersection ray_int_triangle(t_ray ray, t_object obj)
+t_intersection ray_int_triangle(t_ray ray, t_object *obj)
 {
     t_intersection  ret;
     t_ray           transformed_ray;
@@ -116,9 +155,9 @@ t_intersection ray_int_triangle(t_ray ray, t_object obj)
     double v;
     double t;
 
-    transformed_ray = ray_transform(ray, obj.inv_transform);
-    dir_cross_e2 = cross_product(obj.u_data.triangle.edge2, transformed_ray.direction);
-    det = dot_product(obj.u_data.triangle.edge1, dir_cross_e2);
+    transformed_ray = ray;
+    dir_cross_e2 = cross_product(obj->u_data.triangle.edge2, transformed_ray.direction);
+    det = dot_product(obj->u_data.triangle.edge1, dir_cross_e2);
     if (fabs(det) < EPSILON)
     {
         ret.inter = 0;
@@ -128,7 +167,7 @@ t_intersection ray_int_triangle(t_ray ray, t_object obj)
         return ret;
     }
     f = 1.0 / det;
-    p1_to_origin = sub_tuples(transformed_ray.origin, obj.u_data.triangle.p1);
+    p1_to_origin = sub_tuples(transformed_ray.origin, obj->u_data.triangle.p1);
     u = f * dot_product(p1_to_origin, dir_cross_e2);
     if (u < 0 || u > 1)
     {
@@ -138,7 +177,7 @@ t_intersection ray_int_triangle(t_ray ray, t_object obj)
         ret.object = NULL;
         return ret;
     }
-    origin_cross_e1 = cross_product(p1_to_origin, obj.u_data.triangle.edge1);
+    origin_cross_e1 = cross_product(p1_to_origin, obj->u_data.triangle.edge1);
     v = f * dot_product(transformed_ray.direction, origin_cross_e1);
     if (v < 0 || (u + v) > 1)
     {
@@ -148,7 +187,7 @@ t_intersection ray_int_triangle(t_ray ray, t_object obj)
         ret.object = NULL;
         return ret;
     }
-    t = f * dot_product(obj.u_data.triangle.edge2, origin_cross_e1);
+    t = f * dot_product(obj->u_data.triangle.edge2, origin_cross_e1);
     if (t < 0)
     {
         ret.inter = 0;

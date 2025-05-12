@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 19:21:35 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/08 15:11:19 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:40:53 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ t_vector local_intersect_plane(t_object *plane, t_ray ray)
     normal = plane_normal_at(&plane->u_data.plane, ray.origin);
     return (scalar_mult_tuples(normal, t));
 }
-t_plane create_plane(t_point center, double ray_s)
+t_plane create_plane(t_point center)
 {
     t_plane plane;
 
     plane.center = center;
-    plane.ray_s = ray_s;
     plane.normal = plane_normal_at(&plane, center);
+    printf("%f %f %f\n", plane.center.x, plane.center.y, plane.center.z);
     return (plane);
 }

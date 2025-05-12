@@ -3,7 +3,17 @@
     "minrt.h": "c",
     "loop.h": "c",
     "ft_printf.h": "c",
-    "get_next_line_bonus.h": "c"
+    "get_next_line_bonus.h": "c",
+    "objects.h": "c",
+    "libft.h": "c",
+    "list.h": "c",
+    "minirt_struct.h": "c",
+    "stat.h": "c",
+    "errno.h": "c",
+    "lsit_struct.h": "c",
+    "mlx.h": "c",
+    "ft_free.h": "c",
+    "ray_struct.h": "c"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",

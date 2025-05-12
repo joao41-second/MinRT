@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/09 09:46:56 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/12 12:55:23 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define TRUE 0
 # define FALSE 1
 
-# define WALL_X 1000
-# define WALL_Y 1000
+# define WALL_X 400
+# define WALL_Y 400
 # define WALL_Z 10.0
 # define WALL_SIZE 7.0
 

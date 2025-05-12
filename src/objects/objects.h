@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/09 15:24:57 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/12 11:31:40 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	double			ray_s;
 	t_point			center;
 	t_vector		normal;
 }					t_plane;
@@ -107,8 +106,9 @@ void				obj_material_print(t_mater mat);
 
 t_light				ligth_init(t_color intensty, t_point point);
 
-t_plane				create_plane(t_point center, double ray_s);
+t_plane				create_plane(t_point center);
 t_vector			plane_normal_at(t_plane *plane, t_point point);
+// t_vector local_intersect_plane(t_object *plane, t_ray ray);
 t_vector triangle_normal_at(t_triangle triangle);
 t_vector cylinder_normal_at(t_cylinder cylinder, t_point point);
 t_triangle			create_triangle(t_point p1, t_point p2, t_point p3);
