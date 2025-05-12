@@ -28,7 +28,7 @@ t_vector plane_normal_at(t_plane *plane, t_point point)
     
 //     return world_normal_final;
 // }
-
+/*
 t_vector local_intersect_plane(t_object *plane, t_ray ray)
 {
     double t;
@@ -41,14 +41,17 @@ t_vector local_intersect_plane(t_object *plane, t_ray ray)
     t = (plane->u_data.plane.center.y - ray.origin.y) / ray.direction.y;
     normal = plane_normal_at(&plane->u_data.plane, ray.origin);
     return (scalar_mult_tuples(normal, t));
-}
-t_plane create_plane(t_point center, double ray_s)
+}*/
+
+t_plane create_plane(t_point point1,t_point point2 ,t_point point3)
 {
     t_plane plane;
 
-    plane.center = center;
-    plane.ray_s = ray_s;
-    plane.normal = plane_normal_at(&plane, center);
+    plane.point1 = point1;
+
+    plane.point2 = point2;
+
+    plane.point3 = point3;
 
     return plane;
 }

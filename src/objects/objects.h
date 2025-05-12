@@ -49,8 +49,9 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	double			ray_s;
-	t_point			center;
+	t_point			point1;
+	t_point			point2;
+	t_point			point3;
 	t_vector		normal;
 }					t_plane;
 
@@ -126,7 +127,8 @@ void				obj_material_print(t_mater mat);
 
 t_light				ligth_init(t_color intensty, t_point point);
 
-t_plane				create_plane(t_point center, double ray_s);
+
+t_plane create_plane(t_point point1,t_point point2 ,t_point point3);
 
 t_triangle			create_triangle(t_point p1, t_point p2, t_point p3);
 t_cylinder create_cylinder(t_point center, t_vector orientation, double radius, double height);

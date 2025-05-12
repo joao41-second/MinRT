@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include <stdio.h>
 
 // Add a forward declaration for check_cap at the top of the file
 static int check_cap(t_ray ray, double t, t_cylinder cylinder);
@@ -51,35 +52,45 @@ t_intersection	ray_int_sphere(t_ray ray, t_sphere shp)
 t_intersection ray_int_plane(t_ray ray, t_plane plane)
 {
     t_intersection ret;
-    double denom = dot_product(plane.normal, ray.direction);
+    double t;
+    double a;
+    double b;
+    t_vector ab;
+    t_vector ac;
+    t_vector norm;
+	
 
-    if (fabs(denom) < EPSILON)
-    {
-        ret.inter = 0;
-        ret.t[0] = -1;
-        ret.t[1] = -1;
-        ret.object = NULL;
-        return ret;
-    }
+    ab = sub_tuples(plane.point2, plane.point1); 
+    ac = sub_tuples(plane.point3, plane.point1);
+	
+    norm = cross_product(ab, ac);
+    norm = normalize(norm);
 
-    double t = dot_product(plane.normal, sub_tuples(plane.center, ray.origin)) / denom;
-    if (t < 0)
-    {
-        // Intersection is behind the ray origin
-        ret.inter = 0;
-        ret.t[0] = -1;
-        ret.t[1] = -1;
-        ret.object = NULL;
-        return ret;
-    }
+ 
+    a = -(norm.x*ray.origin.x + norm.y * ray.origin.y + norm.z*ray.origin.z);
 
-    ret.inter = 1;
+    b = (norm.x*ray.direction.x + norm.y * ray.direction.y + norm.z*ray.direction.z);
+    if(b != 0)
+    	t = a/b;
+    else 
+	t = -1;
+    if(t == 0)
+	t = 0.1;
+    ret.inter = -1;
     ret.t[0] = t;
-    ret.t[1] = -1;
+    ret.t[1] = t;
+    if (b == -0)
+	    b = 0;
+    if (a == -0)
+	    a = 0;
+ 
+	
+
+    if(b != 0 && t >= 0)
+    	ret.inter = -1;
+	    
+
     ret.object = &plane;
-        // Debugging: Print intersection details
-        // printf("Plane Intersection: t = %f, Normal = (%f, %f, %f)\n",
-        //     t, plane.normal.x, plane.normal.y, plane.normal.z);
     return ret;
 }
 

@@ -79,7 +79,9 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 	luz = ray;
 	luz.direction = normalize(rt_struct->luz.point);
 	ray_in_obj = ray_for_objects(rt_struct->word, ray,luz);
-	if (ray_in_obj.min < 0 )
+	if(ray_in_obj.min == -0)
+		ray_in_obj.min =0;
+	if (ray_in_obj.min > 0 )
 	{
 		compt = lig_prepare_computations(ray_in_obj, ray);
 		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);
