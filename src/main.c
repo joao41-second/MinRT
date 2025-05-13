@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:45:06 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/13 18:40:52 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main(int ac, char **av, char **env)
 
 	rt_struct.cam = cm_ray_for_pixel(rt_struct.cam_m,
 			(double)WALL_X / 2, (double)WALL_Y / 2);
+	rt_struct.rota_y = 0;
+	rt_struct.rota_x = 0;
 
 
 	canva_inicializ(&rt_struct, WALL_X, WALL_Y, c_new(0, 0, 0));

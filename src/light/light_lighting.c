@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:43:55 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 16:56:16 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/13 18:43:35 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	lig_specular_and_difuse(t_lightnig *light,
 		light->sepcular = c_new(0, 0, 0);
 	else
 	{
-		light->fact = 0;
-		light->reflect_dot_eye = 0;
 		light->fact = pow(light->reflect_dot_eye, mat.values.shininess);
 		light->sepcular = c_scalar_multipl(luz.intenstiy,
 				mat.values.specular * light->fact);

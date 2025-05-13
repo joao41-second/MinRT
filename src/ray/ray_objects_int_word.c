@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:31:53 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/12 17:27:58 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/13 19:08:14 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_intersection	ray_int_sphere(t_ray ray, t_sphere shp)
 	ret.t[1] = 0;
 	ret.t[0] = 0;
 	ret.t[1] += (-(b_) + temp) / (2 * a_);
-	ret.t[0] += (-(b_) - temp) / (2 * a_);
+	//ret.t[0] += (-(b_) - temp) / (2 * a_);
 	ret.ray_start = ray;
 	return (ret);
 }
