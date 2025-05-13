@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 14:22:49 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/13 16:52:20 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 	ret.norm = lig_normalize(*obj, ret.point);
 	test = dot_product(ret.norm, ret.eyev);
 	ret.t_luz = inter.shadow;
-	if (test == -0)
-		test = 0;
-	if (test < 0)
+	if (test < EPSILON)
 	{
 		ret.norm = neg_tuple(ret.norm);
 		ret.inside = TRUE;
@@ -82,9 +80,7 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 	luz.origin = ray.origin;
 	luz.direction = normalize(rt_struct->luz.point);
 	ray_in_obj = ray_for_objects(rt_struct->word, ray,luz);
-	if(ray_in_obj.min == -0)
-		ray_in_obj.min =0;
-	if (ray_in_obj.min > 0 )
+	if (ray_in_obj.min > EPSILON )
 	{
 		compt = lig_prepare_computations(ray_in_obj, ray);
 		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);

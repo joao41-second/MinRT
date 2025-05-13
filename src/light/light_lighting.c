@@ -6,12 +6,13 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:43:55 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/06 13:57:36 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/13 16:56:16 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "light_struct.h"
+#include <stdio.h>
 
 void	lig_specular_and_difuse(t_lightnig *light,
 		t_computations comp, t_mater mat, t_light luz)
@@ -20,10 +21,12 @@ void	lig_specular_and_difuse(t_lightnig *light,
 			mat.values.diffuse * light->t_luz_dot_normal);
 	light->reflect_dot_eye = dot_product(lig_reflect
 			(neg_tuple(light->luztv), comp.norm), comp.eyev);
-	if (light->reflect_dot_eye <= 0)
+	if (light->reflect_dot_eye <= EPSILON)
 		light->sepcular = c_new(0, 0, 0);
 	else
 	{
+		light->fact = 0;
+		light->reflect_dot_eye = 0;
 		light->fact = pow(light->reflect_dot_eye, mat.values.shininess);
 		light->sepcular = c_scalar_multipl(luz.intenstiy,
 				mat.values.specular * light->fact);
@@ -39,9 +42,7 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	light.amb_c = c_multipl(light.efectiv, c_new(mat.values.amb,
 				mat.values.amb, mat.values.amb));
 	light.t_luz_dot_normal = dot_product(light.luztv, comp.norm);
-	if (light.t_luz_dot_normal == -0)
-		light.t_luz_dot_normal = 0;
-	if (light.t_luz_dot_normal < 0)
+	if (light.t_luz_dot_normal < EPSILON)
 	{
 		light.diffuse = c_new(0, 0, 0);
 		light.sepcular = c_new(0, 0, 0);

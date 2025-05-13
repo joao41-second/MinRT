@@ -6,11 +6,13 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:39:58 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 10:14:01 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:42:53 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "canvas.h"
 #include "../minRT.h"
+#include <stdio.h>
 
 int	canva_loop(t_minirt *rt_struct)
 {
@@ -21,6 +23,7 @@ int	canva_loop(t_minirt *rt_struct)
 int	canva_mause_loop(t_minirt *rt_struct)
 {
 	//mouse(rt_struct);
+
 	return (1);
 }
 
@@ -37,11 +40,14 @@ int	canva_loop_mouse(int button, int x, int y, void *param)
 {
 	t_minirt	*rt_struct;
 
-	(void)x;
-	(void)y;
-	(void)button;
-	rt_struct = (t_minirt *) param;
-	mlx_mouse_get_pos(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, &x, &y);
+
+	t_ray	ray;
+
+	//ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
+	//rt_struct->color = lig_color_at(rt_struct, ray);
+	//c_print(rt_struct->color);
+
+	
 //	mouse(rt_struct);
 	return (1);
 }

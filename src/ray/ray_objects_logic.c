@@ -16,22 +16,22 @@
 
 void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,t_object *obj)
 {
-	if (intr.t[0] >= save_points->max || save_points->max == INT_MIN)
+	if (intr.t[0] - save_points->max  > EPSILON|| save_points->max == INT_MIN)
 		save_points->max = intr.t[0];
-	if (intr.t[1] >= save_points->max || save_points->max == INT_MIN)
+	if (intr.t[1]- save_points->max > EPSILON || save_points->max == INT_MIN)
 		save_points->max = intr.t[1];
-	if (intr.t[0] <= save_points->min || save_points->min == INT_MIN)
+	if (intr.t[0] -save_points->min < EPSILON || save_points->min == INT_MIN)
 	{
-		if(intr.t[0] > 0)
+		if(intr.t[0] > EPSILON)
 		{
 		save_points->min = intr.t[0];
 		save_points->object = obj;
 		save_points->mat = obj->matiral;
 		}
 	}
-	if (intr.t[1] <= save_points->min || save_points->min == INT_MIN)
+	if (intr.t[1]-save_points->min < EPSILON || save_points->min == INT_MIN)
 	{
-		if(intr.t[1] > 0)
+		if(intr.t[1] > EPSILON)
 		{
 		save_points->min = intr.t[1];
 		save_points->object = obj;
@@ -60,7 +60,7 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 	{
 		obj = (t_object *)objs_w->content;
 		intr = ray_int_object(ray,*obj);
-		if (intr.inter > 0)
+		if (intr.inter-0 > EPSILON)
 		{
 			ray_for_objects_organize(intr, &save_points,obj);
 		}
@@ -69,8 +69,9 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 		objs_w = objs_w->next;
 	}
 	save_points.shadow = -1;
-	if(save_points.min > 0)
+	if(save_points.min > EPSILON)
 	{
+
 		sh = scalar_mult_tuples(shadow_.origin, save_points.min);
 		shadow_.origin = sh;
 		save_points.shadow = ray_for_shadow(start, shadow_);
