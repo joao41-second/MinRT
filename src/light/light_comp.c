@@ -31,12 +31,12 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 	t_object		*obj;
 	double			test;
 
-
 	obj = inter.object;
-	ret.t = inter.min;
-	ret.object = inter.object;
 	ray_ = ray_transform(ray, obj->inv_transform);
+	ret.t = inter.min;
 
+	ret.object = inter.object;
+	ret.point = ray_position(ray_, ret.t);
 	ret.eyev = neg_tuple(ray_.direction);
 	ret.norm = lig_normalize(*obj, ret.point);
 	test = dot_product(ret.norm, ret.eyev);

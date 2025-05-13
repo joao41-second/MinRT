@@ -20,7 +20,7 @@ void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,t_obje
 		save_points->max = intr.t[0];
 	if (intr.t[1] >= save_points->max || save_points->max == INT_MIN)
 		save_points->max = intr.t[1];
-	if (intr.t[0] < save_points->min || save_points->min == INT_MIN)
+	if (intr.t[0] <= save_points->min || save_points->min == INT_MIN)
 	{
 		if(intr.t[0] > 0)
 		{
@@ -29,7 +29,7 @@ void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,t_obje
 		save_points->mat = obj->matiral;
 		}
 	}
-	if (intr.t[1] < save_points->min || save_points->min == INT_MIN)
+	if (intr.t[1] <= save_points->min || save_points->min == INT_MIN)
 	{
 		if(intr.t[1] > 0)
 		{

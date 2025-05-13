@@ -28,12 +28,13 @@ void	start_word(t_minirt *rt_struct)
 	t_point		luz;
 
 	luz = create_point(0, 0, 0);
+	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(3, 3, -3));
 	mat1 = obj_material_init(c_new(1, 0, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 	word_objects = NULL;
 	sph = sphere(create_point(0, 0, 0), 1);
 	obj_sphere = create_object(&sph, OBJ_SPHERE, mat1);
-	ray_set_transform_obj(obj_sphere, mat_gener_scal(0.1, 0.1, 0.1));
+	ray_set_transform_obj(obj_sphere, mat_gener_scal(1, 1, 1));
 	ft_add_node(obj_sphere, &word_objects);
 
 	mat2 = obj_material_init(c_new(0, 1, 0),
@@ -68,7 +69,7 @@ void	start_word(t_minirt *rt_struct)
 	
 	t_triangle tri1 = create_triangle(create_point(-0.5, 1, 0), create_point(-0.5, 0, 0), create_point(-0.5, 0, 5));
 	t_object *obj_triangle1 = create_object(&tri1, OBJ_TRIANGLE, mat1);
-	obj_triangle1->matiral = obj_material_init(c_new(1.0, 0, 1.0), obj_init_values_material(0.1, 0.6, 0.9, 200));
+	obj_triangle1->matiral = obj_material_init(c_new(1.0, 0, 1.0), obj_init_values_material(0.1, 0.6, 0.9, 100));
 	ray_set_transform_obj(obj_triangle1, mat_gener_scal(1, 1, 1));
 	ft_add_node(obj_triangle1, &word_objects);
 
