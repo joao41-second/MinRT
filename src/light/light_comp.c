@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 16:52:20 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/13 20:46:06 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 
 	ret.object = inter.object;
 	ret.point = ray_position(ray_, ret.t);
+	if(!is_equal_tuple(create_point(0, 0, 0), ret.point))
+	{
+	lig_print_tuple(ray_.direction);
+	lig_print_tuple(ray_.origin);
+	printf("poin %f \n",ret.t);
+	lig_print_tuple(ret.point);}
+	printf("\n");
+
 	ret.eyev = neg_tuple(ray_.direction);
 	ret.norm = lig_normalize(*obj, ret.point);
 	test = dot_product(ret.norm, ret.eyev);

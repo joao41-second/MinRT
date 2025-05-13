@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:43:55 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 18:43:35 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/13 20:33:59 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	light.luztv = normalize(sub_tuples(luz.point, comp.point));
 	light.amb_c = c_multipl(light.efectiv, c_new(mat.values.amb,
 				mat.values.amb, mat.values.amb));
-	light.t_luz_dot_normal = dot_product(light.luztv, comp.norm);
+	light.t_luz_dot_normal = dot_product(normalize(light.luztv), comp.norm);
 	if (light.t_luz_dot_normal < EPSILON)
 	{
 		light.diffuse = c_new(0, 0, 0);

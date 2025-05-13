@@ -6,12 +6,14 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:13:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 19:01:56 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/13 19:57:00 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "canvas.h"
+#include "canvas_struct.h"
+#include <unistd.h>
 
 void	my_mlx_pixel_put(t_img_ *data, int x, int y, int color)
 {
@@ -37,8 +39,11 @@ int	create_trgb(int t, int r, int g, int b)
 
 void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base )
 {
-
-
+	static t_color color = {0,0,0};
+/*	
+	if(c_chek_iqual_color(color, base) == FALSE)
+		c_print(color);*/
+	color = base;
 	if (base.color[0] > 5)
 		base.color[0] = 5;
 	if (base.color[1] > 6)

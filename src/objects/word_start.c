@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 19:03:43 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/13 20:44:24 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	start_word(t_minirt *rt_struct)
 	t_point		luz;
 
 	luz = create_point(0, 0, 0);
-	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(3, 3, -3));
+	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(30, 30, -30));
 	mat1 = obj_material_init(c_new(1, 0, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 	word_objects = NULL;
@@ -42,8 +42,8 @@ void	start_word(t_minirt *rt_struct)
 
 	sph2 = sphere(create_point(0, 0, 0), 1);
 	obj_sphere2 = create_object(&sph2, OBJ_SPHERE, mat1);
-	ray_set_transform_obj(obj_sphere2,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(0, 3, 0)));
-//	ft_add_node(obj_sphere2, &word_objects);
+	ray_set_transform_obj(obj_sphere2,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(2, 3, 0)));
+	ft_add_node(obj_sphere2, &word_objects);
 	mat3 = obj_material_init(c_new(1, 1, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 
@@ -80,7 +80,7 @@ void	start_word(t_minirt *rt_struct)
 	//ft_add_node(obj_triangle2, &word_objects);
 
 	rt_struct->word = ft_node_start(word_objects);
-	rt_struct->luz = ligth_init(c_new(3, 3, 3), luz);
+	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
 }
 
 void start_word_test(t_minirt  *rt_struct,double ambinet,t_color color)
