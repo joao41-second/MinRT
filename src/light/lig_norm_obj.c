@@ -28,17 +28,17 @@ t_vector	lig_normalize_sph(t_object sph, t_point p_the_obj)
 t_vector	lig_normalize_plane(t_object pln, t_point point)
 {
 	t_vector	ret;
-	t_point		obj_point;
 
-	obj_point = mat_x_tuple(point, pln.inv_transform);
-	ret = mat_x_tuple(pln.u_data.plane.normal, pln.inv_transpose);
+	t_plane *plan;
+
+	ret = pln.u_data.plane.normal;
 	ret.w = 0;
-	ret = normalize(ret);
 	return(ret);
 }
 t_vector	lig_normalize(t_object obj, t_point p_the_obj)
 {
 	t_vector	ret;
+	t_plane 	plan;
 
 	if (obj.type == OBJ_SPHERE)
 	{

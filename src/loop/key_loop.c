@@ -73,27 +73,27 @@ void muve_lig(int key,t_minirt *rt_struct)
 {
 	if(key == KEY_O )
 	{
-		rt_struct->luz.point.x += 0.1;
+		rt_struct->luz.point.x += 1;
 	}
 	if(key == KEY_L )
 	{
-		rt_struct->luz.point.x -= 0.1;
+		rt_struct->luz.point.x -= 1;
 	}
 	if(key == KEY_I)
 	{
-		rt_struct->luz.point.y += 0.1;
+		rt_struct->luz.point.y += 1;
 	}
 	if(key == KEY_K)
 	{
-		rt_struct->luz.point.y -= 0.1;
+		rt_struct->luz.point.y -= 1;
 	}
 	if(key == KEY_U )
 	{
-		rt_struct->luz.point.z += 0.1;
+		rt_struct->luz.point.z += 1;
 	}
 	if(key == KEY_J)
 	{
-		rt_struct->luz.point.z -= 0.1;
+		rt_struct->luz.point.z -= 1;
 	}
 }
 

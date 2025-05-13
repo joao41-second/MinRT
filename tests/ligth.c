@@ -31,10 +31,14 @@ int norm_l(char *name,t_point point,t_point sph_p,t_vector chek)
 	t_vector test;
 
 	(void)sph_p;
+
+	t_mater mat1 = obj_material_init(c_new(1, 0, 0),
+			obj_init_values_material(0.5, 0.7, 0.2, 200));
 	error = 0;
 	sph = sphere(create_point(0, 0, 0),1);
-	ray_set_transform(&sph,mat_gener_scal( 1, 1, 1));
-	test = lig_normalize(sph, point);
+	t_object *obj = create_object(&sph, OBJ_SPHERE, mat1);
+	ray_set_transform_obj(obj, mat_gener_scal(1, 1, 1));
+	test = lig_normalize(*obj, point);
 	if (!is_equal_tuple(test, chek))
 		error ++;
 	nb++;
@@ -89,12 +93,12 @@ int lig_reflect_test(t_vector norm,t_vector vect,t_vector resp)
 
 }
 
-int lig_normalize_test(t_sphere sph,t_point point,t_tuple resp)
+int lig_normalize_test(t_object *sph,t_point point,t_tuple resp)
 {
 	static int nb;
 	int error;
-	
-	t_tuple var = lig_normalize(sph,point);
+
+	t_tuple var = lig_normalize(*sph,point);
 	error = 0;
 
 	//lig_print_tuple(var);
@@ -114,12 +118,15 @@ int lig_normalize_test(t_sphere sph,t_point point,t_tuple resp)
 void normalize_test_()
 {
 	int check;
-	t_sphere sph;
+	t_sphere sph_s;
 
 	check = 0;
-	sph = sphere(create_point(0, 0, 0),1);
+	sph_s = sphere(create_point(0, 0, 0),1);
+	t_mater mat  = obj_material_init(c_new(1,1,1), obj_init_values_material(0.1, 0.9, 0.9, 200));
+	t_object *sph = create_object(&sph_s,OBJ_SPHERE, mat);
+	ray_set_transform_obj(sph, mat_gener_scal(1, 1, 1));
+	
 
-	ray_set_transform(&sph,mat_gener_scal(1,1, 1)) ;
 
 	check += lig_normalize_test(sph, create_point(1, 0, 0), create_vector(1, 0, 0));
 
@@ -129,12 +136,12 @@ void normalize_test_()
 
 	check += lig_normalize_test(sph, create_point(sqrt(3)/3, sqrt(3)/3,sqrt(3)/3 ), create_vector(  sqrt(3)/3,  sqrt(3)/3, sqrt(3)/3));
 
-	ray_set_transform(&sph,mat_gener_trans(0, 1, 0) );
+	ray_set_transform_obj(sph,mat_gener_trans(0, 1, 0) );
 
 
 	check += lig_normalize_test(sph, create_point(0, 1.70711, -0.70711), create_vector(0, 0.70711, -0.70711));
 	
-	ray_set_transform(&sph, mat_multip(mat_gener_scal(1, 0.5, 1),mat_gener_rota('z',M_PI/5)));
+	ray_set_transform_obj(sph, mat_multip(mat_gener_scal(1, 0.5, 1),mat_gener_rota('z',M_PI/5)));
 
 	check += lig_normalize_test(sph, create_point(0, M_SQRT2/2, -M_SQRT2/2), create_vector(0, 0.97014, -0.24254));
 	if(check == 0)

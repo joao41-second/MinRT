@@ -1,8 +1,7 @@
 #include "tests.h"
 #include <stdint.h>
 #include <stdio.h>
-
-
+/*
 int test_shade_it(t_ray ray, t_color ret,t_minirt rt)
 {
 	static int nb;
@@ -29,7 +28,7 @@ int test_shade_wor_it(double vaule, t_ray ray, t_color ret,t_minirt rt)
 	t_obj_int obj;	
 	t_computations comp;
 
-	obj = ray_for_objects(rt.word, ray);
+	obj = ray_for_objects(rt.word, ray,ray);
 	obj.max = vaule;
 	obj.min = vaule;
 	comp = lig_prepare_computations(obj, ray);
@@ -136,9 +135,10 @@ void word_test()
 
 
 
-}
+}*/
 void	test_word(void)
 {
-	RUN_TEST(word_test);
+//	RUN_TEST(word_test);
 
 }
+

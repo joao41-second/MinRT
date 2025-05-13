@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 14:02:24 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 11:36:58 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:12:13 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,6 @@ void			ray_canva(t_minirt *rt_struct);
 
 void			ray_set_transform_obj(t_object *obj, t_matrix mat);
 
+
+int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_);
 #endif

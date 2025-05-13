@@ -10,6 +10,7 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include "ray.h"
 #include "ray_struct.h"
 #include <stdio.h>
 
@@ -46,17 +47,19 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 	t_intersection	shadow;
 	t_obj_int		save_points;
 	t_object		*obj;
+	t_tuple 		sh;
+	t_list_			*start;
 
 	save_points.max = INT_MIN;
 	save_points.min = INT_MIN;
-	save_points.shadow = -1;
 	save_points.ints = NULL;
 	save_points.object = objs_w->content;
+	start = objs_w;
+
 	while (objs_w != NULL)
 	{
 		obj = (t_object *)objs_w->content;
 		intr = ray_int_object(ray,*obj);
-		shadow = ray_int_object(shadow_,*obj);
 		if (intr.inter > 0)
 		{
 			ray_for_objects_organize(intr, &save_points,obj);
@@ -65,7 +68,13 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 			break ;
 		objs_w = objs_w->next;
 	}
-	save_points.shadow = shadow.inter;
+	save_points.shadow = -1;
+	if(save_points.min > 0)
+	{
+		sh = scalar_mult_tuples(shadow_.origin, save_points.min);
+		shadow_.origin = sh;
+		save_points.shadow = ray_for_shadow(start, shadow_);
+	}
 	return (save_points);
 }
 

@@ -4,9 +4,9 @@
 /*   ray_objects_int_word.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:31:53 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 12:02:08 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:27:58 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_intersection ray_int_plane(t_ray ray, t_plane plane)
     ac = sub_tuples(plane.point3, plane.point1);
 	
     norm = cross_product(ab, ac);
+    norm = normalize(norm);
 
  
     a = -(norm.x*ray.origin.x + norm.y * ray.origin.y + norm.z*ray.origin.z);

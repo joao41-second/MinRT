@@ -27,14 +27,17 @@ void	lig_print_tuple(t_tuple tuple)
 t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 {
 	t_computations	ret;
+	t_ray 			ray_;
 	t_object		*obj;
 	double			test;
+
 
 	obj = inter.object;
 	ret.t = inter.min;
 	ret.object = inter.object;
-	ret.point = ray_position(ray, ret.t);
-	ret.eyev = neg_tuple(ray.direction);
+	ray_ = ray_transform(ray, obj->inv_transform);
+
+	ret.eyev = neg_tuple(ray_.direction);
 	ret.norm = lig_normalize(*obj, ret.point);
 	test = dot_product(ret.norm, ret.eyev);
 	ret.t_luz = inter.shadow;
@@ -76,7 +79,7 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 	t_ray				luz;
 
 	ret = c_new(0, 0, 0);
-	luz = ray;
+	luz.origin = ray.origin;
 	luz.direction = normalize(rt_struct->luz.point);
 	ray_in_obj = ray_for_objects(rt_struct->word, ray,luz);
 	if(ray_in_obj.min == -0)

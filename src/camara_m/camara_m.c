@@ -72,7 +72,6 @@ t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
 	ret.origin = origin;
 	ret.direction = normalize(sub_tuples(pixel, origin));
 
-
 	return (ret);
 }
 
