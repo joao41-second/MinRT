@@ -33,7 +33,7 @@ void	loop(t_minirt *rt_struct)
 
 
 	cm_update(&rt_struct->cam_m);
-	cm_windo_put(rt_struct, WALL_X, WALL_Y,3);
+	cm_windo_put(rt_struct, WALL_X, WALL_Y,1);
 
 	canva_update(rt_struct);
 	asprintf(&str, "cord: %f %f %f  dir: %f %f %f",

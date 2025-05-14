@@ -25,9 +25,6 @@ t_vector	lig_normalize_sph(t_object sph, t_point p_the_obj)
 	ret = mat_x_tuple(obj_word, sph.inv_transpose);
 	ret.w = 0;
 	
-	printf("ola \n");
-	lig_print_tuple(normalize(p_the_obj));
-	lig_print_tuple(normalize(ret))	;
 	return (normalize(ret));
 }
 t_vector	lig_normalize_plane(t_object pln, t_point point)

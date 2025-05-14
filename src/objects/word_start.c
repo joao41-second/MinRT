@@ -54,12 +54,12 @@ void	start_word(t_minirt *rt_struct)
 
 	t_plane pln = create_plane(create_point(0, 0, 0),  create_point(1, 0, 0), create_point(0,0 , 5));
 	t_object *obj_plane = create_object(&pln, OBJ_PLANE, mat2);
-//	ft_add_node(obj_plane,&word_objects );
+	ft_add_node(obj_plane,&word_objects );
 
 	t_plane pln2 = create_plane(create_point(5, 0, 0),  create_point(5, 1, 0), create_point(5,0 , 5));
 	t_object *obj_plane2 = create_object(&pln2, OBJ_PLANE, mat3);
 
-//	ft_add_node(obj_plane2,&word_objects );
+	ft_add_node(obj_plane2,&word_objects );
 
 	t_plane pln3 = create_plane(create_point(5, 2, 2),  create_point(5, 2, 1), create_point(5,2 , 5));
 	
