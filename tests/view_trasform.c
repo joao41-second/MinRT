@@ -39,7 +39,6 @@ int cm_init_test(double x , double y ,double next,double result)
 	t_camera_ms cam;
 	cam  = cm_init(x, y, next, mat_gener(4));
 
-	printf("pixe %f \n",cam.pixel_size);
 
 	if(!is_equal_double(cam.pixel_size, result))
 	{

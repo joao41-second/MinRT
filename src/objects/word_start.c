@@ -108,7 +108,7 @@ void start_word_test(t_minirt  *rt_struct,double ambinet,t_color color)
  	t_object *obj_sphere2 = create_object(&sph2, OBJ_SPHERE,mat1);
 
 	ray_set_transform_obj(obj_sphere2, mat_gener_scal(1, 1, 1));
-	ft_add_node(obj_sphere2,&word_objects);	
+//	ft_add_node(obj_sphere2,&word_objects);	
 
 
 	rt_struct->word = ft_node_start(word_objects);

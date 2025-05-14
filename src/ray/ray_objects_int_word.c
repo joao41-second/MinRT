@@ -30,20 +30,30 @@ t_intersection	ray_int_sphere(t_ray ray, t_sphere shp)
 	double			c_;
 	double			temp;
 
-	a_ = dot_product(ray.direction, ray.direction);
-	b_ = 2* dot_product(ray.direction,sub_tuples(ray.origin, shp.center));
-	c_ = dot_product(sub_tuples(ray.origin, shp.center), sub_tuples(ray.origin, shp.center)) - (shp.ray_s * shp.ray_s);
+	a_ = ((ray.direction.x * ray.direction.x) + (ray.direction.y
+				* ray.direction.y) + (ray.direction.z * ray.direction.z));
+	b_ = 2 * ((ray.direction.x * (ray.origin.x - shp.center.x))
+			+ (ray.direction.y * (ray.origin.y - shp.center.y))
+			+ (ray.direction.z * (ray.origin.z - shp.center.z)));
+	c_ = ((ray.origin.x - shp.center.x) * (ray.origin.x - shp.center.x))
+		+ ((ray.origin.y - shp.center.y) * (ray.origin.y - shp.center.y))
+		+ ((ray.origin.z - shp.center.z) * (ray.origin.z - shp.center.z))
+		- (shp.ray_s * shp.ray_s);
 	ret.object = &shp;
 	ret.inter = (b_ * b_) - 4 * a_ * c_;
-	ret.ray_start = ray;
+
+	ret.t[1] = -1;
 	ret.t[0] = -1;
-	ret.t[0] = -1;
-	if (ret.inter < EPSILON)
-    		return ret; 
+	if(ret.inter <  EPSILON)
+		return (ret);
+			
 	temp = sqrt(ret.inter);
 	ret.t[1] = (-(b_) + temp) / (2 * a_);
 	ret.t[0] = (-(b_) - temp) / (2 * a_);
+	ret.ray_start = ray;
 	return (ret);
+
+
 }
 t_intersection ray_int_plane(t_ray ray, t_plane plane)
 {

@@ -62,6 +62,10 @@ int lig_lighting_test(t_light luz ,t_vector norm,t_vector eyev,t_color resp)
 	comp.point = create_point(0, 0, 0);
 	
 	color  = lig_lighting(mat, luz, comp);
+	
+	printf("ola \n");
+	c_print(color);
+	c_print(resp);
 	if(c_chek_iqual_color(color, resp) != TRUE)
 		error++;
 	nb++;
@@ -101,9 +105,10 @@ int lig_normalize_test(t_object *sph,t_point point,t_tuple resp)
 	t_tuple var = lig_normalize(*sph,point);
 	error = 0;
 
-	//lig_print_tuple(var);
+	printf("ola \n");
+	lig_print_tuple(var);
 
-	//lig_print_tuple(resp);
+	lig_print_tuple(resp);
 
 	if(!is_equal_tuple(var,resp))
 		error++;

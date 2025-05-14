@@ -40,7 +40,7 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	light.amb_c = c_multipl(light.efectiv, c_new(mat.values.amb,
 				mat.values.amb, mat.values.amb));
 	light.t_luz_dot_normal = dot_product(normalize(light.luztv), comp.norm);
-	if (light.t_luz_dot_normal < EPSILON)
+	if (light.t_luz_dot_normal < 0)
 	{
 		light.diffuse = c_new(0, 0, 0);
 		light.sepcular = c_new(0, 0, 0);

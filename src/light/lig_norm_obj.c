@@ -12,17 +12,22 @@
 
 
 #include "../minRT.h"
+#include "light.h"
 
 t_vector	lig_normalize_sph(t_object sph, t_point p_the_obj)
 {
 	t_vector	ret;
 	t_point		obj_point;
 	t_point		obj_word;
-
+	
 	obj_point = mat_x_tuple(p_the_obj, sph.inv_transform);
 	obj_word = sub_tuples(obj_point, create_tuple(0, 0, 0, 0));
 	ret = mat_x_tuple(obj_word, sph.inv_transpose);
 	ret.w = 0;
+	
+	printf("ola \n");
+	lig_print_tuple(normalize(p_the_obj));
+	lig_print_tuple(normalize(ret))	;
 	return (normalize(ret));
 }
 t_vector	lig_normalize_plane(t_object pln, t_point point)

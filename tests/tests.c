@@ -26,6 +26,7 @@ int	main(int argv,char** argc)
 {
 	srand(time(NULL));
 
+
 	
 	if(c_chek_iqual_color(c_multipl(c_new(1, 0, 0), c_new(1, 1, 1)), c_new(1, 0, 0)) == TRUE)
 		printf("color ok \n");
@@ -36,6 +37,7 @@ int	main(int argv,char** argc)
 		test_ligth();
 		test_view_trasfomr();
 		test_word();
+		shp_text();
 	UNITY_END();
 	return (0);
 }

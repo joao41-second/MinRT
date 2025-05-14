@@ -38,4 +38,6 @@ void	test_view_trasfomr(void);
 
 void	test_word(void);
 
+void	shp_text(void);
+
 #endif /* TESTS_H */

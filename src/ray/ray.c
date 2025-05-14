@@ -20,16 +20,13 @@ t_ray	ray_gener(t_point point, t_vector dir)
 	return (ray);
 }
 
-t_point	ray_position(t_ray ray, double nb)
-{
-	t_point	new;
 
-	new = add_tuples(ray.origin, create_point(nb, nb, nb));
-	if (nb == 0)
-		return (new);
-	return (create_point(ray.direction.x * new.x,
-			ray.direction.y * new.y, ray.direction.z * new.z));
+t_point ray_position(t_ray ray, double t)
+{
+    t_point scaled_direction = scalar_mult_tuples(ray.direction, t);
+    return add_tuples(ray.origin, scaled_direction);
 }
+
 
 t_point	ray_t_to_point(t_point const point, double t)
 {
