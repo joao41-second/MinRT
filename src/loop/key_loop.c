@@ -16,36 +16,31 @@ void muve_cam(int key,t_minirt *rt_struct)
 {
 	if(key == KEY_W )
 	{
-		rt_struct->point.x += 0.1;
+		rt_struct->point.z -= 0.1;
 	}
 	if(key == KEY_S )
 	{
-		rt_struct->point.x -= 0.1;
+		rt_struct->point.z += 0.1;
 	}
 	if(key == KEY_D )
 	{
-		rt_struct->point.y += 0.1;
+		rt_struct->point.x -= 0.1;
 
-		//rt_struct->point.z -= 0.01;
 	}
 	if(key == KEY_A )
 	{
-		rt_struct->point.y -= 0.1;
-
-		//rt_struct->point.z += 0.01;
+		rt_struct->point.x += 0.1;
 
 	}
 	if(key == KEY_UP )
 	{
-		rt_struct->point.z += 0.1;
+		rt_struct->point.y -= 0.1;
 
-		//rt_struct->point.y -= 0.01;
 	}
 	if(key == KEY_DOWN )
 	{
-		rt_struct->point.z -= 0.1;
+		rt_struct->point.y += 0.1;
 
-		//rt_struct->point.z += 0.01;
 	}
 }
 

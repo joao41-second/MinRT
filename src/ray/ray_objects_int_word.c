@@ -82,18 +82,11 @@ t_intersection ray_int_plane(t_ray ray, t_plane plane)
 	t = -1;
     if(t == 0)
 	t = 0.1;
-    ret.inter = -1;
+    ret.inter = t;
     ret.t[0] = t;
     ret.t[1] = t;
-    if (b == -0)
-	    b = 0;
-    if (a == -0)
-	    a = 0;
  
-	
 
-    if(b != 0 && t >= 0)
-    	ret.inter = 1;
 	    
 
     ret.object = &plane;

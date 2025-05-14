@@ -34,7 +34,7 @@ t_vector	lig_normalize_plane(t_object pln, t_point point)
 	t_plane *plan;
 
 	ret = pln.u_data.plane.normal;
-	ret.w = 0;
+	//ret.w = 0;
 	return(ret);
 }
 t_vector	lig_normalize(t_object obj, t_point p_the_obj)

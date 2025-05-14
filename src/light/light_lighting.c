@@ -47,7 +47,7 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	}
 	else
 		lig_specular_and_difuse(&light, comp, mat, luz);
-	if(comp.t_luz == 1)
+	if(is_equal_double( comp.t_luz, 1))
 	{
 		light.diffuse = c_new(0, 0, 0);
 		light.sepcular = c_new(0, 0, 0);
