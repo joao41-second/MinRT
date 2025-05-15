@@ -68,6 +68,14 @@ void	start_word(t_minirt *rt_struct)
 	
 	t_object *obj_plane3 = create_object(&pln3, OBJ_PLANE, mat2);
 
+
+	t_cylinder cyl = create_cylinder(create_point(0 ,0, 0), create_vector(0,1, 0), 0.2, 5);	
+	t_object *obj_cylinder = create_object(&cyl, OBJ_CYLINDER, mat1);
+	obj_cylinder->matiral = obj_material_init(c_new(1.0, 1.0, 0), obj_init_values_material(0.3, 0.6, 0.3, 200));
+	ray_set_transform_obj(obj_cylinder, mat_gener_scal(1, 1, 1));
+	//ray_set_transform_obj(obj_cylinder,mat_gener_rota('z', 1));
+	ft_add_node(obj_cylinder, &word_objects);
+
 //	ft_add_node(obj_plane3,&word_objects );
 	
 	t_triangle tri1 = create_triangle(create_point(-0.5, 1, 0), create_point(-0.5, 0, 0), create_point(-0.5, 0, 5));
