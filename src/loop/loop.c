@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 20:11:59 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/15 13:19:55 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	loop(t_minirt *rt_struct)
 {
 	char	*str;
 	
-//	mouse(rt_struct);
+	mouse(rt_struct);
 	
 	mat_set_view_transform(&rt_struct->cam_m.tranform_matrix, create_point(1, 1,-3), 
 			create_point(0, 0, 0), create_vector(0, 1, 0));
@@ -33,7 +33,7 @@ void	loop(t_minirt *rt_struct)
 
 
 	cm_update(&rt_struct->cam_m);
-	cm_windo_put(rt_struct, WALL_X, WALL_Y,4);
+	cm_windo_put(rt_struct, WALL_X, WALL_Y,rt_struct->needs_render);
 
 	canva_update(rt_struct);
 	asprintf(&str, "cord: %f %f %f  dir: %f %f %f",

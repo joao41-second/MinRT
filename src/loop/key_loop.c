@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 11:23:15 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:14:07 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,21 @@ void rota_cam(int key,t_minirt *rt_struct)
 		rt_struct->rota_y -= 0.1;
 	}
 }
+void pixle_range (int key,t_minirt *rt_struct)
+{
+	if(key == NUMPAD_1)
+	{
+		rt_struct->needs_render++;
+	}
+	if(key == NUMPAD_2)
+	{
+		rt_struct->needs_render--;
+	}
+	if(rt_struct->needs_render <= 1)
+		rt_struct->needs_render = 1;
+		
+
+}
 
 void muve_lig(int key,t_minirt *rt_struct)
 {
@@ -104,5 +119,6 @@ void	key_loop(int key, t_minirt *rt_struct)
 //	printf("key %d \n",key);
 //	rota_cam(key,rt_struct);
 	muve_lig(key,rt_struct);
+	pixle_range(key, rt_struct);
 
 }
