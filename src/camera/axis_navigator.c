@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 10:34:47 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/07 10:16:13 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/12 11:00:51 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,19 @@ static void	draw_thick_line(t_img_ *img, t_point start, t_point end, int color)
  * Transform a point using the camera's view matrix
  * This is the key function that makes the axis rotate with the camera
  */
-static t_point	transform_point(t_camera *cam, t_point point)
+static t_point	transform_point(t_camera_ms *cam, t_point point)
 {
 	t_point	transformed;
 
-	transformed.x = point.x * cam->view_matrix.matr[0][0] + \
-					point.y * cam->view_matrix.matr[0][1] + \
-					point.z * cam->view_matrix.matr[0][2];
-	transformed.y = point.x * cam->view_matrix.matr[1][0] + \
-					point.y * cam->view_matrix.matr[1][1] + \
-					point.z * cam->view_matrix.matr[1][2];
-	transformed.z = point.x * cam->view_matrix.matr[2][0] + \
-					point.y * cam->view_matrix.matr[2][1] + \
-					point.z * cam->view_matrix.matr[2][2];
+	transformed.x = point.x * cam->tranform_matrix.matr[0][0] + \
+					point.y * cam->tranform_matrix.matr[0][1] + \
+					point.z * cam->tranform_matrix.matr[0][2];
+	transformed.y = point.x * cam->tranform_matrix.matr[1][0] + \
+					point.y * cam->tranform_matrix.matr[1][1] + \
+					point.z * cam->tranform_matrix.matr[1][2];
+	transformed.z = point.x * cam->tranform_matrix.matr[2][0] + \
+					point.y * cam->tranform_matrix.matr[2][1] + \
+					point.z * cam->tranform_matrix.matr[2][2];
 	transformed.w = 0;
 	return (transformed);
 }
@@ -122,7 +122,7 @@ static t_point	transform_point(t_camera *cam, t_point point)
 /**
  * Project a 3D point to screen coordinates
  */
-static t_point	proj_point(t_camera *cam, t_point point)
+static t_point	proj_point(t_camera_ms *cam, t_point point)
 {
 	double	perspective;
 	double	scale;
@@ -146,20 +146,20 @@ void	draw_axis_navigator(t_minirt *rt_struct)
 	t_point	end;
 	t_point	lab;
 
-	ori = proj_point(&rt_struct->scene.world.camera, create_point(0, 0, 0));
-	end = proj_point(&rt_struct->scene.world.camera, create_point(1, 0, 0));
+	ori = proj_point(&rt_struct->camera, create_point(0, 0, 0));
+	end = proj_point(&rt_struct->camera, create_point(1, 0, 0));
 	draw_thick_line(&rt_struct->canva.canva, ori, end, COLOR_X);
-	end = proj_point(&rt_struct->scene.world.camera, create_point(0, 1, 0));
+	end = proj_point(&rt_struct->camera, create_point(0, 1, 0));
 	draw_thick_line(&rt_struct->canva.canva, ori, end, COLOR_Y);
-	end = proj_point(&rt_struct->scene.world.camera, create_point(0, 0, 1));
+	end = proj_point(&rt_struct->camera, create_point(0, 0, 1));
 	draw_thick_line(&rt_struct->canva.canva, ori, end, COLOR_Z);
-	lab = proj_point(&rt_struct->scene.world.camera, create_point(1.2, 0, 0));
+	lab = proj_point(&rt_struct->camera, create_point(1.2, 0, 0));
 	// mlx_string_put(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, (int)lab.x, \
 	// 	(int)lab.y, COLOR_X, "X");
-	// lab = proj_point(&rt_struct->scene.world.camera, create_point(0, 1.2, 0));
+	// lab = proj_point(&rt_struct->camera, create_point(0, 1.2, 0));
 	// mlx_string_put(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, (int)lab.x, \
 	// 	(int)lab.y, COLOR_Y, "Y");
-	// lab = proj_point(&rt_struct->scene.world.camera, create_point(0, 0, 1.2));
+	// lab = proj_point(&rt_struct->camera, create_point(0, 0, 1.2));
 	// mlx_string_put(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, (int)lab.x, \
 	// 	(int)lab.y, COLOR_Z, "Z");
 }
@@ -218,10 +218,10 @@ static void	draw_cube_edge(t_minirt *rt_struct, double verti[8][3], \
 	t_point	end;
 	int		color;
 
-	start = proj_point(&rt_struct->scene.world.camera, \
+	start = proj_point(&rt_struct->camera, \
 		create_point(verti[edges[i][0]][0], verti[edges[i][0]][1], \
 		verti[edges[i][0]][2]));
-	end = proj_point(&rt_struct->scene.world.camera, \
+	end = proj_point(&rt_struct->camera, \
 			create_point(verti[edges[i][1]][0], verti[edges[i][1]][1], \
 			verti[edges[i][1]][2]));
 	color = 0x00888888;
@@ -262,7 +262,7 @@ void draw_cube_labels(t_minirt *rt) {
 	int i = 0;
 
 	while (i < 3) {
-		screen = proj_point(&rt->scene.world.camera, 
+		screen = proj_point(&rt->camera, 
 							create_point(axes[i][0], axes[i][1], axes[i][2]));
 		char *label = (i == 0) ? "X" : (i == 1) ? "Y" : "Z";
 		mlx_string_put(rt->canva.mlx, rt->canva.mlx_wind, 

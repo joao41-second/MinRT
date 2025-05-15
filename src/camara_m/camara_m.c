@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:30 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 19:47:29 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/15 16:08:22 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ t_camera_ms cm_init(double x, double y, double field_of_view, t_matrix const tra
 	ret.y = y;
 	ret.half_width = x;
 	ret.half_height = y;
-	ret.loc = create_point(0, 0, 0);
-	ret.dir = create_vector(0, 0, 0);
+	ret.origin = create_point(0, 0, 0);
+	ret.direction = create_vector(0, 0, 0);
 	cm_pixel_size(&ret);
 	return (ret);
 }
@@ -68,7 +68,7 @@ t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
 	pixel = mat_x_tuple(create_point(cam.half_width
 				- xoffset, cam.half_height - yoffset, -1),
 			cam.inv_tranform_matrix);
-	origin = mat_x_tuple(cam.loc, cam.inv_tranform_matrix);
+	origin = mat_x_tuple(cam.origin, cam.inv_tranform_matrix);
 	ret.origin = origin;
 	ret.direction = normalize(sub_tuples(pixel, origin));
 
@@ -106,7 +106,9 @@ void	cm_windo_put(t_minirt *rt_struct, int x_, int y_,int resul)
 		x = 0;
 		while (x < x_)
 		{
-			ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
+			
+			ray = unified_camera_generate_ray(&rt_struct->camera, x, y);
+			// ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
 			rt_struct->color = lig_color_at(rt_struct, ray);
 			cm_pixle_paint(rt_struct, y, x, resul);
 

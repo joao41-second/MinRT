@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:19:49 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/05 09:36:36 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/12 14:07:29 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@
 # define KEY_K		107
 # define KEY_J		106
 # define KEY_Y		121
-# define KEY_U 		117
-
+# define KEY_M      109
 # define KEY_ESC    65307
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/15 13:20:31 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/15 16:53:45 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,18 @@ void	start_word(t_minirt *rt_struct)
 	t_object *obj_triangle1 = create_object(&tri1, OBJ_TRIANGLE, mat1);
 	obj_triangle1->matiral = obj_material_init(c_new(1.0, 0, 1.0), obj_init_values_material(0.1, 0.6, 0.9, 100));
 	ray_set_transform_obj(obj_triangle1, mat_gener_scal(1, 1, 1));
-	//ft_add_node(obj_triangle1, &word_objects);
+	ft_add_node(obj_triangle1, &word_objects);
 
 	t_triangle tri2 = create_triangle(create_point(-0.5, 1, 0), create_point(-0.5, 0,5), create_point(-0.5,1 ,5 ));
 	t_object *obj_triangle2 = create_object(&tri2, OBJ_TRIANGLE, mat2);
 	obj_triangle2->matiral = mat1;
 	ray_set_transform_obj(obj_triangle2, mat_gener_scal(1, 1, 1));
-//	ft_add_node(obj_triangle2, &word_objects);
-
+	ft_add_node(obj_triangle2, &word_objects);
+		//init camera
+		t_point origin = create_point(0, 0, 10);
+		t_vector direction = create_vector(0,  0, -1);
+		double fov =100.0;
+		camera_init(&rt_struct->scene.world.camera, origin, direction, fov);
 	rt_struct->word = ft_node_start(word_objects);
 	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
 }
