@@ -91,13 +91,13 @@ t_intersection	ray_int_object(t_ray ray, t_object obj)
 		intersection.mat = obj.matiral;
 	}
 	else if (obj.type == OBJ_PLANE)
-    {
-     	   intersection = ray_int_plane(ray, obj.u_data.plane);
+    	{
+     	   intersection = ray_int_plane(ray_, obj.u_data.plane);
 		intersection.mat = obj.matiral;
-    }
+   	}
 	else if (obj.type == OBJ_TRIANGLE)
 	{
-		intersection = ray_int_triangle(ray, obj);
+		intersection = ray_int_triangle(ray_, obj);
 		intersection.mat = obj.matiral;
 		intersection.object = &obj; 
 	}

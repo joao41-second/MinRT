@@ -52,11 +52,11 @@ void	start_word(t_minirt *rt_struct)
 	ray_set_transform_obj(obj_sphere3,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(0, 0, 2)));
 	ft_add_node(obj_sphere3, &word_objects);
 
-	t_plane pln = create_plane(create_point(0, -2, 0),  create_point(1, -2, 0), create_point(0,-2 , 5));
+	t_plane pln = create_plane(create_point(0, 0, 0),  create_point(1, 0, 0), create_point(0,0 , 5));
 
 	t_object *obj_plane = create_object(&pln, OBJ_PLANE, mat2);
 
-	ray_set_transform_obj(obj_plane,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(0, -2, 0)));
+	ray_set_transform_obj(obj_plane,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(0, -4, 0)));
 	ft_add_node(obj_plane,&word_objects );
 
 	t_plane pln2 = create_plane(create_point(5, 0, 0),  create_point(5, 1, 0), create_point(5,0 , 5));

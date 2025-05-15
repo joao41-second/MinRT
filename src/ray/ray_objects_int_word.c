@@ -61,34 +61,13 @@ t_intersection ray_int_plane(t_ray ray, t_plane plane)
     double t;
     double a;
     double b;
-    t_vector ab;
-    t_vector ac;
-    t_vector norm;
-	
 
-    ab = sub_tuples(plane.point2, plane.point1); 
-    ac = sub_tuples(plane.point3, plane.point1);
-	
-    norm = cross_product(ab, ac);
-    norm = normalize(norm);
-
- 
-    a = -(norm.x*ray.origin.x + norm.y * ray.origin.y + norm.z*ray.origin.z);
-
-    b = (norm.x*ray.direction.x + norm.y * ray.direction.y + norm.z*ray.direction.z);
-    if(b != 0)
-    	t = a/b;
-    else 
-	t = -1;
-    if(t == 0)
-	t = 0.1;
+    a = -(plane.normal.x * ray.origin.x + plane.normal.y * ray.origin.y + plane.normal.z*ray.origin.z);
+    b = (plane.normal.x*ray.direction.x + plane.normal.y * ray.direction.y + plane.normal.z*ray.direction.z);
+    t = (a/b);
     ret.inter = t;
     ret.t[0] = t;
     ret.t[1] = t;
- 
-
-	    
-
     ret.object = &plane;
     return ret;
 }

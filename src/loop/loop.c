@@ -17,7 +17,7 @@ void	loop(t_minirt *rt_struct)
 {
 	char	*str;
 	
-	mouse(rt_struct);
+//	mouse(rt_struct);
 	
 	mat_set_view_transform(&rt_struct->cam_m.tranform_matrix, create_point(1, 1,-3), 
 			create_point(0, 0, 0), create_vector(0, 1, 0));

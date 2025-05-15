@@ -24,12 +24,10 @@ int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_)
 	{
 		obj = (t_object *)objs_w->content;
 		shadow = ray_int_object(shadow_,*obj);
-		if(obj->type != OBJ_PLANE)
-		{
 		if(shadow.t[0] > EPSILON || shadow.t[1] > EPSILON )
 		{
 		 return (1);
-		}}
+		}
 
 		if (objs_w->next == NULL)
 			break ;
