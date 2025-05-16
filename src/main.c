@@ -30,7 +30,6 @@ int	main(int ac, char **av, char **env)
 	ok = lig_view_transform(rt_struct.point,
 			create_point(0, 0, 0), create_vector(0, 1, 0));
 	rt_struct.cam_m = cm_init(WALL_X, WALL_Y, M_PI / 3, ok);
-	//mat_print(rt_struct.cam_m.inv_tranform_matrix);
 
 	rt_struct.cam = cm_ray_for_pixel(rt_struct.cam_m,
 			(double)WALL_X / 2, (double)WALL_Y / 2);
