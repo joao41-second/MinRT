@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:44:00 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/29 16:31:07 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/16 12:22:46 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ t_matrix			mat_matrix_signal(int size);
 void				mat_not_neg_zero(t_matrix *mat);
 
 int					mat_iqual(t_matrix mat1, t_matrix mat2);
-
+void	mat_set_trans(t_matrix *ret,double x, double y, double z);
 void	mat_set_multip(t_matrix *resolt,t_matrix mat1, t_matrix mat2);
 
 void	mat_set_view_transform(t_matrix *mat_,t_tuple form, t_tuple to, t_tuple up);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray_in_shadow.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:08:23 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/12 17:28:56 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/16 09:48:11 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../minRT.h"
 
+#include "../minRT.h"
 
 int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_)
 {
@@ -24,12 +24,11 @@ int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_)
 	{
 		obj = (t_object *)objs_w->content;
 		shadow = ray_int_object(shadow_,*obj);
-		if(obj->type != OBJ_PLANE)
-		{
+
 		if(shadow.t[0] > EPSILON || shadow.t[1] > EPSILON )
 		{
 		 return (1);
-		}}
+		}
 
 		if (objs_w->next == NULL)
 			break ;

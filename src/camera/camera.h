@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 00:49:55 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/12 13:56:17 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:23:12 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ t_matrix mat_rotate(t_vector axis, double angle);
 
 
 
-
+void camera_set_view_transform(t_camera_ms *cam, t_point from, t_point to, t_vector up);
+    
 t_ray unified_camera_generate_ray(t_camera_ms *cam, double x, double y);
 void unified_camera_set_mode(t_camera_ms *cam, t_camera_mode mode);
 #endif

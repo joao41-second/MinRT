@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:48:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/12 14:33:27 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:37:09 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void camera_update_view(t_camera_ms *cam)
 {
     t_vector forward = normalize(cam->direction);
     t_vector world_up;
-    t_vector left;  // Changed from 'right' to 'left'
+    t_vector left;
     t_vector true_up;
     
     if (fabs(forward.y) > 0.98)
@@ -96,14 +96,13 @@ void camera_update_view(t_camera_ms *cam)
     else
         world_up = create_vector(0, 1, 0);
     
-    // Change cross product order to match camara_m.c
-    left = normalize(cross_product(forward, world_up));  // Same as camara_m.c
-    true_up = cross_product(left, forward);  // Same as camara_m.c
+    left = normalize(cross_product(forward, world_up));
+    true_up = cross_product(left, forward);
     
     printf("camera_update_view:\n");
     printf("Forward: (%f, %f, %f)\n", forward.x, forward.y, forward.z);
     printf("World Up: (%f, %f, %f)\n", world_up.x, world_up.y, world_up.z);
-    printf("Left: (%f, %f, %f)\n", left.x, left.y, left.z);  // Changed from 'Right' to 'Left'
+    printf("Left: (%f, %f, %f)\n", left.x, left.y, left.z);
     printf("True Up: (%f, %f, %f)\n", true_up.x, true_up.y, true_up.z);
     
     cam->tranform_matrix = mat_lookat(cam->origin,
@@ -196,5 +195,26 @@ t_matrix mat_lookat(t_point eye, t_point center, t_vector up)
     t_matrix translation = mat_gener_trans(-eye.x, -eye.y, -eye.z);
     t_matrix tranform_matrix = mat_multip(rotation, translation);
     return tranform_matrix;
+}
+
+void camera_set_view_transform(t_camera_ms *cam, t_point from, t_point to, t_vector up) {
+    t_vector forward = normalize(sub_tuples(to, from));
+    t_vector left = normalize(cross_product(forward, normalize(up)));
+    t_vector true_up = cross_product(left, forward);
+
+    cam->tranform_matrix = mat_gener_identity(4);
+    cam->tranform_matrix.matr[0][0] = left.x;
+    cam->tranform_matrix.matr[0][1] = left.y;
+    cam->tranform_matrix.matr[0][2] = left.z;
+    cam->tranform_matrix.matr[1][0] = true_up.x;
+    cam->tranform_matrix.matr[1][1] = true_up.y;
+    cam->tranform_matrix.matr[1][2] = true_up.z;
+    cam->tranform_matrix.matr[2][0] = -forward.x;
+    cam->tranform_matrix.matr[2][1] = -forward.y;
+    cam->tranform_matrix.matr[2][2] = -forward.z;
+
+    t_matrix translation = mat_gener_trans(-from.x, -from.y, -from.z);
+    cam->tranform_matrix = mat_multip(cam->tranform_matrix, translation);
+    cam->inv_tranform_matrix = mat_inv(cam->tranform_matrix);
 }
 

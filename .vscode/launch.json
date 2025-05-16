@@ -8,7 +8,7 @@
             "name": "MINIRT",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/rerodrig/sgoinfre/1_common_core/10_minirt/0_minirt/miniRT",
+            "program": "${workspaceFolder}/miniRT",
             "args": ["/home/rerodrig/sgoinfre/1_common_core/10_minirt/0_minirt/scenes/img00.rt"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

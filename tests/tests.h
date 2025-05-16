@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:45:05 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/29 16:23:52 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/16 10:58:20 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,18 @@
 #define LOOP_ITERATIONS 100
 
 int error_(char *name,int nb, int *error);
-void	test_tuples(void); void	test_ft_atof(void);
+// void	test_tuples(void); void	test_ft_atof(void);
 
-void	test_ligth(void);
+// void	test_ligth(void);
 
-void	test_view_trasfomr(void);
+// void	test_view_trasfomr(void);
 
-void	test_word(void);
+// void	test_word(void);
 
-void	shp_text(void);
+// void	shp_text(void);
+
+// void	test_planes(void);
+void	test_triangle(void);
+// void	test_cylinder(void);
 
 #endif /* TESTS_H */

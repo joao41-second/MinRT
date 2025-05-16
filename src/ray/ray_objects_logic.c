@@ -1,11 +1,12 @@
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ray_objects_logic.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 14:54:58 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 11:48:58 by rerodrig         ###   ########.fr       */
+/*   Created: 2025/05/07 11:48:58 by rerodrig          #+#    #+#             */
+/*   Updated: 2025/05/16 09:52:11 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +93,12 @@ t_intersection	ray_int_object(t_ray ray, t_object obj)
 	}
 	else if (obj.type == OBJ_PLANE)
     {
-     	   intersection = ray_int_plane(ray, obj.u_data.plane);
+     	   intersection = ray_int_plane(ray_, obj.u_data.plane);
 		intersection.mat = obj.matiral;
     }
 	else if (obj.type == OBJ_TRIANGLE)
 	{
-		intersection = ray_int_triangle(ray, obj);
+		intersection = ray_int_triangle(ray_, obj);
 		intersection.mat = obj.matiral;
 		intersection.object = &obj; 
 	}

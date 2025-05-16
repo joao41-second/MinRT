@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 12:18:18 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:57:06 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ t_light				ligth_init(t_color intensty, t_point point);
 t_plane create_plane(t_point point1,t_point point2 ,t_point point3);
 
 t_triangle			create_triangle(t_point p1, t_point p2, t_point p3);
+t_vector triangle_normal_at(t_triangle triangle);
 t_cylinder create_cylinder(t_point center, t_vector orientation, double radius, double height);
 t_object			*create_object(void *data, t_obj_type type, t_mater mat);
 

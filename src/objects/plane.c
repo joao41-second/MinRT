@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 19:21:35 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/07 11:13:05 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/16 09:46:06 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,15 @@ t_vector local_intersect_plane(t_object *plane, t_ray ray)
 t_plane create_plane(t_point point1,t_point point2 ,t_point point3)
 {
     t_plane plane;
+    t_vector ab;
+    t_vector ac;
 
     plane.point1 = point1;
-
     plane.point2 = point2;
-
     plane.point3 = point3;
-
+    ab = sub_tuples(plane.point2, plane.point1); 
+    ac = sub_tuples(plane.point3, plane.point1);	
+    plane.normal = cross_product(ab, ac);
+//    plane.normal= normalize(plane.normal);
     return plane;
 }

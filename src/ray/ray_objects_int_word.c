@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:31:53 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 20:25:16 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/16 11:57:55 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,34 +61,13 @@ t_intersection ray_int_plane(t_ray ray, t_plane plane)
     double t;
     double a;
     double b;
-    t_vector ab;
-    t_vector ac;
-    t_vector norm;
-	
 
-    ab = sub_tuples(plane.point2, plane.point1); 
-    ac = sub_tuples(plane.point3, plane.point1);
-	
-    norm = cross_product(ab, ac);
-    norm = normalize(norm);
-
- 
-    a = -(norm.x*ray.origin.x + norm.y * ray.origin.y + norm.z*ray.origin.z);
-
-    b = (norm.x*ray.direction.x + norm.y * ray.direction.y + norm.z*ray.direction.z);
-    if(b != 0)
-    	t = a/b;
-    else 
-	t = -1;
-    if(t == 0)
-	t = 0.1;
+    a = -(plane.normal.x * ray.origin.x + plane.normal.y * ray.origin.y + plane.normal.z*ray.origin.z);
+    b = (plane.normal.x*ray.direction.x + plane.normal.y * ray.direction.y + plane.normal.z*ray.direction.z);
+    t = (a/b);
     ret.inter = t;
     ret.t[0] = t;
     ret.t[1] = t;
- 
-
-	    
-
     ret.object = &plane;
     return ret;
 }
@@ -96,12 +75,9 @@ t_intersection ray_int_plane(t_ray ray, t_plane plane)
 t_intersection ray_int_triangle(t_ray ray, t_object tri)
 {
     t_intersection ret;
-    // t_triangle *tri = &obj->u_data.triangle;
-    t_ray transformed_ray = ray_transform(ray, tri.inv_transform);
-    t_vector dir_cross_e2 = cross_product(tri.u_data.triangle.edge2, transformed_ray.direction);
+    t_vector dir_cross_e2 = cross_product(ray.direction, tri.u_data.triangle.edge2);
     double det = dot_product(tri.u_data.triangle.edge1, dir_cross_e2);
-    if (fabs(det) < EPSILON)
-    {
+    if (fabs(det) < EPSILON) {
         ret.inter = 0;
         ret.t[0] = -1;
         ret.t[1] = -1;
@@ -109,20 +85,18 @@ t_intersection ray_int_triangle(t_ray ray, t_object tri)
         return ret;
     }
     double f = 1.0 / det;
-    t_vector p1_to_origin = sub_tuples(transformed_ray.origin, tri.u_data.triangle.p1);
+    t_vector p1_to_origin = sub_tuples(ray.origin, tri.u_data.triangle.p1);
     double u = f * dot_product(p1_to_origin, dir_cross_e2);
-    if (u < 0 || u > 1)
-    {
+    if (u < 0 || u > 1) {
         ret.inter = 0;
         ret.t[0] = -1;
         ret.t[1] = -1;
         ret.object = NULL;
         return ret;
     }
-    t_tuple origin_cross_e1 = cross_product(p1_to_origin, tri.u_data.triangle.edge1);
-    double v = f * dot_product(transformed_ray.direction, origin_cross_e1);
-    if (v < 0 || (u + v) > 1)
-    {
+    t_vector origin_cross_e1 = cross_product(p1_to_origin, tri.u_data.triangle.edge1);
+    double v = f * dot_product(ray.direction, origin_cross_e1);
+    if (v < 0 || (u + v) > 1) {
         ret.inter = 0;
         ret.t[0] = -1;
         ret.t[1] = -1;
@@ -130,8 +104,7 @@ t_intersection ray_int_triangle(t_ray ray, t_object tri)
         return ret;
     }
     double t = f * dot_product(tri.u_data.triangle.edge2, origin_cross_e1);
-    if (t < 0)
-    {
+    if (t < 0) {
         ret.inter = 0;
         ret.t[0] = -1;
         ret.t[1] = -1;
@@ -140,7 +113,7 @@ t_intersection ray_int_triangle(t_ray ray, t_object tri)
     }
     ret.inter = 1;
     ret.t[0] = t;
-    ret.t[1] = -1;
+    ret.t[1] = t;
     ret.object = &tri;
     return ret;
 }
