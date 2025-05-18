@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 11:54:31 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/18 21:41:45 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "./light/light_struct.h"
 # include "./objects/objects.h"
 
+# include "./user_intreface/user_interface_struct.h"
 typedef struct s_camera_m
 {
 	double		x;
