@@ -6,12 +6,13 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/15 13:19:55 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/18 23:00:11 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "loop.h"
 #include "../minRT.h"
+#include "../user_intreface/user_intreface.h"
 
 void	loop(t_minirt *rt_struct)
 {
@@ -34,6 +35,11 @@ void	loop(t_minirt *rt_struct)
 
 	cm_update(&rt_struct->cam_m);
 	cm_windo_put(rt_struct, WALL_X, WALL_Y,rt_struct->needs_render);
+	if(rt_struct->key == KEY_R)
+	{
+		termainl_update(rt_struct->key, rt_struct->data_key);
+	}
+
 
 	canva_update(rt_struct);
 	asprintf(&str, "cord: %f %f %f  dir: %f %f %f",

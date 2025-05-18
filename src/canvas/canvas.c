@@ -6,13 +6,14 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:39:58 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 15:42:53 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/18 22:50:49 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 #include "../minRT.h"
 #include <stdio.h>
+#include "../user_intreface/user_intreface.h"
 
 int	canva_loop(t_minirt *rt_struct)
 {
@@ -63,7 +64,7 @@ void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 			&rt_struct->canva.canva.bits_per_pixel,
 			&rt_struct->canva.canva.line_length,
 			&rt_struct->canva.canva.endian);
-	// start_word(rt_struct);
+	rt_struct->data_key = user_intrefaces_init(rt_struct->canva, rt_struct->word) ;
 	mlx_key_hook(rt_struct->canva.mlx_wind, canva_loop_key, rt_struct);
 	mlx_mouse_hook(rt_struct->canva.mlx_wind, canva_loop_mouse, rt_struct);
 	mlx_loop_hook(rt_struct->canva.mlx, canva_loop, rt_struct);

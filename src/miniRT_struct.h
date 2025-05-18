@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/18 21:41:45 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/18 22:56:50 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@
 # include "./light/light_struct.h"
 # include "./objects/objects.h"
 
-# include "./user_intreface/user_interface_struct.h"
+typedef struct s_user_intreface
+{
+	t_canva *canvas;
+	t_list_ *word;
+} t_user_in;
+
+
 typedef struct s_camera_m
 {
 	double		x;
@@ -68,6 +74,8 @@ typedef struct s_minirt
 	t_color 	color;
 	double		rota_x;
 	double		rota_y;
+	t_user_in 	data_key;
+	int key;
 
 }				t_minirt;
 

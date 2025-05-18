@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:33:28 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/23 16:44:51 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/18 22:24:07 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,9 @@ void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base);
 void	canva_update(t_minirt *rt_struct);
 
 int		create_trgb(int t, int r, int g, int b);
+
+unsigned int	my_mlx_pixel_retunr(t_img_ *data, int x, int y);
+
+void	my_mlx_pixel_put(t_img_ *data, int x, int y, int color);
 
 #endif

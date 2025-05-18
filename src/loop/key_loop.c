@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/15 13:14:07 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/18 22:57:08 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	key_loop(int key, t_minirt *rt_struct)
 	{
 		mlx_loop_end(rt_struct->canva.mlx);
 	}
+	rt_struct->key = key;
 	muve_cam(key,rt_struct);
 //	printf("key %d \n",key);
 //	rota_cam(key,rt_struct);
