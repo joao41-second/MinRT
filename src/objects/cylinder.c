@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:46:08 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/07 12:37:19 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:51:16 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_cylinder create_cylinder(t_point center, t_vector orientation, double radius, 
     return cylinder;
 }
 
-t_vector normal_at_cylinder(t_cylinder cylinder, t_point point) {
+t_vector cylinder_normal_at(t_cylinder cylinder, t_point point)
+{
     double dist = pow(point.x - cylinder.center.x, 2) + pow(point.z - cylinder.center.z, 2);
 
     if (dist < pow(cylinder.radius, 2)) {

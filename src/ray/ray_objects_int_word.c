@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:31:53 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/16 11:57:55 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:48:56 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ t_intersection ray_int_cylinder(t_ray ray, t_cylinder cylinder) {
     double a, b, c, discriminant;
     double t1, t2;
     double y0, y1;
-    intersection.inter = 0;
     intersection.inter = 0;
 
     a = pow(ray.direction.x, 2) + pow(ray.direction.z, 2);

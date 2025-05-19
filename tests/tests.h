@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:45:05 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/16 10:58:20 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:51:59 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int error_(char *name,int nb, int *error);
 
 // void	test_planes(void);
 void	test_triangle(void);
-// void	test_cylinder(void);
+void	test_cylinder(void);
 
 #endif /* TESTS_H */

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:48:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/16 12:37:09 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/19 11:39:37 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ void camera_update_view(t_camera_ms *cam)
     left = normalize(cross_product(forward, world_up));
     true_up = cross_product(left, forward);
     
-    printf("camera_update_view:\n");
-    printf("Forward: (%f, %f, %f)\n", forward.x, forward.y, forward.z);
-    printf("World Up: (%f, %f, %f)\n", world_up.x, world_up.y, world_up.z);
-    printf("Left: (%f, %f, %f)\n", left.x, left.y, left.z);
-    printf("True Up: (%f, %f, %f)\n", true_up.x, true_up.y, true_up.z);
+    // printf("camera_update_view:\n");
+    // printf("Forward: (%f, %f, %f)\n", forward.x, forward.y, forward.z);
+    // printf("World Up: (%f, %f, %f)\n", world_up.x, world_up.y, world_up.z);
+    // printf("Left: (%f, %f, %f)\n", left.x, left.y, left.z);
+    // printf("True Up: (%f, %f, %f)\n", true_up.x, true_up.y, true_up.z);
     
     cam->tranform_matrix = mat_lookat(cam->origin,
                                   add_tuples(cam->origin, forward),
@@ -123,10 +123,12 @@ t_ray camera_generate_ray(t_camera_ms *cam, double x, double y)
     aspect_ratio = cam->aspect_ratio;
     xndc = (2.0 * (x + 0.5) / WALL_X - 1.0) * aspect_ratio * scale;
     yndc = (1.0 - 2.0 * (y + 0.5) / WALL_Y) * scale;
-    ray_dir = create_vector(xndc, yndc, 1.0);
+    ray_dir = create_vector(xndc, yndc, -1.0);
     ray_dir = normalize(mat_x_tuple(ray_dir, cam->inv_tranform_matrix));
     return ray_gener(cam->origin, ray_dir);
 }
+
+
 t_ray unified_camera_generate_ray(t_camera_ms *cam, double x, double y)
 {
     if (cam->mode == CAM_MODE_J) {

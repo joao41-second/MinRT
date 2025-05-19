@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/16 12:59:54 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/19 15:40:21 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,18 @@ void	loop(t_minirt *rt_struct)
 	
 	// mouse(rt_struct);
 	
-	mat_set_view_transform(&rt_struct->camera.tranform_matrix, create_point(0, 0,1), 
-			create_point(0, 0, 0), create_vector(0, 1, 0));
+	// mat_set_view_transform(&rt_struct->camera.tranform_matrix, create_point(0, 0,1), 
+	// 		create_point(0, 0, 0), create_vector(0, 1, 0));
+	    // Only update the view transform based on camera mode
+	if (rt_struct->camera.mode == CAM_MODE_J) {
+		mat_set_view_transform(&rt_struct->camera.tranform_matrix, 
+								create_point(0, 0, 1),
+								create_point(0, 0, 0), 
+								create_vector(0, 1, 0));
+		cm_update(&rt_struct->camera);
+	} else {
+		camera_update_view(&rt_struct->camera);
+	}
 	// camera_update_view(&rt_struct->camera);
 	// mat_set_multip(&rt_struct->camera.tranform_matrix,mat_gener_rota('x', rt_struct->rota_x),mat_cp(rt_struct->camera.tranform_matrix));
 
@@ -39,6 +49,7 @@ void	loop(t_minirt *rt_struct)
 	canva_update(rt_struct);
 	draw_navigator(rt_struct);
 	draw_cube_labels(rt_struct);
+	ft_menu(rt_struct);
 
 	
 	// asprintf(&str, "cord: %f %f %f  dir: %f %f %f",

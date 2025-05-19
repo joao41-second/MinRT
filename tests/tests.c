@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:47:07 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/16 10:58:24 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:51:52 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argv,char** argc)
 		// shp_text();
 		// test_planes();
 		test_triangle();
-		// test_cylinder();
+		test_cylinder();
 	UNITY_END();
 	return (0);
 }

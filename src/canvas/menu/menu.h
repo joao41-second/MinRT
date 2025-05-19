@@ -1,46 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   canvas_struct.h                                    :+:      :+:    :+:   */
+/*   menu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 14:30:27 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/19 15:35:55 by rerodrig         ###   ########.fr       */
+/*   Created: 2025/05/19 15:42:21 by rerodrig          #+#    #+#             */
+/*   Updated: 2025/05/19 15:42:22 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CANVAS_STRUCT_H
-# define CANVAS_STRUCT_H
+#ifndef MENU_H
+# define MENU_H
 
-typedef struct s_img_
-{
-	int			width;
-	int			height;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	void		*img;
-}				t_img_;
+# include "../../minRT.h"
 
-typedef struct s_canva
-{
-	void		*mlx;
-	void		*mlx_wind;
-	t_img_		canva;
+# define W_POS 10
+# define WIN_H 800
+# define HEIGHT_POS 20
+# define WHITE 0xFFFFFF
+# define MENU_WIDTH 200
+# define MENU_HEIGHT 300
 
-}				t_canva;
+# define MENU_X 10
+# define MENU_Y 10
 
-typedef union s_color
-{
-	struct
-	{
-		double	red;
-		double	green;
-		double	blue;
-	};
-	double			color[3];
-}				t_color;
 
 #endif

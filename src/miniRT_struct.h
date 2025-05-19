@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/15 16:08:47 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/19 15:36:09 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ typedef struct s_minirt
 	t_color 	color;
 	double		rota_x;
 	double		rota_y;
+
+	int 		menu;
 
 }				t_minirt;
 

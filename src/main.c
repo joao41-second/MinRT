@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/16 12:30:40 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/19 15:40:40 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ int	main(int ac, char **av, char **env)
 	rt_struct.rota_x = 0;
 
 	rt_struct.needs_render = 4;
+	rt_struct.menu = 0;
 	camera_init(&rt_struct.camera, create_point(0, 1, -10), 
-                       create_vector(0, 0, 1), 100.0);
+                       create_vector(0, 0, 1), 100);
 	unified_camera_set_mode(&rt_struct.camera, CAM_MODE_J);
 	
 	canva_inicializ(&rt_struct, WALL_X, WALL_Y, c_new(0, 0, 0));

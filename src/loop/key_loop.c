@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/16 12:26:05 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/19 15:36:36 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,36 +131,42 @@ void set_top_view(t_camera_ms *cam)
     cam->origin = create_point(0, 10, 0);
     cam->direction = create_vector(0, -1, 0);
     camera_update_view(cam);
+    printf("Camera set to top view: origin=(0, 10, 0), direction=(0, -1, 0)\n");
 }
 void set_front_view(t_camera_ms *cam)
 {
     cam->origin = create_point(0, 1, -10);
     cam->direction = create_vector(0, 0, 1);
     camera_update_view(cam);
+    printf("Camera set to front view: origin=(0, 1, -10), direction=(0, 0, 1)\n");
 }
 void set_right_view(t_camera_ms *cam)
 {
     cam->origin = create_point(10, 1, 0);
     cam->direction = create_vector(-1, 0, 0);
     camera_update_view(cam);
+    printf("Camera set to right view: origin=(10, 1, 0), direction=(-1, 0, 0)\n");
 }
 void set_left_view(t_camera_ms *cam)
 {
     cam->origin = create_point(-10, 1, 0);
     cam->direction = create_vector(1, 0, 0);
     camera_update_view(cam);
+    printf("Camera set to left view: origin=(-10, 1, 0), direction=(1, 0, 0)\n");
 }
 void set_back_view(t_camera_ms *cam)
 {
     cam->origin = create_point(0, 1, 10);
     cam->direction = create_vector(0, 0, -1);
     camera_update_view(cam);
+    printf("Camera set to back view: origin=(0, 1, 10), direction=(0, 0, -1)\n");
 }
 void set_bottom_view(t_camera_ms *cam)
 {
     cam->origin = create_point(0, -10, 0);
     cam->direction = create_vector(0, 1, 0);
     camera_update_view(cam);
+    printf("Camera set to bottom view: origin=(0, -10, 0), direction=(0, 1, 0)\n");
 }
 
 void rotate_plane(t_object *plane, char axis, double angle, t_camera_ms *cam)
@@ -224,6 +230,27 @@ void ray_reset_transform_obj(t_object *obj)
         printf("Reset plane normal: (%f, %f, %f)\n", plane->u_data.plane.normal.x, plane->u_data.plane.normal.y, plane->u_data.plane.normal.z);
     }
 }
+
+void rotate_scene(t_minirt *rt_struct, char axis, double angle)
+{
+    t_list_ *current = rt_struct->word;
+
+    t_matrix rotation_matrix = mat_gener_rota(axis, angle);
+
+    while (current)
+    {
+        t_object *obj = (t_object *)current->content;
+
+        // Apply the rotation matrix to the object's transformation
+        t_matrix new_transform = mat_multip(obj->transform, rotation_matrix);
+        ray_set_transform_obj(obj, new_transform);
+
+        current = current->next;
+    }
+
+    // Update the canvas to reflect the changes
+    canva_update(rt_struct);
+}
 void key_loop(int keycode, t_minirt *rt_struct)
 {
     t_list_  *current = rt_struct->word;
@@ -275,7 +302,7 @@ void key_loop(int keycode, t_minirt *rt_struct)
     } else if (keycode == NUMKEY_4) {
         camera_rotate(&rt_struct->camera, 0, ROTATION_SPEED);
     } else if (keycode == NUMKEY_5 || keycode == NUMKEY_6) {
-        camera_rotate(&rt_struct->camera, 0, 0); // Implement roll logic if needed
+        camera_rotate(&rt_struct->camera, 0, 0); 
     } else if (keycode == NUMPAD_1) {
         set_front_view(&rt_struct->camera);
     } else if (keycode == NUMPAD_4) {
@@ -316,6 +343,10 @@ void key_loop(int keycode, t_minirt *rt_struct)
                (new_mode == CAM_MODE_R) ? "CAM_MODE_R" : "CAM_MODE_J");
         canva_update(rt_struct);
         return;
+    } else if (keycode == KEY_TAB)
+    {
+        rt_struct->menu = !rt_struct->menu;
+        canva_update(rt_struct);
     }
 	else if(keycode == NUMKEY_9)
 	{
