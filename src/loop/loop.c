@@ -35,10 +35,8 @@ void	loop(t_minirt *rt_struct)
 
 	cm_update(&rt_struct->cam_m);
 	cm_windo_put(rt_struct, WALL_X, WALL_Y,rt_struct->needs_render);
-	if(rt_struct->key == KEY_R)
-	{
 		termainl_update(rt_struct->key, rt_struct->data_key);
-	}
+	rt_struct->key =0;
 
 
 	canva_update(rt_struct);

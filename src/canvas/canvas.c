@@ -56,7 +56,7 @@ int	canva_loop_mouse(int button, int x, int y, void *param)
 void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 {
 	(void)base;
-	rt_struct->canva.mlx = ft_add_memory(mlx_init(), NULL);
+	rt_struct->canva.mlx = mlx_init();
 	rt_struct->canva.mlx_wind = mlx_new_window(rt_struct->canva.mlx,
 			x, y, "new minRT");
 	rt_struct->canva.canva.img = mlx_new_image(rt_struct->canva.mlx, x, y);
@@ -64,7 +64,7 @@ void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 			&rt_struct->canva.canva.bits_per_pixel,
 			&rt_struct->canva.canva.line_length,
 			&rt_struct->canva.canva.endian);
-	rt_struct->data_key = user_intrefaces_init(rt_struct->canva, rt_struct->word) ;
+	rt_struct->data_key = user_intrefaces_init(&rt_struct->canva, rt_struct->word) ;
 	mlx_key_hook(rt_struct->canva.mlx_wind, canva_loop_key, rt_struct);
 	mlx_mouse_hook(rt_struct->canva.mlx_wind, canva_loop_mouse, rt_struct);
 	mlx_loop_hook(rt_struct->canva.mlx, canva_loop, rt_struct);

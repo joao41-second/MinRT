@@ -16,7 +16,7 @@
 #include "terminal/treminal.h"
 
 
-t_user_in user_intrefaces_init(t_canva canva,t_list_ *word );
+t_user_in user_intrefaces_init(t_canva *canva,t_list_ *word );
 
 #endif
 

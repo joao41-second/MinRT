@@ -33,8 +33,8 @@ void term_change_color(t_user_in data)
 		x = -1;
 		while (++x < WALL_X)
 		{
-		//color = my_mlx_pixel_retunr(&data.canvas->canva,x , WALL_Y -y);
-	//	my_mlx_pixel_put(&data.canvas->canva, 10,  10, 10);
+		color = my_mlx_pixel_retunr(&data.canvas->canva,x , WALL_Y -y);
+		my_mlx_pixel_put(&data.canvas->canva, x, WALL_Y -y, color - 20);
 		
 		}	
 	}
@@ -42,21 +42,24 @@ void term_change_color(t_user_in data)
 
 void termainl_update(int key,t_user_in data)
 {
-	static int stat = 0;
+	static int stat;
 	
+
+	if(stat == 1 && KEY_R == key)
+	{
+		stat = 0;
+		return;
+	}	
 	
 	if(stat == 0 && key == KEY_R)
 	{
 		stat = 1;
+		term_change_color(data);
+		return;
 	}
-	printf("ola %d\n",stat);
 	if(stat == 1)
 	{	
 		 term_change_color(data);
 	}
 
-	if(key == KEY_SPACE)
-	{
-		stat = 0;
-	}	
 }
