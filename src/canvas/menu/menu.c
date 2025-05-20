@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:42:15 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/19 15:42:16 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:04:16 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../canvas_struct.h"
 #include "menu.h"
 #include <stdio.h>
+
 
 void ft_menu(t_minirt *minirt)
 {

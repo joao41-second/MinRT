@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   light_lighting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:43:55 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 20:33:59 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/20 13:10:15 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "light_struct.h"
 #include <stdio.h>
+#include "../patterns/pattern.h"
 
 void	lig_specular_and_difuse(t_lightnig *light,
 		t_computations comp, t_mater mat, t_light luz)
@@ -34,8 +35,15 @@ void	lig_specular_and_difuse(t_lightnig *light,
 t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 {
 	t_lightnig	light;
+	t_color		effective_color;
 
-	light.efectiv = c_multipl(mat.color, luz.intenstiy);
+    // // Check if the material has a pattern
+	// if (&mat.pattern != NULL)
+    //     effective_color = pattern_at(mat.pattern, comp.point);
+    // else
+        effective_color = mat.color;
+
+	light.efectiv = c_multipl(effective_color, luz.intenstiy);
 	light.luztv = normalize(sub_tuples(luz.point, comp.point));
 	light.amb_c = c_multipl(light.efectiv, c_new(mat.values.amb,
 				mat.values.amb, mat.values.amb));

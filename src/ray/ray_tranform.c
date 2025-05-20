@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:12:41 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 11:44:02 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/20 09:53:20 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	ray_set_transform_pln(t_object *pln, t_matrix mat)
 	mat_not_neg_zero(&pln->inv_transform);
 	mat_not_neg_zero(&pln->transform);
 	mat_not_neg_zero(&pln->inv_transpose);	
-	printf("Plane transform applied:\n");
-	mat_print(pln->transform);
-	printf("Updated plane normal: (%f, %f, %f)\n", pln->u_data.plane.normal.x, pln->u_data.plane.normal.y, pln->u_data.plane.normal.z);
+	// printf("Plane transform applied:\n");
+	// mat_print(pln->transform);
+	// printf("Updated plane normal: (%f, %f, %f)\n", pln->u_data.plane.normal.x, pln->u_data.plane.normal.y, pln->u_data.plane.normal.z);
 
 }
 

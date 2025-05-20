@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:48:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/19 11:39:37 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:44:59 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,33 +56,66 @@ t_matrix mat_rotate(t_vector axis, double angle)
     rotation.matr[2][2] = cos_a + axis.z * axis.z * one_minus_cos;
     return rotation;
 }
-
 void camera_rotate(t_camera_ms *camera, double dx, double dy)
 {
     t_vector forward = normalize(camera->direction);
     t_vector world_up;
-    t_vector left;  // Changed from right
+    t_vector left;
     t_matrix pitch;
     t_matrix yaw;
-    
+
+    // Translate the camera's origin to the world center (0, 0, 0)
+    t_point original_origin = camera->origin;
+    camera->origin = sub_tuples(camera->origin, create_vector(0, 0, 0));
+
     if (fabs(forward.y) > 0.98)
         world_up = create_vector(0, 0, 1);
     else
         world_up = create_vector(0, 1, 0);
-    
-    left = normalize(cross_product(forward, world_up));  // Changed to left
-    pitch = mat_rotate(left, dy);  // Use left for rotation
+
+    left = normalize(cross_product(forward, world_up));
+    pitch = mat_rotate(left, dy);
     forward = normalize(mat_x_tuple(forward, pitch));
     mat_free(&pitch);
-    
-    world_up = normalize(cross_product(left, forward));  // Changed order
+
+    world_up = normalize(cross_product(left, forward));
     yaw = mat_rotate(world_up, dx);
     forward = normalize(mat_x_tuple(forward, yaw));
     mat_free(&yaw);
-    
+
     camera->direction = forward;
+
+    // Translate the camera's origin back to its original position
+    camera->origin = add_tuples(camera->origin, original_origin);
+
     camera_update_view(camera);
 }
+// void camera_rotate(t_camera_ms *camera, double dx, double dy)
+// {
+//     t_vector forward = normalize(camera->direction);
+//     t_vector world_up;
+//     t_vector left;
+//     t_matrix pitch;
+//     t_matrix yaw;
+    
+//     if (fabs(forward.y) > 0.98)
+//         world_up = create_vector(0, 0, 1);
+//     else
+//         world_up = create_vector(0, 1, 0);
+    
+//     left = normalize(cross_product(forward, world_up));
+//     pitch = mat_rotate(left, dy);
+//     forward = normalize(mat_x_tuple(forward, pitch));
+//     mat_free(&pitch);
+    
+//     world_up = normalize(cross_product(left, forward));
+//     yaw = mat_rotate(world_up, dx);
+//     forward = normalize(mat_x_tuple(forward, yaw));
+//     mat_free(&yaw);
+    
+//     camera->direction = forward;
+//     camera_update_view(camera);
+// }
 
 void camera_update_view(t_camera_ms *cam)
 {

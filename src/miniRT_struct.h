@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/19 15:36:09 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:17:50 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 // # include "./camera/camera.h"
 # include "./light/light_struct.h"
 # include "./objects/objects.h"
+
 
 typedef enum e_camera_mode {
     CAM_MODE_R,  

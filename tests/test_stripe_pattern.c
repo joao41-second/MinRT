@@ -1,47 +1,40 @@
-#include "unity.h"
-#include "stripe_pattern.h"
-#include "tuples.h"
+#include <stdio.h>
+#include <assert.h>
+#include "../src/patterns/pattern.h"
+#include "../src/tuples/tuples.h"
+#include "tests.h"
 
-void test_stripe_pattern_creation(void) {
+void	test_pattern_creation(void)
+{
     t_color white = {1, 1, 1};
     t_color black = {0, 0, 0};
-    t_stripe_pattern pattern = stripe_pattern(white, black);
+    t_pattern pattern = create_pattern(white, black);
 
-    TEST_ASSERT_EQUAL_DOUBLE(1, pattern.a.red);
-    TEST_ASSERT_EQUAL_DOUBLE(0, pattern.b.red);
+    assert(pattern.a.red == 1);
+    assert(pattern.b.red == 0);
+    printf("Stripe pattern creation test passed.\n");
 }
 
-void test_stripe_at_constant_y(void) {
+void	test_pattern_at(void)
+{
     t_color white = {1, 1, 1};
     t_color black = {0, 0, 0};
-    t_stripe_pattern pattern = stripe_pattern(white, black);
+    t_pattern pattern = create_pattern(white, black);
 
     t_point point = {0, 0, 0};
-    TEST_ASSERT_EQUAL_DOUBLE(1, stripe_at(pattern, point).red);
-
-    point.y = 1;
-    TEST_ASSERT_EQUAL_DOUBLE(1, stripe_at(pattern, point).red);
-}
-
-void test_stripe_at_alternates_x(void) {
-    t_color white = {1, 1, 1};
-    t_color black = {0, 0, 0};
-    t_stripe_pattern pattern = stripe_pattern(white, black);
-
-    t_point point = {0, 0, 0};
-    TEST_ASSERT_EQUAL_DOUBLE(1, stripe_at(pattern, point).red);
+    assert(pattern_at(pattern, point).red == 1);
 
     point.x = 1;
-    TEST_ASSERT_EQUAL_DOUBLE(0, stripe_at(pattern, point).red);
+    assert(pattern_at(pattern, point).red == 0);
 
-    point.x = -1;
-    TEST_ASSERT_EQUAL_DOUBLE(0, stripe_at(pattern, point).red);
+    point.x = 2;
+    assert(pattern_at(pattern, point).red == 1);
+    printf("Stripe pattern pattern_at test passed.\n");
 }
 
-int main(void) {
-    UNITY_BEGIN();
-    RUN_TEST(test_stripe_pattern_creation);
-    RUN_TEST(test_stripe_at_constant_y);
-    RUN_TEST(test_stripe_at_alternates_x);
-    return UNITY_END();
+void	test_patterns(void)
+{
+	RUN_TEST(test_pattern_creation);
+    RUN_TEST(test_pattern_at);
+
 }

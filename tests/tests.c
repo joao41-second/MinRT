@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:47:07 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/19 14:51:52 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:03:38 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int argv,char** argc)
 		// test_planes();
 		test_triangle();
 		test_cylinder();
+		test_patterns();
 	UNITY_END();
 	return (0);
 }

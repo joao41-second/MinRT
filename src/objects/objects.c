@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 14:45:40 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/07 11:46:28 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:03:47 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_object	*create_object(void *data, t_obj_type type, t_mater mat)
 	obj->inv_transform = mat_gener(4);
 	obj->inv_transpose = mat_gener(4);
 	obj->matiral = mat;
+	// obj->matiral.pattern = NULL;
 	obj->mat_calculate = obj_mat_calulate_init();
 	if (type == OBJ_SPHERE)
 		obj->u_data.sphere = *(t_sphere *)data;

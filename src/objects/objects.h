@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/19 14:51:33 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:33:04 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define OBJECTS_H
 
 # include "../miniRT_struct.h"
+#include "../patterns/pattern.h"
 
 typedef struct s_cylinder
 {
@@ -38,6 +39,7 @@ typedef struct s_material
 {
 	t_color			color;
 	t_m_values		values;
+	t_pattern	*pattern;
 }					t_mater;
 
 typedef struct s_sphere
