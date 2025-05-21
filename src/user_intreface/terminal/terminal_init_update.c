@@ -20,10 +20,11 @@ t_element *cc_add_new_object_elemnt_type()
 	t_element *element;
 	element = ft_malloc(sizeof(t_element)*1, NULL);
 	element->standard_element = NULL;
-	ft_add_node("SPHER",&element->opcion );
-	ft_add_node("PLAN",&element->opcion );
-	ft_add_node("TRIANG",&element->opcion );
-	element->element = ft_node_start(element->element);
+	element->opcion = NULL;
+	ft_add_node(ft_strdup("SPHER"),&element->opcion );
+	ft_add_node(ft_strdup("PLAN"),&element->opcion );
+	ft_add_node(ft_strdup("TRIANG"),&element->opcion );
+	element->opcion = ft_node_start(element->opcion);
 	return (element);
 }
 

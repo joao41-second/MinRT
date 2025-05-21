@@ -41,6 +41,8 @@
 # include "./miniRT_struct.h"
 # include "./objects/objects.h"
 # include "./camera/camera.h"
+# include "./user_intreface/terminal/treminal.h"
+
 # include <asm-generic/errno.h>
 # include <fcntl.h>
 # include <limits.h>

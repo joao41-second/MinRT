@@ -17,6 +17,7 @@
 #include "../../minRT.h"
 		
 
+void trem_init(t_user_in *data);
 
 void termainl_update(int key,t_user_in data);
 
