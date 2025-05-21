@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/15 13:20:31 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 19:39:45 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ void	start_word(t_minirt *rt_struct)
 	mat1 = obj_material_init(c_new(1, 0, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 	word_objects = NULL;
+
 	sph = sphere(create_point(0, 0, 0), 1);
 	obj_sphere = create_object(&sph, OBJ_SPHERE, mat1);
 	ray_set_transform_obj(obj_sphere, mat_gener_scal(1, 1, 1));
-	ft_add_node(obj_sphere, &word_objects);
+	//ft_add_node(obj_sphere, &word_objects);
 
 	mat2 = obj_material_init(c_new(0, 1, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));

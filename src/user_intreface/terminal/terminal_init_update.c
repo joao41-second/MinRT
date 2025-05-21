@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:26:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 15:02:31 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 19:38:13 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../camera/keys.h"
@@ -65,17 +65,17 @@ void termainl_update(int key,t_user_in data)
 	int status;
 	
 	status = termainl_status(key);
-	if(status == 10 && key != 't')
+	if(status == 10 && key != KEY_ENTER )
 	{
+		ter_exec(&data, str);
 		buffer = 0;
 		str[0] = '\0';
 		return;
 	}
-	if(status == 1)
+	if(status == 1 )
 	{
 		
 		ter_tab_logic(data, key,str);
-//		printf("key %d \n",key);
 		if( (key != 't' || key != KEY_ENTER  )&& key != 0 && key != KEY_TAB)
 		{
 			str[buffer] = key;
