@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:13:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 19:57:00 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 23:42:17 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,22 @@ unsigned int	my_mlx_pixel_retunr(t_img_ *data, int x, int y)
 	return (color);
 }
 
-int	create_trgb(int t, int r, int g, int b)
+int	create_trgb( int r, int g, int b)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	return ( r << 16 | g << 8 | b);
+}
+t_color c_get_color(int color)
+{
+	t_color ret;
+
+	ret.red = (color << 16 & 0xFF) / 255.0;
+	ret.green = (color << 8 & 0xFF) / 255.0;
+	ret.blue = (color  & 0xFF ) / 255.0;
+	return ret;
 }
 
 void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base )
 {
-	static t_color color = {0,0,0};
-/*	
-	if(c_chek_iqual_color(color, base) == FALSE)
-		c_print(color);*/
-	color = base;
-	if (base.color[0] > 5)
-		base.color[0] = 5;
-	if (base.color[1] > 6)
-		base.color[1] = 10;
-	if (base.color[2] > 10)
-		base.color[2] = 10;
-	if (base.color[0] < 0)
-		base.color[0] = 0;
-	if (base.color[1] < 0)
-		base.color[1] = 0;
-	if (base.color[2] < 0)
-		base.color[2] = 0;
 	base.color[0] = base.color[0] * 255;
 	base.color[1] = base.color[1] * 255;
 	base.color[2] = base.color[2] * 255;
@@ -71,8 +63,7 @@ void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base )
 		base.color[1] = 0;
 	if (base.color[2] < 0)
 		base.color[2] = 0;
-	my_mlx_pixel_put(&rt_struct->canva.canva, x, y, create_trgb(3,
-			(int)(base.red),
+	my_mlx_pixel_put(&rt_struct->canva.canva, x, y, create_trgb((int)(base.red),
 			(int)(base.green), (int)(base.blue)));
 }
 
