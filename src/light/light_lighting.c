@@ -6,12 +6,13 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:43:55 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 20:33:59 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 22:49:02 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "light_struct.h"
+#include <curses.h>
 #include <stdio.h>
 
 void	lig_specular_and_difuse(t_lightnig *light,
@@ -34,7 +35,11 @@ void	lig_specular_and_difuse(t_lightnig *light,
 t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 {
 	t_lightnig	light;
-
+	
+	if(c_chek_iqual_color(mat.pattern, c_new(-1,-1,-1)) == TRUE)
+	{
+		mat.color = pat_stripe_at(comp.point, 'y',mat.pattern , mat.pattern_b);
+	}	
 	light.efectiv = c_multipl(mat.color, luz.intenstiy);
 	light.luztv = normalize(sub_tuples(luz.point, comp.point));
 	light.amb_c = c_multipl(light.efectiv, c_new(mat.values.amb,

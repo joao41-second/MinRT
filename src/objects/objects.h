@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 12:18:18 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/21 22:39:30 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_mat_values
 typedef struct s_material
 {
 	t_color			color;
+	t_color			pattern;
+	t_color			pattern_b;
 	t_m_values		values;
 }					t_mater;
 
@@ -118,7 +120,8 @@ typedef struct s_object
 
 t_sphere			sphere(t_point point_satrt, double ray_s);
 
-t_mater				obj_material_init(t_color intensty, t_m_values values);
+
+t_mater	obj_material_init(t_color intensty,t_color pattern ,t_m_values values);
 
 t_m_values			obj_init_values_material(double ambient, double diffuse,
 						double sepcular, double shininess);

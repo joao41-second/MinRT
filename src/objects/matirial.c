@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:10:41 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 15:35:52 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 22:39:46 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ t_m_values	obj_init_values_material(double ambient, double diffuse
 	return (ret);
 }
 
-t_mater	obj_material_init(t_color intensty, t_m_values values)
+t_mater	obj_material_init(t_color intensty,t_color pattern ,t_m_values values)
 {
 	t_mater	ret;
-
+	ret.pattern = pattern;
 	ret.values = values;
 	ret.color = intensty;
+	ret.pattern_b = intensty;
 	return (ret);
 }
 

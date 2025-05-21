@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:47:07 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/01 17:50:21 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 22:10:43 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ int	main(int argv,char** argc)
 	(void)argv;
 	(void)argc;
 	UNITY_BEGIN();
-		test_ligth();
-		test_view_trasfomr();
-		test_word();
-		shp_text();
+	//	test_ligth();
+	//	test_view_trasfomr();
+	//	test_word();
+	//	shp_text();
+	stripe();
 	UNITY_END();
 	return (0);
 }

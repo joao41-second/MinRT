@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:45:05 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/29 16:23:52 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 22:10:14 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void	test_view_trasfomr(void);
 void	test_word(void);
 
 void	shp_text(void);
+
+void	stripe(void);
 
 #endif /* TESTS_H */

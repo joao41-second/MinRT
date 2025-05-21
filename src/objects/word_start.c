@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/15 13:20:31 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 22:44:35 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	start_word(t_minirt *rt_struct)
 
 	luz = create_point(0, 0, 0);
 	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(3, 3, -3));
-	mat1 = obj_material_init(c_new(1, 0, 0),
+	mat1 = obj_material_init(c_new(1, 0, 0), c_new(1, 1, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 	word_objects = NULL;
 	sph = sphere(create_point(0, 0, 0), 1);
@@ -37,14 +37,14 @@ void	start_word(t_minirt *rt_struct)
 	ray_set_transform_obj(obj_sphere, mat_gener_scal(1, 1, 1));
 	ft_add_node(obj_sphere, &word_objects);
 
-	mat2 = obj_material_init(c_new(0, 1, 0),
+	mat2 = obj_material_init(c_new(0, 1, 0),c_new(-1, -1, -1),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 
 	sph2 = sphere(create_point(0, 0, 0), 1);
 	obj_sphere2 = create_object(&sph2, OBJ_SPHERE, mat2);
 	ray_set_transform_obj(obj_sphere2,mat_multip(mat_multip( mat_gener_scal(1, 2, 2), mat_gener_trans(0, 1, 1)), mat_gener_rota('z', 0.5)));
 	ft_add_node(obj_sphere2, &word_objects);
-	mat3 = obj_material_init(c_new(1, 1, 0),
+	mat3 = obj_material_init(c_new(1, 1, 0),c_new(1, 0, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 
 	sph2 = sphere(create_point(0, 0, 0), 1);
@@ -71,7 +71,7 @@ void	start_word(t_minirt *rt_struct)
 
 	t_cylinder cyl = create_cylinder(create_point(0 ,0, 0), create_vector(0,1, 0), 0.2, 5);	
 	t_object *obj_cylinder = create_object(&cyl, OBJ_CYLINDER, mat1);
-	obj_cylinder->matiral = obj_material_init(c_new(1.0, 1.0, 0), obj_init_values_material(0.3, 0.6, 0.3, 200));
+	obj_cylinder->matiral = obj_material_init(c_new(1.0, 1.0, 0), c_new(-1, -1, -1),obj_init_values_material(0.3, 0.6, 0.3, 200));
 	ray_set_transform_obj(obj_cylinder, mat_gener_scal(1, 1, 1));
 	//ray_set_transform_obj(obj_cylinder,mat_gener_rota('z', 1));
 	ft_add_node(obj_cylinder, &word_objects);
@@ -80,7 +80,7 @@ void	start_word(t_minirt *rt_struct)
 	
 	t_triangle tri1 = create_triangle(create_point(-0.5, 1, 0), create_point(-0.5, 0, 0), create_point(-0.5, 0, 5));
 	t_object *obj_triangle1 = create_object(&tri1, OBJ_TRIANGLE, mat1);
-	obj_triangle1->matiral = obj_material_init(c_new(1.0, 0, 1.0), obj_init_values_material(0.1, 0.6, 0.9, 100));
+	obj_triangle1->matiral = obj_material_init(c_new(1.0, 0, 1.0),c_new(-1, -1, -1), obj_init_values_material(0.1, 0.6, 0.9, 100));
 	ray_set_transform_obj(obj_triangle1, mat_gener_scal(1, 1, 1));
 	//ft_add_node(obj_triangle1, &word_objects);
 
@@ -107,7 +107,7 @@ void start_word_test(t_minirt  *rt_struct,double ambinet,t_color color)
 
 	word_objects = NULL;
 	sph = sphere(create_point(0, 0, 0),1) ;
-	mat1 = obj_material_init(c_new(1, 0, 0),
+	mat1 = obj_material_init(c_new(1, 0, 0),c_new(-1, -1, -1),
 			obj_init_values_material(ambinet, 0.7, 0.2, 200));
 
  	t_object *obj_sphere = create_object(&sph, OBJ_SPHERE,mat1);

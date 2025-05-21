@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 09:01:00 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/21 22:02:06 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # include "./miniRT_struct.h"
 # include "./objects/objects.h"
 # include "./camera/camera.h"
+# include "./Pattern/pattern.h"
 # include <asm-generic/errno.h>
 # include <fcntl.h>
 # include <limits.h>
