@@ -15,12 +15,7 @@
 #define TREMINAL_H
 
 #include "../../minRT.h"
-
-typedef struct s_terminos
-{
-	t_light *comands;
 		
-} t_terminos;
 
 
 void termainl_update(int key,t_user_in data);

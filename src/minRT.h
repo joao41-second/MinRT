@@ -20,6 +20,8 @@
 # define WALL_Z 1.0
 # define WALL_SIZE 1.0
 
+#define SIZE_LINE  10
+
 # include "../libft/ft_free/ft_free.h"
 # include "../libft/ft_get_next_line/get_next_line_bonus.h"
 # include "../libft/ft_libft/libft.h"

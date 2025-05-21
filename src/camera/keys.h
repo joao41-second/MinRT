@@ -61,5 +61,7 @@
 # define KEY_U 		117
 
 # define KEY_ESC    65307
+# define KEY_ENTER  65293
+
 
 #endif

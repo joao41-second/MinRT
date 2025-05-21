@@ -26,6 +26,7 @@ typedef struct s_user_intreface
 {
 	t_canva *canvas;
 	t_list_ *word;
+	t_list_ *term;
 } t_user_in;
 
 
