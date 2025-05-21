@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 18:14:12 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 19:39:07 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 21:19:45 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void ter_exec(t_user_in *data,char *str)
 	{
 		command_contatn = command->content;
 		if(ft_strncmp(str, command_contatn->name, ft_strlen( command_contatn->name)) == 0)
-			 (command_contatn->exec)(data,command_contatn->viod1, command_contatn->viod2, command_contatn->viod3);
+			 (command_contatn->exec)(data,
+					 command_contatn->viod1,
+					 command_contatn->viod2,
+					 command_contatn->viod3);
 
 		command = command->next;
 	}
