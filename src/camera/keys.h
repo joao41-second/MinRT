@@ -62,6 +62,7 @@
 
 # define KEY_ESC    65307
 # define KEY_ENTER  65293
+# define KEY_TAB    65289
 
 
 #endif

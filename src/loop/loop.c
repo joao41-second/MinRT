@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/18 23:00:11 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 13:22:34 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ void	loop(t_minirt *rt_struct)
 
 	cm_update(&rt_struct->cam_m);
 	cm_windo_put(rt_struct, WALL_X, WALL_Y,rt_struct->needs_render);
-		termainl_update(rt_struct->key, rt_struct->data_key);
-	rt_struct->key =0;
+
 
 
 	canva_update(rt_struct);
+	termainl_update(rt_struct->key, rt_struct->data_key);
+	rt_struct->key =0;
 	asprintf(&str, "cord: %f %f %f  dir: %f %f %f",
 		rt_struct->cam.origin.x, rt_struct->cam.origin.y,
 		rt_struct->cam.origin.z, rt_struct->cam.direction.x,

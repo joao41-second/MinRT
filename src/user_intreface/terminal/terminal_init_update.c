@@ -6,38 +6,13 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:26:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/18 23:10:29 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 13:28:04 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../camera/keys.h"
 #include "../../canvas/canvas.h"
 #include "../../minRT.h"
 #include "termianl_stuct.h"
-#include <stdio.h>
-
-t_element *cc_add_new_object_elemnt_type()
-{
-	t_element *element;
-	element = ft_malloc(sizeof(t_element)*1, NULL);
-	element->standard_element = NULL;
-	element->opcion = NULL;
-	ft_add_node(ft_strdup("SPHER"),&element->opcion );
-	ft_add_node(ft_strdup("PLAN"),&element->opcion );
-	ft_add_node(ft_strdup("TRIANG"),&element->opcion );
-	element->opcion = ft_node_start(element->opcion);
-	return (element);
-}
-
-t_comand *cc_add_new_object()
-{
-	t_comand *add_obj;
-	add_obj =  ft_malloc(1*sizeof(t_comand), NULL);
-	add_obj->name = "add";
-	add_obj->func = NULL;
-	ft_add_node(cc_add_new_object_elemnt_type(), &add_obj->element);
-	add_obj->element = ft_node_start(add_obj->element);
-	return (add_obj);
-}
 
 void trem_init(t_user_in *data)
 {
@@ -63,7 +38,7 @@ void term_change_color(t_user_in data,char *str,int nb_line, int neg_color)
 		}	
 	}
 
-	mlx_string_put(data.canvas->mlx, data.canvas->mlx_wind,0, WALL_Y, create_trgb(1, 255, 255, 2), str);
+	mlx_string_put(data.canvas->mlx, data.canvas->mlx_wind,0, WALL_Y- (SIZE_LINE *nb_line ), create_trgb(1, 255, 255, 2), str);
 }
 
 int termainl_status(int key)
@@ -98,6 +73,10 @@ void termainl_update(int key,t_user_in data)
 	}
 	if(status == 1)
 	{
+		if(key == KEY_TAB)
+		{
+			ter_tab_logic(data, str);
+		}
 
 		printf("key %d \n",key);
 		if((key != 't' || key != KEY_ENTER  )&& key != 0)
@@ -108,7 +87,6 @@ void termainl_update(int key,t_user_in data)
 		}
 
 		 term_change_color(data,str,0,10);
-		 term_change_color(data,str,5,20);
 		 
 	}
 
