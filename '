@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:12:42 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 17:24:36 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 16:17:45 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,41 @@
 #include "termianl_stuct.h"
 #include <stdio.h>
 
-void ter_opcions_(t_comand *comand,t_user_in data,char *str,int len,int flag);
-
-void ter_opcions_print(t_comand command, t_user_in data,char *str)
-{
-	t_element *element;
-	int i;
-	int len;
-	int len_name;
-
-	i = 0;
-	len = ft_strlen(str);
-	element = command.element->content;
-	while (element->opcion != NULL)
-	{
-		i++;
-		len_name = ft_strlen(element->opcion->content);
-		if(len == 0)
-			term_change_color(data,element->opcion->content ,i , 30);
-		else if(ft_strncmp(element->opcion->content, str, len) == 0)
-			term_change_color(data,element->opcion->content ,i , 30);
-		else if( ft_strncmp(element->opcion->content, str, len_name) == 0)
-		{
-			if(command.element->next != NULL)
-			{
-				command.element = command.element->next;
-				ter_opcions_(&command,data,str,len,1);
-				command.element = ft_node_start(command.element);
-
-			}
-		//	term_change_color(data,element->opcion->content ,i , 30);
-		}
-		else
-		 i--;
-		if( element->opcion->next == NULL)
-			break;
-		element->opcion = element->opcion->next;
-	}
-		element->opcion = ft_node_start(element->opcion);
-
-}
-
-
-
-void ter_opcions_(t_comand *comand,t_user_in data,char *str,int len, int falg)
+void ter_opcions_(t_comand comand,t_user_in data,char *str,int len)
 {
 	int i;
 	t_element *element;
 	int len_name;
+	t_list_ *element_node;
+	t_list_ *opcion_node;
 	
+	element_node = comand.element;
+	len_name = ft_strlen(comand.name);
 	i = 0;
-	element =  comand->element->content;
-	if(falg == 0)
-	 len_name =ft_strlen(comand->name);
-	if (falg == 1)
-	 len_name =ft_strlen(element->opcion->content);
-	 
-	if(  str[len_name-falg] == ' ')
-	{	
+	if( len_name == len+1 || str[len_name] == 32 )
+	{
 
-		if (falg == 1){
-			printf("\n");}
-		ter_opcions_print(*comand, data,&str[len_name+1]);
+
+	//	while (element_node != NULL) 
+	//	{
+			element = element_node->content;
+			if(len == len_name || len == len_name+1)
+			{
+				if( element->opcion != NULL)
+				{
+				printf("ola idiota \n");
+				}
+				while (element->opcion != NULL) {
+
+		printf("god %s %d \n", str,len_name );
+					i++;
+					term_change_color(data,element->opcion->content ,i , 20);
+					element->opcion = element->opcion->next;
+				}
+			}
+
+///			element_node = element_node->next;	
+//		}
 	}
 	
 }
@@ -101,7 +74,7 @@ void ter_list_comands(int tab_dize,int len,t_user_in data,char *str)
 			if(ft_strncmp(str, command->name, len) == 0)
 				term_change_color(data,command->name , i, 20);
 			if(ft_strncmp(str, command->name, ft_strlen(command->name)) == 0)
-				ter_opcions_( command, data, str, len,0);
+				ter_opcions_( *command, data, str, len);
 			data.term = data.term->next;			
 		}
 }

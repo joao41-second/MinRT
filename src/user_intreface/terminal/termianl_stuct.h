@@ -29,6 +29,6 @@ t_element *cc_add_new_object_elemnt_type();
 t_comand *cc_add_new_object();
 
 
-void ter_tab_logic(t_user_in data, char *str);
+void ter_tab_logic(t_user_in data,int key, char *str);
 
 void term_change_color(t_user_in data,char *str,int nb_line, int neg_color);

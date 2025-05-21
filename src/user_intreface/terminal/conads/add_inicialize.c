@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:03:22 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 13:08:39 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 17:23:25 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,22 @@ t_element *cc_add_new_object_elemnt_type()
 	element = ft_malloc(sizeof(t_element)*1, NULL);
 	element->standard_element = NULL;
 	element->opcion = NULL;
-	ft_add_node(ft_strdup("SPHER"),&element->opcion );
-	ft_add_node(ft_strdup("PLAN"),&element->opcion );
-	ft_add_node(ft_strdup("TRIANG"),&element->opcion );
+	ft_add_node(ft_strdup("sp"),&element->opcion );
+	ft_add_node(ft_strdup("plan"),&element->opcion );
+	ft_add_node(ft_strdup("triang"),&element->opcion );
+	element->opcion = ft_node_start(element->opcion);
+	return (element);
+}
+
+t_element *cc_add_new_object_elemnt_posicion()
+{
+	t_element *element;
+	element = ft_malloc(sizeof(t_element)*1, NULL);
+	element->standard_element = NULL;
+	element->opcion = NULL;
+	ft_add_node(ft_strdup("0.0.0"),&element->opcion );
+	ft_add_node(ft_strdup("0.0.5"),&element->opcion );
+	ft_add_node(ft_strdup("0.3.5"),&element->opcion );
 	element->opcion = ft_node_start(element->opcion);
 	return (element);
 }
@@ -33,6 +46,7 @@ t_comand *cc_add_new_object()
 	add_obj->name = "add";
 	add_obj->func = NULL;
 	ft_add_node(cc_add_new_object_elemnt_type(), &add_obj->element);
+	ft_add_node(cc_add_new_object_elemnt_posicion(), &add_obj->element);
 	add_obj->element = ft_node_start(add_obj->element);
 	return (add_obj);
 }
