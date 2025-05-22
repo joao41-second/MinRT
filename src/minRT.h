@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/06 14:06:57 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/22 11:39:32 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # define TRUE 0
 # define FALSE 1
 
-# define WALL_X 400
-# define WALL_Y 400
-# define WALL_Z 10.0
-# define WALL_SIZE 7.0
+# define WALL_X 1000
+# define WALL_Y 900
+# define WALL_Z 1.0
+# define WALL_SIZE 1.0
 
 # include "../libft/ft_free/ft_free.h"
 # include "../libft/ft_get_next_line/get_next_line_bonus.h"
@@ -39,6 +39,8 @@
 # include "./loop/loop.h"
 # include "./miniRT_struct.h"
 # include "./objects/objects.h"
+# include "./camera/camera.h"
+
 # include <asm-generic/errno.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -54,6 +56,11 @@
 # include <unistd.h>
 
 void	start_word(t_minirt *rt_struct);
+void	draw_axis_navigator(t_minirt *rt_struct);
+void	draw_orientation_cube(t_minirt *rt_struct);
+void	print_list_(t_list_ *list);
+void	draw_cube_labels(t_minirt *rt_struct);
+void	ft_menu(t_minirt *minirt);
 
 void	start_word_test(t_minirt *rt_struct, double ambinet, t_color color);
 #endif

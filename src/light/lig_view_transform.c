@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minRT.h"
+#include "light.h"
 
 t_matrix	lig_view_transform(t_tuple form, t_tuple to, t_tuple up)
 {
@@ -22,6 +23,9 @@ t_matrix	lig_view_transform(t_tuple form, t_tuple to, t_tuple up)
 	forward = normalize(sub_tuples(to, form));
 	left = cross_product(forward, normalize(up));
 	true_up = cross_product(left, forward);
+	lig_print_tuple(forward);
+	lig_print_tuple(left);
+	lig_print_tuple(true_up);
 	mat.matr[0][0] = left.x;
 	mat.matr[0][1] = left.y;
 	mat.matr[0][2] = left.z;

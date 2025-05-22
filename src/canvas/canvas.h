@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:33:28 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/23 16:44:51 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 22:17:34 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base);
 void	canva_update(t_minirt *rt_struct);
 
 int		create_trgb(int t, int r, int g, int b);
+
+void	clamp_color(t_color *color, double min, double max);
 
 #endif

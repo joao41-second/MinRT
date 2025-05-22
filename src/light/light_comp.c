@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_comp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 14:22:49 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/22 11:26:23 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,19 @@ void	lig_print_tuple(t_tuple tuple)
 t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 {
 	t_computations	ret;
+	t_ray			ray_;
 	t_object		*obj;
 	double			test;
 
 	obj = inter.object;
 	ret.t = inter.min;
-	if (inter.min >= 0)
-		ret.t = 0;
 	ret.object = inter.object;
 	ret.point = ray_position(ray, ret.t);
-	ret.eyev = neg_tuple(ray.direction);
+	ret.eyev = neg_tuple(ray.d);
 	ret.norm = lig_normalize(*obj, ret.point);
 	test = dot_product(ret.norm, ret.eyev);
-	if (test == -0)
-		test = 0;
-	if (test < 0)
+	ret.t_luz = inter.shadow;
+	if (test < EPSILON)
 	{
 		ret.norm = neg_tuple(ret.norm);
 		ret.inside = TRUE;
@@ -74,10 +72,13 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 	t_computations		compt;
 	t_obj_int			ray_in_obj;
 	t_color				ret;
+	t_ray				luz;
 
 	ret = c_new(0, 0, 0);
-	ray_in_obj = ray_for_objects(rt_struct->word, ray);
-	if (ray_in_obj.min < 0)
+	luz.o = ray.o;
+	luz.d = normalize(rt_struct->luz.point);
+	ray_in_obj = ray_for_objects(rt_struct->word, ray, luz);
+	if (ray_in_obj.min > EPSILON)
 	{
 		compt = lig_prepare_computations(ray_in_obj, ray);
 		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);

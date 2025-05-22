@@ -22,6 +22,7 @@ typedef struct s_computations
 	t_vector	norm;
 	t_tuple		eyev;
 	double		t;
+	double		t_luz;
 	int			inside;
 }				t_computations;
 

@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:45:06 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/22 11:40:44 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "matrix/matrix.h"
 #include "minRT.h"
 
 int	main(int ac, char **av, char **env)
@@ -23,14 +24,18 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 	ft_start_alloc();
-	rt_struct.needs_render = 1;
 	start_word(&rt_struct);
 	ok = mat_gener_identity(4);
-	rt_struct.point = create_point(0, 0, 2);
+	rt_struct.point = create_point(0, 0, 0);
 	ok = lig_view_transform(rt_struct.point,
-			create_point(0, 1, 0), create_vector(0, 1, 0));
-	ok = mat_multip(mat_gener_rota('x', 0.054 * (180 / M_PI)), ok);
-	rt_struct.cam_m = cm_init(WALL_X, WALL_Y, M_PI / 2, ok);
+			create_point(0, 0, 0), create_vector(0, 1, 0));
+	rt_struct.rota_y = 0;
+	rt_struct.rota_x = 0;
+	rt_struct.needs_render = 1;
+	rt_struct.menu = 0;
+	camera_init(&rt_struct.camera, create_point(0, 1, -10),
+		create_vector(0, 0, 1), 100);
+	unified_camera_set_mode(&rt_struct.camera, CAM_MODE_J);
 	canva_inicializ(&rt_struct, WALL_X, WALL_Y, c_new(0, 0, 0));
 	return (status);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camara_m.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:37:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 12:39:19 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/22 11:28:52 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "../miniRT_struct.h"
 
-void		cm_windo_put(t_minirt *rt_struct, int x_, int y_);
-
+void		cm_windo_put(t_minirt *rt_struct, int x_, int y_, int resul);
 t_camera_ms	cm_init(double x, double y, double field_of_view,
 				t_matrix tranform);
-
+void		cm_update(t_camera_ms *cam);
 t_ray		cm_ray_for_pixel(t_camera_ms cam, double px, double py);
+void		cm_pixel_size(t_camera_ms *ret);
 
 #endif
