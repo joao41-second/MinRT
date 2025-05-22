@@ -32,9 +32,10 @@ t_img_ *obj_creat_texture(t_canva canva,char *img)
 	t_img_ *imgg;
 	int i = 0;
 	int a = 0;
-	imgg =  ft_malloc(sizeof(t_img_*), NULL);
+	imgg =  ft_malloc(sizeof(t_img_*)*1, NULL);
 
-	imgg->img = mlx_xpm_file_to_image(canva.mlx, img, &i, &a);
+	imgg[0].img = mlx_xpm_file_to_image(canva.mlx, img, &i, &a);
+	imgg->addr = mlx_get_data_addr(imgg->img, &imgg->bits_per_pixel,&imgg->line_length, &imgg->endian);
 	imgg->height = a;
 	imgg->width = i;
 	printf("open img %d , %d\n",a , i);

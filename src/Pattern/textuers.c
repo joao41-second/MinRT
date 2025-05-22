@@ -29,15 +29,8 @@ t_color pat_pixe_at(t_point point,t_img_ *img)
 		theta = (2 * M_PI) - theta;
 	x = (theta /(2*M_PI)) * img->width;
 	y = ((1-(1- point.y) /2)) * (img->height-1);
-	printf("%d ,%d\n",img->height,img->width)	;
-	if(x > 0 && y >0 && x < img->width && y < img->height)
-	{
 		
-		printf("%d %d \n",x,y);
 		color = c_get_color( my_mlx_pixel_retunr(img, x, y));
-	}
-	else
-		color = c_new(1, 0, 0.5);
 
 	return color;
 

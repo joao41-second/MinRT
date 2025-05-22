@@ -40,9 +40,12 @@ t_color c_get_color(int color)
 {
 	t_color ret;
 
-	ret.red = (color << 16 & 0xFF) / 255.0;
-	ret.green = (color << 8 & 0xFF) / 255.0;
-	ret.blue = (color  & 0xFF ) / 255.0;
+
+	ret.red = (color << 16 & 0xFF) ;
+	ret.green = (color << 8 & 0xFF) ;
+	ret.blue = (color  & 0xFF ) ;
+
+
 	return ret;
 }
 
