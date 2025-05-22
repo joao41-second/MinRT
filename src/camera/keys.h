@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:19:49 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/22 11:49:32 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:38:43 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ static const t_key_info	g_key_info[] = {
 {KEY_M, "M", "Switch camera mode", 1},
 {NUMKEY_9, "Numkey 9", "Increase render quality", 0},
 {NUMKEY_8, "Numkey 8", "Decrease render quality", 0},
-{0, "", "", 0}
+{0, NULL, NULL, 0}
 };
 
 #endif
