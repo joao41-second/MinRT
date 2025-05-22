@@ -6,14 +6,13 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:43:55 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/20 13:10:15 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:26:52 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "light_struct.h"
 #include <stdio.h>
-#include "../patterns/pattern.h"
 
 void	lig_specular_and_difuse(t_lightnig *light,
 		t_computations comp, t_mater mat, t_light luz)
@@ -37,12 +36,7 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	t_lightnig	light;
 	t_color		effective_color;
 
-    // // Check if the material has a pattern
-	// if (&mat.pattern != NULL)
-    //     effective_color = pattern_at(mat.pattern, comp.point);
-    // else
-        effective_color = mat.color;
-
+	effective_color = mat.color;
 	light.efectiv = c_multipl(effective_color, luz.intenstiy);
 	light.luztv = normalize(sub_tuples(luz.point, comp.point));
 	light.amb_c = c_multipl(light.efectiv, c_new(mat.values.amb,
@@ -55,7 +49,7 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	}
 	else
 		lig_specular_and_difuse(&light, comp, mat, luz);
-	if(is_equal_double( comp.t_luz, 1))
+	if (is_equal_double(comp.t_luz, 1))
 	{
 		light.diffuse = c_new(0, 0, 0);
 		light.sepcular = c_new(0, 0, 0);

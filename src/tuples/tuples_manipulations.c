@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:07:37 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/13 16:53:25 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/22 10:14:22 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@
 
 double	dot_product(t_tuple a, t_tuple b)
 {
-	double ok;
-	ok = 0;
+	double	ok;
 
+	ok = 0;
 	ok = (a.x * b.x) + \
 		(a.y * b.y) + \
 		(a.z * b.z) + \
 		(a.w * b.w);
-
-	return (ok );
+	return (ok);
 }
 
 double	magnitude(t_tuple t)

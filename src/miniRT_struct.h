@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/20 12:17:50 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:38:10 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,38 +18,36 @@
 # include "./canvas/canvas_struct.h"
 # include "../libft/ft_list/lsit_struct.h"
 # include "./ray/ray_struct.h"
-// # include "./camera/camera.h"
 # include "./light/light_struct.h"
 # include "./objects/objects.h"
 
-
-typedef enum e_camera_mode {
-    CAM_MODE_R,  
-    CAM_MODE_J 
-} t_camera_mode;
+typedef enum e_camera_mode
+{
+	CAM_MODE_R,
+	CAM_MODE_J
+}	t_camera_mode;
 
 typedef struct s_camera_m
 {
-	double		x;
-	double		y;
-	double		field_of_view;
-	
-	t_point		origin;
-	t_vector	direction;
-	
-	t_matrix	tranform_matrix;
-	t_matrix	inv_tranform_matrix;
-    t_mat_calculate	calculate;
-	
-	double       fov;
-    double       aspect_ratio;
+	double			x;
+	double			y;
+	double			field_of_view;
 
-	double		half_width;
-	double		half_height;
-	double		pixel_size;
-	t_camera_mode mode;
-}				t_camera_ms;
+	t_point			origin;
+	t_vector		direction;
 
+	t_matrix		tranform_matrix;
+	t_matrix		inv_tranform_matrix;
+	t_mat_calculate	calculate;
+
+	double			fov;
+	double			aspect_ratio;
+
+	double			half_width;
+	double			half_height;
+	double			pixel_size;
+	t_camera_mode	mode;
+}	t_camera_ms;
 
 // typedef struct s_camera_m
 // {
@@ -67,8 +65,6 @@ typedef struct s_camera_m
 // 	double		half_height;
 // 	double		pixel_size;
 // }				t_camera_ms;
-
-
 
 typedef struct s_world
 {
@@ -95,11 +91,11 @@ typedef struct s_minirt
 	t_ray		cam;
 	int			needs_render;
 	t_point		point;
-	t_color 	color;
+	t_color		color;
 	double		rota_x;
 	double		rota_y;
 
-	int 		menu;
+	int			menu;
 
 }				t_minirt;
 

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:37:14 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 12:28:51 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/22 10:57:00 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef union s_ray
 {
 	struct
 	{
-		t_tuple		origin;
-		t_tuple		direction;
+		t_tuple		o;
+		t_tuple		d;
 	};
 	t_tuple			all[2];
 }					t_ray;
@@ -61,7 +61,7 @@ typedef struct s_object_intersectd
 	t_list_			*ints;
 	double			max;
 	double			min;
-	double 			shadow;
+	double			shadow;
 	t_mater			mat;
 
 }					t_obj_int;

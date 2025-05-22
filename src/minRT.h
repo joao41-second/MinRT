@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/20 13:00:33 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:39:32 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@
 # include "./miniRT_struct.h"
 # include "./objects/objects.h"
 # include "./camera/camera.h"
-# include "./patterns/pattern.h"
 
 # include <asm-generic/errno.h>
 # include <fcntl.h>
@@ -56,11 +55,12 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-void start_word(t_minirt  *rt_struct);
-void draw_navigator(t_minirt *rt_struct);
-void print_list_(t_list_ *list);
-void draw_cube_labels(t_minirt *rt_struct);
-void ft_menu(t_minirt *minirt);
+void	start_word(t_minirt *rt_struct);
+void	draw_axis_navigator(t_minirt *rt_struct);
+void	draw_orientation_cube(t_minirt *rt_struct);
+void	print_list_(t_list_ *list);
+void	draw_cube_labels(t_minirt *rt_struct);
+void	ft_menu(t_minirt *minirt);
 
 void	start_word_test(t_minirt *rt_struct, double ambinet, t_color color);
 #endif
