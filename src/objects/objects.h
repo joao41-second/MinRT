@@ -113,6 +113,7 @@ typedef struct s_object
 	t_matrix		transform;
 	t_matrix		inv_transform;
 	t_matrix		inv_transpose;
+	t_img_			*texture;
 	
 	t_mat_calculate		mat_calculate;
 
@@ -120,22 +121,32 @@ typedef struct s_object
 
 t_sphere			sphere(t_point point_satrt, double ray_s);
 
+t_light				ligth_init(t_color intensty, t_point point);
 
-t_mater	obj_material_init(t_color intensty,t_color pattern ,t_m_values values);
+t_triangle			create_triangle(t_point p1, t_point p2, t_point p3);
+
+t_cylinder 			create_cylinder(t_point center, t_vector orientation,
+						double radius, double height);
+t_object			*create_object(void *data, t_obj_type type,
+						t_mater mat,t_img_ *img);
+
+t_plane				create_plane(t_point point1,t_point point2 ,t_point point3);
+
+
 
 t_m_values			obj_init_values_material(double ambient, double diffuse,
 						double sepcular, double shininess);
 
+t_mater				obj_material_init(t_color intensty,t_color pattern ,t_m_values values);
+
+
 void				obj_material_print(t_mater mat);
 
-t_light				ligth_init(t_color intensty, t_point point);
+t_img_ 				*obj_creat_texture(t_canva canva,char *img);
 
 
 
-t_triangle			create_triangle(t_point p1, t_point p2, t_point p3);
-t_cylinder create_cylinder(t_point center, t_vector orientation, double radius, double height);
-t_object			*create_object(void *data, t_obj_type type, t_mater mat);
 
-t_plane create_plane(t_point point1,t_point point2 ,t_point point3);
+
 
 #endif

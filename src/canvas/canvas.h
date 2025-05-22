@@ -42,4 +42,5 @@ void	canva_update(t_minirt *rt_struct);
 
 int		create_trgb( int r, int g, int b);
 
+unsigned int	my_mlx_pixel_retunr(t_img_ *data, int x, int y);
 #endif

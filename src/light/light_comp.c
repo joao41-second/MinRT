@@ -76,6 +76,7 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 	t_obj_int			ray_in_obj;
 	t_color				ret;
 	t_ray				luz;
+	t_object 			*test;
 
 	ret = c_new(0, 0, 0);
 	luz.origin = ray.origin;
@@ -84,6 +85,10 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 	if (ray_in_obj.min > EPSILON )
 	{
 		compt = lig_prepare_computations(ray_in_obj, ray);
+		test = ray_in_obj.object;
+		if(test->texture != NULL)
+			ray_in_obj.mat.color = pat_pixe_at(compt.point, test->texture);
+
 		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);
 	}
 	return (ret);

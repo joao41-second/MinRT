@@ -14,7 +14,7 @@
 # WFLGS = -Wall -Wextra -Werror
 #WFLGS = -Wall -Wextra -Werror
 
-READ_FLG = -g
+READ_FLG = -g -pg
 # READ_FLG =  -O3 -march=native -flto -funroll-loops  -g -pg
 
 MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft \

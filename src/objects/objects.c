@@ -27,8 +27,22 @@ t_mat_calculate obj_mat_calulate_init()
 	return (ret);
 }
 
+t_img_ *obj_creat_texture(t_canva canva,char *img)
+{
+	t_img_ *imgg;
+	int i = 0;
+	int a = 0;
+	imgg =  ft_malloc(sizeof(t_img_*), NULL);
 
-t_object	*create_object(void *data, t_obj_type type, t_mater mat)
+	imgg->img = mlx_xpm_file_to_image(canva.mlx, img, &i, &a);
+	imgg->height = a;
+	imgg->width = i;
+	printf("open img %d , %d\n",a , i);
+	return (imgg);	
+}
+
+
+t_object	*create_object(void *data, t_obj_type type, t_mater mat,t_img_ *img)
 {
 	t_object	*obj;
 
@@ -47,5 +61,6 @@ t_object	*create_object(void *data, t_obj_type type, t_mater mat)
         obj->u_data.triangle = *(t_triangle *)data;
 	else if (type == OBJ_CYLINDER)
 		obj->u_data.cylinder = *(t_cylinder *)data;
+	obj->texture = img;
 	return (obj);
 }

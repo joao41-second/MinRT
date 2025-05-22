@@ -16,4 +16,6 @@
 
 t_color pat_stripe_at(t_point point,char axi,t_color a, t_color b);
 
+t_color pat_pixe_at(t_point point,t_img_ *img);
+
 #endif
