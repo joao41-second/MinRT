@@ -12,9 +12,7 @@
 
 #include "../minRT.h"
 #include "camera.h"
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
+
 void camera_init(t_camera *cam, t_point origin, t_vector direction, double fov)
 {
     cam->origin = origin;
