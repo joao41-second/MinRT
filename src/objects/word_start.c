@@ -35,7 +35,7 @@ void	start_word(t_minirt *rt_struct)
 	sph = sphere(create_point(0, 0, 0), 1);
 	obj_sphere = create_object(&sph, OBJ_SPHERE, mat1, obj_creat_texture(rt_struct->canva, "./texture/word.xpm"));
 	ray_set_transform_obj(obj_sphere, mat_gener_scal(1, 1, 1));
-	ft_add_node(obj_sphere, &word_objects);
+//	ft_add_node(obj_sphere, &word_objects);
 
 	mat2 = obj_material_init(c_new(0, 1, 0),c_new(-1, -1, -1),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
@@ -44,14 +44,14 @@ void	start_word(t_minirt *rt_struct)
 	obj_sphere2 = create_object(&sph2, OBJ_SPHERE, mat2,obj_creat_texture(rt_struct->canva, "./texture/word.xpm"));
 	my_mlx_pixel_retunr(obj_sphere2->texture, 1, 1);
 	ray_set_transform_obj(obj_sphere2,mat_multip(mat_multip( mat_gener_scal(1, 2, 2), mat_gener_trans(0, 1, 1)), mat_gener_rota('z', 0.5)));
-	ft_add_node(obj_sphere2, &word_objects);
+//	ft_add_node(obj_sphere2, &word_objects);
 	mat3 = obj_material_init(c_new(1, 1, 0),c_new(1, 0, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 
 	sph2 = sphere(create_point(0, 0, 0), 1);
 	obj_sphere3 = create_object(&sph2, OBJ_SPHERE, mat3,NULL);
 	ray_set_transform_obj(obj_sphere3,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(0, 0, 2)));
-	ft_add_node(obj_sphere3, &word_objects);
+//	ft_add_node(obj_sphere3, &word_objects);
 
 	t_plane pln = create_plane(create_point(0, -2, 0),  create_point(1, -2, 0), create_point(0,-2 , 5));
 
@@ -75,21 +75,24 @@ void	start_word(t_minirt *rt_struct)
 	obj_cylinder->matiral = obj_material_init(c_new(1.0, 1.0, 0), c_new(-1, -1, -1),obj_init_values_material(0.3, 0.6, 0.3, 200));
 	ray_set_transform_obj(obj_cylinder, mat_gener_scal(1, 1, 1));
 	//ray_set_transform_obj(obj_cylinder,mat_gener_rota('z', 1));
-	ft_add_node(obj_cylinder, &word_objects);
+//	ft_add_node(obj_cylinder, &word_objects);
 
 //	ft_add_node(obj_plane3,&word_objects );
 	
-	t_triangle tri1 = create_triangle(create_point(-0.5, 1, 0), create_point(-0.5, 0, 0), create_point(-0.5, 0, 5));
+	t_triangle tri1 = create_triangle(
+			create_point(2, 1, 0),
+			create_point(2, 0, 0),
+			create_point(2, 0, 5));
 	t_object *obj_triangle1 = create_object(&tri1, OBJ_TRIANGLE, mat1,NULL);
 	obj_triangle1->matiral = obj_material_init(c_new(1.0, 0, 1.0),c_new(-1, -1, -1), obj_init_values_material(0.1, 0.6, 0.9, 100));
 	ray_set_transform_obj(obj_triangle1, mat_gener_scal(1, 1, 1));
-	//ft_add_node(obj_triangle1, &word_objects);
+	ft_add_node(obj_triangle1, &word_objects);
 
-	t_triangle tri2 = create_triangle(create_point(-0.5, 1, 0), create_point(-0.5, 0,5), create_point(-0.5,1 ,5 ));
+	t_triangle tri2 = create_triangle(create_point(2, 1, 0), create_point(2, 0,5), create_point(2,1 ,5 ));
 	t_object *obj_triangle2 = create_object(&tri2, OBJ_TRIANGLE, mat2,NULL);
 	obj_triangle2->matiral = mat1;
 	ray_set_transform_obj(obj_triangle2, mat_gener_scal(1, 1, 1));
-//	ft_add_node(obj_triangle2, &word_objects);
+	ft_add_node(obj_triangle2, &word_objects);
 
 	rt_struct->word = ft_node_start(word_objects);
 	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
