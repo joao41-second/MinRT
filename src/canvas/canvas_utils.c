@@ -39,6 +39,7 @@ int	create_trgb( int r, int g, int b)
 t_color c_get_color(int color)
 {
 	t_color ret;
+ 
 
 
 	ret.red = (color >> 16 & 0xFF) /255.0 ;
