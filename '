@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include <stdio.h>
 #include "objects.h"
 
 t_mat_calculate obj_mat_calulate_init()
@@ -29,17 +30,22 @@ t_mat_calculate obj_mat_calulate_init()
 
 t_img_ *obj_creat_texture(t_canva canva,char *img)
 {
-	t_img_ *imgg;
+	t_img_ imgg;
 	int i = 0;
 	int a = 0;
-	imgg =  ft_malloc(sizeof(t_img_)*1, NULL);
+	if(img == NULL)
+	{
+		printf("NULL\n");
+		return (NULL);
+	}
+	imgg =  ft_malloc(sizeof(t_img_*)*1, NULL);
 
-	imgg->img = mlx_xpm_file_to_image(canva.mlx, img, &i, &a);
-	imgg->addr = mlx_get_data_addr(imgg->img, &imgg->bits_per_pixel,&imgg->line_length, &imgg->endian);
-	imgg->height = a;
-	imgg->width = i;
+	imgg.img = mlx_xpm_file_to_image(canva.mlx, ft_strdup(img), &i, &a);
+	imgg.addr = mlx_get_data_addr(imgg->img, &imgg->bits_per_pixel,&imgg->line_length, &imgg->endian);
+	imgg.height = a;
+	imgg.width = i;
 	printf("open img %d , %d\n",a , i);
-	return (imgg);	
+	return (*imgg);	
 }
 
 
