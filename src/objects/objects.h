@@ -154,4 +154,6 @@ void obj_square(t_point *points,t_list_ *word,t_mater mat,t_matrix  matrix);
 t_point *obj_create_points(t_point p1,t_point p2,t_point p3,t_point p4);
 
 
+void obj_open_stl_start(t_list_ *word, char *file_name,t_matrix matrix,t_mater mat);
+
 #endif
