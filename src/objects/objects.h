@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 22:39:30 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/26 14:14:41 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_plane
 	t_point			point3;
 	t_vector		normal;
 }					t_plane;
+
+
 
 typedef struct s_light
 {
@@ -147,6 +149,9 @@ t_img_ 				*obj_creat_texture(t_canva canva,char *img);
 
 
 
+void obj_square(t_point *points,t_list_ *word,t_mater mat,t_matrix  matrix);
+
+t_point *obj_create_points(t_point p1,t_point p2,t_point p3,t_point p4);
 
 
 #endif

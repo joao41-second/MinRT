@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 22:44:35 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/26 14:23:39 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,11 @@ void	start_word(t_minirt *rt_struct)
 	ray_set_transform_obj(obj_triangle2, mat_gener_scal(1, 1, 1));
 	ft_add_node(obj_triangle2, &word_objects);
 
+	obj_square(obj_create_points( (t_point){-1.6,-14.7,1.0},  (t_point){-1.2,-14.9,1.0}, (t_point){-1.2,-14.8,1.4}, (t_point) {-1.6,-14.7,1.4}), word_objects, mat1, mat_gener_scal(1,1,1));
+
+
+	obj_square(obj_create_points( (t_point){0,0,0},  (t_point){0,1,0}, (t_point){0,1,1}, (t_point) {0,0,1}), word_objects, mat1, mat_gener_scal(1,1,1));
+ 
 	rt_struct->word = ft_node_start(word_objects);
 	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
 }
