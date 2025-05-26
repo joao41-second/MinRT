@@ -24,7 +24,7 @@ void	loop(t_minirt *rt_struct)
 
 	mat_set_multip(&rt_struct->cam_m.tranform_matrix,mat_gener_rota('x', rt_struct->rota_x),mat_cp(rt_struct->cam_m.tranform_matrix));
 
-	mat_set_multip(&rt_struct->cam_m.tranform_matrix,mat_gener_rota('y', rt_struct->rota_y),mat_cp(rt_struct->cam_m.tranform_matrix));
+	mat_set_multip(&rt_struct->cam_m.tranform_matrix,mat_cp(rt_struct->cam_m.tranform_matrix), mat_gener_rota('y', rt_struct->rota_y));
 	mat_set_multip(&rt_struct->cam_m.tranform_matrix,mat_cp(rt_struct->cam_m.tranform_matrix),
 			mat_gener_trans(rt_struct->point.x, rt_struct->point.y, rt_struct->point.z));
 

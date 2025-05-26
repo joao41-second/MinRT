@@ -57,17 +57,11 @@ void	start_word(t_minirt *rt_struct)
 
 	t_object *obj_plane = create_object(&pln, OBJ_PLANE, mat2,NULL);
 
-	ray_set_transform_obj(obj_plane,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(0, -2, 0)));
+	ray_set_transform_obj(obj_plane,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(0, -4, 0)));
 	ft_add_node(obj_plane,&word_objects );
 
-	t_plane pln2 = create_plane(create_point(5, 0, 0),  create_point(5, 1, 0), create_point(5,0 , 5));
-	t_object *obj_plane2 = create_object(&pln2, OBJ_PLANE, mat3,NULL);
 
-	//ft_add_node(obj_plane2,&word_objects );
 
-	t_plane pln3 = create_plane(create_point(5, 2, 2),  create_point(5, 2, 1), create_point(5,2 , 5));
-	
-	t_object *obj_plane3 = create_object(&pln3, OBJ_PLANE, mat2,NULL);
 
 
 	t_cylinder cyl = create_cylinder(create_point(0 ,0, 0), create_vector(0,1, 0), 0.2, 5);	
@@ -86,21 +80,27 @@ void	start_word(t_minirt *rt_struct)
 	t_object *obj_triangle1 = create_object(&tri1, OBJ_TRIANGLE, mat1,NULL);
 	obj_triangle1->matiral = obj_material_init(c_new(1.0, 0, 1.0),c_new(-1, -1, -1), obj_init_values_material(0.1, 0.6, 0.9, 100));
 	ray_set_transform_obj(obj_triangle1, mat_gener_scal(1, 1, 1));
-	ft_add_node(obj_triangle1, &word_objects);
+//	ft_add_node(obj_triangle1, &word_objects);
 
-	t_triangle tri2 = create_triangle(create_point(2, 1, 0), create_point(2, 0,5), create_point(2,1 ,5 ));
+	t_triangle tri2 = create_triangle(create_point(-1.6, -4.7, 1), create_point(-1.2, -4.9,1), create_point(-1.6,-4.7 ,1.4 ));
 	t_object *obj_triangle2 = create_object(&tri2, OBJ_TRIANGLE, mat2,NULL);
 	obj_triangle2->matiral = mat1;
 	ray_set_transform_obj(obj_triangle2, mat_gener_scal(1, 1, 1));
-	ft_add_node(obj_triangle2, &word_objects);
+//	ft_add_node(obj_triangle2, &word_objects);
 
-	obj_square(obj_create_points( (t_point){-1.6,-14.7,1.0},  (t_point){-1.2,-14.9,1.0}, (t_point){-1.2,-14.8,1.4}, (t_point) {-1.6,-14.7,1.4}), word_objects, mat1, mat_gener_scal(1,1,1));
+	obj_square(obj_create_points((t_point){-1.6,-4.7,1.0}, 
+				     (t_point){-1.2,-4.9,1.0}, 
+				     (t_point){-1.2,-4.8,1.4}, 
+				     (t_point){-1.6,-4.7,1.4})
+			, word_objects, mat1, mat_gener_trans(0, 2, 0));
 
 
-	obj_square(obj_create_points( (t_point){0,0,0},  (t_point){0,1,0}, (t_point){0,1,1}, (t_point) {0,0,1}), word_objects, mat1, mat_gener_scal(1,1,1));
+
+	//obj_square(obj_create_points( (t_point){1,1,1},  (t_point){1,2,1}, (t_point){1,2,2}, (t_point) {1,1,2}), word_objects, mat1, mat_gener_scal(2,2,2));
+	//obj_square(obj_create_points( (t_point){0,0,0},  (t_point){0,1,0}, (t_point){0,1,1}, (t_point) {0,0,1}), word_objects, mat1, mat_gener_scal(1,1,1));
  
 
-	obj_open_stl_start(word_objects, "./texture/tree.obj", mat_gener_trans(1, 1, 1), mat1);
+	obj_open_stl_start(word_objects, "./texture/tree.obj",  mat_gener_scal(0.1, 0.1, 0.1), mat1);
 
 	rt_struct->word = ft_node_start(word_objects);
 	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);

@@ -117,8 +117,8 @@ void	key_loop(int key, t_minirt *rt_struct)
 	}
 	muve_cam(key,rt_struct);
 //	printf("key %d \n",key);
-//	rota_cam(key,rt_struct);
-	muve_lig(key,rt_struct);
+	rota_cam(key,rt_struct);
+//	muve_lig(key,rt_struct);
 	pixle_range(key, rt_struct);
 
 }

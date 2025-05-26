@@ -33,7 +33,7 @@ void obj_square(t_point *points,t_list_ *word,t_mater mat,t_matrix  matrix)
 	t_object *obj_triangle1;
 	t_object *obj_triangle2;
 
-	word = ft_node_end(word);
+//	word = ft_node_end(word);
 	tri1 = create_triangle(points[0],points[1],points[2]);
 	obj_triangle1 = create_object(&tri1, OBJ_TRIANGLE, mat,NULL);
 	ray_set_transform_obj(obj_triangle1, matrix);
