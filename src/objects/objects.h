@@ -1,5 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -14,7 +12,6 @@
 # define OBJECTS_H
 
 # include "../miniRT_struct.h"
-
 typedef struct s_cylinder
 {
 	t_point		center;
@@ -71,6 +68,8 @@ typedef enum e_obj_type
 	OBJ_SPHERE,
 	OBJ_PLANE,
 	OBJ_CYLINDER,
+	OBJ_SQUARE,
+	OBJ_STL,
 	OBJ_TRIANGLE,
 }	t_obj_type;
 
@@ -117,6 +116,8 @@ typedef struct s_object
 	t_matrix		inv_transpose;
 	t_img_			*texture;
 	
+	t_triangle 		*triangle;
+	int			index;
 	t_mat_calculate		mat_calculate;
 
 	}					t_object;

@@ -30,31 +30,31 @@ static int	check_triangle_bounds(double u, double v)
 }
 
 //double		fuv[3]; // f, u, and v combined
-static int	calculate_triangle_intersection(t_ray ray, t_object tri, double *t)
+static int	calculate_triangle_intersection(t_ray ray, t_triangle tri, double *t)
 {
 	t_vector	dir_cross_e2;
 	t_vector	p1_to_origin;
 	t_vector	origin_cross_e1;
 	double		fuv[3];
 
-	dir_cross_e2 = cross_product(ray.direction, tri.u_data.triangle.edge2);
-	fuv[0] = dot_product(tri.u_data.triangle.edge1, dir_cross_e2);
+	dir_cross_e2 = cross_product(ray.direction, tri.edge2);
+	fuv[0] = dot_product(tri.edge1, dir_cross_e2);
 	if (fabs(fuv[0]) < EPSILON)
 		return (0);
 	fuv[0] = 1.0 / fuv[0];
-	p1_to_origin = sub_tuples(ray.origin, tri.u_data.triangle.p1);
+	p1_to_origin = sub_tuples(ray.origin, tri.p1);
 	fuv[1] = fuv[0] * dot_product(p1_to_origin, dir_cross_e2);
 	if (!check_triangle_bounds(fuv[1], 0))
 		return (0);
-	origin_cross_e1 = cross_product(p1_to_origin, tri.u_data.triangle.edge1);
+	origin_cross_e1 = cross_product(p1_to_origin, tri.edge1);
 	fuv[2] = fuv[0] * dot_product(ray.direction, origin_cross_e1);
 	if (!check_triangle_bounds(fuv[1], fuv[2]))
 		return (0);
-	*t = fuv[0] * dot_product(tri.u_data.triangle.edge2, origin_cross_e1);
+	*t = fuv[0] * dot_product(tri.edge2, origin_cross_e1);
 	return (*t >= 0);
 }
 
-t_intersection	ray_int_triangle(t_ray ray, t_object tri)
+t_intersection	ray_int_triangle(t_ray ray, t_triangle tri)
 {
 	t_intersection	ret;
 	double			t;

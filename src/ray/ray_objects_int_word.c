@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include "ray.h"
+#include "ray_struct.h"
+#include <climits>
 #include <stdio.h>
 
 // Add a forward declaration for check_cap at the top of the file
@@ -72,8 +75,24 @@ t_intersection ray_int_plane(t_ray ray, t_plane plane)
     return ret;
 }
 
+t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
+{
+	int i;
+	double min;
+	t_intersection intr;
+	t_triangle tria;
+	
+	i = -1;
+	min = INT_MAX;
+	while (++i < index)
+	{
+		tria = tri->triangle[i];
+		intr = ray_int_triangle(ray,tria);
+		if(min > intr.t)
+			min = intr.t;
+	}
 
-
+}
 
 t_intersection ray_int_cylinder(t_ray ray, t_cylinder cylinder) {
     t_intersection intersection;

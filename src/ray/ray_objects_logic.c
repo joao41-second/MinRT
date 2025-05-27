@@ -97,7 +97,7 @@ t_intersection	ray_int_object(t_ray ray, t_object obj)
    	}
 	else if (obj.type == OBJ_TRIANGLE)
 	{
-		intersection = ray_int_triangle(ray_, obj);
+		intersection = ray_int_triangle(ray_, obj.u_data.triangle);
 		intersection.mat = obj.matiral;
 		intersection.object = &obj; 
 	}

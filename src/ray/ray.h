@@ -24,7 +24,8 @@ t_point			ray_position(t_ray ray_, double nb);
 
 t_intersection	ray_int_sphere(t_ray ray, t_sphere shp);
 t_intersection	ray_int_plane(t_ray ray, t_plane plane);
-t_intersection ray_int_triangle(t_ray ray, t_object tri);
+
+t_intersection	ray_int_triangle(t_ray ray, t_triangle tri);
 t_intersection ray_int_cylinder(t_ray ray, t_cylinder cylinder);
 t_intersection	ray_int_object(t_ray ray, t_object obj);
 

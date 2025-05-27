@@ -28,19 +28,15 @@ t_point *obj_create_points(t_point p1,t_point p2,t_point p3,t_point p4)
 
 void obj_square(t_point *points,t_list_ *word,t_mater mat,t_matrix  matrix)
 {
-	t_triangle tri1;	
-	t_triangle tri2;
 	t_object *obj_triangle1;
-	t_object *obj_triangle2;
 
 //	word = ft_node_end(word);
-	tri1 = create_triangle(points[0],points[1],points[2]);
-	obj_triangle1 = create_object(&tri1, OBJ_TRIANGLE, mat,NULL);
+	obj_triangle1 = create_object(NULL, OBJ_SQUARE, mat,NULL);
+
+	obj_triangle1->triangle = ft_malloc(sizeof(t_triangle)*2,NULL);
+	obj_triangle1->triangle[0] = create_triangle(points[0],points[1],points[2]);
 	ray_set_transform_obj(obj_triangle1, matrix);
-	ft_add_node(obj_triangle1, &word);
-	tri2 = create_triangle(points[3],points[0],points[2]);
-	obj_triangle2 = create_object(&tri2, OBJ_TRIANGLE, mat,NULL);
-	ray_set_transform_obj(obj_triangle2, matrix);
-	ft_add_node(obj_triangle2, &word);
-	
+	obj_triangle1->triangle[1]  = create_triangle(points[3],points[0],points[2]);	
+	obj_triangle1->index = 2;
+	ft_add_node(obj_triangle1,&word);	
 }
