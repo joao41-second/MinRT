@@ -120,20 +120,24 @@ void obj_open_stl_start(t_list_ *word, char *file_name,t_matrix matrix,t_mater m
 
 
 			//lig_print_tuple(list[ft_atol(point[1])]);
-			//lig_print_tuple(list[ft_atol(point[2])]);
-			//lig_print_tuple(list[ft_atol(point[3])]);
-			//lig_print_tuple(list[ft_atol(point[4])]);
-
 				obj_square(obj_create_points(list[ft_atol(point[1])] ,
 							list[ft_atol(point[2])], 
 							list[ft_atol(point[3])], 
 							list[ft_atol(point[4])]), word, mat, matrix);
-			//	printf("\n");
-			//	if(quadr == 4)
-			//		return;
 				quadr++;
 
-			}else{}
+			}else
+			{
+
+		t_triangle tri2 = create_triangle(list[ft_atol(point[1])] ,
+							list[ft_atol(point[2])], 
+							list[ft_atol(point[3])]);
+
+		t_object *obj_triangle2 = create_object(&tri2, OBJ_TRIANGLE, mat,NULL);
+		obj_triangle2->matiral = mat;
+		ray_set_transform_obj(obj_triangle2, matrix);
+		ft_add_node(obj_triangle2, &word);
+			}
 
 
 //			printf("%s - %ld \n",line, ft_atol(point[1]));
