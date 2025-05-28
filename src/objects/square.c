@@ -27,7 +27,7 @@ t_point *obj_create_points(t_point p1,t_point p2,t_point p3,t_point p4)
 
 }
 
-void obj_square(t_point *points,t_list_ *word,t_mater mat,t_matrix  matrix)
+void obj_square(t_point *points,t_object *word,t_mater mat,t_matrix  matrix)
 {
 	t_object *obj_triangle1;
 	t_triangle tmp;
@@ -46,5 +46,6 @@ void obj_square(t_point *points,t_list_ *word,t_mater mat,t_matrix  matrix)
 	ray_set_transform_obj(obj_triangle1, matrix);	
 	obj_triangle1->type = OBJ_SQUARE;
 
-	ft_add_node(obj_triangle1,&word);	
+
+	obj_add(word, *obj_triangle1, 0);
 }

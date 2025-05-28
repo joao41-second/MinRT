@@ -30,7 +30,6 @@ typedef struct s_camera_m
 
 	t_point		loc;
 	t_vector	dir;
-
 	t_matrix	tranform_matrix;
 	t_mat_calculate	calculate;
 	t_matrix	inv_tranform_matrix;
@@ -59,6 +58,8 @@ typedef struct s_minirt
 	t_scene		scene;
 	t_camera_ms	cam_m;
 	t_list_		*word;
+
+	t_object 	word_[10000];
 	t_ray		c_ray;
 	t_light		luz;
 	t_ray		cam;

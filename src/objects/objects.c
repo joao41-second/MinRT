@@ -67,3 +67,19 @@ t_object	*create_object(void *data, t_obj_type type, t_mater mat,t_img_ *img)
 	obj->texture = img;
 	return (obj);
 }
+
+int obj_add(t_object *obj,t_object add , int mode)
+{
+	static int index = 0;
+
+	if(mode == 1)
+		return (index);
+	
+	if(index < OBJ_MAX)
+	{
+		obj[index] = add;
+		index++;
+	}
+
+	return (index);
+}

@@ -84,7 +84,7 @@ void obj_set_new_null(char *str,char null_char)
 	}
 }
 
-void obj_open_stl_start(t_list_ *word, char *file_name,t_matrix matrix,t_mater mat)
+void obj_open_stl_start(t_object *word, char *file_name,t_matrix matrix,t_mater mat)
 {
 	int fd;
 	char *line;
@@ -136,7 +136,8 @@ void obj_open_stl_start(t_list_ *word, char *file_name,t_matrix matrix,t_mater m
 		t_object *obj_triangle2 = create_object(&tri2, OBJ_TRIANGLE, mat,NULL);
 		obj_triangle2->matiral = mat;
 		ray_set_transform_obj(obj_triangle2, matrix);
-		ft_add_node(obj_triangle2, &word);
+		obj_add(word, *obj_triangle2, 0);
+
 			}
 
 

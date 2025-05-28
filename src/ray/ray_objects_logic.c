@@ -78,6 +78,36 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 	return (save_points);
 }
 
+t_obj_int	ray_for_objects_array(t_object *objs_w, t_ray ray, t_ray shadow_)
+{
+	t_intersection	intr;
+	t_intersection	shadow;
+	t_obj_int		save_points;
+	t_tuple 		sh;
+	int i;
+
+	save_points.max = INT_MIN;
+	save_points.min = INT_MIN;
+	save_points.ints = NULL;
+	i = -1;
+	while (++i < obj_add(NULL, *objs_w, 1))
+	{
+		intr = ray_int_object(ray,objs_w[i]);
+		if (intr.inter-0 > EPSILON)
+		{
+			ray_for_objects_organize(intr, &save_points,&objs_w[i]);
+		}
+	}
+	save_points.shadow = -1;
+	if(save_points.min > 0)
+	{
+		//t_ray ok ;
+		//shadow_.origin =   ray_position(ray, save_points.min);
+		//save_points.shadow = ray_for_shadow(start, shadow_);
+	}
+	return (save_points);
+}
+
 t_intersection	ray_int_object(t_ray ray, t_object obj)
 {
 	t_intersection	intersection;
