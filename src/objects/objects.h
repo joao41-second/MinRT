@@ -148,8 +148,6 @@ void				obj_material_print(t_mater mat);
 t_img_ 				*obj_creat_texture(t_canva canva,char *img);
 
 
-
-
 void obj_square(t_point *points,t_object *word,t_mater mat,t_matrix  matrix);
 
 t_point *obj_create_points(t_point p1,t_point p2,t_point p3,t_point p4);

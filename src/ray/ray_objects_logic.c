@@ -101,9 +101,8 @@ t_obj_int	ray_for_objects_array(t_object *objs_w, t_ray ray, t_ray shadow_)
 	save_points.shadow = -1;
 	if(save_points.min > 0)
 	{
-		//t_ray ok ;
-		//shadow_.origin =   ray_position(ray, save_points.min);
-		//save_points.shadow = ray_for_shadow(start, shadow_);
+		shadow_.origin =   ray_position(ray, save_points.min);
+		save_points.shadow = ray_for_shadow_array(objs_w, shadow_);
 	}
 	return (save_points);
 }
@@ -136,7 +135,7 @@ t_intersection	ray_int_object(t_ray ray, t_object obj)
 		intersection.object = &obj;
 	}else if (obj.type == OBJ_SQUARE) 
 	{	
-		intersection = ray_in_trinagles(&obj, 2, ray_);
+		intersection = ray_in_trinagles(&obj, obj.index, ray_);
 		intersection.mat = obj.matiral;
 		intersection.object = &obj;
 	}

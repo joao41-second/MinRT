@@ -36,7 +36,7 @@ static int	calculate_triangle_intersection(t_ray ray, t_triangle tri, double *t)
 	t_vector	p1_to_origin;
 	t_vector	origin_cross_e1;
 	double		fuv[3];
-
+	
 	dir_cross_e2 = cross_product(ray.direction, tri.edge2);
 	fuv[0] = dot_product(tri.edge1, dir_cross_e2);
 	if (fabs(fuv[0]) < EPSILON)

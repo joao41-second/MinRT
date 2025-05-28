@@ -35,3 +35,24 @@ int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_)
 	}
 	return (0);
 }
+
+int	ray_for_shadow_array(t_object *objs_w, t_ray shadow_)
+{
+	t_intersection	shadow;
+	int i;
+	
+	i = 0;
+	shadow.t[0] = -1;
+	shadow.t[1] = -1;
+	shadow.inter = -1;
+	while (++i < obj_add(NULL,*objs_w,1))
+	{
+		shadow = ray_int_object(shadow_,objs_w[i]);
+		if(shadow.t[0] > EPSILON || shadow.t[1] > EPSILON )
+		{
+		 return (1);
+		}
+
+	}
+	return (0);
+}

@@ -44,4 +44,6 @@ int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_);
 t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray);
 
 t_obj_int	ray_for_objects_array(t_object *objs_w, t_ray ray, t_ray shadow_);
+
+int	ray_for_shadow_array(t_object *objs_w, t_ray shadow_);
 #endif
