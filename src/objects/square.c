@@ -12,6 +12,7 @@
 
 #include "../minRT.h"
 #include "objects.h"
+#include <stdio.h>
 
 t_point *obj_create_points(t_point p1,t_point p2,t_point p3,t_point p4)
 {	
@@ -29,14 +30,21 @@ t_point *obj_create_points(t_point p1,t_point p2,t_point p3,t_point p4)
 void obj_square(t_point *points,t_list_ *word,t_mater mat,t_matrix  matrix)
 {
 	t_object *obj_triangle1;
+	t_triangle tmp;
 
 //	word = ft_node_end(word);
-	obj_triangle1 = create_object(NULL, OBJ_SQUARE, mat,NULL);
-
+	
+	tmp = create_triangle(points[0],points[1],points[2]);
+	obj_triangle1 = create_object(&tmp, OBJ_SQUARE, mat,NULL);
 	obj_triangle1->triangle = ft_malloc(sizeof(t_triangle)*2,NULL);
 	obj_triangle1->triangle[0] = create_triangle(points[0],points[1],points[2]);
-	ray_set_transform_obj(obj_triangle1, matrix);
 	obj_triangle1->triangle[1]  = create_triangle(points[3],points[0],points[2]);	
+
+
 	obj_triangle1->index = 2;
+	obj_triangle1->type = OBJ_TRIANGLE;
+	ray_set_transform_obj(obj_triangle1, matrix);	
+	obj_triangle1->type = OBJ_SQUARE;
+
 	ft_add_node(obj_triangle1,&word);	
 }

@@ -70,8 +70,7 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 	}
 	save_points.shadow = -1;
 	if(save_points.min > 0)
-	{
-;
+	{;
 		t_ray ok ;
 		shadow_.origin =   ray_position(ray, save_points.min);
 		save_points.shadow = ray_for_shadow(start, shadow_);
@@ -103,6 +102,11 @@ t_intersection	ray_int_object(t_ray ray, t_object obj)
 	}
 	else if (obj.type == OBJ_CYLINDER) {
 		intersection = ray_int_cylinder(ray_, obj.u_data.cylinder);
+		intersection.mat = obj.matiral;
+		intersection.object = &obj;
+	}else if (obj.type == OBJ_SQUARE) 
+	{	
+		intersection = ray_in_trinagles(&obj, 2, ray_);
 		intersection.mat = obj.matiral;
 		intersection.object = &obj;
 	}

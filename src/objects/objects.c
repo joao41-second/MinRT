@@ -59,9 +59,11 @@ t_object	*create_object(void *data, t_obj_type type, t_mater mat,t_img_ *img)
 	else if (type == OBJ_PLANE)
 		obj->u_data.plane = *(t_plane *)data;
 	else if (type == OBJ_TRIANGLE)
-        obj->u_data.triangle = *(t_triangle *)data;
+        	obj->u_data.triangle = *(t_triangle *)data;
 	else if (type == OBJ_CYLINDER)
 		obj->u_data.cylinder = *(t_cylinder *)data;
+	else if(type == OBJ_SQUARE)
+        	obj->u_data.triangle = *(t_triangle *)data;
 	obj->texture = img;
 	return (obj);
 }
