@@ -28,22 +28,25 @@ void	start_word(t_minirt *rt_struct)
 	t_point		luz;
 
 	luz = create_point(0, 0, 0);
-	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(30, 30, -30));
+	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(3, 3, -3));
 	mat1 = obj_material_init(c_new(1, 0, 0), c_new(-1, -1, -1),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 	word_objects = NULL;
 	sph = sphere(create_point(0, 0, 0), 1);
 	obj_sphere = create_object(&sph, OBJ_SPHERE, mat1, obj_creat_texture(rt_struct->canva, "./texture/word.xpm"));
 	ray_set_transform_obj(obj_sphere, mat_gener_scal(1, 1, 1));
-//	ft_add_node(obj_sphere, &word_objects);
+	//ft_add_node(obj_sphere, &word_objects);
+	//obj_add(rt_struct->word_, *obj_sphere, 0);
 
 	mat2 = obj_material_init(c_new(0, 1, 0),c_new(-1, -1, -1),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 
 	sph2 = sphere(create_point(0, 0, 0), 1);
-	obj_sphere2 = create_object(&sph2, OBJ_SPHERE, mat2,obj_creat_texture(rt_struct->canva, "./texture/word.xpm"));
-	my_mlx_pixel_retunr(obj_sphere2->texture, 1, 1);
-	ray_set_transform_obj(obj_sphere2,mat_multip(mat_multip( mat_gener_scal(1, 2, 2), mat_gener_trans(0, 1, 1)), mat_gener_rota('z', 0.5)));
+	obj_sphere2 = create_object(&sph2, OBJ_SPHERE, mat2,NULL);
+
+	ray_set_transform_obj(obj_sphere2,mat_multip(mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(0, 1, 1)), mat_gener_rota('z', 0.5)));
+
+	obj_add(rt_struct->word_, *obj_sphere2, 0);
 //	ft_add_node(obj_sphere2, &word_objects);
 	mat3 = obj_material_init(c_new(1, 1, 0),c_new(1, 0, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
@@ -54,7 +57,6 @@ void	start_word(t_minirt *rt_struct)
 //	ft_add_node(obj_sphere3, &word_objects);
 
 	t_plane pln = create_plane(create_point(0, -2, 0),  create_point(1, -2, 0), create_point(0,-2 , 5));
-
 	t_object *obj_plane = create_object(&pln, OBJ_PLANE, mat2,NULL);
 
 	ray_set_transform_obj(obj_plane,mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(0, -4, 0)));
@@ -92,7 +94,7 @@ void	start_word(t_minirt *rt_struct)
  
 	obj_open_stl_start(rt_struct->word_, "./texture/tree.obj",  mat_gener_scal(0.1, 0.1, 0.1), mat1);
 	rt_struct->word = ft_node_start(word_objects);
-	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
+	rt_struct->luz = ligth_init(c_new(5, 5, 5), luz);
 }
 
 void start_word_test(t_minirt  *rt_struct,double ambinet,t_color color)

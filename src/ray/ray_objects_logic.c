@@ -89,6 +89,7 @@ t_obj_int	ray_for_objects_array(t_object *objs_w, t_ray ray, t_ray shadow_)
 	save_points.max = INT_MIN;
 	save_points.min = INT_MIN;
 	save_points.ints = NULL;
+	save_points.object = objs_w;
 	i = -1;
 	while (++i < obj_add(NULL, *objs_w, 1))
 	{
@@ -99,11 +100,11 @@ t_obj_int	ray_for_objects_array(t_object *objs_w, t_ray ray, t_ray shadow_)
 		}
 	}
 	save_points.shadow = -1;
-	if(save_points.min > 0)
-	{
+//	if(save_points.min > 0)
+//	{
 		shadow_.origin =   ray_position(ray, save_points.min);
 		save_points.shadow = ray_for_shadow_array(objs_w, shadow_);
-	}
+//	}
 	return (save_points);
 }
 

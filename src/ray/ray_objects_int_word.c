@@ -81,8 +81,11 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 	t_intersection intr;
 	t_intersection min_;
 	t_triangle tria;
+	int i_;
 	
 	i = -1;
+
+	i_ = 0;
 	min = INT_MAX;
 
 	while (++i < index)
@@ -92,17 +95,28 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 		if(min == INT_MAX)
 		{
 			min = 0;
+			min_.t[0] = intr.t[0];
+			min_.t[1] = intr.t[1];
+			min_.object = intr.object;
+			min_.mat = intr.mat;
+			min_.ray_start = intr.ray_start;
+			min_.inter = intr.inter;
 			min_ = intr;
 		}
 		if( intr.t[0] != -1 &&  intr.t[0] - min_.t[0] )
 		{
 			min_.t[0] = intr.t[0];
-			min_.t[1] = intr.t[0];
-			min_ = intr;
+			min_.t[1] = intr.t[1];
+			min_.object = intr.object;
+			min_.mat = intr.mat;
+			min_.ray_start = intr.ray_start;
+			min_.inter = intr.inter;
+			i_ = i;
 		}
 
 	}
-
+	tri->u_data.triangle = tri->triangle[i_];
+	tri->i = i_;
 	return (min_);
 }
 

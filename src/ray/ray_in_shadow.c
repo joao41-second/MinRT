@@ -41,7 +41,7 @@ int	ray_for_shadow_array(t_object *objs_w, t_ray shadow_)
 	t_intersection	shadow;
 	int i;
 	
-	i = 0;
+	i = -1;
 	shadow.t[0] = -1;
 	shadow.t[1] = -1;
 	shadow.inter = -1;

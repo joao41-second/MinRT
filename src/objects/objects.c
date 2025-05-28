@@ -53,6 +53,7 @@ t_object	*create_object(void *data, t_obj_type type, t_mater mat,t_img_ *img)
 	obj->inv_transform = mat_gener(4);
 	obj->inv_transpose = mat_gener(4);
 	obj->matiral = mat;
+	obj->i = 0;
 	obj->mat_calculate = obj_mat_calulate_init();
 	if (type == OBJ_SPHERE)
 		obj->u_data.sphere = *(t_sphere *)data;

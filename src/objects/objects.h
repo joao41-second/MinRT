@@ -115,9 +115,10 @@ typedef struct s_object
 	t_matrix		inv_transform;
 	t_matrix		inv_transpose;
 	t_img_			*texture;
-	
+		
 	t_triangle 		*triangle;
 	int			index;
+	int 			i;
 	t_mat_calculate		mat_calculate;
 
 	}					t_object;
