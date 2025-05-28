@@ -14,7 +14,7 @@
 
 //CHECKERS -------------------------------------------------------------------
 
-int	is_equal_double(double a, double b)
+int	is_equal_double(float a, float b)
 {
 	return (fabs(a - b) < EPSILON);
 }

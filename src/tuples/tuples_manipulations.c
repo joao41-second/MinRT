@@ -15,9 +15,9 @@
 
 //MANIPULATIONS -----------------------------------------------------
 
-double	dot_product(t_tuple a, t_tuple b)
+float	dot_product(t_tuple a, t_tuple b)
 {
-	double ok;
+	float ok;
 	ok = 0;
 
 	ok = (a.x * b.x) + \
@@ -28,14 +28,14 @@ double	dot_product(t_tuple a, t_tuple b)
 	return (ok );
 }
 
-double	magnitude(t_tuple t)
+float	magnitude(t_tuple t)
 {
 	return (sqrt(dot_product(t, t)));
 }
 
 t_tuple	normalize(t_tuple t)
 {
-	const double	_magnitude = magnitude(t);
+	const float	_magnitude = magnitude(t);
 
 	if (is_equal_double(_magnitude, 1))
 		return (t);
