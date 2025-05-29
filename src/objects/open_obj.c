@@ -127,7 +127,7 @@ int obj_locate_face(char **file)
 			split = ft_split(file[i], ' ');
 			while (split[len] != NULL)
 				len++;
-			if(len == 4)
+			if(len > 4)
 				nb++;
 			nb++;
 		}
@@ -186,26 +186,19 @@ void obj_open_stl_start(t_list_ *word, char *file_name,t_matrix matrix,t_mater m
 				obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(point[4])] ,
 							list[ft_atol(point[1])], 
 							list[ft_atol(point[3])]);
-
-
-			//	obj_square(obj_create_points(list[ft_atol(point[1])] ,
-				//			list[ft_atol(point[2])], 
-				//			list[ft_atol(point[3])], 
-				//			list[ft_atol(point[4])]), word, mat, matrix);
-
 			}
 			else{
 			
-			//	obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(point[1])] ,
-			//				list[ft_atol(point[2])], 
-			//				list[ft_atol(point[3])]);
+				obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(point[1])] ,
+							list[ft_atol(point[2])], 
+						list[ft_atol(point[3])]);
 				}	
 
 			ft_pocket_set("add_obj");		
 		}	
 	}
 	obj_t->u_data.triangle = obj_t->triangle[0];
-	//ft_free_all_pocket("add_obj");
+	ft_free_all_pocket("add_obj");
 	ray_set_transform_obj(obj_t, matrix);
 	obj_t->index = nb_f_c;
 	obj_t->type = OBJ_SQUARE;
