@@ -6,10 +6,12 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:42:15 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/22 11:48:47 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:09:27 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#include "../../minRT.h"
 #include "../canvas_struct.h"
 #include "menu.h"
 
@@ -77,3 +79,4 @@ void	ft_menu(t_minirt *rt)
 		ft_line(rt, W_POS, offset, "Press 'TAB' for menu");
 	draw_camera_info(rt);
 }
+

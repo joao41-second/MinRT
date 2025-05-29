@@ -13,3 +13,11 @@ L  10,12,-5                  1         255,0,0
 # Plane 
 # <coordinates: x,y,z> <origin:x,y,z> <color:red,green,blue>
 pl  0,0,0            0,1,0                  255,229,229
+
+# Cylinder
+# <coordinates: x,y,z>  <orientation: x,y,z> <diameter: >= 0> <height: >= 0> <color:red,green,blue>
+cy  0.6,0.7,0  0,1,0          0.5    4        200,200,200
+
+# Sphere
+# <coordinates: x,y,z> <diameter> <color:red,green,blue>
+sp  0,0,0                1               255,51,255

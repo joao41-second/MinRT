@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:48:58 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/22 11:42:09 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/22 23:09:34 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_intersection	ray_int_object(t_ray ray, t_object obj)
 	ray_ = ray_transform(ray, obj.inv_transform);
 	intersection = handle_object_intersection(ray_, obj);
 	intersection.mat = obj.matiral;
-	if (obj.type == OBJ_TRIANGLE || obj.type == OBJ_CYLINDER)
+	if (obj.type == OBJ_CYLINDER)
 		intersection.object = &obj;
 	return (intersection);
 }

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/22 10:02:14 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:07:56 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ void	handle_misc_keys(int keycode, t_minirt *rt_struct)
 		unified_camera_set_mode(&rt_struct->camera, new_mode);
 	}
 	else if (keycode == KEY_TAB)
+	{
 		rt_struct->menu = !rt_struct->menu;
+		// render_menu_to_buffer(rt_struct);
+	}
 	else if (keycode == NUMKEY_9)
 		rt_struct->needs_render++;
 	else if (keycode == NUMKEY_8)

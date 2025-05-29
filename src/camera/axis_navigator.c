@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 10:34:47 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/22 09:53:19 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:13:54 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	init_edges(int edges[12][2])
 /**
  * Draw a cube edge
  */
-static void	draw_cube_edge(t_minirt *rt_struct, double verti[8][3], \
+static void	draw_cube_edge(t_minirt *rt_struct, t_img_ *target, double verti[8][3], \
 		int edges[12][2], int i)
 {
 	t_point	start;
@@ -82,7 +82,7 @@ static void	draw_cube_edge(t_minirt *rt_struct, double verti[8][3], \
 		color = 0x0033AA33;
 	else if (i == 9 || i == 10)
 		color = 0x00AA3333;
-	draw_line(&rt_struct->canva.canva, start, end, color);
+	draw_line(target, start, end, color);
 }
 
 /**
@@ -90,7 +90,7 @@ static void	draw_cube_edge(t_minirt *rt_struct, double verti[8][3], \
  * This function draws a cube around the axis navigator to create a more robust
  * orientation indicator.
  */
-void	draw_orientation_cube(t_minirt *rt_struct)
+void	draw_orientation_cube(t_minirt *rt_struct, t_img_ *target)
 {
 	double	vertices[8][3];
 	int		edges[12][2];
@@ -101,12 +101,12 @@ void	draw_orientation_cube(t_minirt *rt_struct)
 	init_vertices(vertices, CUBE_SIZE);
 	while (i < 12)
 	{
-		draw_cube_edge(rt_struct, vertices, edges, i);
+		draw_cube_edge(rt_struct, target, vertices, edges, i);
 		i++;
 	}
 }
 
-void	draw_cube_labels(t_minirt *rt)
+void	draw_cube_labels(t_minirt *rt, t_img_ *target)
 {
 	static double	axes[3][3] = {{0.5, 0, 0}, {0, 0.5, 0}, {0, 0, 0.5}};
 	t_point			screen;

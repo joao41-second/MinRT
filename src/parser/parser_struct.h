@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   menu.h                                             :+:      :+:    :+:   */
+/*   parser_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 15:42:21 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/23 11:49:45 by rerodrig         ###   ########.fr       */
+/*   Created: 2025/03/20 11:21:05 by rerodrig          #+#    #+#             */
+/*   Updated: 2025/03/27 03:19:28 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MENU_H
-# define MENU_H
+#ifndef PARSER_STRUCT_H
+# define PARSER_STRUCT_H
 
-// # include "../../minRT.h"
+typedef enum e_token
+{
+	AMBIENT,
+	CAMERA,
+	LIGHT,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	COMMENT,
+	NEWLINE,
+	ERROR,
+	COUNT
+}	t_token;
 
-# define W_POS 10
-# define WIN_H 800
-# define HEIGHT_POS 20
-# define WHITE 0xFFFFFF
-# define MENU_WIDTH 200
-# define MENU_HEIGHT 300
-# define MENU_X 10
-# define MENU_Y 10
+typedef struct s_token_map
+{
+	char		*key;
+	t_token		value;
+}	t_token_map;
 
-
-
+typedef struct s_range
+{
+	double	min;
+	double	max;
+}	t_range;
 #endif

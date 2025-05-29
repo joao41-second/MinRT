@@ -6,7 +6,7 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/04/30 16:43:32 by jperpct          ###   ########.fr        #
+#    Updated: 2025/05/25 14:56:20 by rerodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 # WFLGS = -Wall -Wextra -Werror
 #WFLGS = -Wall -Wextra -Werror
 
-READ_FLG = -g
+READ_FLG = -g -pg
  #READ_FLG =  -O3 -march=native -flto -funroll-loops  -g -pg
 
 MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft \
@@ -110,10 +110,12 @@ test_vall: all
 
 s:
 	clear && make re && ./$(NAME)
+SCENE = ./scenes/img00.rt
+
 n:
-	clear && make renew && ./$(NAME)
+	clear && make renew && ./$(NAME) $(SCENE)
 v:
-	clear && make re && $(VAL) ./$(NAME)
+	clear && make re && $(VAL) ./$(NAME) $(SCENE)
 e:
 	make re && env -i ./$(NAME)
 b:
@@ -124,6 +126,10 @@ t:
 	make re && cd ./minishell_tester  && ./tester
 
 pro:
+	@if [ ! -f gmon.out ]; then \
+        echo "gmon.out not found. Running ./miniRT to generate it..."; \
+        ./miniRT; \
+    fi
 	gprof ./miniRT gmon.out > test.out && cat test.out
 
 pdf:

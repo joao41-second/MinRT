@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/22 11:39:32 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/25 14:44:00 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include "../libft/minilibx-linux/mlx.h"
 # include "../libft/minilibx-linux/mlx_int.h"
 
+# include "./parser/parser.h"
 # include "./tuples/tuples.h"
 # include "./matrix/matrix.h"
 # include "./ray/ray.h"
@@ -55,12 +56,15 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-void	start_word(t_minirt *rt_struct);
-void	draw_axis_navigator(t_minirt *rt_struct);
-void	draw_orientation_cube(t_minirt *rt_struct);
+void	start_word(t_minirt *rt_struct, char **av);
+// void	draw_axis_navigator(t_minirt *rt_struct);
+// void	draw_orientation_cube(t_minirt *rt_struct);
 void	print_list_(t_list_ *list);
-void	draw_cube_labels(t_minirt *rt_struct);
+// void	draw_cube_labels(t_minirt *rt_struct);
 void	ft_menu(t_minirt *minirt);
-
-void	start_word_test(t_minirt *rt_struct, double ambinet, t_color color);
+void	draw_camera_info(t_minirt *rt);
+void	draw_axis_navigator(t_minirt *rt_struct, t_img_ *target);
+void	draw_orientation_cube(t_minirt *rt_struct, t_img_ *target);
+void	draw_cube_labels(t_minirt *rt, t_img_ *target);
+// void	start_word_test(t_minirt *rt_struct, double ambinet, t_color color);
 #endif
