@@ -26,11 +26,11 @@ static int check_cap(t_ray ray, double t, t_cylinder cylinder);
 //
 t_intersection	ray_int_sphere(t_ray ray, t_sphere shp)
 {
-	t_intersection	ret;
 	double			a_;
 	double			b_;
 	double			c_;
 	double			temp;
+	t_intersection	ret;
 
 	a_ = ((ray.direction.x * ray.direction.x) + (ray.direction.y
 				* ray.direction.y) + (ray.direction.z * ray.direction.z));
@@ -59,10 +59,10 @@ t_intersection	ray_int_sphere(t_ray ray, t_sphere shp)
 }
 t_intersection ray_int_plane(t_ray ray, t_plane plane)
 {
-    t_intersection ret;
     double t;
     double a;
     double b;
+    t_intersection ret;
 
     a = -(plane.normal.x * ray.origin.x + plane.normal.y * ray.origin.y + plane.normal.z*ray.origin.z);
     b = (plane.normal.x*ray.direction.x + plane.normal.y * ray.direction.y + plane.normal.z*ray.direction.z);
@@ -78,14 +78,13 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 {
 	int i;
 	int i_;
-	double min;
+static	float min;
 	t_intersection intr;
 	t_intersection min_;
 	t_triangle tria;
 	
 	i = -1;
 	min = INT_MAX;
-	i = -1;
 	while (++i < index)
 	{
 

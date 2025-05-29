@@ -15,8 +15,8 @@
 
 void	cm_pixel_size(t_camera_ms *ret)
 {
-	double	half_view ;
-	double	aspect;
+	static float	half_view ;
+	static float	aspect;
 
 	half_view = tan(ret->field_of_view / 2);
 	aspect = ret->x / ret->y;

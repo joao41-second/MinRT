@@ -24,18 +24,18 @@ static t_intersection	init_intersection(void)
 	return (ret);
 }
 
-static int	check_triangle_bounds(double u, double v)
+static int	check_triangle_bounds(float u, double v)
 {
 	return (u >= 0 && u <= 1 && v >= 0 && (u + v) <= 1);
 }
 
-//double		fuv[3]; // f, u, and v combined
-static int	calculate_triangle_intersection(t_ray ray, t_triangle tri, double *t)
+//float		fuv[3]; // f, u, and v combined
+static int	calculate_triangle_intersection(t_ray ray, t_triangle tri, float *t)
 {
 	t_vector	dir_cross_e2;
 	t_vector	p1_to_origin;
 	t_vector	origin_cross_e1;
-	double		fuv[3];
+	static float		fuv[3];
 
 	dir_cross_e2 = cross_product(ray.direction, tri.edge2);
 	fuv[0] = dot_product(tri.edge1, dir_cross_e2);
@@ -57,7 +57,7 @@ static int	calculate_triangle_intersection(t_ray ray, t_triangle tri, double *t)
 t_intersection	ray_int_triangle(t_ray ray, t_triangle tri)
 {
 	t_intersection	ret;
-	double			t;
+	static float			t;
 
 	ret = init_intersection();
 	if (!calculate_triangle_intersection(ray, tri, &t))

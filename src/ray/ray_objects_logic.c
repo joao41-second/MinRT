@@ -46,9 +46,9 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 	t_intersection	intr;
 	t_intersection	shadow;
 	t_obj_int		save_points;
+	static t_tuple 		sh;
+ 	t_list_			*start;
 	t_object		*obj;
-	t_tuple 		sh;
-	t_list_			*start;
 
 	save_points.max = INT_MIN;
 	save_points.min = INT_MIN;
@@ -80,8 +80,8 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 
 t_intersection	ray_int_object(t_ray ray, t_object * obj)
 {
-	t_intersection	intersection;
-	t_ray			ray_;
+	 t_intersection	intersection;
+	static t_ray			ray_;
 
 	ray_ = ray_transform(ray, obj->inv_transform);
 	if (obj->type == OBJ_SPHERE)

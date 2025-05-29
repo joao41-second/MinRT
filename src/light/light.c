@@ -18,7 +18,7 @@
 
 t_vector	lig_reflect(t_vector in, t_vector normal)
 {
-	t_vector	ret;
+	static t_vector	ret;
 
 	ret = sub_tuples(in, scalar_mult_tuples(normal,
 				2 * dot_product(in, normal)));

@@ -27,9 +27,9 @@ void	lig_print_tuple(t_tuple tuple)
 t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 {
 	t_computations	ret;
-	t_ray 			ray_;
+	static t_ray 			ray_;
 	t_object		*obj;
-	double			test;
+	static float			test;
 
 	obj = inter.object;
 //	ray_ = ray_transform(ray, obj->inv_transform);
