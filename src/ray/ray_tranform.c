@@ -68,13 +68,13 @@ void	ray_set_transform_obj(t_object *obj, t_matrix mat)
 	{
 		ray_set_transform_pln(obj, mat);
 	}
-	else if (obj->type == OBJ_TRIANGLE)
-    {
-        mat_free(&obj->transform);
-        mat_free(&obj->inv_transform);
-        obj->transform = mat_cp(mat);
-        obj->inv_transform = mat_cp(mat_inv(mat));
-    }
+	else if (obj->type == OBJ_TRIANGLE || obj->type == OBJ_SQUARE)
+    	{
+        	mat_free(&obj->transform);
+        	mat_free(&obj->inv_transform);
+        	obj->transform = mat_cp(mat);
+        	obj->inv_transform = mat_cp(mat_inv(mat));
+    	}
 	else if (obj->type == OBJ_CYLINDER)
 	{
 		mat_free(&obj->transform);

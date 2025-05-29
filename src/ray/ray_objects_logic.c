@@ -106,7 +106,7 @@ t_intersection	ray_int_object(t_ray ray, t_object * obj)
 		intersection.object = &obj;
 	}else if (obj->type == OBJ_SQUARE) 
 	{	
-		intersection = ray_in_trinagles(obj, 2, ray_);
+		intersection = ray_in_trinagles(obj, obj->index, ray_);
 		intersection.mat = obj->matiral;
 		intersection.object = &obj;
 	}

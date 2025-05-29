@@ -118,6 +118,7 @@ typedef struct s_object
 	
 	t_triangle 		*triangle;
 	int			index;
+	int 			check;
 	t_mat_calculate		mat_calculate;
 
 	}					t_object;

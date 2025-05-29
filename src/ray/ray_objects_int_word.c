@@ -77,6 +77,7 @@ t_intersection ray_int_plane(t_ray ray, t_plane plane)
 t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 {
 	int i;
+	int i_;
 	double min;
 	t_intersection intr;
 	t_intersection min_;
@@ -84,26 +85,28 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 	
 	i = -1;
 	min = INT_MAX;
-
+	i = -1;
 	while (++i < index)
 	{
 
 		intr = ray_int_triangle(ray, tri->triangle[i]);
-		if(min == INT_MAX)
+		if(min == INT_MAX &&  intr.t[0] > EPSILON)
 		{
 			min = 0;
 			min_ = intr;
+			tri->u_data.triangle = tri->triangle[i];
+
 		}
-		if( intr.t[0] != -1 &&  intr.t[0] - min_.t[0] )
+		if( intr.t[0] > EPSILON &&  intr.t[0] < min_.t[0] )
 		{
 			min_.t[0] = intr.t[0];
 			min_.t[1] = intr.t[0];
-			tri->u_data.triangle = tri->triangle[i]	;
+			tri->u_data.triangle = tri->triangle[i];
 			min_ = intr;
+			i_ = i;
 		}
 
 	}
-
 	return (min_);
 }
 
