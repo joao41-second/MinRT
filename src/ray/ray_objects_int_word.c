@@ -116,6 +116,8 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 			min_.mat = intr.mat;
 			min_.ray_start = intr.ray_start;
 			min_.inter = intr.inter;
+
+			tri->u_data.triangle = tri->triangle[i];
 			i_ = i;
 		}
 
@@ -123,7 +125,6 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 	//printf("int %d \n",i);
 //	if(min_.t[0] != -1)
 //		printf("t %f %d \n",min_.t[0],i_);
-	tri->u_data.triangle = tri->triangle[i_];
 	tri->i = i_;
 	return (min_);
 }

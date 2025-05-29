@@ -27,7 +27,7 @@ t_intersection	ray_int_plane(t_ray ray, t_plane plane);
 
 t_intersection	ray_int_triangle(t_ray ray, t_triangle tri);
 t_intersection ray_int_cylinder(t_ray ray, t_cylinder cylinder);
-t_intersection	ray_int_object(t_ray ray, t_object obj);
+t_intersection	ray_int_object(t_ray ray, t_object *obj);
 
 t_tuple			ray_ang_to_vect(double x, double y, double z);
 

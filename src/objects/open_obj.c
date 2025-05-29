@@ -27,7 +27,7 @@ t_point *obj_set_points(char *file_name,int nb)
 	int nb_;
 
 	list = ft_malloc(nb*sizeof(t_point), "main");
-	nb_ = -1;
+	nb_ = 0;
 	fd = open(file_name, O_RDONLY);
 	line = get_next_line(fd);
 	printf("line %s --%d \n",line,nb);

@@ -94,7 +94,7 @@ void	start_word(t_minirt *rt_struct)
  
  obj_open_stl_start(rt_struct->word_, "./texture/tree.obj",  mat_gener_scal(0.1, 0.1, 0.1), mat1);
 	rt_struct->word = ft_node_start(word_objects);
-	rt_struct->luz = ligth_init(c_new(5, 5, 5), luz);
+	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
 }
 
 void start_word_test(t_minirt  *rt_struct,double ambinet,t_color color)
