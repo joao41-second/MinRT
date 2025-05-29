@@ -25,7 +25,7 @@ t_point *obj_set_points(char *file_name,int nb)
 	char **split;
 	int nb_;
 
-	list = ft_malloc(nb*sizeof(t_point), "main");
+	list = ft_malloc(nb * sizeof(t_point), "main");
 	nb_ = 0;
 	fd = open(file_name, O_RDONLY);
 	line = get_next_line(fd);
@@ -35,14 +35,12 @@ t_point *obj_set_points(char *file_name,int nb)
 		free(line);
 		line = get_next_line(fd);
 
-		if( line != NULL && line[0] == 'v' && nb_ < nb)
+		if( line != NULL && line[0] == 'v' && line[1] == ' ')
 		{ 
 
-		//	printf("oi \n");
 			nb_++;
-			split =ft_split(line, ' ');
+			split = ft_split(line, ' ');
 			list[nb_] = create_point(ft_atof(split[1], NULL), ft_atof(split[2], NULL), ft_atof(split[3], NULL));
-		//	lig_print_tuple(list[nb_]);
 		}
 	}
 	close(fd);
@@ -84,24 +82,76 @@ void obj_set_new_null(char *str,char null_char)
 	}
 }
 
+char **obj_get_file(char *name,int *nb)
+{
+	char **file;
+	int fd;
+	int i;
+
+	i = -1;
+	*nb = 0;
+	fd = open(name, O_RDONLY);
+	if( fd < 0)
+		return NULL;
+	ft_pocket_new("len");
+	while (ft_add_memory(get_next_line(fd),NULL) != NULL)
+		(*nb)++;	
+	ft_free_all_pocket("len");
+	close(fd);
+	fd = open(name, O_RDONLY);
+	file = ft_malloc(sizeof(char*) * ((*nb)+1),NULL);
+	while (++i < *nb)
+	{
+		file[i] = ft_add_memory(get_next_line(fd),NULL);
+	}
+	file[*nb+1] = NULL;
+	return (file);
+}
+
+int obj_locate_face(char **file)
+{
+	int i;
+	int nb;
+	int len;
+	char **split;
+
+	nb = 0;
+	i = -1;
+	len = 0;
+
+	while (file[++i] != NULL)
+	{
+		if(file[i][0] == 'f')
+		{
+			split = ft_split(file[i], ' ');
+			while (split[len] != NULL)
+				len++;
+			if(len == 4)
+				nb++;
+			nb++;
+		}
+	}
+	return (nb);
+}
+
 void obj_open_stl_start(t_list_ *word, char *file_name,t_matrix matrix,t_mater mat)
 {
 	int fd;
 	char *line;
 	char **point;
+	char **file;
 	t_triangle new;
 	t_object *obj_t;
 	t_point *list;
+	int file_line;
 	
 	fd = open(file_name, O_RDONLY);
 	if(fd < 0)
 		return;
-	printf("raiva \n");
 	ft_pocket_new("add_obj");
-	ft_pocket_set("add_obj");
+	file = obj_get_file(file_name, &file_line);
 	list = obj_list_the_pointres(file_name);
 	line = get_next_line(fd);
-	int quadr = 0;
 	while (line != NULL) 
 	{
 		free(line);
@@ -113,31 +163,16 @@ void obj_open_stl_start(t_list_ *word, char *file_name,t_matrix matrix,t_mater m
 			obj_set_new_null(point[1],  '/');
 			obj_set_new_null(point[2],  '/');
 			obj_set_new_null(point[3],  '/');
-
-
+			ft_pocket_set("main");		
 			if(point[4] != NULL){
 				obj_set_new_null(point[4],  '/');
-
-
-			//lig_print_tuple(list[ft_atol(point[1])]);
-			//lig_print_tuple(list[ft_atol(point[2])]);
-			//lig_print_tuple(list[ft_atol(point[3])]);
-			//lig_print_tuple(list[ft_atol(point[4])]);
-
 				obj_square(obj_create_points(list[ft_atol(point[1])] ,
 							list[ft_atol(point[2])], 
 							list[ft_atol(point[3])], 
 							list[ft_atol(point[4])]), word, mat, matrix);
-			//	printf("\n");
-			//	if(quadr == 4)
-			//		return;
-				quadr++;
 
-			}else{}
-
-
-//			printf("%s - %ld \n",line, ft_atol(point[1]));
-			
+			}else{}	
+			ft_pocket_set("add_obj");		
 		}	
 	}
 	//ft_free_all_pocket("add_obj");
