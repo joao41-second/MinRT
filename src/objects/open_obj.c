@@ -25,7 +25,7 @@ t_point *obj_set_points(char *file_name,int nb)
 	char **split;
 	int nb_;
 
-	list = ft_malloc(nb * sizeof(t_point), "main");
+	list = ft_malloc((nb +1)* sizeof(t_point), "main");
 	nb_ = 0;
 	fd = open(file_name, O_RDONLY);
 	line = get_next_line(fd);
@@ -104,7 +104,7 @@ char **obj_get_file(char *name,int *nb)
 	{
 		file[i] = ft_add_memory(get_next_line(fd),NULL);
 	}
-	file[*nb+1] = NULL;
+	file[*nb] = NULL;
 	return (file);
 }
 
