@@ -14,6 +14,7 @@
 #include "ray.h"
 #include "ray_struct.h"
 #include <stdio.h>
+#include <strings.h>
 
 // Add a forward declaration for check_cap at the top of the file
 static int check_cap(t_ray ray, double t, t_cylinder cylinder);
@@ -84,15 +85,16 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 	int i_;
 	
 	i = -1;
-
 	i_ = 0;
 	min = INT_MAX;
 
+			min_.t[0] = -1;
+			min_.t[1] = -1;
 	while (++i < index)
-	{
-
+	{	
+		
 		intr = ray_int_triangle(ray, tri->triangle[i]);
-		if(min == INT_MAX)
+		if(min == INT_MAX && intr.t[0] > EPSILON)
 		{
 			min = 0;
 			min_.t[0] = intr.t[0];
@@ -103,7 +105,10 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 			min_.inter = intr.inter;
 			min_ = intr;
 		}
-		if( intr.t[0] > EPSILON &&  intr.t[0] - min_.t[0] > EPSILON )
+		
+	///	if(intr.t[0] > EPSILON)
+			//printf("t %f %d \n",intr.t[0],index);
+		if( intr.t[0] > EPSILON &&  intr.t[0] < min_.t[0]  )
 		{
 			min_.t[0] = intr.t[0];
 			min_.t[1] = intr.t[1];
@@ -115,6 +120,9 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 		}
 
 	}
+	//printf("int %d \n",i);
+//	if(min_.t[0] != -1)
+//		printf("t %f %d \n",min_.t[0],i_);
 	tri->u_data.triangle = tri->triangle[i_];
 	tri->i = i_;
 	return (min_);

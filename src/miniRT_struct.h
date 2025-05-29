@@ -22,6 +22,7 @@
 # include "./light/light_struct.h"
 # include "./objects/objects.h"
 
+# define OBJ_MAX 10000
 typedef struct s_camera_m
 {
 	double		x;
@@ -59,7 +60,7 @@ typedef struct s_minirt
 	t_camera_ms	cam_m;
 	t_list_		*word;
 
-	t_object 	word_[10000];
+	t_object 	word_[OBJ_MAX];
 	t_ray		c_ray;
 	t_light		luz;
 	t_ray		cam;

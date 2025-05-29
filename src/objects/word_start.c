@@ -36,7 +36,7 @@ void	start_word(t_minirt *rt_struct)
 	obj_sphere = create_object(&sph, OBJ_SPHERE, mat1, obj_creat_texture(rt_struct->canva, "./texture/word.xpm"));
 	ray_set_transform_obj(obj_sphere, mat_gener_scal(1, 1, 1));
 	//ft_add_node(obj_sphere, &word_objects);
-	//obj_add(rt_struct->word_, *obj_sphere, 0);
+	obj_add(rt_struct->word_, *obj_sphere, 0);
 
 	mat2 = obj_material_init(c_new(0, 1, 0),c_new(-1, -1, -1),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
@@ -89,7 +89,7 @@ void	start_word(t_minirt *rt_struct)
 	//ft_add_node(obj_triangle2, &word_objects);
 
 
-	//obj_square(obj_create_points( create_point(-1.6, -4.7, 1), create_point(-1.2, -4.9,1), create_point(-1.6,-4.7 ,1.4 ), (t_point) {1,1,2}), word_objects, mat1, mat_gener_scal(2,2,2));
+	//obj_square(obj_create_points( create_point(-1.6, -4.7, 1), create_point(-1.2, -4.9,1), create_point(-1.6,-4.7 ,1.4 ), (t_point) {1,1,2}), rt_struct->word_, mat1, mat_gener_scal(2,2,2));
 	obj_square(obj_create_points( (t_point){0,0,0},  (t_point){0,1,0}, (t_point){0,1,1}, (t_point) {0,0,1}), rt_struct->word_, mat1, mat_gener_scal(1,1,1));
  
  obj_open_stl_start(rt_struct->word_, "./texture/tree.obj",  mat_gener_scal(0.1, 0.1, 0.1), mat1);

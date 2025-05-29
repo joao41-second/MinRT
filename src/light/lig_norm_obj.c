@@ -13,6 +13,7 @@
 
 #include "../minRT.h"
 #include "light.h"
+#include <stdio.h>
 
 t_vector	lig_normalize_sph(t_object sph, t_point p_the_obj)
 {
@@ -48,7 +49,7 @@ t_vector	lig_normalize(t_object obj, t_point p_the_obj)
 	}
 	else if (obj.type == OBJ_PLANE)
 		ret = lig_normalize_plane(obj, p_the_obj);
-	else if (obj.type == OBJ_TRIANGLE || obj.type == OBJ_SQUARE) 
+	else if (obj.type == OBJ_TRIANGLE ) 
     	{
         	t_triangle triangle = obj.u_data.triangle;
         	t_vector edge1 = sub_tuples(triangle.p2, triangle.p1);
@@ -57,6 +58,7 @@ t_vector	lig_normalize(t_object obj, t_point p_the_obj)
     	}
 	else if (obj.type == OBJ_SQUARE)
     	{
+		printf("in i %d \n",obj.i);
         	t_triangle triangle = obj.triangle[obj.i];
         	t_vector edge1 = sub_tuples(triangle.p2, triangle.p1);
         	t_vector edge2 = sub_tuples(triangle.p3, triangle.p1);
