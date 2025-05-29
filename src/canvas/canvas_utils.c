@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:13:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/23 20:18:56 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:58:39 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base)
 }
 
 void render_axis_to_buffer(t_minirt *rt_struct) {
-    // Draw axis and orientation cube directly onto the main canvas buffer
     draw_axis_navigator(rt_struct, &rt_struct->canva.canva);
     draw_orientation_cube(rt_struct, &rt_struct->canva.canva);
 }
@@ -57,7 +56,7 @@ void	canva_update(t_minirt *rt_struct)
 	render_axis_to_buffer(rt_struct);
 	mlx_put_image_to_window(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,
 		rt_struct->canva.canva.img, 0, 0);
-	draw_cube_labels(rt_struct, NULL); // NULL for now, as it still uses mlx_string_put
+	draw_cube_labels(rt_struct, NULL); 
 	if (rt_struct->menu)
 		ft_menu(rt_struct);
 	else

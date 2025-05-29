@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:48:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/29 07:57:04 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:37:10 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	camera_init(t_camera_ms *cam, t_point ori, t_vector dir, double fov)
 	double	half_view;
 
 	cam->origin = ori;
-	cam->direction = normalize(create_vector(ori.x, ori.y, ori.z));
+	cam->direction = normalize(create_vector(0 - dir.x, 0 - dir.y, 0 - dir.z));
 	cam->aspect_ratio = (double)WALL_X / WALL_Y;
 	cam->fov = fov;
 	cam->field_of_view = fov * (M_PI / 180.0);

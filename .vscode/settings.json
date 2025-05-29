@@ -4,7 +4,8 @@
     "loop.h": "c",
     "ft_printf.h": "c",
     "mlx_int.h": "c",
-    "canvas_struct.h": "c"
+    "canvas_struct.h": "c",
+    "matrix.h": "c"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",

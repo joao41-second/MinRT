@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 00:49:55 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/22 09:16:17 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:24:20 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		camera_update_view(t_camera_ms *cam);
 t_ray		camera_generate_ray(t_camera_ms *cam, double x, double y);
 // Camera transformations
 void		camera_rotate(t_camera_ms *cam, double dx, double dy);
-void		camera_move(t_camera_ms *cam, int keycode);
+void		camera_move(t_camera_ms *cam, int keycode, t_minirt *rt_struct);
 // Math utilities
 t_matrix	mat_lookat(t_point eye, t_point center, t_vector up);
 t_matrix	mat_rotate(t_vector axis, double angle);

@@ -6,7 +6,7 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/05/25 14:56:20 by rerodrig         ###   ########.fr        #
+#    Updated: 2025/05/29 13:40:43 by rerodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,13 +107,13 @@ test: $(LIB) $(OBJS)
 test_vall: all
 	make val -C tests
 
+SCENE = ./scenes/img01.rt
 
 s:
-	clear && make re && ./$(NAME)
-SCENE = ./scenes/img00.rt
+	clear && make re && ./$(NAME) $(SCENE)
 
 n:
-	clear && make renew && ./$(NAME) $(SCENE)
+	clear && make renew && ./$(NAME)
 v:
 	clear && make re && $(VAL) ./$(NAME) $(SCENE)
 e:

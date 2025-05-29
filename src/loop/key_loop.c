@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/23 13:07:56 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:26:04 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	handle_camera_keys(int keycode, t_minirt *rt_struct)
 {
 	if (keycode == KEY_UP || keycode == KEY_DOWN || keycode == KEY_LEFT
 		|| keycode == KEY_RIGHT || keycode == KEY_W || keycode == KEY_S)
-		camera_move(&rt_struct->camera, keycode);
+		camera_move(&rt_struct->camera, keycode, rt_struct);
 	else if (keycode == NUMKEY_1)
 		camera_rotate(&rt_struct->camera, -ROTATION_SPEED, 0);
 	else if (keycode == NUMKEY_2)

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/22 00:12:36 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:20:42 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	rotate_plane(t_object *plane, char axis, double angle, t_camera_ms *cam)
 		return ;
 	new_transform = mat_multip(plane->transform, rotation_matrix);
 	ray_set_transform_obj(plane, new_transform);
-	camera_update_view(cam);
+	// camera_update_view(cam);
 }
 
 void	ray_reset_transform_obj(t_object *obj)
@@ -71,7 +71,7 @@ void	set_ortho(t_camera_ms *cam, t_point origin,
 {
 	cam->origin = origin;
 	cam->direction = direction;
-	camera_update_view(cam);
+	// camera_update_view(cam);
 }
 
 void	handle_orthographic_view(int keycode, t_camera_ms *camera)

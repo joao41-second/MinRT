@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:48:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/22 10:07:22 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:23:56 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	camera_rotate(t_camera_ms *camera, double dx, double dy)
 	camera_update_view(camera);
 }
 
-void	camera_move(t_camera_ms *cam, int k)
+void	camera_move(t_camera_ms *cam, int k, t_minirt *rt_struct)
 {
 	t_vector	f;
 	t_vector	w_up;
@@ -86,16 +86,22 @@ void	camera_move(t_camera_ms *cam, int k)
 	left = normalize(cross_product(f, w_up));
 	true_up = cross_product(left, f);
 	if (k == KEY_UP)
-		cam->origin = add_tuples(cam->origin, scalar_mult_tuples(f, MOVE));
+		rt_struct->point.y += 0.1;
+		// cam->origin = add_tuples(cam->origin, scalar_mult_tuples(f, MOVE));
 	else if (k == KEY_DOWN)
-		cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(f, MOVE));
+		rt_struct->point.y -= 0.1;
+		// cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(f, MOVE));
 	else if (k == KEY_LEFT)
-		cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(left, MOVE));
+		rt_struct->point.x -= 0.1;
+		// cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(left, MOVE));
 	else if (k == KEY_RIGHT)
-		cam->origin = add_tuples(cam->origin, scalar_mult_tuples(left, MOVE));
+		rt_struct->point.x += 0.1;
+		// cam->origin = add_tuples(cam->origin, scalar_mult_tuples(left, MOVE));
 	else if (k == KEY_W)
-		cam->origin = add_tuples(cam->origin, scalar_mult_tuples(w_up, MOVE));
+		rt_struct->point.z += 0.1;
+		// cam->origin = add_tuples(cam->origin, scalar_mult_tuples(w_up, MOVE));
 	else if (k == KEY_S)
-		cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(w_up, MOVE));
+		rt_struct->point.z -= 0.1;
+		// cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(w_up, MOVE));
 	camera_update_view(cam);
 }
