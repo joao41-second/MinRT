@@ -46,7 +46,7 @@ void	start_word(t_minirt *rt_struct)
 
 	ray_set_transform_obj(obj_sphere2,mat_multip(mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(0, 1, 1)), mat_gener_rota('z', 0.5)));
 
-	obj_add(rt_struct->word_, *obj_sphere2, 0);
+//	obj_add(rt_struct->word_, *obj_sphere2, 0);
 //	ft_add_node(obj_sphere2, &word_objects);
 	mat3 = obj_material_init(c_new(1, 1, 0),c_new(1, 0, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
@@ -92,7 +92,7 @@ void	start_word(t_minirt *rt_struct)
 	//obj_square(obj_create_points( create_point(-1.6, -4.7, 1), create_point(-1.2, -4.9,1), create_point(-1.6,-4.7 ,1.4 ), (t_point) {1,1,2}), word_objects, mat1, mat_gener_scal(2,2,2));
 	obj_square(obj_create_points( (t_point){0,0,0},  (t_point){0,1,0}, (t_point){0,1,1}, (t_point) {0,0,1}), rt_struct->word_, mat1, mat_gener_scal(1,1,1));
  
-	obj_open_stl_start(rt_struct->word_, "./texture/tree.obj",  mat_gener_scal(0.1, 0.1, 0.1), mat1);
+ obj_open_stl_start(rt_struct->word_, "./texture/tree.obj",  mat_gener_scal(0.1, 0.1, 0.1), mat1);
 	rt_struct->word = ft_node_start(word_objects);
 	rt_struct->luz = ligth_init(c_new(5, 5, 5), luz);
 }

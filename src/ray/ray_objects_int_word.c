@@ -103,7 +103,7 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 			min_.inter = intr.inter;
 			min_ = intr;
 		}
-		if( intr.t[0] != -1 &&  intr.t[0] - min_.t[0] )
+		if( intr.t[0] > EPSILON &&  intr.t[0] - min_.t[0] > EPSILON )
 		{
 			min_.t[0] = intr.t[0];
 			min_.t[1] = intr.t[1];
