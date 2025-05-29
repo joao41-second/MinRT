@@ -59,7 +59,7 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 	while (objs_w != NULL)
 	{
 		obj = (t_object *)objs_w->content;
-		intr = ray_int_object(ray,*obj);
+		intr = ray_int_object(ray,obj);
 		if (intr.inter-0 > EPSILON)
 		{
 			ray_for_objects_organize(intr, &save_points,obj);
@@ -78,36 +78,36 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 	return (save_points);
 }
 
-t_intersection	ray_int_object(t_ray ray, t_object obj)
+t_intersection	ray_int_object(t_ray ray, t_object * obj)
 {
 	t_intersection	intersection;
 	t_ray			ray_;
 
-	ray_ = ray_transform(ray, obj.inv_transform);
-	if (obj.type == OBJ_SPHERE)
+	ray_ = ray_transform(ray, obj->inv_transform);
+	if (obj->type == OBJ_SPHERE)
 	{
-		intersection = ray_int_sphere(ray_, obj.u_data.sphere);
-		intersection.mat = obj.matiral;
+		intersection = ray_int_sphere(ray_, obj->u_data.sphere);
+		intersection.mat = obj->matiral;
 	}
-	else if (obj.type == OBJ_PLANE)
+	else if (obj->type == OBJ_PLANE)
     	{
-     	   intersection = ray_int_plane(ray_, obj.u_data.plane);
-		intersection.mat = obj.matiral;
+     	   intersection = ray_int_plane(ray_, obj->u_data.plane);
+		intersection.mat = obj->matiral;
    	}
-	else if (obj.type == OBJ_TRIANGLE)
+	else if (obj->type == OBJ_TRIANGLE)
 	{
-		intersection = ray_int_triangle(ray_, obj.u_data.triangle);
-		intersection.mat = obj.matiral;
+		intersection = ray_int_triangle(ray_, obj->u_data.triangle);
+		intersection.mat = obj->matiral;
 		intersection.object = &obj; 
 	}
-	else if (obj.type == OBJ_CYLINDER) {
-		intersection = ray_int_cylinder(ray_, obj.u_data.cylinder);
-		intersection.mat = obj.matiral;
+	else if (obj->type == OBJ_CYLINDER) {
+		intersection = ray_int_cylinder(ray_, obj->u_data.cylinder);
+		intersection.mat = obj->matiral;
 		intersection.object = &obj;
-	}else if (obj.type == OBJ_SQUARE) 
+	}else if (obj->type == OBJ_SQUARE) 
 	{	
-		intersection = ray_in_trinagles(&obj, 2, ray_);
-		intersection.mat = obj.matiral;
+		intersection = ray_in_trinagles(obj, 2, ray_);
+		intersection.mat = obj->matiral;
 		intersection.object = &obj;
 	}
 	else

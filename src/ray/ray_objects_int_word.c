@@ -98,6 +98,7 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 		{
 			min_.t[0] = intr.t[0];
 			min_.t[1] = intr.t[0];
+			tri->u_data.triangle = tri->triangle[i]	;
 			min_ = intr;
 		}
 

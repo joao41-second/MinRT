@@ -48,7 +48,7 @@ t_vector	lig_normalize(t_object obj, t_point p_the_obj)
 	}
 	else if (obj.type == OBJ_PLANE)
 		ret = lig_normalize_plane(obj, p_the_obj);
-	else if (obj.type == OBJ_TRIANGLE) 
+	else if (obj.type == OBJ_TRIANGLE || obj.type == OBJ_SQUARE) 
     {
         t_triangle triangle = obj.u_data.triangle;
         t_vector edge1 = sub_tuples(triangle.p2, triangle.p1);
