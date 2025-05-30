@@ -24,6 +24,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 	ft_start_alloc();
+	
 
 	rt_struct.canva.mlx = ft_add_memory(mlx_init(), NULL);
 	start_word(&rt_struct);
