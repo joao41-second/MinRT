@@ -125,6 +125,8 @@ typedef struct s_object
 
 t_sphere			sphere(t_point point_satrt, double ray_s);
 
+void obj_square(t_point *points,t_list_ *word,t_mater mat,t_matrix  matrix);
+
 t_light				ligth_init(t_color intensty, t_point point);
 
 t_triangle			create_triangle(t_point p1, t_point p2, t_point p3);
@@ -143,7 +145,6 @@ t_m_values			obj_init_values_material(double ambient, double diffuse,
 
 t_mater				obj_material_init(t_color intensty,t_color pattern ,t_m_values values);
 
-
 void				obj_material_print(t_mater mat);
 
 t_img_ 				*obj_creat_texture(t_canva canva,char *img);
@@ -151,11 +152,21 @@ t_img_ 				*obj_creat_texture(t_canva canva,char *img);
 
 
 
-void obj_square(t_point *points,t_list_ *word,t_mater mat,t_matrix  matrix);
 
 t_point *obj_create_points(t_point p1,t_point p2,t_point p3,t_point p4);
 
 
 void obj_open_stl_start(t_list_ *word, char *file_name,t_matrix matrix,t_mater mat);
+
+
+t_point *obj_set_points(char *file_name,int nb);
+
+t_point  * obj_list_the_pointres(char *file_name);
+
+void obj_set_new_null(char *str,char null_char);
+
+char **obj_get_file(char *name,int *nb);
+
+int obj_locate_face(char **file);
 
 #endif
