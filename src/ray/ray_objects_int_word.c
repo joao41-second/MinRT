@@ -85,6 +85,7 @@ static	float min;
 	
 	i = -1;
 	min = INT_MAX;
+	min_.inter = 0;
 	while (++i < index)
 	{
 
@@ -159,7 +160,7 @@ t_intersection ray_int_cylinder(t_ray ray, t_cylinder cylinder) {
             intersection.t[(int)intersection.inter++] = t_cap;
         }
     }
-
+intersection.inter = 0;	
     return intersection;
 }
 

@@ -39,7 +39,7 @@ LIB = ./libft/ft_libft/libft.a ./libft/ft_printf/libftprintf.a ./libft/ft_free/f
 
 # Commands
 AR = ar rcs
-CC = gcc
+CC = cc
 RM = rm -f
 CAT = cat number.txt
 
