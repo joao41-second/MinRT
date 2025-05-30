@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:48:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/29 13:37:10 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/30 14:01:30 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void	camera_init(t_camera_ms *cam, t_point ori, t_vector dir, double fov)
 	cam->half_height = half_view / cam->aspect_ratio;
 	cam->pixel_size = (cam->half_width * 2) / cam->x;
 	cam->mode = CAM_MODE_R;
-	camera_update_view(cam);
-}
+	camera_update_view(cam);}
 
 void	camera_update_view(t_camera_ms *cam)
 {
@@ -47,12 +46,12 @@ void	camera_update_view(t_camera_ms *cam)
 		world_up = create_vector(0, 1, 0);
 	left = normalize(cross_product(forward, world_up));
 	true_up = cross_product(left, forward);
-	printf("[DEBUG] Camera origin: (%f, %f, %f)\n", cam->origin.x, cam->origin.y, cam->origin.z);
-	printf("[DEBUG] Camera direction: (%f, %f, %f)\n", cam->direction.x, cam->direction.y, cam->direction.z);
-	printf("[DEBUG] Camera forward: (%f, %f, %f)\n", forward.x, forward.y, forward.z);
-	printf("[DEBUG] Camera left: (%f, %f, %f)\n", left.x, left.y, left.z);
-	printf("[DEBUG] Camera true_up: (%f, %f, %f)\n", true_up.x, true_up.y, true_up.z);
-	printf("[DEBUG] Camera lookat target: (%f, %f, %f)\n", cam->origin.x + forward.x, cam->origin.y + forward.y, cam->origin.z + forward.z);
+	// printf("[DEBUG] Camera origin: (%f, %f, %f)\n", cam->origin.x, cam->origin.y, cam->origin.z);
+	// printf("[DEBUG] Camera direction: (%f, %f, %f)\n", cam->direction.x, cam->direction.y, cam->direction.z);
+	// printf("[DEBUG] Camera forward: (%f, %f, %f)\n", forward.x, forward.y, forward.z);
+	// printf("[DEBUG] Camera left: (%f, %f, %f)\n", left.x, left.y, left.z);
+	// printf("[DEBUG] Camera true_up: (%f, %f, %f)\n", true_up.x, true_up.y, true_up.z);
+	// printf("[DEBUG] Camera lookat target: (%f, %f, %f)\n", cam->origin.x + forward.x, cam->origin.y + forward.y, cam->origin.z + forward.z);
 	cam->tranform_matrix = mat_lookat(cam->origin,
 			add_tuples(cam->origin, forward), true_up);
 	cam->inv_tranform_matrix = mat_inv(cam->tranform_matrix);

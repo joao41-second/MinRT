@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/29 14:26:04 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:33:54 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,80 @@ void	handle_plane_keys(int keycode, t_object *plane, t_minirt *rt_struct)
 
 void	handle_camera_keys(int keycode, t_minirt *rt_struct)
 {
-	if (keycode == KEY_UP || keycode == KEY_DOWN || keycode == KEY_LEFT
-		|| keycode == KEY_RIGHT || keycode == KEY_W || keycode == KEY_S)
-		camera_move(&rt_struct->camera, keycode, rt_struct);
-	else if (keycode == NUMKEY_1)
-		camera_rotate(&rt_struct->camera, -ROTATION_SPEED, 0);
-	else if (keycode == NUMKEY_2)
-		camera_rotate(&rt_struct->camera, ROTATION_SPEED, 0);
-	else if (keycode == NUMKEY_3)
-		camera_rotate(&rt_struct->camera, 0, -ROTATION_SPEED);
-	else if (keycode == NUMKEY_4)
-		camera_rotate(&rt_struct->camera, 0, ROTATION_SPEED);
+    // Handle movement keys
+    if (keycode == KEY_UP || keycode == KEY_DOWN || keycode == KEY_LEFT
+        || keycode == KEY_RIGHT || keycode == KEY_W || keycode == KEY_S)
+        camera_move(rt_struct);
+	
+    // Handle rotation keys
+    else if (keycode == NUMKEY_1 || keycode == NUMKEY_2
+        || keycode == NUMKEY_3 || keycode == NUMKEY_4)
+    {
+        camera_rotate(rt_struct);
+    }
 	else
 		handle_orthographic_view(keycode, &rt_struct->camera);
+
+	printf("[DEBUG] Camera position: (%f, %f, %f)\n", 
+		rt_struct->camera.origin.x, rt_struct->camera.origin.y, rt_struct->camera.origin.z);
+		printf("[DEBUG] point position: (%f, %f, %f)\n", rt_struct->point.x, rt_struct->point.y, rt_struct->point.z);
 }
+
+// void	handle_camera_keys(int keycode, t_minirt *rt_struct)
+// {
+//     if (rt_struct->camera.mode == CAM_MODE_J)
+//     {
+        
+//         if (keycode == KEY_UP || keycode == KEY_DOWN || keycode == KEY_LEFT
+//             || keycode == KEY_RIGHT || keycode == KEY_W || keycode == KEY_S)
+//             camera_move(&rt_struct->camera, keycode, rt_struct);
+//         else if (keycode == NUMKEY_1 || keycode == NUMKEY_2
+//             || keycode == NUMKEY_3 || keycode == NUMKEY_4)
+//             camera_rotate(&rt_struct->camera, rt_struct);
+// 		else
+// 		handle_orthographic_view(keycode, &rt_struct->camera);
+//     }
+//     else if (rt_struct->camera.mode == CAM_MODE_R)
+//     {
+        
+//         if (keycode == KEY_UP || keycode == KEY_DOWN || keycode == KEY_LEFT
+//             || keycode == KEY_RIGHT || keycode == KEY_W || keycode == KEY_S)
+//         {
+            
+//             if (keycode == KEY_UP)
+//                 rt_struct->camera.origin.y += 0.1;
+//             else if (keycode == KEY_DOWN)
+//                 rt_struct->camera.origin.y -= 0.1;
+//             else if (keycode == KEY_LEFT)
+//                 rt_struct->camera.origin.x -= 0.1;
+//             else if (keycode == KEY_RIGHT)
+//                 rt_struct->camera.origin.x += 0.1;
+//             else if (keycode == KEY_W)
+//                 rt_struct->camera.origin.z += 0.1;
+//             else if (keycode == KEY_S)
+//                 rt_struct->camera.origin.z -= 0.1;
+//             camera_update_view(&rt_struct->camera);
+//         }
+//         else if (keycode == NUMKEY_1 || keycode == NUMKEY_2
+//             || keycode == NUMKEY_3 || keycode == NUMKEY_4)
+//         {
+            
+//             if (keycode == NUMKEY_1)
+//                 rt_struct->rota_x += ROTATION_SPEED;
+//             else if (keycode == NUMKEY_2)
+//                 rt_struct->rota_x -= ROTATION_SPEED;
+//             else if (keycode == NUMKEY_3)
+//                 rt_struct->rota_y += ROTATION_SPEED;
+//             else if (keycode == NUMKEY_4)
+//                 rt_struct->rota_y -= ROTATION_SPEED;
+//             camera_rotate(&rt_struct->camera, rt_struct);
+//         }
+// 		else
+// 			handle_orthographic_view(keycode, &rt_struct->camera);
+//     }
+// }
+
+
 
 void	handle_light_keys(int keycode, t_minirt *rt_struct)
 {
@@ -89,7 +149,7 @@ void	handle_misc_keys(int keycode, t_minirt *rt_struct)
 	else if (keycode == KEY_TAB)
 	{
 		rt_struct->menu = !rt_struct->menu;
-		// render_menu_to_buffer(rt_struct);
+		
 	}
 	else if (keycode == NUMKEY_9)
 		rt_struct->needs_render++;
@@ -105,6 +165,7 @@ void	key_loop(int keycode, t_minirt *rt_struct)
 	t_object	*plane;
 	t_object	*obj;
 
+	rt_struct->key_pressed = keycode;
 	plane = NULL;
 	current = rt_struct->word;
 	while (current)
@@ -117,6 +178,7 @@ void	key_loop(int keycode, t_minirt *rt_struct)
 		}
 		current = current->next;
 	}
+	printf("[DEBUG] Key pressed: %d\n", rt_struct->key_pressed);
 	if (plane)
 		handle_plane_keys(keycode, plane, rt_struct);
 	handle_camera_keys(keycode, rt_struct);

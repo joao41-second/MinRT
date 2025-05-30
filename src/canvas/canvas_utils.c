@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:13:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/29 13:58:39 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/30 12:32:29 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,4 @@ void	canva_update(t_minirt *rt_struct)
 		mlx_string_put(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,
 			W_POS, WALL_Y - HEIGHT_POS * 2, WHITE, "Press 'TAB' for menu");
 	draw_camera_info(rt_struct);
-}
+	}

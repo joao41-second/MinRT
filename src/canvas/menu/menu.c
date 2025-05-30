@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:42:15 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/23 13:09:27 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/30 12:31:42 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,24 @@ void	draw_camera_info(t_minirt *rt)
 	if (rt->camera.mode == CAM_MODE_R)
 		camera_mode = "Camera Rei";
 	else
+	{
+		rt->cam = cm_ray_for_pixel(rt->camera,
+			(double)WALL_X / 2, (double)WALL_Y / 2);
 		camera_mode = "Camera Joao";
-	draw_info(rt, 10, 30, camera_mode);
-	snprintf(cam_info, sizeof(cam_info), "cam cord: %f %f %f dir: %f %f %f",
+		
+	}
+	draw_info(rt, 10, 40, camera_mode);
+	snprintf(cam_info, sizeof(cam_info), "cam init: %f %f %f dir: %f %f %f",
 		rt->camera.origin.x, rt->camera.origin.y, rt->camera.origin.z,
 		rt->camera.direction.x, rt->camera.direction.y, rt->camera.direction.z);
+	draw_info(rt, 10, 20, cam_info);
+	snprintf(cam_info, sizeof(cam_info), "cam cord: %f %f %f dir: %f %f %f",
+		rt->cam.o.x, rt->cam.o.y, rt->cam.o.z,
+		rt->cam.d.x, rt->cam.d.y, rt->cam.d.z);
 	draw_info(rt, 10, 10, cam_info);
 	snprintf(luz_info, sizeof(luz_info), "luz cord: %f %f %f",
 		rt->luz.point.x, rt->luz.point.y, rt->luz.point.z);
-	draw_info(rt, 20, 20, luz_info);
+	draw_info(rt, 20, 30, luz_info);
 }
 
 void	ft_menu(t_minirt *rt)

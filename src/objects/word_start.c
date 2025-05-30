@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/29 13:54:10 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:38:05 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	start_word(t_minirt *rt_struct, char **av)
 	{
 		camera_init(&rt_struct->camera, create_point(0, 0, -50),
 			create_vector(0, 1, 0), 100);
+		
 		unified_camera_set_mode(&rt_struct->camera, CAM_MODE_J);
 		luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(3, 3, -3));
 	}

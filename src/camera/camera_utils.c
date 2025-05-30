@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:48:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/29 14:23:56 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/30 14:32:20 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,60 +48,94 @@ static t_vector	apply_rotation(t_vector vector, t_vector axis, double angle)
 	return (result);
 }
 
-void	camera_rotate(t_camera_ms *camera, double dx, double dy)
-{
-	t_vector	forward;
-	t_vector	world_up;
-	t_vector	left;
-	t_point		original_origin;
+// void	camera_rotate(t_camera_ms *camera, double dx, double dy)
+// {
+// 	t_vector	forward;
+// 	t_vector	world_up;
+// 	t_vector	left;
+// 	t_point		original_origin;
 
-	forward = normalize(camera->direction);
-	original_origin = camera->origin;
-	camera->origin = sub_tuples(camera->origin, create_vector(0, 0, 0));
-	if (fabs(forward.y) > 0.98)
-		world_up = create_vector(0, 0, 1);
-	else
-		world_up = create_vector(0, 1, 0);
-	left = normalize(cross_product(forward, world_up));
-	forward = apply_rotation(forward, left, dy);
-	world_up = normalize(cross_product(left, forward));
-	forward = apply_rotation(forward, world_up, dx);
-	camera->direction = forward;
-	camera->origin = add_tuples(camera->origin, original_origin);
-	camera_update_view(camera);
+// 	forward = normalize(camera->direction);
+// 	original_origin = camera->origin;
+// 	camera->origin = sub_tuples(camera->origin, create_vector(0, 0, 0));
+// 	if (fabs(forward.y) > 0.98)
+// 		world_up = create_vector(0, 0, 1);
+// 	else
+// 		world_up = create_vector(0, 1, 0);
+// 	left = normalize(cross_product(forward, world_up));
+// 	forward = apply_rotation(forward, left, dy);
+// 	world_up = normalize(cross_product(left, forward));
+// 	forward = apply_rotation(forward, world_up, dx);
+// 	camera->direction = forward;
+// 	camera->origin = add_tuples(camera->origin, original_origin);
+// 	camera_update_view(camera);
+// }
+
+// void	camera_move(t_camera_ms *cam, int k, t_minirt *rt_struct)
+// {
+// 	t_vector	f;
+// 	t_vector	w_up;
+// 	t_vector	left;
+// 	t_vector	true_up;
+
+// 	f = normalize(cam->direction);
+// 	if (fabs(f.y) > 0.999)
+// 		w_up = create_vector(0, 0, 1);
+// 	else
+// 		w_up = create_vector(0, 1, 0);
+// 	left = normalize(cross_product(f, w_up));
+// 	true_up = cross_product(left, f);
+// 	if (k == KEY_UP)
+// 		rt_struct->point.y += 0.1;
+// 		// cam->origin = add_tuples(cam->origin, scalar_mult_tuples(f, MOVE));
+// 	else if (k == KEY_DOWN)
+// 		rt_struct->point.y -= 0.1;
+// 		// cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(f, MOVE));
+// 	else if (k == KEY_LEFT)
+// 		rt_struct->point.x -= 0.1;
+// 		// cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(left, MOVE));
+// 	else if (k == KEY_RIGHT)
+// 		rt_struct->point.x += 0.1;
+// 		// cam->origin = add_tuples(cam->origin, scalar_mult_tuples(left, MOVE));
+// 	else if (k == KEY_W)
+// 		rt_struct->point.z += 0.1;
+// 		// cam->origin = add_tuples(cam->origin, scalar_mult_tuples(w_up, MOVE));
+// 	else if (k == KEY_S)
+// 		rt_struct->point.z -= 0.1;
+// 		// cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(w_up, MOVE));
+// 	camera_update_view(cam);
+// }
+void	camera_move(t_minirt *rt_struct)
+{
+    // Update rt_struct->point based on the key pressed
+    if (rt_struct->key_pressed == KEY_UP)
+        rt_struct->point.y += 0.1;
+    else if (rt_struct->key_pressed == KEY_DOWN)
+        rt_struct->point.y -= 0.1;
+    else if (rt_struct->key_pressed == KEY_LEFT)
+        rt_struct->point.x -= 0.1;
+    else if (rt_struct->key_pressed == KEY_RIGHT)
+        rt_struct->point.x += 0.1;
+    else if (rt_struct->key_pressed == KEY_W)
+        rt_struct->point.z += 0.1;
+    else if (rt_struct->key_pressed == KEY_S)
+        rt_struct->point.z -= 0.1;
+
+    // No need to directly modify the camera's transformation matrix here,
+    // as it will be recalculated in each frame using rt_struct->point.
 }
-
-void	camera_move(t_camera_ms *cam, int k, t_minirt *rt_struct)
+void	camera_rotate(t_minirt *rt_struct)
 {
-	t_vector	f;
-	t_vector	w_up;
-	t_vector	left;
-	t_vector	true_up;
+    // Update rotation values in rt_struct
+    if (rt_struct->key_pressed == NUMKEY_1)
+        rt_struct->rota_x += ROTATION_SPEED;
+    else if (rt_struct->key_pressed == NUMKEY_2)
+        rt_struct->rota_x -= ROTATION_SPEED;
+    else if (rt_struct->key_pressed == NUMKEY_3)
+        rt_struct->rota_y += ROTATION_SPEED;
+    else if (rt_struct->key_pressed == NUMKEY_4)
+        rt_struct->rota_y -= ROTATION_SPEED;
 
-	f = normalize(cam->direction);
-	if (fabs(f.y) > 0.999)
-		w_up = create_vector(0, 0, 1);
-	else
-		w_up = create_vector(0, 1, 0);
-	left = normalize(cross_product(f, w_up));
-	true_up = cross_product(left, f);
-	if (k == KEY_UP)
-		rt_struct->point.y += 0.1;
-		// cam->origin = add_tuples(cam->origin, scalar_mult_tuples(f, MOVE));
-	else if (k == KEY_DOWN)
-		rt_struct->point.y -= 0.1;
-		// cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(f, MOVE));
-	else if (k == KEY_LEFT)
-		rt_struct->point.x -= 0.1;
-		// cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(left, MOVE));
-	else if (k == KEY_RIGHT)
-		rt_struct->point.x += 0.1;
-		// cam->origin = add_tuples(cam->origin, scalar_mult_tuples(left, MOVE));
-	else if (k == KEY_W)
-		rt_struct->point.z += 0.1;
-		// cam->origin = add_tuples(cam->origin, scalar_mult_tuples(w_up, MOVE));
-	else if (k == KEY_S)
-		rt_struct->point.z -= 0.1;
-		// cam->origin = sub_tuples(cam->origin, scalar_mult_tuples(w_up, MOVE));
-	camera_update_view(cam);
+    // No need to directly modify the camera's transformation matrix here,
+    // as it will be recalculated in each frame using rt_struct->rota_x and rt_struct->rota_y.
 }
