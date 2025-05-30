@@ -41,7 +41,7 @@ t_point *obj_set_points(char *file_name,int nb)
 	return (list);	
 }
 
-t_point  * obj_list_the_pointres(char *file_name)
+t_point  * obj_list_the_pointres(char *file_name,int *ret)
 {
 	int fd;
 	int nb;
@@ -59,7 +59,7 @@ t_point  * obj_list_the_pointres(char *file_name)
 	}
 	free(line);
 	close(fd);
-		
+	*ret = nb;
 	return (obj_set_points(file_name, nb));
 }
 

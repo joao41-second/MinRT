@@ -114,8 +114,8 @@ typedef struct s_object
 	t_matrix		transform;
 	t_matrix		inv_transform;
 	t_matrix		inv_transpose;
-	t_img_			*texture;
-	
+	t_img_			*texture;	
+	t_triangle		*hit_box;
 	t_triangle 		*triangle;
 	int			index;
 	int 			check;
@@ -161,7 +161,7 @@ void obj_open_stl_start(t_list_ *word, char *file_name,t_matrix matrix,t_mater m
 
 t_point *obj_set_points(char *file_name,int nb);
 
-t_point  * obj_list_the_pointres(char *file_name);
+t_point  * obj_list_the_pointres(char *file_name, int *ret);
 
 void obj_set_new_null(char *str,char null_char);
 

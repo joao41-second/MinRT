@@ -78,7 +78,7 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 {
 	int i;
 	int i_;
-static	float min;
+	static	float min;
 	t_intersection intr;
 	t_intersection min_;
 	t_triangle tria;
@@ -86,6 +86,23 @@ static	float min;
 	i = -1;
 	min = INT_MAX;
 	min_.inter = 0;
+	
+	intr.t[0] = 0;
+	while (++i < 12) {
+		
+		intr = ray_int_triangle(ray, tri->hit_box[i]);
+		if(intr.t[0] > EPSILON)
+		{
+			i = 20;
+			break;
+		}
+	
+	}
+	if(i == 20)
+	{
+	
+		
+	i = -1;
 	while (++i < index)
 	{
 
@@ -108,6 +125,9 @@ static	float min;
 
 	}
 	return (min_);
+	}
+
+		return (intr) ;
 }
 
 t_intersection ray_int_cylinder(t_ray ray, t_cylinder cylinder) {
