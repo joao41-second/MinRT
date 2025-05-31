@@ -19,28 +19,40 @@
 t_uv *obj_get_uv(char **file)
 {
 	int i;
+	int i_;
 	int nb;
+	int nb_;
 	t_uv *points;
 	char **split;
 
-	i=-1;
+	i=-1;	
 	nb = 0;
 	ft_pocket_set("main");
 	while (file[++i] != NULL)
 		if(file[i][0] == 'v' && file[i][1] == 't' && file[i][2] == ' ')
 			nb++;	
-	points = ft_malloc(nb*2*sizeof(float), NULL);	
+
+	printf("o numero %d \n",nb);
+	points = ft_malloc((nb+1)*sizeof(t_uv), NULL);	
 	i=-1;
+	nb_ = nb;
 	nb = -1;
 //	ft_pocket_set("add_obj");
 	while (file[++i] != NULL)
 	{
-		if(file[i][0] == 'v' && file[i][1] == 't' && file[i][2] == ' ')
+		if( file[i][0] == 'v' && file[i][1] == 't' && file[i][2] == ' ')
 		{
+			i_ = -1;
 			split = ft_split(file[i], ' ');
-			points[++nb].u = ft_atof(split[1], NULL);
-			points[nb].v = ft_atof(split[2], NULL);	
-			points[nb].index = -1;
+			while (split[++i_] != NULL);
+			if(i_ >= 2)
+			{
+
+				points[++nb].u = ft_atof(split[1], NULL);
+				points[nb].v = ft_atof(split[2], NULL);	
+				points[nb].index = -1;
+
+			}
 		}	
 	}
 	return ( ft_pocket_set("main"),points);

@@ -37,11 +37,19 @@ t_color pat_pixe_at(t_point point,t_img_ *img)
 
 t_uv uv_add(t_uv a , t_uv b)
 {
-	return ((t_uv){ a.u +b.u , a.v + b.v});
+	t_uv uv;
+	uv.u = a.u + b.u;
+
+	uv.v = a.v + b.v;
+	return (uv);
 }
 t_uv uv_sacl(t_uv a,float b)
 {
-	return ((t_uv){ a.u *b , a.v * b});
+	t_uv uv;
+	uv.u = a.u * b;
+
+	uv.v = a.v * b;
+	return (uv);
 }
 
 t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
@@ -59,6 +67,7 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 	float v;
 	if(trinange->uv3.u > 0 || trinange->uv2.u > 0 || trinange->uv1.u > 0  )	
 	{
+	lig_print_tuple(point);
 	printf("\nvaueles1 %f %f \n",trinange->uv1.u,trinange->uv1.v);
 	printf("vaueles %f %f \n",trinange->uv2.u,trinange->uv2.v);
 	printf("vaueles %f %f \n\n",trinange->uv3.u,trinange->uv3.v);
@@ -82,10 +91,7 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 	uv = uv_add(uv_add(uv_sacl(trinange->uv1, alpha),uv_sacl(trinange->uv2, beta)),uv_sacl(trinange->uv3, gamma));
 
 	// Clamp UVs para garantir que estão dentro de [0,1]
-	if (uv.u < 0) uv.u = 0;
-	if (uv.u > 1) uv.u = 1;
-	if (uv.v < 0) uv.v = 0;
-	if (uv.v > 1) uv.v = 1;
+
 
 // Conversão UV → coordenadas de textura (x,y)
 	int x = (int)(uv.u * (img->width - 1));
@@ -100,6 +106,8 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 		y = 0;
 	if (y >= img->height) 
 		y = img->height - 1;
+
+	
 
 
 	return (c_get_color( my_mlx_pixel_retunr(img,  x,y )));

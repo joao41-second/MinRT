@@ -41,13 +41,11 @@ void obj_add_trinagles( t_object *obj_t , char** file, char** point, t_point *li
 				obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(bar_siplit[0][0])] ,
 							list[ft_atol(bar_siplit[1][0])], 
 							list[ft_atol(bar_siplit[2][0])]);
-				if(nb_f_c == 0)
 					obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],0,nb_f_c);
 				obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(bar_siplit[3][0])] ,
 							list[ft_atol(bar_siplit[0][0])], 
 							list[ft_atol(bar_siplit[2][0])]);
 
-				if(nb_f_c == 0)
 					obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],1,nb_f_c) ;
 			}
 			else
@@ -56,7 +54,6 @@ void obj_add_trinagles( t_object *obj_t , char** file, char** point, t_point *li
 							list[ft_atol(bar_siplit[1][0])], 
 							list[ft_atol(bar_siplit[2][0])]);
 
-				if(nb_f_c == 0)
 			  		 obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],0,nb_f_c);
 			}
 		}	
