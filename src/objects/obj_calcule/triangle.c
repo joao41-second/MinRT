@@ -10,15 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minRT.h"
+#include "../../minRT.h"
 
 t_triangle	create_triangle(t_point p1, t_point p2, t_point p3)
 {
 	t_triangle	triangle;
-
+	
 	triangle.p1 = p1;
 	triangle.p2 = p2;
 	triangle.p3 = p3;
+	triangle.vt1[0] = 0;	
+	triangle.vt1[1] = 0;
+	triangle.vt2[0] = 0;	
+	triangle.vt2[1] = 0;
+	triangle.vt2[0] = 0;	
+	triangle.vt2[1] = 0;
 	triangle.edge1 = sub_tuples(p2, p1);
 	triangle.edge2 = sub_tuples(p3, p1);
 	triangle.normal = normalize(cross_product(triangle.edge1, triangle.edge2));

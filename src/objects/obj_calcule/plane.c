@@ -9,8 +9,10 @@
 /*   Updated: 2025/05/07 11:13:05 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../../minRT.h"
+#include "../objects.h"
 
-#include "../minRT.h"
+
 
 t_vector plane_normal_at(t_plane *plane, t_point point)
 {

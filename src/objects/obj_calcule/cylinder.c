@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minRT.h"
-#include "objects.h"
+#include "../../minRT.h"
+#include "../objects.h"
 
 t_cylinder create_cylinder(t_point center, t_vector orientation, double radius, double height) {
     t_cylinder cylinder;

@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 16:26:38 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 11:50:06 by jperpct          ###   ########.fr       */
+/*   Created: 2025/04/07 11:42:58 by jperpct           #+#    #+#             */
+/*   Updated: 2025/05/05 15:32:17 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minRT.h"
-#include "objects.h"
 
-t_sphere	sphere(t_point point_satrt, double ray_s)
+#include "../../minRT.h"
+#include "../objects.h"
+
+t_light	ligth_init(t_color intensty, t_point point)
 {
-	t_sphere	new;
+	t_light	ret;
 
-	new.center = point_satrt;
-	new.ray_s = ray_s;
-	return (new);
+	ret.intenstiy = intensty;
+	ret.point = point;
+	return (ret);
 }

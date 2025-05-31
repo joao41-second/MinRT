@@ -61,4 +61,7 @@ void print_list_(t_list_ *list);
 void draw_cube_labels(t_minirt *rt_struct);
 
 void	start_word_test(t_minirt *rt_struct, double ambinet, t_color color);
+
+
+void obj_open_stl_start(t_minirt *rt_struct, char *file_name,t_matrix matrix,t_mater mat);
 #endif

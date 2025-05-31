@@ -30,10 +30,14 @@ t_mat_calculate obj_mat_calulate_init()
 t_img_ *obj_creat_texture(t_canva canva,char *img)
 {
 	t_img_ *imgg;
-	int i = 0;
+	int i;
 	int a = 0;
 	imgg =  ft_malloc(sizeof(t_img_)*1, NULL);
-
+	i = open(img, O_RDONLY);
+	if(i < 0)
+		return (NULL);
+	close(i);
+	i = 0;
 	imgg->img = mlx_xpm_file_to_image(canva.mlx, img, &i, &a);
 	imgg->addr = mlx_get_data_addr(imgg->img, &imgg->bits_per_pixel,&imgg->line_length, &imgg->endian);
 	imgg->height = a;

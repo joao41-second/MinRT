@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minRT.h"
+#include "../../minRT.h"
+
 
 t_point *obj_set_points(char *file_name,int nb)
 {

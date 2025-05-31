@@ -75,6 +75,9 @@ typedef enum e_obj_type
 
 typedef struct s_triangle 
 {
+	float vt1[2];
+	float vt2[2];
+	float vt3[2];
 	t_point p1;
 	t_point p2;
 	t_point p3;
@@ -156,7 +159,6 @@ t_img_ 				*obj_creat_texture(t_canva canva,char *img);
 t_point *obj_create_points(t_point p1,t_point p2,t_point p3,t_point p4);
 
 
-void obj_open_stl_start(t_list_ *word, char *file_name,t_matrix matrix,t_mater mat);
 
 
 t_point *obj_set_points(char *file_name,int nb);

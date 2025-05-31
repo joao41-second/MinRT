@@ -21,7 +21,7 @@ void	loop(t_minirt *rt_struct)
 	clock_t start;
 	clock_t end;
 	
-	
+		
 	mat_set_view_transform(&rt_struct->cam_m.tranform_matrix, create_point(1, 1,-3), 
 			create_point(0, 0, 0), create_vector(0, 1, 0));
 
@@ -38,8 +38,8 @@ void	loop(t_minirt *rt_struct)
 	cm_update(&rt_struct->cam_m);
 	cm_windo_put(rt_struct, WALL_X, WALL_Y,rt_struct->needs_render);
 	end = clock();
-	printf("time for gener the frame %f second\n",(double)(end - start)/CLOCKS_PER_SEC);
-
+	printf("time for gener the frame %f second\n",(double)1/((double)( (double)end -  (double)start)/ (double)CLOCKS_PER_SEC));
+	 double vaule = ((double)( (double)end -  (double)start)/ (double)CLOCKS_PER_SEC) ;
 	canva_update(rt_struct);
 	asprintf(&str, "cord: %f %f %f  dir: %f %f %f",
 		rt_struct->cam.origin.x, rt_struct->cam.origin.y,
@@ -52,4 +52,14 @@ void	loop(t_minirt *rt_struct)
 	mlx_string_put(rt_struct->canva.mlx,
 		rt_struct->canva.mlx_wind,
 		20, 20, create_trgb( 255, 255, 2), str);
+
+	mlx_string_put(rt_struct->canva.mlx,
+		rt_struct->canva.mlx_wind,
+		10, 30, create_trgb( 255, 255, 2), "fps :");	
+
+	mlx_string_put(rt_struct->canva.mlx,
+		rt_struct->canva.mlx_wind,
+		50, 30, create_trgb( 255, 255, 2), ft_itoa(((double)1/vaule)));	
+
+
 }

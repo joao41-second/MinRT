@@ -33,5 +33,4 @@ t_color pat_pixe_at(t_point point,t_img_ *img)
 		color = c_get_color( my_mlx_pixel_retunr(img, x, y));
 
 	return color;
-
 }

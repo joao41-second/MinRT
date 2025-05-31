@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minRT.h"
-#include "objects.h"
+#include "../../minRT.h"
+#include "../objects.h"
 #include <stdio.h>
 
 t_point *obj_create_points(t_point p1,t_point p2,t_point p3,t_point p4)
