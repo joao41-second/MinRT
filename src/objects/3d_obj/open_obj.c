@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 19:09:07 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/31 13:26:46 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/31 15:41:24 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void obj_add_trinagles( t_object *obj_t , char** file, char** point, t_point *li
 	int nb_f_c;
 	char **bar_siplit[4];
 	t_uv *uv_list;
-	int index[3];
 	i = -1;
 	nb_f_c =-1;
 	uv_list = obj_get_uv(file);
@@ -34,6 +33,7 @@ void obj_add_trinagles( t_object *obj_t , char** file, char** point, t_point *li
 			bar_siplit[1] = ft_split(point[2], '/');
 			bar_siplit[2] = ft_split(point[3], '/');
 
+
 			if(point[4] != NULL)
 			{
 
@@ -41,11 +41,14 @@ void obj_add_trinagles( t_object *obj_t , char** file, char** point, t_point *li
 				obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(bar_siplit[0][0])] ,
 							list[ft_atol(bar_siplit[1][0])], 
 							list[ft_atol(bar_siplit[2][0])]);
-				obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],0);
+				if(nb_f_c == 0)
+					obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],0,nb_f_c);
 				obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(bar_siplit[3][0])] ,
 							list[ft_atol(bar_siplit[0][0])], 
 							list[ft_atol(bar_siplit[2][0])]);
-				obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],1);
+
+				if(nb_f_c == 0)
+					obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],1,nb_f_c) ;
 			}
 			else
 			{
@@ -53,9 +56,9 @@ void obj_add_trinagles( t_object *obj_t , char** file, char** point, t_point *li
 							list[ft_atol(bar_siplit[1][0])], 
 							list[ft_atol(bar_siplit[2][0])]);
 
-				obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],0);
+				if(nb_f_c == 0)
+			  		 obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],0,nb_f_c);
 			}
-
 		}	
 	}
 	obj_t->u_data.triangle = obj_t->triangle[0];

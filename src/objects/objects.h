@@ -17,6 +17,7 @@ typedef struct s_uv
 {
 	float u;
 	float v;
+	int index;
 } t_uv;
 typedef struct s_cylinder
 {
@@ -180,6 +181,5 @@ int obj_locate_face(char **file);
 t_uv *obj_get_uv(char **file);
 
 
-void obj_set_uv(t_uv *uvs,char ***line ,t_triangle *tri,int fl);
-
+void obj_set_uv(t_uv *uvs,char ***line ,t_triangle *tri,int fl,int index);
 #endif

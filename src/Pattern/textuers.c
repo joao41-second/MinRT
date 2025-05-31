@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 23:43:45 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/31 13:31:15 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/31 15:17:23 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,23 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 	float gamma;
 	float alpha;
 	t_uv uv;
-
+	float u;
+	float v;
+	if(trinange->uv3.u > 0 || trinange->uv2.u > 0 || trinange->uv1.u > 0  )	
+	{
+	printf("\nvaueles1 %f %f \n",trinange->uv1.u,trinange->uv1.v);
+	printf("vaueles %f %f \n",trinange->uv2.u,trinange->uv2.v);
+	printf("vaueles %f %f \n\n",trinange->uv3.u,trinange->uv3.v);
+	}
+	
+	uv.u = 0;
+	uv.v = 0;
+	uv.index = 0;
 	edge2 = sub_tuples(point,trinange->p1);
 	edge1 = trinange->edge2;
 	edge0 = trinange->edge1;
 	dp[0] = dot_product(edge0, edge0);
-	dp[1] = dot_product(edge0, edge1);
+	dp[1] = dot_product(edge1, edge0);
 	dp[2] = dot_product(edge1, edge1);
 	dp[3] = dot_product(edge2, edge0);
 	dp[4] = dot_product(edge2, edge1);
@@ -70,5 +81,26 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 	alpha = 1.0 - beta -gamma;;
 	uv = uv_add(uv_add(uv_sacl(trinange->uv1, alpha),uv_sacl(trinange->uv2, beta)),uv_sacl(trinange->uv3, gamma));
 
-	return (c_get_color( my_mlx_pixel_retunr(img, uv.u * img->width-1, uv.v * img->height-1)));
+	// Clamp UVs para garantir que estão dentro de [0,1]
+	if (uv.u < 0) uv.u = 0;
+	if (uv.u > 1) uv.u = 1;
+	if (uv.v < 0) uv.v = 0;
+	if (uv.v > 1) uv.v = 1;
+
+// Conversão UV → coordenadas de textura (x,y)
+	int x = (int)(uv.u * (img->width - 1));
+	int y = (int)((1.0f - uv.v) * (img->height - 1));  // inverte o eixo Y
+
+// Clamp final (opcional, extra segurança)
+	if (x < 0)
+		x = 0;
+	if (x >= img->width) 
+		x = img->width - 1;
+	if (y < 0)
+		y = 0;
+	if (y >= img->height) 
+		y = img->height - 1;
+
+
+	return (c_get_color( my_mlx_pixel_retunr(img,  x,y )));
 }

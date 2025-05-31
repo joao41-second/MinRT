@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/26 14:23:39 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/31 15:31:41 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,17 @@ void	start_word(t_minirt *rt_struct)
 	ray_set_transform_obj(obj_triangle2, mat_gener_scal(1, 1, 1));
 	//ft_add_node(obj_triangle2, &word_objects);
 
-
 	//obj_square(obj_create_points( create_point(-1.6, -4.7, 1), create_point(-1.2, -4.9,1), create_point(-1.6,-4.7 ,1.4 ), (t_point) {1,1,2}), word_objects, mat1, mat_gener_scal(2,2,2));
- obj_square(obj_create_points( (t_point){0,0,0},  (t_point){0,1,0}, (t_point){0,1,1}, (t_point) {0,0,1}), word_objects, mat1, mat_gener_scal(1,1,1));
+// obj_square(obj_create_points( (t_point){0,0,0},  (t_point){0,1,0}, (t_point){0,1,1}, (t_point) {0,0,1}), word_objects, mat1, mat_gener_scal(1,1,1));
 	
- rt_struct->word = word_objects;
+ 	rt_struct->word = word_objects;
 
-	obj_open_stl_start(rt_struct, "./texture/tree.obj",  mat_gener_scal(0.1, 0.1, 0.1), mat1);
 
-	obj_open_stl_start(rt_struct, "./texture/Gun.obj", mat_multip(  mat_gener_scal(1, 1, 1),mat_gener_trans(1, -1, 1)),mat2);
-  //t_object * objc = word_objects->content;
- // objc->texture = obj_creat_texture(rt_struct->canva, "./textur/Gun.xpm");
+	//obj_open_stl_start(rt_struct, "./texture/test.obj", mat_multip(  mat_gener_scal(1, 1, 1),mat_gener_trans(0, 0, 0)),mat2);
 
-//	obj_open_stl_start(word_objects, "./texture/tree.obj", mat_multip(  mat_gener_scal(0.1, 0.1, 0.1),mat_gener_trans(2, -2, 1)),mat2);
+
+	obj_open_stl_start(rt_struct, "./texture/test.obj",mat_gener_scal(1, 1, 1),mat2);
+
 	rt_struct->word = ft_node_start(word_objects);
 	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
 }
