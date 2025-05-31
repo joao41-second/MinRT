@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:13:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 23:42:17 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/31 13:33:14 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	my_mlx_pixel_put(t_img_ *data, int x, int y, int color)
 unsigned int	my_mlx_pixel_retunr(t_img_ *data, int x, int y)
 {
 	unsigned int	color;
-
+	if(x > data->width)
+		x = 0;
+	if(y > data->height)
+		y = 0;
 	color = *(unsigned int *)(data->addr + (y * data->line_length + x
 				* (data->bits_per_pixel / 8)));
 	return (color);

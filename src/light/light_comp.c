@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 20:46:06 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/31 13:20:05 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,11 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 		compt = lig_prepare_computations(ray_in_obj, ray);
 		test = ray_in_obj.object;
 		if(test->texture != NULL)
+		{
 			ray_in_obj.mat.color = pat_pixe_at(compt.point, test->texture);
+			if(test->type == OBJ_SQUARE)
+				ray_in_obj.mat.color = pat_pixe_at_triang(compt.point, test->texture, &test->u_data.triangle);
+		}
 
 		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);
 	}

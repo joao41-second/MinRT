@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 19:09:07 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/31 12:26:21 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/31 13:26:46 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,9 @@ char *obj_texture_xpm(char *str_)
 	char *str;
 	str = ft_strdup(str_);
 	i = ft_strlen(str);
-	str[i] = 'm';
-	str[i-1] = 'p';
-	str[i-2] = 'x';
+	str[i-1] = 'm';
+	str[i-2] = 'p';
+	str[i-3] = 'x';
 	return (str);
 }
 
