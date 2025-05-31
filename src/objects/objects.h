@@ -12,6 +12,12 @@
 # define OBJECTS_H
 
 # include "../miniRT_struct.h"
+
+typedef struct s_uv
+{
+	float u;
+	float v;
+} t_uv;
 typedef struct s_cylinder
 {
 	t_point		center;
@@ -75,9 +81,9 @@ typedef enum e_obj_type
 
 typedef struct s_triangle 
 {
-	float vt1[2];
-	float vt2[2];
-	float vt3[2];
+	t_uv uv1;
+	t_uv uv2;
+	t_uv uv3;
 	t_point p1;
 	t_point p2;
 	t_point p3;
@@ -170,5 +176,10 @@ void obj_set_new_null(char *str,char null_char);
 char **obj_get_file(char *name,int *nb);
 
 int obj_locate_face(char **file);
+
+t_uv *obj_get_uv(char **file);
+
+
+void obj_set_uv(t_uv *uvs,char ***line ,t_triangle *tri,int fl);
 
 #endif

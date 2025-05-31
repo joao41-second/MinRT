@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 23:43:45 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 23:45:37 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/31 12:28:46 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,9 @@ t_color pat_pixe_at(t_point point,t_img_ *img)
 		color = c_get_color( my_mlx_pixel_retunr(img, x, y));
 
 	return color;
+}
+
+t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
+{
+
 }

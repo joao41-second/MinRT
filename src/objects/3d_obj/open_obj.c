@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 19:09:07 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/30 12:11:28 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/31 12:26:21 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ void obj_add_trinagles( t_object *obj_t , char** file, char** point, t_point *li
 	int i;
 	int nb_f_c;
 	char **bar_siplit[4];
+	t_uv *uv_list;
+	int index[3];
 	i = -1;
 	nb_f_c =-1;
+	uv_list = obj_get_uv(file);
 	while (file[++i] != NULL) 
 	{
 		if( file[i] != NULL && file[i][0] == 'f')
@@ -33,20 +36,25 @@ void obj_add_trinagles( t_object *obj_t , char** file, char** point, t_point *li
 
 			if(point[4] != NULL)
 			{
-				obj_set_new_null(point[4],  '/');
 
 				bar_siplit[3] = ft_split(point[4], '/');
 				obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(bar_siplit[0][0])] ,
 							list[ft_atol(bar_siplit[1][0])], 
 							list[ft_atol(bar_siplit[2][0])]);
+				obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],0);
 				obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(bar_siplit[3][0])] ,
 							list[ft_atol(bar_siplit[0][0])], 
 							list[ft_atol(bar_siplit[2][0])]);
+				obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],1);
 			}
 			else
+			{
 				obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(bar_siplit[0][0])] ,
 							list[ft_atol(bar_siplit[1][0])], 
 							list[ft_atol(bar_siplit[2][0])]);
+
+				obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],0);
+			}
 
 		}	
 	}

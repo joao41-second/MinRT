@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:13:56 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/21 21:10:09 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:07:35 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ t_triangle	create_triangle(t_point p1, t_point p2, t_point p3)
 	triangle.p1 = p1;
 	triangle.p2 = p2;
 	triangle.p3 = p3;
-	triangle.vt1[0] = 0;	
-	triangle.vt1[1] = 0;
-	triangle.vt2[0] = 0;	
-	triangle.vt2[1] = 0;
-	triangle.vt2[0] = 0;	
-	triangle.vt2[1] = 0;
+	triangle.uv1.u = 0;
+	triangle.uv1.v = 0;
+	triangle.uv2 = triangle.uv1;
+	triangle.uv3 = triangle.uv2;
 	triangle.edge1 = sub_tuples(p2, p1);
 	triangle.edge2 = sub_tuples(p3, p1);
 	triangle.normal = normalize(cross_product(triangle.edge1, triangle.edge2));
