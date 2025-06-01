@@ -19,7 +19,7 @@ void obj_add_trinagles( t_object *obj_t , char** file, char** point, t_point *li
 {
 	int i;
 	int nb_f_c;
-	char **bar_siplit[4];
+	char **bar_siplit[5];
 	t_uv *uv_list;
 	i = -1;
 	nb_f_c =-1;
@@ -29,15 +29,17 @@ void obj_add_trinagles( t_object *obj_t , char** file, char** point, t_point *li
 		if( file[i] != NULL && file[i][0] == 'f')
 		{
 			point = ft_split(file[i], ' ');
+
+
 			bar_siplit[0] = ft_split(point[1], '/');
 			bar_siplit[1] = ft_split(point[2], '/');
 			bar_siplit[2] = ft_split(point[3], '/');
-
 
 			if(point[4] != NULL)
 			{
 
 				bar_siplit[3] = ft_split(point[4], '/');
+
 				obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(bar_siplit[0][0])] ,
 							list[ft_atol(bar_siplit[1][0])], 
 							list[ft_atol(bar_siplit[2][0])]);
@@ -208,9 +210,9 @@ void obj_open_stl_start(t_minirt *rt_struct, char *file_name,t_matrix matrix,t_m
 	nb = -1;
 	while (++nb < obj_t->index) 
 	{		
-		printf("\nvaules1 %f %f \n",obj_t->triangle[nb].uv1.u,obj_t->triangle[nb].uv1.v);
-		printf("vaules %f %f \n",obj_t->triangle[nb].uv2.u,obj_t->triangle[nb].uv2.v);
-		printf("vaules %f %f \n",obj_t->triangle[nb].uv3.u,obj_t->triangle[nb].uv3.v);
+//		printf("\nvaules1 %f %f \n",obj_t->triangle[nb].uv1.u,obj_t->triangle[nb].uv1.v);
+//		printf("vaules %f %f \n",obj_t->triangle[nb].uv2.u,obj_t->triangle[nb].uv2.v);
+//		printf("vaules %f %f \n",obj_t->triangle[nb].uv3.u,obj_t->triangle[nb].uv3.v);
 		
 
 	}

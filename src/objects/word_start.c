@@ -94,7 +94,7 @@ void	start_word(t_minirt *rt_struct)
 	//obj_open_stl_start(rt_struct, "./texture/test.obj", mat_multip(  mat_gener_scal(1, 1, 1),mat_gener_trans(0, 0, 0)),mat2);
 
 
-	obj_open_stl_start(rt_struct, "./texture/test.obj",mat_gener_scal(1, 1, 1),mat2);
+	obj_open_stl_start(rt_struct, "./texture/Gun.obj",mat_gener_scal(1, 1, 1),mat2);
 
 	rt_struct->word = ft_node_start(word_objects);
 	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);

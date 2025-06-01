@@ -55,6 +55,17 @@ t_uv *obj_get_uv(char **file)
 			}
 		}	
 	}
+	
+	nb = -1;
+
+		printf("uv\n");
+	while (++nb < nb_) {
+		printf("uv %f %f\n",points[nb].u,points[nb].v);
+	
+	}
+
+		printf("uv\n");
+
 	return ( ft_pocket_set("main"),points);
 }
 
@@ -66,17 +77,20 @@ void obj_set_uv(t_uv *uvs,char ***line ,t_triangle *tri,int fl,int index)
 	tri->uv2.index = index;
 	tri->uv3.index = index;
 	tri->uv1.index = index;
+
+
 	if(fl == 0)
 	{
-	tri->uv1 = uvs[ft_atol(line[2][1])];
-	tri->uv2 = uvs[ft_atol(line[0][1])];
-	tri->uv3 = uvs[ft_atol(line[1][1])];
+	tri->uv1 = uvs[ft_atoi(line[2][1])-1];
+	tri->uv2 = uvs[ft_atoi(line[0][1])-1];
+	tri->uv3 = uvs[ft_atoi(line[1][1])-1];
 	}
+
 	if(fl == 1)
 	{
-	tri->uv1 = uvs[ft_atol(line[3][1])];
-	tri->uv2 = uvs[ft_atol(line[0][1])];
-	tri->uv3 = uvs[ft_atol(line[2][1])];
+	tri->uv1 = uvs[ft_atoi(line[3][1])-1];
+	tri->uv2 = uvs[ft_atoi(line[0][1])-1];
+	tri->uv3 = uvs[ft_atoi(line[2][1])-1];
 	}
 }
 
