@@ -42,4 +42,6 @@ void	shp_text(void);
 
 void	stripe(void);
 
+
+void texture_3d (void);
 #endif /* TESTS_H */

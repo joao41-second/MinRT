@@ -53,12 +53,13 @@ void obj_add_trinagles( t_object *obj_t , char** file, char** point, t_point *li
 				obj_t->triangle[++nb_f_c] = create_triangle(list[ft_atol(bar_siplit[0][0])] ,
 							list[ft_atol(bar_siplit[1][0])], 
 							list[ft_atol(bar_siplit[2][0])]);
-
+				
 			  		 obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],0,nb_f_c);
 			}
 		}	
 	}
 	obj_t->u_data.triangle = obj_t->triangle[0];
+	obj_t->index = nb_f_c;
 }
 
 void obj_square_set(t_triangle *triangle,int i,t_point *points)
@@ -201,4 +202,16 @@ void obj_open_stl_start(t_minirt *rt_struct, char *file_name,t_matrix matrix,t_m
 	//ft_free_all_pocket("add_obj");
 	obj_t->index = nb_face;
 	ft_add_node(obj_t, &rt_struct->word);
+
+
+
+	nb = -1;
+	while (++nb < obj_t->index) 
+	{		
+		printf("\nvaules1 %f %f \n",obj_t->triangle[nb].uv1.u,obj_t->triangle[nb].uv1.v);
+		printf("vaules %f %f \n",obj_t->triangle[nb].uv2.u,obj_t->triangle[nb].uv2.v);
+		printf("vaules %f %f \n",obj_t->triangle[nb].uv3.u,obj_t->triangle[nb].uv3.v);
+		
+
+	}
 }

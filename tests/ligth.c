@@ -32,11 +32,11 @@ int norm_l(char *name,t_point point,t_point sph_p,t_vector chek)
 
 	(void)sph_p;
 
-	t_mater mat1 = obj_material_init(c_new(1, 0, 0),
+	t_mater mat1 = obj_material_init(c_new(1, 0, 0),c_new(-1, -1, -1),
 			obj_init_values_material(0.5, 0.7, 0.2, 200));
 	error = 0;
 	sph = sphere(create_point(0, 0, 0),1);
-	t_object *obj = create_object(&sph, OBJ_SPHERE, mat1);
+	t_object *obj = create_object(&sph, OBJ_SPHERE, mat1,NULL);
 	ray_set_transform_obj(obj, mat_gener_scal(1, 1, 1));
 	test = lig_normalize(*obj, point);
 	if (!is_equal_tuple(test, chek))
@@ -56,7 +56,7 @@ int lig_lighting_test(t_light luz ,t_vector norm,t_vector eyev,t_color resp)
 	t_color color;
 
 	error = 0;
-	mat  = obj_material_init(c_new(1,1,1), obj_init_values_material(0.1, 0.9, 0.9, 200));
+	mat  = obj_material_init(c_new(1,1,1), c_new(-1, -1, -1),obj_init_values_material(0.1, 0.9, 0.9, 200));
 	comp.eyev = eyev;
 	comp.norm  = norm;
 	comp.point = create_point(0, 0, 0);
@@ -127,8 +127,8 @@ void normalize_test_()
 
 	check = 0;
 	sph_s = sphere(create_point(0, 0, 0),1);
-	t_mater mat  = obj_material_init(c_new(1,1,1), obj_init_values_material(0.1, 0.9, 0.9, 200));
-	t_object *sph = create_object(&sph_s,OBJ_SPHERE, mat);
+	t_mater mat  = obj_material_init(c_new(1,1,1), c_new(-1, -1, -1),obj_init_values_material(0.1, 0.9, 0.9, 200));
+	t_object *sph = create_object(&sph_s,OBJ_SPHERE, mat,NULL);
 	ray_set_transform_obj(sph, mat_gener_scal(1, 1, 1));
 	
 

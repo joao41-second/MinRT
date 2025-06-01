@@ -38,6 +38,7 @@ int	main(int argv,char** argc)
 	//	test_view_trasfomr();
 	//	test_word();
 	//	shp_text();
+	texture_3d();
 	stripe();
 	UNITY_END();
 	return (0);

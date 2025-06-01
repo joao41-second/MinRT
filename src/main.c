@@ -38,8 +38,8 @@ int	main(int ac, char **av, char **env)
 			(double)WALL_X / 2, (double)WALL_Y / 2);
 	rt_struct.rota_y = 0;
 	rt_struct.rota_x = 0;
-
 	rt_struct.needs_render = 5;
+
 	canva_inicializ(&rt_struct, WALL_X, WALL_Y, c_new(0, 0, 0));
 	return (status);
 }

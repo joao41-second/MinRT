@@ -14,6 +14,7 @@
 #include "../minRT.h"
 #include <math.h>
 #include <stdio.h>
+#include <strings.h>
 
 t_color pat_pixe_at(t_point point,t_img_ *img)
 {
@@ -65,13 +66,7 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 	t_uv uv;
 	float u;
 	float v;
-	if(trinange->uv3.u > 0 || trinange->uv2.u > 0 || trinange->uv1.u > 0  )	
-	{
-	lig_print_tuple(point);
-	printf("\nvaueles1 %f %f \n",trinange->uv1.u,trinange->uv1.v);
-	printf("vaueles %f %f \n",trinange->uv2.u,trinange->uv2.v);
-	printf("vaueles %f %f \n\n",trinange->uv3.u,trinange->uv3.v);
-	}
+	
 	
 	uv.u = 0;
 	uv.v = 0;
@@ -90,7 +85,12 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 	alpha = 1.0 - beta -gamma;;
 	uv = uv_add(uv_add(uv_sacl(trinange->uv1, alpha),uv_sacl(trinange->uv2, beta)),uv_sacl(trinange->uv3, gamma));
 
-	// Clamp UVs para garantir que estão dentro de [0,1]
+//	lig_print_tuple(point);
+//	printf("\nvaueles1 %f %f \n",trinange->uv1.u,trinange->uv1.v);
+///	printf("vaueles %f %f \n",trinange->uv2.u,trinange->uv2.v);
+//	printf("vaueles %f %f \n\n",trinange->uv3.u,trinange->uv3.v);
+//	printf(" g -%f b- %f a-%f",gamma,beta,alpha);
+
 
 
 // Conversão UV → coordenadas de textura (x,y)

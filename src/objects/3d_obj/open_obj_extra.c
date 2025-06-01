@@ -116,7 +116,7 @@ int obj_locate_face(char **file)
 
 	while (file[++i] != NULL)
 	{
-		if(file[i][0] == 'f')
+		if(file[i][0] == 'f' && file[i][1]==' ')
 		{
 			len = 0;
 			split = ft_split(file[i], ' ');

@@ -1,21 +1,12 @@
-/* textura.xpm */
-static const char *textura[] = {
-"12 8 6 1",           // largura=12, altura=8, 6 cores, 1 caractere por pixel
-"R c #ff0000",        // vermelho
-"G c #00ff00",        // verde
-"B c #0000ff",        // azul
-"Y c #ffff00",        // amarelo
-"C c #00ffff",        // ciano
-"M c #ff00ff",        // magenta
-
-"RRRRRRGGGGGG",       // linha 0 (y = 0)
-"RRRRRRGGGGGG",       // linha 1
-"RRRRRRGGGGGG",       // linha 2
-"RRRRRRGGGGGG",       // linha 3
-
-"BBBBBBYYYYYY",       // linha 4
-"BBBBBBYYYYYY",       // linha 5
-"BBBBBBYYYYYY",       // linha 6
-"BBBBBBYYYYYY"        // linha 7
+/* XPM */
+static char * textura_xpm[] = {
+"6 1 6 1",
+"R c #FF0000",  /* Vermelho */
+"G c #00FF00",  /* Verde */
+"B c #0000FF",  /* Azul */
+"Y c #FFFF00",  /* Amarelo */
+"C c #00FFFF",  /* Ciano */
+"M c #FF00FF",  /* Magenta */
+"RGBYCM"
 };
 
