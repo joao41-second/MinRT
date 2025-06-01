@@ -63,6 +63,7 @@ typedef struct s_object_intersectd
 	double			min;
 	double 			shadow;
 	t_mater			mat;
+	t_ray 			ray;
 
 }					t_obj_int;
 

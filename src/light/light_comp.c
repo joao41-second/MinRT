@@ -84,7 +84,7 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 	ray_in_obj = ray_for_objects(rt_struct->word, ray,luz);
 	if (ray_in_obj.min > EPSILON )
 	{
-		compt = lig_prepare_computations(ray_in_obj, ray);
+		compt = lig_prepare_computations(ray_in_obj, ray_in_obj.ray);
 		test = ray_in_obj.object;
 		if(test->texture != NULL)
 		{

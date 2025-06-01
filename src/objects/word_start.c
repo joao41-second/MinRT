@@ -28,14 +28,14 @@ void	start_word(t_minirt *rt_struct)
 	t_point		luz;
 
 	luz = create_point(0, 0, 0);
-	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(3, 3, -3));
+	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(30, 30, -30));
 	mat1 = obj_material_init(c_new(1, 0, 0), c_new(-1, -1, -1),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 	word_objects = NULL;
 	sph = sphere(create_point(0, 0, 0), 1);
 	obj_sphere = create_object(&sph, OBJ_SPHERE, mat1, obj_creat_texture(rt_struct->canva, "./texture/word.xpm"));
 	ray_set_transform_obj(obj_sphere, mat_gener_scal(1, 1, 1));
-	ft_add_node(obj_sphere, &word_objects);
+	//ft_add_node(obj_sphere, &word_objects);
 
 	mat2 = obj_material_init(c_new(0, 1, 0),c_new(-1, -1, -1),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
@@ -91,7 +91,7 @@ void	start_word(t_minirt *rt_struct)
  	rt_struct->word = word_objects;
 
 
-	obj_open_stl_start(rt_struct, "./texture/Gun.obj", mat_multip(  mat_gener_scal(1, 1, 1),mat_gener_trans(0, 0, 0)),mat2);
+	obj_open_stl_start(rt_struct, "./texture/house2.obj", mat_multip(  mat_gener_scal(1, 1, 1),mat_gener_trans(0, 0, 0)),mat2);
 
 
 	//obj_open_stl_start(rt_struct, "./texture/test.obj",mat_gener_scal(1, 1, 1),mat2);

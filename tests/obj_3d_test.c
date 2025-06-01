@@ -29,17 +29,17 @@ void _3d_test()
 
 	t_minirt rt_struct ;
 	start_word(&rt_struct);
-	t_matrix	ok = lig_view_transform(rt_struct.point,
-			create_point(0, 0, 0), create_vector(0, 1, 0));
-	rt_struct.cam_m = cm_init(WALL_X, WALL_Y, M_PI / 3, ok);
+//	t_matrix	ok = lig_view_transform(rt_struct.point,
+//			create_point(0, 0, 0), create_vector(0, 1, 0));
+//	rt_struct.cam_m = cm_init(WALL_X, WALL_Y, M_PI / 3, ok);
 
-	rt_struct.cam = cm_ray_for_pixel(rt_struct.cam_m,
-			(double)WALL_X / 2, (double)WALL_Y / 2);
-	rt_struct.rota_y = 0;
-	rt_struct.rota_x = 0;
+//	rt_struct.cam = cm_ray_for_pixel(rt_struct.cam_m,
+//			(double)WALL_X / 2, (double)WALL_Y / 2);
+//	rt_struct.rota_y = 0;
+//	rt_struct.rota_x = 0;
 
 
-	check +=  color_get_trinang(ray_gener((t_point){1,1,-3},(t_vector) {-0.3,-0.3,0.9}), &rt_struct, c_new(1,1,1));
+//	check +=  color_get_trinang(ray_gener((t_point){1,1,-3},(t_vector) {-0.3,-0.3,0.9}), &rt_struct, c_new(1,1,1));
 
 
 

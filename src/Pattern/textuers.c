@@ -85,11 +85,13 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 	alpha = 1.0 - beta -gamma;;
 	uv = uv_add(uv_add(uv_sacl(trinange->uv1, alpha),uv_sacl(trinange->uv2, beta)),uv_sacl(trinange->uv3, gamma));
 
-//	lig_print_tuple(point);
-//	printf("\nvaueles1 %f %f \n",trinange->uv1.u,trinange->uv1.v);
-///	printf("vaueles %f %f \n",trinange->uv2.u,trinange->uv2.v);
-//	printf("vaueles %f %f \n\n",trinange->uv3.u,trinange->uv3.v);
-//	printf(" g -%f b- %f a-%f",gamma,beta,alpha);
+	if(trinange->uv1.index == 2)
+	{
+	lig_print_tuple(point);
+	printf("\nvaueles1 %f %f \n",trinange->uv1.u,trinange->uv1.v);
+	printf("vaueles %f %f \n",trinange->uv2.u,trinange->uv2.v);
+	printf("vaueles %f %f \n\n",trinange->uv3.u,trinange->uv3.v);
+	printf(" g -%f b- %f a-%f",gamma,beta,alpha);}
 
 
 

@@ -13,6 +13,7 @@
 #include "ray.h"
 #include "ray_struct.h"
 #include <stdio.h>
+#include <strings.h>
 
 void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,t_object *obj)
 {
@@ -27,6 +28,7 @@ void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,t_obje
 		save_points->min = intr.t[0];
 		save_points->object = obj;
 		save_points->mat = obj->matiral;
+		save_points->ray = intr.ray_start;
 		}
 	}
 	if (intr.t[1]-save_points->min < EPSILON || save_points->min == INT_MIN)
@@ -36,6 +38,8 @@ void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,t_obje
 		save_points->min = intr.t[1];
 		save_points->object = obj;
 		save_points->mat = obj->matiral;
+
+		save_points->ray = intr.ray_start;
 		}
 		}
 	}
@@ -84,6 +88,7 @@ t_intersection	ray_int_object(t_ray ray, t_object * obj)
 	static t_ray			ray_;
 	intersection.inter = 0;
 	ray_ = ray_transform(ray, obj->inv_transform);
+	intersection.ray_start = ray_ ;
 	if (obj->type == OBJ_SPHERE)
 	{
 		intersection = ray_int_sphere(ray_, obj->u_data.sphere);
