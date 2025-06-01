@@ -73,12 +73,16 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 		objs_w = objs_w->next;
 	}
 	save_points.shadow = -1;
+
+	objs_w =  start;
 	if(save_points.min > 0)
 	{;
 		t_ray ok ;
-		shadow_.origin =   ray_position(ray, save_points.min);
+		shadow_.origin =   ray_position(save_points.ray, save_points.min);
 		save_points.shadow = ray_for_shadow(start, shadow_);
 	}
+
+	objs_w =  start;
 	return (save_points);
 }
 

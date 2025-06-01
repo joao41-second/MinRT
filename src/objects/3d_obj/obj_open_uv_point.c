@@ -88,9 +88,9 @@ void obj_set_uv(t_uv *uvs,char ***line ,t_triangle *tri,int fl,int index)
 
 	if(fl == 1)
 	{
-	tri->uv1 = uvs[ft_atoi(line[3][1])-1];
-	tri->uv2 = uvs[ft_atoi(line[0][1])-1];
-	tri->uv3 = uvs[ft_atoi(line[2][1])-1];
+	tri->uv1 = uvs[ft_atoi(line[0][1])-1];
+	tri->uv2 = uvs[ft_atoi(line[2][1])-1];
+	tri->uv3 = uvs[ft_atoi(line[3][1])-1];
 	}
 }
 

@@ -127,7 +127,7 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 	return (min_);
 	}
 
-		return (intr) ;
+		return (intr);
 }
 
 t_intersection ray_int_cylinder(t_ray ray, t_cylinder cylinder) {

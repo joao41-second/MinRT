@@ -10,20 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minRT.h"
+#include <signal.h>
 
 
 int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_)
 {
 	t_intersection	shadow;
 	t_object		*obj;
+	t_triangle save;
 
 	shadow.t[0] = -1;
 	shadow.t[1] = -1;
 	shadow.inter = -1;
+
+
 	while (objs_w != NULL)
 	{
 		obj = (t_object *)objs_w->content;
+		if(obj->type == OBJ_SQUARE)
+			save = obj->u_data.triangle;
 		shadow = ray_int_object(shadow_,obj);
+
+		if(obj->type == OBJ_SQUARE)
+			obj->u_data.triangle = save ;
 		if(shadow.t[0] > EPSILON || shadow.t[1] > EPSILON )
 		{
 		 return (1);
@@ -33,5 +42,7 @@ int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_)
 			break ;
 		objs_w = objs_w->next;
 	}
+
+
 	return (0);
 }
