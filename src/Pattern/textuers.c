@@ -95,7 +95,7 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 
 // Conversão UV → coordenadas de textura (x,y)
 	int x = (int)(uv.u * (img->width - 1));
-	int y = (int)((1.0f - uv.v) * (img->height - 1));  // inverte o eixo Y
+	int y = (int)((1.0f - uv.v) * (img->height ));  // inverte o eixo Y
 
 // Clamp final (opcional, extra segurança)
 	if (x < 0)
