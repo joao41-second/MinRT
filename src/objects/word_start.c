@@ -91,7 +91,7 @@ void	start_word(t_minirt *rt_struct)
  	rt_struct->word = word_objects;
 
 
-	obj_open_stl_start(rt_struct, "./texture/house2.obj", mat_multip(  mat_gener_scal(1, 1, 1),mat_gener_trans(0, 0, 0)),mat2);
+	obj_open_stl_start(rt_struct, "./texture/Gun.obj", mat_multip(  mat_gener_scal(1, 1, 1),mat_gener_trans(0, 0, 0)),mat2);
 
 
 	//obj_open_stl_start(rt_struct, "./texture/test.obj",mat_gener_scal(1, 1, 1),mat2);
