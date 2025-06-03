@@ -20,6 +20,7 @@ t_matrix	mat_set_3_sub(t_matrix mat, int line, int column)
 		ok = 10;
 	}
 	mat_set_clear(&new);
+	new.size = mat.size -1;
 	while (++c < mat.size)
 	{
 		l = -1;
@@ -35,6 +36,41 @@ t_matrix	mat_set_3_sub(t_matrix mat, int line, int column)
 	return (new);
 }
 
+
+t_matrix	mat_set_2_sub(t_matrix mat, int line, int column)
+{
+	static	t_matrix	new;
+	static int ok = 0;
+	int			l;
+	int			c;
+	int			l_sub;
+	int			c_sub;
+
+	c = -1;
+	c_sub = 0;
+	if(ok != 10)
+	{
+		new = mat_gener(2);
+		ok = 10;
+	}
+	mat_set_clear(&new);
+	while (++c < mat.size)
+	{
+		l = -1;
+		l_sub = -1;
+		while (++l < mat.size)
+		{
+			if (l != line && l_sub < new.size && c_sub < new.size)
+				new.matr[++l_sub][c_sub] = mat.matr[l][c];
+		}
+		if (c != column)
+			c_sub++;
+	}
+	return (new);
+}
+
+
+
 double	mat_set_det(t_matrix mat)
 {
 	double		ret;
@@ -48,11 +84,14 @@ double	mat_set_det(t_matrix mat)
 	ret = 0;
 	while (++i < mat.size)
 	{
-		sub = mat_set_3_sub(mat, 0, i);
+		if(mat.size == 3)
+			sub = mat_set_2_sub(mat, 0, i);
+		else
+			sub = mat_set_3_sub(mat, 0, i);
 		mul = -1;
 		if (0 % 2 == 0 && i % 2 == 0)
 			mul = +1;
-		ret += mat.matr[0][i] * (mul * mat_det2x2(sub));
+		ret += mat.matr[0][i] * (mul * mat_set_det(sub));
 	}
 	return (ret);
 }
@@ -73,6 +112,6 @@ double	mat_set_cof(t_matrix mat, int line, int column)
 	sub_signal.flag = 23;
 	}
 	mul = sub_signal.matr[column][line];
-	ret = (mul * mat_det(sub));
+	ret = (mul * mat_set_det(sub));
 	return (ret);
 }
