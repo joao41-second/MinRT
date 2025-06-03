@@ -185,4 +185,6 @@ void	mat_y_rota(t_matrix *mat, double rad);
 void	mat_x_rota(t_matrix *mat, double rad);
 
 void	mat_set_rota(t_matrix mat,char axis, double deg);
+
+void mat_set_cp(t_matrix	*matrix_,t_matrix *copied);
 #endif

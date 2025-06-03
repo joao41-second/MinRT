@@ -30,6 +30,25 @@ void mat_set_clear(t_matrix	*matrix_)
 	}
 	matrix_->flag = 0;
 }
+
+void mat_set_cp(t_matrix	*matrix_,t_matrix *copied)
+{
+	int			x_;
+	int			y_;
+	int 			x;
+
+	x = matrix_->size;
+	y_ = -1;
+	while (++y_ < x)
+	{
+		x_ = -1;
+		while (++x_ < x)
+		{
+			matrix_->matr[y_][x_] = copied->matr[y_][x_];
+		}
+	}
+	matrix_->flag = copied->flag;
+}
 void mat_set_identity(t_matrix	*matrix_)
 {
 	int			x_;

@@ -24,7 +24,8 @@ void	loop(t_minirt *rt_struct)
 		
 	mat_set_view_transform(&rt_struct->cam_m.tranform_matrix, create_point(1, 1,-3), 
 			create_point(0, 0, 0), create_vector(0, 1, 0));
-
+	
+	
 	mat_set_rota(rt_struct->cam_m.calculate.rot_x, 'x', rt_struct->rota_x);
 	mat_set_multip(&rt_struct->cam_m.tranform_matrix,rt_struct->cam_m.calculate.rot_x,mat_cp(rt_struct->cam_m.tranform_matrix));
 
