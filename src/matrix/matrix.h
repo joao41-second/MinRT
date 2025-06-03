@@ -176,4 +176,13 @@ int					mat_iqual(t_matrix mat1, t_matrix mat2);
 void	mat_set_multip(t_matrix *resolt,t_matrix mat1, t_matrix mat2);
 
 void	mat_set_view_transform(t_matrix *mat_,t_tuple form, t_tuple to, t_tuple up);
+
+
+void	mat_z_rota(t_matrix *mat, double rad);
+
+void	mat_y_rota(t_matrix *mat, double rad);
+
+void	mat_x_rota(t_matrix *mat, double rad);
+
+void	mat_set_rota(t_matrix mat,char axis, double deg);
 #endif

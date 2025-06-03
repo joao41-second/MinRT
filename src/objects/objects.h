@@ -19,6 +19,7 @@ typedef struct s_uv
 	float v;
 	int index;
 } t_uv;
+
 typedef struct s_cylinder
 {
 	t_point		center;
@@ -182,4 +183,6 @@ t_uv *obj_get_uv(char **file);
 
 
 void obj_set_uv(t_uv *uvs,char ***line ,t_triangle *tri,int fl,int index);
+
+t_mat_calculate obj_mat_calulate_init();
 #endif

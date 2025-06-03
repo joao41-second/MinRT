@@ -130,3 +130,20 @@ void	mat_set_view_transform(t_matrix *mat_,t_tuple form, t_tuple to, t_tuple up)
 	mat_set_trans(&trans, -form.x, -form.y, -form.z);
 	mat_set_multip(mat_, mat, trans);
 }
+
+void	mat_set_rota(t_matrix mat,char axis, double deg)
+{
+	t_rotation	ret;
+
+	ret = mat_gener_identity(4);
+	if (axis == 'x')
+	{
+		mat_x_rota(&mat,deg);
+	}
+	else if (axis == 'y')
+		mat_y_rota(&mat, deg);
+	else if (axis == 'z')
+		mat_z_rota(&mat, deg);
+	ret.flag = ROTA;
+}
+

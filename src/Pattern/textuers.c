@@ -111,6 +111,5 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 
 	
 
-
 	return (c_get_color( my_mlx_pixel_retunr(img,  x,y )));
 }

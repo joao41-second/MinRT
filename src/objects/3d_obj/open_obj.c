@@ -209,9 +209,9 @@ void obj_open_stl_start(t_minirt *rt_struct, char *file_name,t_matrix matrix,t_m
 	nb = -1;
 	while (++nb < obj_t->index) 
 	{		
-		printf("\nvaules1 %f %f \n",obj_t->triangle[nb].uv1.u,obj_t->triangle[nb].uv1.v);
-		printf("vaules %f %f \n",obj_t->triangle[nb].uv2.u,obj_t->triangle[nb].uv2.v);
-		printf("vaules %f %f \n",obj_t->triangle[nb].uv3.u,obj_t->triangle[nb].uv3.v);
+	//	printf("\nvaules1 %f %f \n",obj_t->triangle[nb].uv1.u,obj_t->triangle[nb].uv1.v);
+	//	printf("vaules %f %f \n",obj_t->triangle[nb].uv2.u,obj_t->triangle[nb].uv2.v);
+	// 	printf("vaules %f %f \n",obj_t->triangle[nb].uv3.u,obj_t->triangle[nb].uv3.v);
 		
 
 	}

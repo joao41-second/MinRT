@@ -29,6 +29,7 @@ typedef struct s_canva
 	void		*mlx;
 	void		*mlx_wind;
 	t_img_		canva;
+	
 
 }				t_canva;
 
