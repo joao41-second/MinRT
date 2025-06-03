@@ -52,7 +52,7 @@ t_camera_ms cm_init(double x, double y, double field_of_view, t_matrix const tra
 
 void cm_update(t_camera_ms *cam)
 {
-	cam->inv_tranform_matrix = mat_inv(cam->tranform_matrix);
+	mat_set_inv( &cam->inv_tranform_matrix ,cam->tranform_matrix);
 }
 
 t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
@@ -65,8 +65,7 @@ t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
 
 	xoffset = (px + 0.5) * cam.pixel_size;
 	yoffset = (py + 0.5) * cam.pixel_size;
-	pixel = mat_x_tuple(create_point(cam.half_width
-				- xoffset, cam.half_height - yoffset, -1),
+	pixel = mat_x_tuple((t_point){cam.half_width	- xoffset, cam.half_height - yoffset, -1,1},
 			cam.inv_tranform_matrix);
 	origin = mat_x_tuple(cam.loc, cam.inv_tranform_matrix);
 	ret.origin = origin;

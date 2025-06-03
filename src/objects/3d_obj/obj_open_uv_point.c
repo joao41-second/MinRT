@@ -32,7 +32,6 @@ t_uv *obj_get_uv(char **file)
 		if(file[i][0] == 'v' && file[i][1] == 't' && file[i][2] == ' ')
 			nb++;	
 
-	printf("o numero %d \n",nb);
 	points = ft_malloc((nb+1)*sizeof(t_uv), NULL);	
 	i=-1;
 	nb_ = nb;
@@ -57,14 +56,6 @@ t_uv *obj_get_uv(char **file)
 	}
 	
 	nb = -1;
-
-		printf("uv\n");
-	while (++nb < nb_) {
-		printf("uv %f %f\n",points[nb].u,points[nb].v);
-	
-	}
-
-		printf("uv\n");
 
 	return ( ft_pocket_set("main"),points);
 }

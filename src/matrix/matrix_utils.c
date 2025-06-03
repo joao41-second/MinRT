@@ -53,7 +53,7 @@ void	mat_trans(t_matrix *mat)
 {
 	t_matrix	tmp;
 	t_matrix	ret;
-
+	
 	tmp = mat_cp(*mat);
 	ret = mat_exet(*mat, tmp, mat_transposing);
 	mat_free(mat);

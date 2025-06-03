@@ -150,19 +150,82 @@ void	mat_set_view_transform(t_matrix *mat_,t_tuple form, t_tuple to, t_tuple up)
 	mat_set_multip(mat_, mat, trans);
 }
 
-void	mat_set_rota(t_matrix mat,char axis, double deg)
-{
-	t_rotation	ret;
 
-	ret = mat_gener_identity(4);
+void	mat_set_rota(t_matrix *mat,char axis, double deg)
+{
+
+	mat_set_clear(mat);
+	mat_set_scal(mat,1, 1, 1);
 	if (axis == 'x')
 	{
-		mat_x_rota(&mat,deg);
+		mat_x_rota(mat,deg);
 	}
 	else if (axis == 'y')
-		mat_y_rota(&mat, deg);
+		mat_y_rota(mat, deg);
 	else if (axis == 'z')
-		mat_z_rota(&mat, deg);
-	ret.flag = ROTA;
+		mat_z_rota(mat, deg);
+	mat->flag = ROTA;
 }
 
+void	mat_set_the_cof(t_matrix *mat,t_matrix not_inv)
+{
+	t_matrix	new_mat;
+	int			l;
+	int			c;
+
+	l = -1;
+	while (++l < mat->size)
+	{
+		c = -1;
+		while (++c < mat->size)
+		{
+			mat->matr[l][c] = mat_set_cof(not_inv, l, c);
+		}
+	}
+}
+
+
+
+void	mat_set_inv(t_matrix *mat,t_matrix not_inv)
+{
+	int			x;
+	int			y;
+
+	mat_set_scal(mat, 1, 1, 1);
+	mat_set_the_cof(mat,not_inv);
+	mat_set_transpose(mat);
+	mat_matsh_matrix(mat, '/', mat_set_det(not_inv));
+	y = -1;
+	while (++y < mat->size)
+	{
+		x = -1;
+		while (++x < mat->size)
+			if (mat->matr[y][x] == -0)
+				mat->matr[y][x] = 0;
+	}
+}
+
+
+void	mat_set_transpose(t_matrix *mat)
+{
+	static int ok = 0;
+	int y;
+	int x;
+	static t_matrix	new_matrix;
+
+	if(ok != 1)
+	{
+	new_matrix = mat_gener(4);
+	ok = 1;
+	}
+	mat_set_cp(&new_matrix,mat);
+	y = -1;
+	while (++y < mat->size)
+	{
+		x = -1;
+		while (++x < mat->size)
+		{
+			mat->matr[y][x] = mat_transposing(&y, &x, &new_matrix,&new_matrix);
+		}
+	}
+}
