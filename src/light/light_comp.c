@@ -79,6 +79,7 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 	t_object 			*test;
 
 	ret = c_new(0, 0, 0);
+
 	luz.origin = ray.origin;
 	luz.direction = normalize(rt_struct->luz.point);
 	ray_in_obj = ray_for_objects(rt_struct->word, ray,luz);
@@ -91,7 +92,6 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 			ray_in_obj.mat.color = pat_pixe_at(compt.point, test->texture);
 			if(test->type == OBJ_SQUARE)
 				ray_in_obj.mat.color = pat_pixe_at_triang(compt.point, test->texture, &test->u_data.triangle);
-			return(ray_in_obj.mat.color);
 		}
 
 		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);

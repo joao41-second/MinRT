@@ -37,6 +37,21 @@ t_vector	lig_normalize_plane(t_object pln, t_point point)
 	//ret.w = 0;
 	return(ret);
 }
+t_vector	lig_normalize_tri(t_object obj, t_point p_the_obj)
+{
+	t_triangle	triangle;
+	t_vector	edge1;
+	t_vector	edge2;
+	t_vector	normal;
+
+	triangle = obj.u_data.triangle;
+	edge1 = sub_tuples(triangle.p2, triangle.p1);
+	edge2 = sub_tuples(triangle.p3, triangle.p1);
+	normal = cross_product(edge1, edge2);
+	return (normalize(normal));
+}
+
+
 t_vector	lig_normalize(t_object obj, t_point p_the_obj)
 {
 	t_vector	ret;
@@ -50,7 +65,7 @@ t_vector	lig_normalize(t_object obj, t_point p_the_obj)
 		ret = obj.u_data.plane.normal;
 	else if (obj.type == OBJ_TRIANGLE || obj.type == OBJ_SQUARE) 
     	{
-        ret = obj.u_data.triangle.normal;
+        	ret = lig_normalize_tri(obj, p_the_obj);
     	}
 	else if (obj.type == OBJ_CYLINDER)
 	{

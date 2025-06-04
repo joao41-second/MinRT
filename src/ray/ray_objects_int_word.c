@@ -78,13 +78,13 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 {
 	int i;
 	int i_;
-	static	float min;
+	int min;
 	t_intersection intr;
 	t_intersection min_;
 	t_triangle tria;
 	
 	i = -1;
-	min = INT_MAX;
+	min = INT_MIN;
 	min_.inter = 0;
 	
 	intr.t[0] = 0;
@@ -107,11 +107,13 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 	{
 
 		intr = ray_int_triangle(ray, tri->triangle[i]);
-		if(min == INT_MAX &&  intr.t[0] > EPSILON)
+		if(min == INT_MIN &&  intr.t[0] > EPSILON)
 		{
 			min = 0;
 			min_ = intr;
 			tri->u_data.triangle = tri->triangle[i];
+			min_.t[0] = intr.t[0];
+			min_.t[1] = intr.t[0];
 
 		}
 		if( intr.t[0] > EPSILON &&  intr.t[0] < min_.t[0] )
@@ -125,9 +127,11 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 
 	}
 	return (min_);
-	}
+	}	
+	intr.t[0] = INT_MAX;
 
-		return (intr);
+	intr.t[1] = INT_MAX;
+	return (intr);
 }
 
 t_intersection ray_int_cylinder(t_ray ray, t_cylinder cylinder) {

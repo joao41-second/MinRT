@@ -124,8 +124,8 @@ t_intersection	ray_int_object(t_ray ray, t_object * obj)
 	{
 		intersection.inter = 0;
 		intersection.object = NULL;
-		intersection.t[0] = -1;
-		intersection.t[1] = -1;
+		intersection.t[0] = INT_MAX;
+		intersection.t[1] = INT_MAX;
 	}
 	return (intersection);
 }
