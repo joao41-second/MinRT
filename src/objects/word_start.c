@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/31 15:31:41 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/04 14:35:34 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	start_word(t_minirt *rt_struct)
 	t_point		luz;
 
 	luz = create_point(0, 0, 0);
-	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(0, 5, 0));
+	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(0, 5, -50));
 	mat1 = obj_material_init(c_new(1, 0, 0), c_new(-1, -1, -1),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 	word_objects = NULL;
@@ -91,13 +91,13 @@ void	start_word(t_minirt *rt_struct)
  	rt_struct->word = word_objects;
 
 
-	obj_open_stl_start(rt_struct, "./texture/Gun.obj", mat_multip(  mat_gener_scal(1, 1, 1),mat_gener_trans(0, 0, 0)),mat2);
+	obj_open_stl_start(rt_struct, "./texture/Gun.obj", mat_multip(  mat_gener_scal(1, 1, 1),mat_gener_trans(0, -2, 0)),mat2);
 
 
 	//obj_open_stl_start(rt_struct, "./texture/test.obj",mat_gener_scal(1, 1, 1),mat2);
 
 	rt_struct->word = ft_node_start(word_objects);
-	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
+	rt_struct->luz = ligth_init(c_new(3,3, 3), luz);
 }
 
 void start_word_test(t_minirt  *rt_struct,double ambinet,t_color color)

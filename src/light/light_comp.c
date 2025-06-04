@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/31 13:20:05 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/04 14:33:04 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 	static float			test;
 
 	obj = inter.object;
-//	ray_ = ray_transform(ray, obj->inv_transform);
+	ray_ = ray_transform(ray, obj->inv_transform);
 	ret.t = inter.min;
 
 	ret.object = inter.object;
-	ret.point = ray_position(ray, ret.t);
+	ret.point = ray_position(ray_, ret.t);
 
 	ret.eyev = neg_tuple(ray.direction);
 	ret.norm = lig_normalize(*obj, ret.point);
@@ -91,7 +91,7 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 			ray_in_obj.mat.color = pat_pixe_at(compt.point, test->texture);
 			if(test->type == OBJ_SQUARE)
 				ray_in_obj.mat.color = pat_pixe_at_triang(compt.point, test->texture, &test->u_data.triangle);
-			return(ray_in_obj.mat.color);
+			//return(ray_in_obj.mat.color);
 		}
 
 		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);
