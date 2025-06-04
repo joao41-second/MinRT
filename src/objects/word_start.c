@@ -28,7 +28,7 @@ void	start_word(t_minirt *rt_struct)
 	t_point		luz;
 
 	luz = create_point(0, 0, 0);
-	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(0, 50, -50));
+	luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(0, 50, 50));
 	mat1 = obj_material_init(c_new(1, 0, 0), c_new(-1, -1, -1),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
 	word_objects = NULL;
@@ -91,7 +91,7 @@ void	start_word(t_minirt *rt_struct)
  	rt_struct->word = word_objects;
 
 
-	obj_open_stl_start(rt_struct, "./texture/tree.obj", mat_multip(  mat_gener_scal(0.1, 0.1, 0.1),mat_gener_trans(0, 0, 0)),mat2);
+	obj_open_stl_start(rt_struct, "./texture/Gun.obj", mat_multip(  mat_gener_scal(1, 1, 1),mat_gener_trans(0, 1, 0)),mat2);
 
 
 	//obj_open_stl_start(rt_struct, "./texture/test.obj",mat_gener_scal(1, 1, 1),mat2);

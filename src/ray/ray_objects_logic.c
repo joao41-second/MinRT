@@ -64,7 +64,6 @@ t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
 	{
 		obj = (t_object *)objs_w->content;
 		intr = ray_int_object(ray,obj);
-		intr.ray_start = ray;
 		if (intr.inter > EPSILON)
 		{
 			ray_for_objects_organize(intr, &save_points,obj);
@@ -127,5 +126,6 @@ t_intersection	ray_int_object(t_ray ray, t_object * obj)
 		intersection.t[0] = INT_MAX;
 		intersection.t[1] = INT_MAX;
 	}
+	intersection.ray_start = ray_;
 	return (intersection);
 }
