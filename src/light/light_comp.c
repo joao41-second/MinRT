@@ -40,6 +40,7 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 
 	ret.eyev = neg_tuple(ray.direction);
 	ret.norm = lig_normalize(*obj, ret.point);
+	ret.reflect = lig_reflect(ray.direction, ret.norm);
 	test = dot_product(ret.norm, ret.eyev);
 	ret.t_luz = inter.shadow;
 	if (test < EPSILON)
@@ -96,5 +97,6 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 
 		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);
 	}
+	 ret = c_adding(c_new(ret.red,ret.green,ret.blue), lig_reflect_color(rt_struct,compt ));
 	return (ret);
 }

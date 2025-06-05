@@ -24,13 +24,14 @@ t_m_values	obj_init_values_material(double ambient, double diffuse
 	return (ret);
 }
 
-t_mater	obj_material_init(t_color intensty,t_color pattern ,t_m_values values)
+t_mater	obj_material_init(t_color intensty,t_color pattern ,t_m_values values, double reflec)
 {
 	t_mater	ret;
 	ret.pattern = pattern;
 	ret.values = values;
 	ret.color = intensty;
 	ret.pattern_b = intensty;
+	ret.reflect = reflec;
 	return (ret);
 }
 

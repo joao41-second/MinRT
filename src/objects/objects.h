@@ -45,6 +45,7 @@ typedef struct s_material
 	t_color			pattern;
 	t_color			pattern_b;
 	t_m_values		values;
+	double 			reflect;
 }					t_mater;
 
 typedef struct s_sphere
@@ -154,7 +155,8 @@ t_plane				create_plane(t_point point1,t_point point2 ,t_point point3);
 t_m_values			obj_init_values_material(double ambient, double diffuse,
 						double sepcular, double shininess);
 
-t_mater				obj_material_init(t_color intensty,t_color pattern ,t_m_values values);
+
+t_mater	obj_material_init(t_color intensty,t_color pattern ,t_m_values values, double reflec);
 
 void				obj_material_print(t_mater mat);
 

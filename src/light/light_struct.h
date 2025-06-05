@@ -23,6 +23,7 @@ typedef struct s_computations
 	t_tuple		eyev;
 	double		t;
 	double		t_luz;
+	t_tuple		reflect;
 	int			inside;
 }				t_computations;
 
