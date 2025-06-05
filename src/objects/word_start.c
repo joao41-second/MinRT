@@ -33,7 +33,8 @@ void	start_word(t_minirt *rt_struct)
 			obj_init_values_material(0.1, 0.6, 0.3, 100),0);
 	word_objects = NULL;
 	sph = sphere(create_point(0, 0, 0), 1);
-	obj_sphere = create_object(&sph, OBJ_SPHERE, mat1, NULL);
+	//obj_sphere = create_object(&sph, OBJ_SPHERE, mat1, NULL);
+obj_sphere = create_object(&sph, OBJ_SPHERE, mat1, obj_creat_texture(rt_struct->canva, "./texture/mand.xpm"));
 	ray_set_transform_obj(obj_sphere, mat_multip( mat_gener_scal(1, 1, 1), mat_gener_trans(0, 1, 0)));
 	ft_add_node(obj_sphere, &word_objects);
 
