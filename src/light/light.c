@@ -31,11 +31,19 @@ t_color lig_reflect_color(t_minirt *rt_struct,t_computations comp)
 	t_object *obj;
 	t_ray reflec;
 	t_color color;
+	static int i = 0;
 
 	obj = comp.object;
+	if( i == 10)
+	{
+		i= -1;
+		return( (t_color){0,0,0});
+	}
+	i++;
 
 	t_point point;
 	point = add_tuples(comp.point,scalar_mult_tuples(comp.norm, EPSILON));
+	
 	if( comp.object == NULL || obj == NULL || obj->matiral.reflect == 0)
 		return ((t_color){0,0,0});
 	reflec = ray_gener(point, comp.reflect);
