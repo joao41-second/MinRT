@@ -75,7 +75,7 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray) {
   ret = c_new(0, 0, 0);
 
   luz.origin = ray.origin;
-  luz.direction = rt_struct->luz.point;
+  luz.direction = rt_struct->luz[0].point;
   ray_in_obj = ray_for_objects(rt_struct->word, ray, luz);
   if (ray_in_obj.min > EPSILON) {
     compt = lig_prepare_computations(ray_in_obj, ray);
@@ -87,9 +87,13 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray) {
                                                   &test->u_data.triangle);
     }
 
-    ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);
+    ret = lig_lighting(ray_in_obj.mat, rt_struct->luz[0], compt);
+
+    t_color end = lig_lighting(ray_in_obj.mat, rt_struct->luz[1], compt);
+    ret = c_adding(end, c_new(ret.red, ret.green, ret.blue));
+
+    ret = c_adding(c_new(ret.red, ret.green, ret.blue),
+                   lig_reflect_color(rt_struct, compt));
   }
-  ret = c_adding(c_new(ret.red, ret.green, ret.blue),
-                 lig_reflect_color(rt_struct, compt));
   return (ret);
 }

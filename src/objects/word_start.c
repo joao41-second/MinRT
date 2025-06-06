@@ -27,7 +27,7 @@ void start_word(t_minirt *rt_struct) {
   t_point luz;
 
   luz = create_point(0, 0, 0);
-  luz = mat_x_tuple(create_point(0, 0, 0), mat_gener_trans(0, 3, -1));
+  luz = mat_x_tuple(create_point(0, 0, 0), mat_gener_trans(0, 3, -100));
   mat1 = obj_material_init(c_new(1, 0, 0), c_new(-1, -1, -1),
                            obj_init_values_material(0.1, 0.6, 0.3, 100), 0);
   word_objects = NULL;
@@ -58,7 +58,8 @@ void start_word(t_minirt *rt_struct) {
       mat_multip(mat_gener_scal(1, 1, 1), mat_gener_trans(0, 0.5, -3)), mat1);
 
   rt_struct->word = ft_node_start(word_objects);
-  rt_struct->luz = ligth_init(c_new(2, 2, 2), luz);
+  rt_struct->luz[0] = ligth_init(c_new(2, 2, 2), luz);
+  rt_struct->luz[1] = ligth_init(c_new(1, 2, 2), (t_point){1, 1, -10});
 }
 
 void start_word_test(t_minirt *rt_struct, double ambinet, t_color color) {
@@ -87,5 +88,8 @@ void start_word_test(t_minirt *rt_struct, double ambinet, t_color color) {
   //	ft_add_node(obj_sphere2,&word_objects);
 
   rt_struct->word = ft_node_start(word_objects);
-  rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
+  rt_struct->luz[0] = ligth_init(c_new(1, 1, 1), luz);
+  rt_struct->luz[1] =
+      ligth_init(c_new(1, 0, 0), mat_x_tuple(create_point(0, 0, 0),
+                                             mat_gener_trans(0, 3, 100)));
 }
