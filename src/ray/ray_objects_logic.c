@@ -73,7 +73,7 @@ t_obj_int ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_) {
     t_point com_point = ray_position(ray, save_points.min);
     t_point point = add_tuples(
         com_point, scalar_mult_tuples(lig_normalize(*obj, com_point), EPSILON));
-    shadow_.origin = point;
+    shadow_.origin = ray_position(ray, save_points.min);
     save_points.shadow = ray_for_shadow(start, shadow_);
   }
 
