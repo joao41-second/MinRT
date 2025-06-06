@@ -84,9 +84,11 @@ t_color shadow_calcule(t_obj_int save_points, int index, t_light *shadow_,
       save_points.shadow = ray_for_shadow(word, rat);
 
       comp = lig_prepare_computations(save_points, rat);
-      if (save_points.shadow == 1)
+      if (save_points.shadow == 1) {
         color = c_adding(c_new(color.red, color.green, color.blue),
                          lig_lighting(save_points.mat, shadow_[i], comp));
+        break;
+      }
     }
   }
   return color;
