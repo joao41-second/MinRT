@@ -40,7 +40,8 @@ void ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,
   }
 }
 
-t_obj_int ray_for_objects(t_list_ *objs_w, t_ray ray, t_point shadow_) {
+t_obj_int ray_for_objects(t_list_ *objs_w, t_ray ray, t_light *shadow_,
+                          int index) {
   t_intersection intr;
   t_intersection shadow;
   t_obj_int save_points;
@@ -69,10 +70,17 @@ t_obj_int ray_for_objects(t_list_ *objs_w, t_ray ray, t_point shadow_) {
   objs_w = start;
   obj = save_points.object;
   if (save_points.min > 0) {
+    int i;
+
     t_ray rat;
-    rat.origin = ray_position(ray, save_points.min);
-    rat.direction = shadow_;
-    save_points.shadow = ray_for_shadow(start, rat);
+    i = -1;
+    while (++i <= index) {
+      rat.origin = ray_position(ray, save_points.min);
+      rat.direction = shadow_[i].point;
+      save_points.shadow = ray_for_shadow(start, rat);
+      if (save_points.shadow == 0)
+        break;
+    }
   }
 
   objs_w = start;

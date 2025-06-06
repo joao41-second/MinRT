@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/06 11:23:48 by jperpect         ###   ########.fr       */
+/*   Updated: 2025/06/06 12:40:21 by jperpect         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_minirt
 	t_list_		*word;
 	t_ray		c_ray;
 	t_light		luz[100];
+	int 		luz_index;
 	t_ray		cam;
 	int			needs_render;
 	t_point		point;
