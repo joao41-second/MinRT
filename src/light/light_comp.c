@@ -76,7 +76,7 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray) {
 
   luz.origin = ray.origin;
   luz.direction = rt_struct->luz[0].point;
-  ray_in_obj = ray_for_objects(rt_struct->word, ray, luz);
+  ray_in_obj = ray_for_objects(rt_struct->word, ray, rt_struct->luz[1].point);
   if (ray_in_obj.min > EPSILON) {
     compt = lig_prepare_computations(ray_in_obj, ray);
     test = ray_in_obj.object;

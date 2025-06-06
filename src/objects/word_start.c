@@ -59,7 +59,7 @@ void start_word(t_minirt *rt_struct) {
 
   rt_struct->word = ft_node_start(word_objects);
   rt_struct->luz[0] = ligth_init(c_new(2, 2, 2), luz);
-  rt_struct->luz[1] = ligth_init(c_new(1, 2, 2), (t_point){1, 1, -10});
+  rt_struct->luz[1] = ligth_init(c_new(1, 2, 2), (t_point){1, 1, 100});
 }
 
 void start_word_test(t_minirt *rt_struct, double ambinet, t_color color) {
