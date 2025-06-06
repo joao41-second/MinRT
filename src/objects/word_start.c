@@ -58,8 +58,8 @@ void start_word(t_minirt *rt_struct) {
       mat_multip(mat_gener_scal(1, 1, 1), mat_gener_trans(0, 0.5, -3)), mat1);
 
   rt_struct->word = ft_node_start(word_objects);
-  rt_struct->luz[0] = ligth_init(c_new(0.5, 0.5, 0.5), luz);
-  rt_struct->luz[1] = ligth_init(c_new(0.5, 0.5, 0.5), (t_point){100, 0, 0});
+  rt_struct->luz[0] = ligth_init(c_new(1, 1, 1), luz);
+  rt_struct->luz[1] = ligth_init(c_new(1, 1, 1), (t_point){100, 0, 0});
   rt_struct->luz_index = 1;
 }
 
