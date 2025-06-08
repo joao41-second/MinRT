@@ -13,7 +13,7 @@
 #include <signal.h>
 
 
-int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_)
+int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_,t_object *point)
 {
 	t_intersection	shadow;
 	t_object		*obj;
@@ -22,7 +22,7 @@ int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_)
 	shadow.t[0] = -1;
 	shadow.t[1] = -1;
 	shadow.inter = -1;
-
+	
 
 	while (objs_w != NULL)
 	{
@@ -33,7 +33,7 @@ int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_)
 
 		if(obj->type == OBJ_SQUARE)
 			obj->u_data.triangle = save ;
-		if(shadow.t[0] > EPSILON || shadow.t[1] > EPSILON )
+		if((shadow.t[0] > EPSILON || shadow.t[1] > EPSILON ) && point != obj)
 		{
 		 return (1);
 		}

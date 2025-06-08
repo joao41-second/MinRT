@@ -82,12 +82,13 @@ t_color shadow_calcule(t_obj_int save_points, int index, t_light *shadow_,
       rat.origin = ray_position(ray, save_points.min);
       rat.direction = shadow_[i].point;
 
-      save_points.shadow = ray_for_shadow(word, rat);
+      save_points.shadow = ray_for_shadow(word, rat,save_points.object);
 
       comp = lig_prepare_computations(save_points, rat);
       if (save_points.shadow == 1) {
         color = c_adding(c_new(color.red, color.green, color.blue),
                          lig_lighting(save_points.mat, shadow_[i], comp));
+	break;
       }
 
     }
@@ -117,6 +118,13 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray) {
     int i;
     i = -1;
 
+   t_color tes = shadow_calcule(ray_in_obj, rt_struct->luz_index,
+                                 rt_struct->luz, ray, rt_struct->word);
+
+    ret = c_subtracting(c_new(ret.red, ret.green, ret.blue), tes);
+
+
+
     while (++i < rt_struct->luz_index+1) 
     {
 
@@ -124,10 +132,7 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray) {
 		    c_new(ret.red, ret.green, ret.blue)) ;
     
     }
-   t_color tes = shadow_calcule(ray_in_obj, rt_struct->luz_index,
-                                 rt_struct->luz, ray, rt_struct->word);
 
-    ret = c_adding(c_new(ret.red, ret.green, ret.blue), tes);
     ret = c_adding(c_new(ret.red, ret.green, ret.blue),
                    lig_reflect_color(rt_struct, compt));
   }

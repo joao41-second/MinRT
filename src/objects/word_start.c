@@ -76,7 +76,7 @@ ray_set_transform_obj(
 
   rt_struct->word = ft_node_start(word_objects);
   rt_struct->luz[0] = ligth_init(c_new(3, 3, 3), luz); 
-  rt_struct->luz[1] = ligth_init(c_new(1, 1, 1), (t_point){100, 3, 0});
+  rt_struct->luz[1] = ligth_init(c_new(1, 1, 1), (t_point){50, 3, 0});
   rt_struct->luz_index= 1;
 }
 

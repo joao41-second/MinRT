@@ -39,8 +39,8 @@ void			ray_canva(t_minirt *rt_struct);
 void			ray_set_transform_obj(t_object *obj, t_matrix mat);
 
 
-int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_);
 
+int	ray_for_shadow(t_list_ *objs_w, t_ray shadow_,t_object *point);
 
 t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray);
 #endif
