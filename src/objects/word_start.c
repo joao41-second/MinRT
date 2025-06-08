@@ -34,7 +34,7 @@ void start_word(t_minirt *rt_struct) {
   sph = sphere(create_point(0, 0, 0), 1);
   obj_sphere =
       create_object(&sph, OBJ_SPHERE, mat1,
-                    obj_creat_texture(rt_struct->canva, "./texture/word.xpm"));
+                    obj_creat_texture(rt_struct->canva, NULL));
 ray_set_transform_obj(
       obj_sphere,
       mat_multip(mat_multip(mat_gener_scal(1, 1, 1), mat_gener_trans(0, 1, 1)),
@@ -73,11 +73,11 @@ ray_set_transform_obj(
       rt_struct, "./texture/Gun.obj",
       mat_multip(mat_gener_scal(1, 1, 1), mat_gener_trans(0, -2, 0)), mat3);
 
-  // obj_open_stl_start(rt_struct, "./texture/test.obj",mat_gener_scal(1, 1,
-  // 1),mat2);
 
   rt_struct->word = ft_node_start(word_objects);
-  rt_struct->luz = ligth_init(c_new(3, 3, 3), luz);
+  rt_struct->luz[0] = ligth_init(c_new(3, 3, 3), luz); 
+  rt_struct->luz[1] = ligth_init(c_new(1, 1, 1), (t_point){100, 3, 0});
+  rt_struct->luz_index= 1;
 }
 
 void start_word_test(t_minirt *rt_struct, double ambinet, t_color color) {
@@ -106,5 +106,5 @@ void start_word_test(t_minirt *rt_struct, double ambinet, t_color color) {
   //	ft_add_node(obj_sphere2,&word_objects);
 
   rt_struct->word = ft_node_start(word_objects);
-  rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
+  rt_struct->luz[0] = ligth_init(c_new(1, 1, 1), luz);
 }

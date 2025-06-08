@@ -65,6 +65,36 @@ void lig_print_computations(t_computations comp) {
   lig_print_tuple(comp.norm);
 }
 
+
+t_color shadow_calcule(t_obj_int save_points, int index, t_light *shadow_,
+                       t_ray ray, t_list_ *word) {
+
+  t_color color;
+  t_computations comp;
+
+  color = c_new(0, 0, 0);
+  if (save_points.min > 0) {
+    int i;
+
+    t_ray rat;
+    i = -1;
+    while (++i <= index) {
+      rat.origin = ray_position(ray, save_points.min);
+      rat.direction = shadow_[i].point;
+
+      save_points.shadow = ray_for_shadow(word, rat);
+
+      comp = lig_prepare_computations(save_points, rat);
+      if (save_points.shadow == 1) {
+        color = c_adding(c_new(color.red, color.green, color.blue),
+                         lig_lighting(save_points.mat, shadow_[i], comp));
+      }
+
+    }
+  }
+  return color;
+}
+
 t_color lig_color_at(t_minirt *rt_struct, t_ray ray) {
   t_computations compt;
   t_obj_int ray_in_obj;
@@ -73,8 +103,6 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray) {
   t_object *test;
 
   ret = c_new(0, 0, 0);
-  luz.origin = ray.origin;
-  luz.direction = rt_struct->luz.point;
   ray_in_obj = ray_for_objects(rt_struct->word, ray, luz);
   if (ray_in_obj.min > EPSILON) {
     compt = lig_prepare_computations(ray_in_obj, ray_in_obj.ray);
@@ -84,11 +112,23 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray) {
       if (test->type == OBJ_SQUARE)
         ray_in_obj.mat.color = pat_pixe_at_triang(
             compt.textur_point, test->texture, &test->u_data.triangle);
-      // return(ray_in_obj.mat.color);
     }
+	
+    int i;
+    i = -1;
 
-    ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);
-  ret = c_adding(c_new(ret.red, ret.green, ret.blue),
+    while (++i < rt_struct->luz_index+1) 
+    {
+
+    	ret = c_adding(lig_lighting(ray_in_obj.mat, rt_struct->luz[i], compt),
+		    c_new(ret.red, ret.green, ret.blue)) ;
+    
+    }
+   t_color tes = shadow_calcule(ray_in_obj, rt_struct->luz_index,
+                                 rt_struct->luz, ray, rt_struct->word);
+
+    ret = c_adding(c_new(ret.red, ret.green, ret.blue), tes);
+    ret = c_adding(c_new(ret.red, ret.green, ret.blue),
                    lig_reflect_color(rt_struct, compt));
   }
   return (ret);

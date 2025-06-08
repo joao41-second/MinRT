@@ -21,6 +21,7 @@
 # include "./camera/camera.h"
 # include "./light/light_struct.h"
 # include "./objects/objects.h"
+#include <strings.h>
 
 typedef struct s_camera_m
 {
@@ -60,7 +61,8 @@ typedef struct s_minirt
 	t_camera_ms	cam_m;
 	t_list_		*word;
 	t_ray		c_ray;
-	t_light		luz;
+	t_light		luz[100];
+	int 		luz_index;
 	t_ray		cam;
 	int			needs_render;
 	t_point		point;
