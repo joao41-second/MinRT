@@ -45,6 +45,7 @@ t_computations lig_prepare_computations(t_obj_int inter, t_ray ray) {
     ret.inside = TRUE;
   } else
     ret.inside = FALSE;
+  ret.reflect = lig_reflect(ray.direction, ret.norm);
   return (ret);
 }
 
@@ -73,7 +74,7 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray) {
 
   ret = c_new(0, 0, 0);
   luz.origin = ray.origin;
-  luz.direction = normalize(rt_struct->luz.point);
+  luz.direction = rt_struct->luz.point;
   ray_in_obj = ray_for_objects(rt_struct->word, ray, luz);
   if (ray_in_obj.min > EPSILON) {
     compt = lig_prepare_computations(ray_in_obj, ray_in_obj.ray);
@@ -87,6 +88,8 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray) {
     }
 
     ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);
+  ret = c_adding(c_new(ret.red, ret.green, ret.blue),
+                   lig_reflect_color(rt_struct, compt));
   }
   return (ret);
 }

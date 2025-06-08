@@ -24,6 +24,7 @@ typedef struct s_computations {
   double t;
   double t_luz;
   int inside;
+  t_vector reflect;
 } t_computations;
 
 typedef struct s_var_lighting {
