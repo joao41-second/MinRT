@@ -42,8 +42,8 @@ ray_set_transform_obj(
 
    ft_add_node(obj_sphere, &word_objects);
 
-  mat2 = obj_material_init(c_new(0, 1, 0), c_new(-1, -1, -1),
-                           obj_init_values_material(0.1, 0.6, 0.3, 100),1);
+  mat2 = obj_material_init(c_new(0, 1, 0), c_new(1, 1, 1),
+                           obj_init_values_material(0.1, 0.6, 0.3, 100),0);
 
   sph2 = sphere(create_point(0, 0, 0), 1);
   obj_sphere2 =
