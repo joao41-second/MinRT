@@ -52,9 +52,9 @@ ray_set_transform_obj(
   my_mlx_pixel_retunr(obj_sphere2->texture, 1, 1);
   ray_set_transform_obj(
       obj_sphere2,
-      mat_multip(mat_multip(mat_gener_scal(1, 2, 2), mat_gener_trans(0, 1, 1)),
+      mat_multip(mat_multip(mat_gener_scal(1, 1, 1), mat_gener_trans(0, 1, 1)),
                  mat_gener_rota('z', 0.5)));
-//  ft_add_node(obj_sphere2, &word_objects);
+ ft_add_node(obj_sphere2, &word_objects);
   mat3 = obj_material_init(c_new(1, 1, 0), c_new(1, 0, 0),
                            obj_init_values_material(0.1, 0.6, 0.3, 100),0);
 

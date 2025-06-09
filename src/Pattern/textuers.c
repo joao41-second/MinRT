@@ -12,11 +12,12 @@
 
 
 #include "../minRT.h"
+#include <curses.h>
 #include <math.h>
 #include <stdio.h>
 #include <strings.h>
 
-t_color pat_pixe_at(t_point point,t_img_ *img)
+t_color pat_pixe_at(t_point point,t_img_ *img,t_uv *uv)
 {
 	t_color color;
 	double theta;
@@ -32,6 +33,12 @@ t_color pat_pixe_at(t_point point,t_img_ *img)
 	y = ((1-(1- point.y) /2)) * (img->height-1);
 		
 		color = c_get_color( my_mlx_pixel_retunr(img, x, y));
+
+	if(uv != NULL)
+	{
+		uv->u =x;
+		uv->v = y;
+	}
 
 	return color;
 }
@@ -53,7 +60,7 @@ t_uv uv_sacl(t_uv a,float b)
 	return (uv);
 }
 
-t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
+t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange,t_uv *ret_uv)
 {
 	t_point edge0;
 	t_point edge1;
@@ -84,10 +91,6 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 	gamma = (dp[0]*dp[4]-dp[1]*dp[3])/denom;
 	alpha = 1.0 - beta -gamma;;
 	uv = uv_add(uv_add(uv_sacl(trinange->uv1, alpha),uv_sacl(trinange->uv2, beta)),uv_sacl(trinange->uv3, gamma));
-
-
-
-
 // Conversão UV → coordenadas de textura (x,y)
 	int x = (int)(uv.u * (img->width - 1));
 	int y = (int)((1.0f - uv.v) * (img->height ));  // inverte o eixo Y
@@ -101,8 +104,45 @@ t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange)
 		y = 0;
 	if (y >= img->height) 
 		y = img->height - 1;
-
 	
+	if(ret_uv != NULL)
+	{
+		ret_uv->u =x;
+		ret_uv->v = y;
+	}
 
 	return (c_get_color( my_mlx_pixel_retunr(img,  x,y )));
+}
+
+t_vector pat_nomral_preturb(t_uv uv,t_vector normal,t_img_ *img,double vaule_in_mat)
+{
+	t_color right;
+	t_color left;
+	t_color up;
+	t_color down;
+	float vaule;
+	double height[4];
+	double du;
+	double dv;
+	t_vector vect;
+
+	vaule = 0.001;
+	right = c_get_color( my_mlx_pixel_retunr(img, uv.u+vaule, uv.v));
+	left = c_get_color( my_mlx_pixel_retunr(img, uv.u-vaule, uv.v));
+	up = c_get_color( my_mlx_pixel_retunr(img, uv.u, uv.v+vaule));
+	down = c_get_color( my_mlx_pixel_retunr(img, uv.u, uv.v-vaule));
+	
+	height[0] = c_rgb_to_heihte(right);
+	height[1] = c_rgb_to_heihte(left);
+	height[2] = c_rgb_to_heihte(up);
+	height[3] = c_rgb_to_heihte(down);
+
+	du = 	(height[0] - height[1]) *  vaule_in_mat;
+	dv = 	(height[2] - height[3]) *  vaule_in_mat;
+
+	vect.x = normal.x +du;
+	vect.y = normal.y ;
+	vect.z = normal.z +dv;
+
+	return (normalize(vect));
 }

@@ -32,6 +32,9 @@ void	c_print(t_color color);
 t_color c_get_color(int color);
 
 
+double	c_rgb_to_heihte(t_color color);
+
+
 //------------------------------------------------------//
 
 void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base);

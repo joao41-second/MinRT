@@ -30,7 +30,8 @@ t_computations lig_prepare_computations(t_obj_int inter, t_ray ray) {
   obj = inter.object;
   ray_ = ray_transform(ray, obj->inv_transform);
   ret.t = inter.min;
-
+  ret.uv.v = -1;
+  ret.uv.u = -1;
   ret.object = inter.object;
   ret.point = ray_position(ray, ret.t);
 
@@ -107,10 +108,12 @@ t_color lig_color_at(t_minirt *rt_struct, t_ray ray) {
     compt = lig_prepare_computations(ray_in_obj, ray_in_obj.ray);
     test = ray_in_obj.object;
     if (test->texture != NULL) {
-      ray_in_obj.mat.color = pat_pixe_at(compt.textur_point, test->texture);
+      ray_in_obj.mat.color = pat_pixe_at(compt.textur_point, test->texture,&compt.uv);
       if (test->type == OBJ_SQUARE)
         ray_in_obj.mat.color = pat_pixe_at_triang(
-            compt.textur_point, test->texture, &test->u_data.triangle);
+            compt.textur_point, test->texture, &test->u_data.triangle,NULL);
+	if(compt.uv.v != -1)
+	compt.norm =		pat_nomral_preturb(compt.uv, compt.norm,test->texture , 1);
     }
 	
     int i;

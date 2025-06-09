@@ -37,6 +37,8 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	t_lightnig	light;
 	t_color c1;
 	t_color c2;
+
+
 	
 	if(c_chek_iqual_color(mat.pattern, c_new(-1,-1,-1)) == TRUE && comp.t_luz == -2)
 	{
