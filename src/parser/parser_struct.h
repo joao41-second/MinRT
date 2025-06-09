@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mause.c                                            :+:      :+:    :+:   */
+/*   parser_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 15:13:28 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/14 17:48:33 by rerodrig         ###   ########.fr       */
+/*   Created: 2025/03/20 11:21:05 by rerodrig          #+#    #+#             */
+/*   Updated: 2025/03/27 03:19:28 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "../minRT.h"
-#include <stdio.h>
+#ifndef PARSER_STRUCT_H
+# define PARSER_STRUCT_H
 
-
-void mouse(t_minirt *rt_struct)
+typedef enum e_token
 {
-	static t_point p1;
-	static t_point p2;
-	int x;
-	int y;
-	mlx_mouse_get_pos(rt_struct->canva.mlx, rt_struct->canva.mlx_wind, &x, &y);
-	printf("x %d y %d \n",x,y);
+	AMBIENT,
+	CAMERA,
+	LIGHT,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	COMMENT,
+	NEWLINE,
+	ERROR,
+	COUNT
+}	t_token;
 
-}
+typedef struct s_token_map
+{
+	char		*key;
+	t_token		value;
+}	t_token_map;
+
+typedef struct s_range
+{
+	double	min;
+	double	max;
+}	t_range;
+#endif

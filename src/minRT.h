@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/19 11:07:52 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/02 11:18:42 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,30 @@
 # define TRUE 0
 # define FALSE 1
 
-# define WALL_X 1000.0
-# define WALL_Y 1000.0
-# define WALL_Z 10.0
-# define WALL_SIZE 7.0
-# define HALF WALL_Y/2 
-# define PIXEL_SIZE WALL_SIZE/WALL_X;
+# define WALL_X 1000
+# define WALL_Y 900
+# define WALL_Z 1.0
+# define WALL_SIZE 1.0
 
-#define MOUSE_LEFT_BUTTON 1
-# include "../libft/ft_libft/libft.h"
-# include "../libft/ft_list/list.h"
 # include "../libft/ft_free/ft_free.h"
 # include "../libft/ft_get_next_line/get_next_line_bonus.h"
-# include "../libft/ft_printf/ft_printf.h"
+# include "../libft/ft_libft/libft.h"
+# include "../libft/ft_list/list.h"
 # include "../libft/ft_list/lsit_struct.h"
+# include "../libft/ft_printf/ft_printf.h"
 # include "../libft/minilibx-linux/mlx.h"
 # include "../libft/minilibx-linux/mlx_int.h"
 
-
+# include "./parser/parser.h"
 # include "./tuples/tuples.h"
+# include "./matrix/matrix.h"
+# include "./ray/ray.h"
+# include "./camara_m/camara_m.h"
 # include "./canvas/canvas.h"
+# include "./light/light.h"
 # include "./loop/loop.h"
 # include "./miniRT_struct.h"
-# include "./matrix/matrix.h"
 # include "./objects/objects.h"
-# include "./ray/ray.h"
-# include "./light/light.h"
 # include "./camera/camera.h"
 
 # include <asm-generic/errno.h>
@@ -58,8 +56,9 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-void start_word(t_minirt  *rt_struct);
-void draw_navigator(t_minirt *rt_struct);
-void print_list_(t_list_ *list);
-void draw_cube_labels(t_minirt *rt_struct);
+void	start_word(t_minirt *rt_struct);
+void	ft_menu(t_minirt *minirt);
+void	print_list_(t_list_ *list);
+
+void	start_word_test(t_minirt *rt_struct, double ambinet, t_color color);
 #endif

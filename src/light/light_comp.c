@@ -6,49 +6,59 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/15 14:42:06 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:26:23 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "light.h"
+#include <stdio.h>
 
-t_computations lig_prepare_computations( t_obj_int inter,t_ray ray)
+void	lig_print_tuple(t_tuple tuple)
 {
-	t_computations  ret;
-	// t_sphere 	*sph;
-    
+	if (tuple.w == 1)
+	{
+		printf("point %f %f %f \n", tuple.x, tuple.y, tuple.z);
+	}
+	else
+		printf("vect %10.5f %f %f \n", tuple.x, tuple.y, tuple.z);
+}
 
-	// sph  = inter.object;
+t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
+{
+	t_computations	ret;
+	t_ray			ray_;
+	t_object		*obj;
+	double			test;
+
+	obj = inter.object;
 	ret.t = inter.min;
 	ret.object = inter.object;
 	ret.point = ray_position(ray, ret.t);
-	ret.eyev =  neg_tuple(ray.direction); //duvida do neg tuple
-	// ret.norm = lig_normalize(*sph, ret.point);
-	ret.norm = lig_normalize(inter.object, ret.point); 
-	if(dot_product(ret.norm, ret.eyev) < 0)
+	ret.eyev = neg_tuple(ray.d);
+	ret.norm = lig_normalize(*obj, ret.point);
+	test = dot_product(ret.norm, ret.eyev);
+	ret.t_luz = inter.shadow;
+	if (test < EPSILON)
 	{
 		ret.norm = neg_tuple(ret.norm);
 		ret.inside = TRUE;
 	}
-	else 
+	else
 		ret.inside = FALSE;
-	return(ret);
+	return (ret);
 }
 
-void lig_print_tuple(t_tuple tuple)
+t_color	lig_shade_hit(t_obj_int obj, t_light luz, t_computations comp)
 {
-	if(tuple.w ==1)
-	{
-		printf( "point %f %f %f \n",tuple.x,tuple.y,tuple.z);
-	}else
-		printf( "vect %10.5f %f %f \n",tuple.x,tuple.y,tuple.z);
+	t_color	ret;
 
+	ret = lig_lighting(obj.mat, luz, comp);
+	return (ret);
 }
 
-void lig_print_computations(t_computations comp)
+void	lig_print_computations(t_computations comp)
 {
-
 	printf("point ");
 	lig_print_tuple(comp.point);
 	printf("eyev ");
@@ -57,22 +67,21 @@ void lig_print_computations(t_computations comp)
 	lig_print_tuple(comp.norm);
 }
 
-t_color lig_color_at(t_minirt *rt_struct, t_ray ray)
+t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 {
-	t_color ret;
-	t_computations compt;;
-	t_sphere sph;
+	t_computations		compt;
+	t_obj_int			ray_in_obj;
+	t_color				ret;
+	t_ray				luz;
 
-	//printf("color mat %f %f %f \n",)
-	
-	if(ray_for_objects(rt_struct->word, ray).min != INT_MAX )
+	ret = c_new(0, 0, 0);
+	luz.o = ray.o;
+	luz.d = normalize(rt_struct->luz.point);
+	ray_in_obj = ray_for_objects(rt_struct->word, ray, luz);
+	if (ray_in_obj.min > EPSILON)
 	{
-		compt =  lig_prepare_computations(ray_for_objects(rt_struct->word, ray),ray); 
-		lig_print_computations(compt);
-		ret =  lig_lighting(sph.matiral,rt_struct->luz,compt.point,compt.norm,compt.eyev);
-		printf (" the insied is %d\n",compt.inside );
+		compt = lig_prepare_computations(ray_in_obj, ray);
+		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);
 	}
-	else
-		ret = c_new(0,0,0);
-	return(ret);
+	return (ret);
 }

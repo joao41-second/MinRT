@@ -1,27 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 14:45:40 by jperpct           #+#    #+#             */
-/*   Updated: 2025/03/21 14:45:41 by jperpct          ###   ########.fr       */
+/*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
+/*   Updated: 2025/06/05 13:49:02 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "canvas/canvas_struct.h"
-#include "light/light.h"
 #include "matrix/matrix.h"
 #include "minRT.h"
-#include "objects/objects.h"
-#include "ray/ray.h"
-#include "ray/ray_struct.h"
-#include "tuples/tuples.h"
-#include <stdio.h>
+
+static int	init_scene(char *scene_file, t_minirt *rt, t_list_ **word_objects)
+{
+	int		status;
+	t_point	luz_pt;
+
+	status = 0;
+	if (scene_file)
+	{
+		status = parser(scene_file, rt, word_objects);
+		unified_camera_set_mode(&rt->camera, CAM_MODE_R);
+		luz_pt = mat_x_tuple(create_point(0, 0, 0),
+				mat_gener_trans(rt->luz.point.x, rt->luz.point.y, \
+				rt->luz.point.z));
+		rt->word = ft_node_start(*word_objects);
+	}
+	else
+	{
+		camera_init(&rt->camera, create_point(0, 0, -50),
+			create_vector(0, 1, 0),
+			100);
+		unified_camera_set_mode(&rt->camera, CAM_MODE_J);
+		start_word(rt);
+	}
+	return (status);
+}
 
 int	main(int ac, char **av, char **env)
 {
 	t_minirt	rt_struct;
+	t_matrix	ok ;
 	int			status;
-	t_list_ *word_objects;
+	t_list_		*word_objects;
+	t_point		luz;
 
 	word_objects = NULL;
 	status = 0;
@@ -29,17 +53,15 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 	ft_start_alloc();
-	
-	// t_ray ray;
-	// t_color color;
-	// ray = ray_gener(create_point(0, 0, 0), create_vector(0, 0, 0));
-	// color = lig_color_at(&rt_struct, ray);
-	// printf("color %f %f %f \n",color.red,color.blue,color.green);
-
-	start_word(&rt_struct);
-
-	// rt_struct.needs_render = 1;
-	canva_inicializ(&rt_struct, WALL_X, WALL_Y,c_new(1.0, 0, 0));	
+	status = init_scene(av[1], &rt_struct, &word_objects);
+	ok = mat_gener_identity(4);
+	rt_struct.point = create_point(0, 0, 0);
+	ok = lig_view_transform(rt_struct.point,
+			create_point(0, 0, 0), create_vector(0, 1, 0));
+	rt_struct.rota_y = 0;
+	rt_struct.rota_x = 0;
+	rt_struct.needs_render = 4;
+	rt_struct.menu = 0;
+	canva_inicializ(&rt_struct, WALL_X, WALL_Y, c_new(0, 0, 0));
 	return (status);
-
 }

@@ -6,22 +6,25 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:07:37 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/04/04 20:22:24 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/22 10:14:22 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include "tuples.h"
 
 //MANIPULATIONS -----------------------------------------------------
 
 double	dot_product(t_tuple a, t_tuple b)
 {
-	return (
-		(a.x * b.x) + \
+	double	ok;
+
+	ok = 0;
+	ok = (a.x * b.x) + \
 		(a.y * b.y) + \
 		(a.z * b.z) + \
-		(a.w * b.w)
-	);
+		(a.w * b.w);
+	return (ok);
 }
 
 double	magnitude(t_tuple t)
@@ -32,9 +35,11 @@ double	magnitude(t_tuple t)
 t_tuple	normalize(t_tuple t)
 {
 	const double	_magnitude = magnitude(t);
-	if(is_equal_double(_magnitude, 1))
-		return (t);
 
+	if (is_equal_double(_magnitude, 1))
+		return (t);
+	if (is_equal_tuple(t, create_vector(0, 0, 0)))
+		return (t);
 	return (create_tuple(
 			(t.x / _magnitude),
 			(t.y / _magnitude),

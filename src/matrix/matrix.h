@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:44:00 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/19 10:14:36 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/05/22 00:43:15 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,6 @@ t_rotation			mat_gener_rota(char axis, double deg);
  * @param values struct the values the z_y etc..
  * @return matrix inicialized
  */
-
-t_matrix			mat_rotate(t_vector axis, double angle);
-
 t_mat_shearing		mat_gener_shearing(t_shearing values);
 
 void				mat_trans(t_matrix *mat);
@@ -172,4 +169,12 @@ double				mat_transposing(int *y, int *x, t_matrix *mat1,
 
 t_matrix			mat_matrix_signal(int size);
 
+void				mat_not_neg_zero(t_matrix *mat);
+
+int					mat_iqual(t_matrix mat1, t_matrix mat2);
+void				mat_set_trans(t_matrix *ret, double x, double y, double z);
+void				mat_set_multip(t_matrix *res, t_matrix mat1, t_matrix mat2);
+void				mat_set_identity(t_matrix	*matrix_);
+void				mat_set_view_transform(t_matrix *mat_, t_tuple form,
+						t_tuple to, t_tuple up);
 #endif
