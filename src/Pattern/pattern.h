@@ -19,6 +19,7 @@ t_color pat_stripe_at(t_point point,char axi,t_color a, t_color b);
 t_color pat_pixe_at(t_point point,t_img_ *img,t_uv *uv);
 
 t_color pat_pixe_at_triang(t_point point,t_img_ *img,t_triangle *trinange,t_uv *ret_uv);
+
 t_vector pat_nomral_preturb(t_uv uv,t_vector normal,t_img_ *img,double vaule_in_mat);
 
 

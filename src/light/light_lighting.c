@@ -12,7 +12,6 @@
 
 #include "../minRT.h"
 #include "light_struct.h"
-#include <curses.h>
 #include <stdio.h>
 
 void	lig_specular_and_difuse(t_lightnig *light,
