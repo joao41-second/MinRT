@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/30 15:33:54 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/08 16:26:54 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ void	handle_camera_keys(int keycode, t_minirt *rt_struct)
         camera_rotate(rt_struct);
     }
 	else
-		handle_orthographic_view(keycode, &rt_struct->camera);
+		handle_orthographic_view(rt_struct);
 
-	printf("[DEBUG] Camera position: (%f, %f, %f)\n", 
-		rt_struct->camera.origin.x, rt_struct->camera.origin.y, rt_struct->camera.origin.z);
-		printf("[DEBUG] point position: (%f, %f, %f)\n", rt_struct->point.x, rt_struct->point.y, rt_struct->point.z);
+	//  camera_update_view(&rt_struct->camera);
+	// printf("[DEBUG] Camera position: (%f, %f, %f)\n", 
+	// 	rt_struct->camera.origin.x, rt_struct->camera.origin.y, rt_struct->camera.origin.z);
+	// 	printf("[DEBUG] point position: (%f, %f, %f)\n", rt_struct->point.x, rt_struct->point.y, rt_struct->point.z);
 }
 
 // void	handle_camera_keys(int keycode, t_minirt *rt_struct)
@@ -165,7 +166,7 @@ void	key_loop(int keycode, t_minirt *rt_struct)
 	t_object	*plane;
 	t_object	*obj;
 
-	rt_struct->key_pressed = keycode;
+	rt_struct->clicked = keycode;
 	plane = NULL;
 	current = rt_struct->word;
 	while (current)
@@ -178,11 +179,12 @@ void	key_loop(int keycode, t_minirt *rt_struct)
 		}
 		current = current->next;
 	}
-	printf("[DEBUG] Key pressed: %d\n", rt_struct->key_pressed);
+	printf("[DEBUG] Key pressed: %d\n", rt_struct->clicked);
 	if (plane)
 		handle_plane_keys(keycode, plane, rt_struct);
 	handle_camera_keys(keycode, rt_struct);
 	handle_light_keys(keycode, rt_struct);
 	handle_misc_keys(keycode, rt_struct);
+	// camera_update_view(&rt_struct->camera);
 	canva_update(rt_struct);
 }

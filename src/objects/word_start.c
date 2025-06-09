@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/30 15:38:05 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:11:10 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	init_spheres(t_list_ **word_objects)
 	ft_add_node(obj_sphere, word_objects);
 }
 
+// pln = create_plane(create_point(0, 0, 0), create_point(1, 0, 0),
+// 		create_point(0, 0, 5));
 void	init_planes(t_list_ **word_objects)
 {
 	t_plane		pln;
@@ -80,46 +82,27 @@ void	init_planes(t_list_ **word_objects)
 
 	mat2 = obj_material_init(c_new(0, 1, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
-	pln = create_plane(create_point(0, 0, 0), create_point(1, 0, 0),
-			create_point(0, 0, 5));
+	pln = create_plane_parser(create_point(0, 0, 0), create_vector(0, 1, 1));
 	obj_plane = create_object(&pln, OBJ_PLANE, mat2);
 	ray_set_transform_obj(obj_plane, mat_multip(mat_gener_scal(1, 1, 1),
 			mat_gener_trans(0, 0, 0)));
 	ft_add_node(obj_plane, word_objects);
 }
 
-void	start_word(t_minirt *rt_struct, char **av)
+void	start_word(t_minirt *rt_struct)
 {
 	t_list_		*word_objects;
 	t_point		luz;
-	int			status;
 
 	word_objects = NULL;
-	if (av[1])
-	{
-		status = parser(av[1], rt_struct, &word_objects);
-		unified_camera_set_mode(&rt_struct->camera, CAM_MODE_R);
-		luz = mat_x_tuple(create_point(0, 0, 0), mat_gener_trans(rt_struct->luz.point.x, rt_struct->luz.point.y, rt_struct->luz.point.z));
-	}
-	else
-	{
-		camera_init(&rt_struct->camera, create_point(0, 0, -50),
-			create_vector(0, 1, 0), 100);
-		
-		unified_camera_set_mode(&rt_struct->camera, CAM_MODE_J);
-		luz = mat_x_tuple(create_point(0, 0, 0),mat_gener_trans(3, 3, -3));
-	}
-
-	
-	// luz = create_point(-10, 10,-10);
-	// luz = rt_struct->luz.point;
-	// luz = create_point(rt_struct->luz.point.x, rt_struct->luz.point.y, rt_struct->luz.point.z);
+	luz = create_point(0, 0, 0);
+	luz = mat_x_tuple(create_point(0, 0, 0), mat_gener_trans(3, 3, -3));
 	init_spheres(&word_objects);
 	init_planes(&word_objects);
 	init_triangles(&word_objects);
 	init_cylinders(&word_objects);
 	rt_struct->word = ft_node_start(word_objects);
-	rt_struct->luz = ligth_init(c_new(1,1,1), luz);
+	rt_struct->luz = ligth_init(c_new(1, 1, 1), luz);
 }
 
 // void start_word_test(t_minirt  *rt_struct,double ambinet,t_color color)

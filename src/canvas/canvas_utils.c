@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:13:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/30 12:32:29 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:04:58 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,18 @@ void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base)
 			(int)(base.red), (int)(base.green), (int)(base.blue)));
 }
 
-void render_axis_to_buffer(t_minirt *rt_struct) {
-    draw_axis_navigator(rt_struct, &rt_struct->canva.canva);
-    draw_orientation_cube(rt_struct, &rt_struct->canva.canva);
-}
-
 void	canva_update(t_minirt *rt_struct)
 {
-	render_axis_to_buffer(rt_struct);
+	draw_axis_navigator(rt_struct, &rt_struct->canva.canva);
+	draw_orientation_cube(rt_struct, &rt_struct->canva.canva);
 	mlx_put_image_to_window(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,
 		rt_struct->canva.canva.img, 0, 0);
-	draw_cube_labels(rt_struct, NULL); 
+	draw_cube_labels(rt_struct, NULL);
 	if (rt_struct->menu)
 		ft_menu(rt_struct);
 	else
 		mlx_string_put(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,
 			W_POS, WALL_Y - HEIGHT_POS * 2, WHITE, "Press 'TAB' for menu");
 	draw_camera_info(rt_struct);
-	}
+	camera_update_view(&rt_struct->camera);
+}

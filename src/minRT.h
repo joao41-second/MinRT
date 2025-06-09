@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/25 14:44:00 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:45:34 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define FALSE 1
 
 # define WALL_X 1000
-# define WALL_Y 900
+# define WALL_Y 1000
 # define WALL_Z 1.0
 # define WALL_SIZE 1.0
 
@@ -56,15 +56,9 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-void	start_word(t_minirt *rt_struct, char **av);
-// void	draw_axis_navigator(t_minirt *rt_struct);
-// void	draw_orientation_cube(t_minirt *rt_struct);
-void	print_list_(t_list_ *list);
-// void	draw_cube_labels(t_minirt *rt_struct);
+void	start_word(t_minirt *rt_struct);
 void	ft_menu(t_minirt *minirt);
-void	draw_camera_info(t_minirt *rt);
-void	draw_axis_navigator(t_minirt *rt_struct, t_img_ *target);
-void	draw_orientation_cube(t_minirt *rt_struct, t_img_ *target);
-void	draw_cube_labels(t_minirt *rt, t_img_ *target);
-// void	start_word_test(t_minirt *rt_struct, double ambinet, t_color color);
+void	print_list_(t_list_ *list);
+
+void	start_word_test(t_minirt *rt_struct, double ambinet, t_color color);
 #endif

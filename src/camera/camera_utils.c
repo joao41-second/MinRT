@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:48:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/30 14:32:20 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/08 16:37:52 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,35 +107,32 @@ static t_vector	apply_rotation(t_vector vector, t_vector axis, double angle)
 // }
 void	camera_move(t_minirt *rt_struct)
 {
-    // Update rt_struct->point based on the key pressed
-    if (rt_struct->key_pressed == KEY_UP)
-        rt_struct->point.y += 0.1;
-    else if (rt_struct->key_pressed == KEY_DOWN)
-        rt_struct->point.y -= 0.1;
-    else if (rt_struct->key_pressed == KEY_LEFT)
-        rt_struct->point.x -= 0.1;
-    else if (rt_struct->key_pressed == KEY_RIGHT)
-        rt_struct->point.x += 0.1;
-    else if (rt_struct->key_pressed == KEY_W)
-        rt_struct->point.z += 0.1;
-    else if (rt_struct->key_pressed == KEY_S)
-        rt_struct->point.z -= 0.1;
+    if (rt_struct->clicked == KEY_UP)
+        rt_struct->point.y += MOVE_SCALAR;
+    else if (rt_struct->clicked == KEY_DOWN)
+        rt_struct->point.y -= MOVE_SCALAR;
+    else if (rt_struct->clicked == KEY_LEFT)
+        rt_struct->point.x -= MOVE_SCALAR;
+    else if (rt_struct->clicked == KEY_RIGHT)
+        rt_struct->point.x += MOVE_SCALAR;
+    else if (rt_struct->clicked == KEY_W)
+        rt_struct->point.z += MOVE_SCALAR;
+    else if (rt_struct->clicked == KEY_S)
+        rt_struct->point.z -= MOVE_SCALAR;
+    camera_update_view(&rt_struct->camera);
 
-    // No need to directly modify the camera's transformation matrix here,
-    // as it will be recalculated in each frame using rt_struct->point.
 }
 void	camera_rotate(t_minirt *rt_struct)
 {
     // Update rotation values in rt_struct
-    if (rt_struct->key_pressed == NUMKEY_1)
+    if (rt_struct->clicked == NUMKEY_1)
         rt_struct->rota_x += ROTATION_SPEED;
-    else if (rt_struct->key_pressed == NUMKEY_2)
+    else if (rt_struct->clicked == NUMKEY_2)
         rt_struct->rota_x -= ROTATION_SPEED;
-    else if (rt_struct->key_pressed == NUMKEY_3)
+    else if (rt_struct->clicked == NUMKEY_3)
         rt_struct->rota_y += ROTATION_SPEED;
-    else if (rt_struct->key_pressed == NUMKEY_4)
+    else if (rt_struct->clicked == NUMKEY_4)
         rt_struct->rota_y -= ROTATION_SPEED;
+    camera_update_view(&rt_struct->camera);
 
-    // No need to directly modify the camera's transformation matrix here,
-    // as it will be recalculated in each frame using rt_struct->rota_x and rt_struct->rota_y.
 }

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/25 14:49:50 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/05 12:30:59 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char	*tokenizer(char *line, const t_token_map *token_map, t_token *type)
 	return (line);
 }
 
-static void	parse_handler(t_token type, char *line, t_minirt *data, int fd, t_list_ **word_objects)
+static void	parse_handler(t_token type, char *line, t_minirt *data, int fd, \
+	t_list_ **word_objects)
 {
 	if (type == AMBIENT)
 		parse_ambient(line, data, fd);
@@ -87,7 +88,6 @@ int	parser(const char *file, t_minirt *data, t_list_ **word_objects)
 		parse_handler(type, line, data, fd, word_objects);
 		line = ft_add_memory(get_next_line(fd), NULL);
 	}
-	
 	close(fd);
-	return (0);  
+	return (0);
 }

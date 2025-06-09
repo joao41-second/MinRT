@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:57 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/22 11:27:52 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:10:42 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void				obj_material_print(t_mater mat);
 t_light				ligth_init(t_color intensty, t_point point);
 
 t_plane				create_plane(t_point p1, t_point p2, t_point p3);
-
+t_plane				create_plane_parser(t_point p, t_vector n);
 t_triangle			create_triangle(t_point p1, t_point p2, t_point p3);
 t_vector			triangle_normal_at(t_triangle triangle);
 t_cylinder			create_cylinder(t_point center, t_vector orientation,

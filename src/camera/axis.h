@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 10:38:04 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/23 13:14:53 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:04:22 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,8 @@ void	draw_line(t_img_ *img, t_point start, t_point end, int color);
 void	draw_thick_line(t_img_ *img, t_point start, t_point end, int color);
 void	init_edges(int edges[12][2]);
 
-
+void	draw_camera_info(t_minirt *rt);
+void	draw_axis_navigator(t_minirt *rt_struct, t_img_ *target);
+void	draw_orientation_cube(t_minirt *rt_struct, t_img_ *target);
+void	draw_cube_labels(t_minirt *rt, t_img_ *target);
 #endif

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 00:49:55 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/30 14:33:53 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:55:13 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "../miniRT_struct.h"
 # include "keys.h"
 # define DEFAULT_FOV 60.0
-# define ROTATION_SPEED 0.01
-# define MOVE 1.0
+# define ROTATION_SPEED 1
+# define MOVE_SCALAR 10.0
 
 // typedef struct s_camera {
 //     t_point      origin;
