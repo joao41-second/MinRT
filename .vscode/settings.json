@@ -3,7 +3,11 @@
     "minrt.h": "c",
     "loop.h": "c",
     "ft_printf.h": "c",
-    "mlx_int.h": "c"
+    "mlx_int.h": "c",
+    "wait.h": "c",
+    "unistd.h": "c",
+    "canvas_struct.h": "c",
+    "cstdlib": "c"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",

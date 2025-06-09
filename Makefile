@@ -6,7 +6,7 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/04/30 16:43:32 by jperpct          ###   ########.fr        #
+#    Updated: 2025/06/09 13:34:21 by rerodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,11 +107,11 @@ test: $(LIB) $(OBJS)
 test_vall: all
 	make val -C tests
 
-
+SCENE = ./scenes/complex_scene.rt
 s:
 	clear && make re && ./$(NAME)
 n:
-	clear && make renew && ./$(NAME)
+	clear && make renew && ./$(NAME) $(SCENE)
 v:
 	clear && make re && $(VAL) ./$(NAME)
 e:

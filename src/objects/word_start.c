@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 22:08:02 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/09 13:51:13 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	init_spheres(t_list_ **word_objects)
 	ft_add_node(obj_sphere, word_objects);
 }
 
+// pln = create_plane(create_point(0, 0, 0), create_point(1, 0, 0),
+// 		create_point(0, 0, 5));
 void	init_planes(t_list_ **word_objects)
 {
 	t_plane		pln;
@@ -80,8 +82,7 @@ void	init_planes(t_list_ **word_objects)
 
 	mat2 = obj_material_init(c_new(0, 1, 0),
 			obj_init_values_material(0.1, 0.6, 0.3, 100));
-	pln = create_plane(create_point(0, 0, 0), create_point(1, 0, 0),
-			create_point(0, 0, 5));
+	pln = create_plane_parser(create_point(0, 0, 0), create_vector(0, 1, 0));
 	obj_plane = create_object(&pln, OBJ_PLANE, mat2);
 	ray_set_transform_obj(obj_plane, mat_multip(mat_gener_scal(1, 1, 1),
 			mat_gener_trans(0, 0, 0)));

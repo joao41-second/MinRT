@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 10:34:47 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/22 09:53:19 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/09 12:06:39 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,20 @@ void	init_edges(int edges[12][2])
 /**
  * Draw a cube edge
  */
-static void	draw_cube_edge(t_minirt *rt_struct, double verti[8][3], \
-		int edges[12][2], int i)
+static void	draw_cube_edge(t_cube_ctx *ctx, int i)
 {
-	t_point	start;
-	t_point	end;
-	int		color;
+	t_point		start;
+	t_point		end;
+	int			color;
 
-	start = proj_point(&rt_struct->camera, \
-		create_point(verti[edges[i][0]][0], verti[edges[i][0]][1], \
-		verti[edges[i][0]][2]));
-	end = proj_point(&rt_struct->camera, \
-			create_point(verti[edges[i][1]][0], verti[edges[i][1]][1], \
-			verti[edges[i][1]][2]));
+	start = proj_point(&ctx->rt->camera,
+			create_point(ctx->vertices[ctx->edges[i][0]][0],
+				ctx->vertices[ctx->edges[i][0]][1],
+				ctx->vertices[ctx->edges[i][0]][2]));
+	end = proj_point(&ctx->rt->camera,
+			create_point(ctx->vertices[ctx->edges[i][1]][0],
+				ctx->vertices[ctx->edges[i][1]][1],
+				ctx->vertices[ctx->edges[i][1]][2]));
 	color = 0x00888888;
 	if (i < 4)
 		color = 0x003333AA;
@@ -82,7 +83,7 @@ static void	draw_cube_edge(t_minirt *rt_struct, double verti[8][3], \
 		color = 0x0033AA33;
 	else if (i == 9 || i == 10)
 		color = 0x00AA3333;
-	draw_line(&rt_struct->canva.canva, start, end, color);
+	draw_line(ctx->target, start, end, color);
 }
 
 /**
@@ -90,23 +91,27 @@ static void	draw_cube_edge(t_minirt *rt_struct, double verti[8][3], \
  * This function draws a cube around the axis navigator to create a more robust
  * orientation indicator.
  */
-void	draw_orientation_cube(t_minirt *rt_struct)
+void	draw_orientation_cube(t_minirt *rt_struct, t_img_ *target)
 {
-	double	vertices[8][3];
-	int		edges[12][2];
-	int		i;
+	double		vertices[8][3];
+	int			edges[12][2];
+	int			i;
+	t_cube_ctx	ctx;
 
-	i = 0;
 	init_edges(edges);
 	init_vertices(vertices, CUBE_SIZE);
+	ctx.rt = rt_struct;
+	ctx.target = target;
+	ctx.vertices = vertices;
+	ctx.edges = edges;
 	while (i < 12)
 	{
-		draw_cube_edge(rt_struct, vertices, edges, i);
+		draw_cube_edge(&ctx, i);
 		i++;
 	}
 }
 
-void	draw_cube_labels(t_minirt *rt)
+void	draw_cube_labels(t_minirt *rt, t_img_ *target)
 {
 	static double	axes[3][3] = {{0.5, 0, 0}, {0, 0.5, 0}, {0, 0, 0.5}};
 	t_point			screen;

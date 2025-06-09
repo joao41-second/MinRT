@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:19:49 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/22 13:38:43 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/09 12:50:43 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,40 +102,40 @@ typedef struct s_key_info
 # define KEY_SHIFT	65505
 # define KEY_CTRL	65507
 
-static const t_key_info	g_key_info[] = {
-{KEY_W, "W", "Move forward", 0},
-{KEY_S, "S", "Move backward", 0},
-{KEY_A, "A", "Move left", 0},
-{KEY_D, "D", "Move right", 0},
-{KEY_UP, "Up Arrow", "Move camera up", 0},
-{KEY_DOWN, "Down Arrow", "Move camera down", 0},
-{KEY_LEFT, "Left Arrow", "Move camera left", 0},
-{KEY_RIGHT, "Right Arrow", "Move camera right", 1},
-{KEY_ESC, "Esc", "Exit program", 0},
-{KEY_TAB, "Tab", "Toggle menu", 1},
-{KEY_Z, "Z", "Rotate plane around Z-axis", 0},
-{KEY_X, "X", "Rotate plane around X-axis", 0},
-{KEY_Y, "Y", "Rotate plane around Y-axis", 0},
-{KEY_R, "R", "Reset plane transform", 0},
-{NUMPAD_3, "Numpad 3", "Translate plane up", 0},
-{NUMPAD_6, "Numpad 6", "Translate plane down", 1},
-{NUMPAD_1, "Numpad 1", "Set front view", 0},
-{NUMPAD_4, "Numpad 4", "Set right view", 0},
-{NUMPAD_7, "Numpad 7", "Set top view", 0},
-{NUMPAD_2, "Numpad 2", "Set back view", 0},
-{NUMPAD_5, "Numpad 5", "Set left view", 0},
-{NUMPAD_8, "Numpad 8", "Set bottom view", 1},
-{KEY_O, "O", "Move light right", 0},
-{KEY_P, "P", "Move light left", 0},
-{KEY_I, "I", "Move light up", 0},
-{KEY_K, "K", "Move light down", 0},
-{KEY_L, "L", "Move light forward", 0},
-{KEY_J, "J", "Move light backward", 0},
-{KEY_SPACE, "Space", "Reset light position", 0},
-{KEY_M, "M", "Switch camera mode", 1},
-{NUMKEY_9, "Numkey 9", "Increase render quality", 0},
-{NUMKEY_8, "Numkey 8", "Decrease render quality", 0},
-{0, NULL, NULL, 0}
-};
+// static const t_key_info	g_key_info[] = {
+// {KEY_W, "W", "Move forward", 0},
+// {KEY_S, "S", "Move backward", 0},
+// {KEY_A, "A", "Move left", 0},
+// {KEY_D, "D", "Move right", 0},
+// {KEY_UP, "Up Arrow", "Move camera up", 0},
+// {KEY_DOWN, "Down Arrow", "Move camera down", 0},
+// {KEY_LEFT, "Left Arrow", "Move camera left", 0},
+// {KEY_RIGHT, "Right Arrow", "Move camera right", 1},
+// {KEY_ESC, "Esc", "Exit program", 0},
+// {KEY_TAB, "Tab", "Toggle menu", 1},
+// {KEY_Z, "Z", "Rotate plane around Z-axis", 0},
+// {KEY_X, "X", "Rotate plane around X-axis", 0},
+// {KEY_Y, "Y", "Rotate plane around Y-axis", 0},
+// {KEY_R, "R", "Reset plane transform", 0},
+// {NUMPAD_3, "Numpad 3", "Translate plane up", 0},
+// {NUMPAD_6, "Numpad 6", "Translate plane down", 1},
+// {NUMPAD_1, "Numpad 1", "Set front view", 0},
+// {NUMPAD_4, "Numpad 4", "Set right view", 0},
+// {NUMPAD_7, "Numpad 7", "Set top view", 0},
+// {NUMPAD_2, "Numpad 2", "Set back view", 0},
+// {NUMPAD_5, "Numpad 5", "Set left view", 0},
+// {NUMPAD_8, "Numpad 8", "Set bottom view", 1},
+// {KEY_O, "O", "Move light right", 0},
+// {KEY_P, "P", "Move light left", 0},
+// {KEY_I, "I", "Move light up", 0},
+// {KEY_K, "K", "Move light down", 0},
+// {KEY_L, "L", "Move light forward", 0},
+// {KEY_J, "J", "Move light backward", 0},
+// {KEY_SPACE, "Space", "Reset light position", 0},
+// {KEY_M, "M", "Switch camera mode", 1},
+// {NUMKEY_9, "Numkey 9", "Increase render quality", 0},
+// {NUMKEY_8, "Numkey 8", "Decrease render quality", 0},
+// {0, NULL, NULL, 0}
+// };
 
 #endif
