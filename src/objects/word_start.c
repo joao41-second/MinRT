@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/04 14:35:34 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 12:21:45 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ ray_set_transform_obj(
 
   obj_open_stl_start(
       rt_struct, "./texture/Gun.obj",
-      mat_multip(mat_gener_scal(1, 1, 1), mat_gener_trans(0, -2, 0)), mat3);
+      mat_multip(mat_gener_scal(1, 1, 1), mat_gener_trans(1, 2, 0)), mat1);
 
 
   rt_struct->word = ft_node_start(word_objects);

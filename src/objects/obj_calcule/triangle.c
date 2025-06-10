@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:13:56 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/31 12:07:35 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 13:03:36 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_triangle	create_triangle(t_point p1, t_point p2, t_point p3)
 {
-	t_triangle	triangle;
-	
+	t_triangle	triangle;	
+
 	triangle.p1 = p1;
 	triangle.p2 = p2;
 	triangle.p3 = p3;
