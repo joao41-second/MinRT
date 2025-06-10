@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 19:09:07 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 13:03:23 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 19:50:30 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,54 +14,53 @@
 #include "../objects.h"
 #include <stdio.h>
 
-void	obj_add_trinagles( t_object *obj_t, char** file, char** point,
-		t_point *list)
+void	obj_set_trinagles(char **file, t_creat3d *create,
+		t_object *obj_t, t_point *list)
 {
-	int		i;
-	int		nb_f_c;
-	char	**bar_siplit[5];
-	t_uv	*uv_list;
+	char	**b[5];
+	char	**point;
 
-	i = -1;
-	nb_f_c = -1;
-	uv_list = obj_get_uv(file);
-	while (file[++i] != NULL)
+	point = ft_split(file[create->i], ' ');
+	b[0] = ft_split(point[1], '/');
+	b[1] = ft_split(point[2], '/');
+	b[2] = ft_split(point[3], '/');
+	if (point[4] != NULL)
 	{
-		if (file[i] != NULL && file[i][0] == 'f')
+		b[3] = ft_split(point[4], '/');
+		obj_t->triangle[++create->nb_f_c] = create_triangle(list[
+				ft_atoi(b[0][0])], list[ft_atoi(b[1][0])],
+				list[ft_atoi(b[2][0])]);
+		obj_set_uv(create->uv_list, b, &obj_t->triangle[create->nb_f_c], 0);
+		obj_t->triangle[++create->nb_f_c] = create_triangle(list[ft_atoi(b[3]
+				[0])], list[ft_atoi(b[0][0])], list[ft_atoi(b[2][0])]);
+		obj_set_uv(create->uv_list, b, &obj_t->triangle[create->nb_f_c], 1);
+	}
+	else
+	{
+		obj_t->triangle[++create->nb_f_c] = create_triangle(list[ft_atoi(
+					b[0][0])], list[ft_atoi(b[1][0])], list[ft_atoi(b[2][0])]);
+		obj_set_uv(create->uv_list, b, &obj_t->triangle[create->nb_f_c], 0);
+	}
+}
+
+void	obj_add_trinagles( t_object *obj_t, char **file, char **point
+		, t_point *list)
+{
+	t_creat3d		create;
+	char			**b[5];
+
+	create.i = -1;
+	create.nb_f_c = -1;
+	create.uv_list = obj_get_uv(file);
+	while (file[++create.i] != NULL)
+	{
+		if (file[create.i] != NULL && file[create.i][0] == 'f')
 		{
-			point = ft_split(file[i], ' ');
-			bar_siplit[0] = ft_split(point[1], '/');
-			bar_siplit[1] = ft_split(point[2], '/');
-			bar_siplit[2] = ft_split(point[3], '/');
-			if (point[4] != NULL)
-			{
-				bar_siplit[3] = ft_split(point[4], '/');
-				obj_t->triangle[++nb_f_c] = create_triangle(list[
-						ft_atoi(bar_siplit[0][0])],
-						list[ft_atoi(bar_siplit[1][0])],
-						list[ft_atoi(bar_siplit[2][0])]);
-				obj_set_uv(uv_list, bar_siplit, &obj_t->triangle[nb_f_c],
-					0, nb_f_c);
-				obj_t->triangle[++nb_f_c] = create_triangle(list[
-						ft_atoi(bar_siplit[3][0])],
-						list[ft_atoi(bar_siplit[0][0])],
-						list[ft_atoi(bar_siplit[2][0])]);
-				obj_set_uv(uv_list, bar_siplit,
-					&obj_t->triangle[nb_f_c], 1, nb_f_c);
-			}
-			else
-			{
-				obj_t->triangle[++nb_f_c] = create_triangle(list[
-						ft_atoi(bar_siplit[0][0])],
-						list[ft_atoi(bar_siplit[1][0])],
-						list[ft_atoi(bar_siplit[2][0])]);
-				obj_set_uv(uv_list, bar_siplit,
-					&obj_t->triangle[nb_f_c], 0, nb_f_c);
-			}
+			obj_set_trinagles(file, &create, obj_t, list);
 		}
 	}
 	obj_t->u_data.triangle = obj_t->triangle[0];
-	obj_t->index = nb_f_c;
+	obj_t->index = create.nb_f_c;
 }
 
 void	obj_square_set(t_triangle *triangle, int i, t_point *points)
@@ -73,36 +72,28 @@ void	obj_square_set(t_triangle *triangle, int i, t_point *points)
 t_triangle	*obj_cobe_cube(t_point max, t_point min)
 {
 	t_triangle	*triangle;
-	t_point		*top;
-	t_point		*low;
-	t_point		*l1;
+	t_point		*p[3];
 
 	triangle = ft_malloc(sizeof(t_triangle) * 12, "main");
-	top = obj_create_points(max,
-			(t_point){max.x, min.y, max.z},
-			(t_point){min.x, min.y, max.z},
+	p[0] = obj_create_points(max,
+			(t_point){max.x, min.y, max.z}, (t_point){min.x, min.y, max.z},
 			(t_point){min.x, max.y, max.z});
-	low = obj_create_points(min,
-			(t_point){min.x, max.y, min.z},
-			(t_point){max.x, max.y, min.z},
+	p[1] = obj_create_points(min,
+			(t_point){min.x, max.y, min.z}, (t_point){max.x, max.y, min.z},
 			(t_point){max.x, min.y, min.z});
-	obj_square_set(triangle, 0, top);
-	obj_square_set(triangle, 2, low);
+	obj_square_set(triangle, 0, p[0]);
+	obj_square_set(triangle, 2, p[1]);
 	obj_square_set(triangle, 4, obj_create_points(min,
-			(t_point){max.x, min.y, min.z},
-			(t_point){max.x, min.y, max.z},
+			(t_point){max.x, min.y, min.z}, (t_point){max.x, min.y, max.z},
 			(t_point){min.x, min.y, max.z}));
 	obj_square_set(triangle, 6, obj_create_points(max,
-			(t_point){min.x, max.y, max.z},
-			(t_point){min.x, max.y, min.z},
+			(t_point){min.x, max.y, max.z}, (t_point){min.x, max.y, min.z},
 			(t_point){max.x, max.y, min.z}));
 	obj_square_set(triangle, 8, obj_create_points(min,
-			(t_point){min.x, max.y, min.z},
-			(t_point){min.x, max.y, max.z},
+			(t_point){min.x, max.y, min.z}, (t_point){min.x, max.y, max.z},
 			(t_point){min.x, min.y, max.z}));
 	obj_square_set(triangle, 10, obj_create_points(max,
-			(t_point){max.x, min.y, max.z},
-			(t_point){max.x, min.y, min.z},
+			(t_point){max.x, min.y, max.z}, (t_point){max.x, min.y, min.z},
 			(t_point){max.x, max.y, min.z}));
 	return (triangle);
 }

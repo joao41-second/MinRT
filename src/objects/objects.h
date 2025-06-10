@@ -120,6 +120,14 @@ typedef struct s_object {
 
 } t_object;
 
+typedef struct s_creat3d
+{
+	int		i;
+	int		nb_f_c;
+	t_uv	*uv_list;
+
+} t_creat3d;
+
 t_sphere sphere(t_point point_satrt, double ray_s);
 
 void obj_square(t_point *points, t_list_ *word, t_mater mat, t_matrix matrix);
@@ -158,7 +166,7 @@ int obj_locate_face(char **file);
 
 t_uv *obj_get_uv(char **file);
 
-void obj_set_uv(t_uv *uvs, char ***line, t_triangle *tri, int fl, int index);
+void obj_set_uv(t_uv *uvs, char ***line, t_triangle *tri, int fl);
 
 
 t_mat_calculate obj_mat_calulate_init();

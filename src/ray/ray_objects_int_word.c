@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:31:53 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 13:25:46 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 19:53:40 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ t_intersection	ray_int_sphere(t_ray ray, t_sphere shp)
 		- (shp.ray_s * shp.ray_s);
 	ret.object = &shp;
 	ret.inter = (b_ * b_) - 4 * a_ * c_;
-	ret.t[1] = -1;
-	ret.t[0] = -1;
 	if (ret.inter < EPSILON)
 		return (ret);
 	temp = sqrt(ret.inter);
