@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:11:40 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/06 13:58:54 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 12:17:41 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ t_matrix	mat_cp(t_matrix mat)
 void	mat_trans(t_matrix *mat)
 {
 	t_matrix	tmp;
-	t_matrix	ret;
-	
+	t_matrix	ret;	
+
 	tmp = mat_cp(*mat);
 	ret = mat_exet(*mat, tmp, mat_transposing);
 	mat_free(mat);
@@ -94,11 +94,11 @@ void	mat_matsh_matrix(t_matrix *mat, char math, double nb)
 				mat->matr[l][c] = temp - nb;
 			if (math == '*')
 				mat->matr[l][c] = temp * nb;
-			if (math == '/'){
-				if(nb != 0)
+			if (math == '/')
+			{
+				mat->matr[l][c] = temp ;
+				if (nb != 0)
 					mat->matr[l][c] = temp / nb;
-				else 	
-					mat->matr[l][c] = temp ;
 			}
 		}
 	}

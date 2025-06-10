@@ -40,6 +40,5 @@ void	mouse_rotaitio(t_minirt *rt_struct)
 
 void	mouse(t_minirt *rt_struct)
 {
-
 	mouse_rotaitio(rt_struct);
 }

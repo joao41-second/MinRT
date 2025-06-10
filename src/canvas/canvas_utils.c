@@ -26,11 +26,11 @@ void	my_mlx_pixel_put(t_img_ *data, int x, int y, int color)
 unsigned int	my_mlx_pixel_retunr(t_img_ *data, int x, int y)
 {
 	unsigned int	color;
-	if(x > data->width)
-		x = data->width;
-	if(y > data->height)
-		y = data->height;
 
+	if (x > data->width)
+		x = data->width;
+	if (y > data->height)
+		y = data->height;
 	color = *(unsigned int *)(data->addr + (y * data->line_length + x
 				* (data->bits_per_pixel / 8)));
 	return (color);
@@ -38,20 +38,17 @@ unsigned int	my_mlx_pixel_retunr(t_img_ *data, int x, int y)
 
 int	create_trgb( int r, int g, int b)
 {
-	return ( r << 16 | g << 8 | b);
+	return (r << 16 | g << 8 | b);
 }
-t_color c_get_color(int color)
+
+t_color	c_get_color(int color)
 {
-	t_color ret;
- 
+	t_color	ret;
 
-
-	ret.red = (color >> 16 & 0xFF) /255.0 ;
-	ret.green = (color >> 8 & 0xFF) /255.0 ;
-	ret.blue = (color  & 0xFF ) /255.0;
-
-
-	return ret;
+	ret.red = (color >> 16 & 0xFF) / 255.0 ;
+	ret.green = (color >> 8 & 0xFF) / 255.0 ;
+	ret.blue = (color & 0xFF) / 255.0;
+	return (ret);
 }
 
 void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base )
@@ -81,8 +78,7 @@ void	canva_update(t_minirt *rt_struct)
 		rt_struct->canva.canva.img, 0, 0);
 }
 
-
 double	c_rgb_to_heihte(t_color color)
 {
- return 0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue;
+	return (0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue);
 }

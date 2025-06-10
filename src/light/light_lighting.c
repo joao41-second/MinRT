@@ -13,6 +13,7 @@
 #include "../minRT.h"
 #include "light_struct.h"
 #include <stdio.h>
+#include <curses.h>
 
 void	lig_specular_and_difuse(t_lightnig *light,
 		t_computations comp, t_mater mat, t_light luz)
@@ -34,28 +35,23 @@ void	lig_specular_and_difuse(t_lightnig *light,
 t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 {
 	t_lightnig	light;
-	t_color c1;
-	t_color c2;
+	t_color		c1;
+	t_color		c2;	
 
-
-	
-	if(c_chek_iqual_color(mat.pattern, c_new(-1,-1,-1)) == TRUE && comp.t_luz == -2)
+	if (c_chek_iqual_color(mat.pattern,
+			c_new(-1, -1, -1)) == TRUE && comp.t_luz == -2)
 	{
-		mat.color = mat.pattern;	
-		c1 = pat_stripe_at(comp.point, 'x',mat.pattern , mat.pattern_b);
-
-		c2 = pat_stripe_at(comp.point, 'z',mat.pattern , mat.pattern_b);
-		if(c_chek_iqual_color(c1,c2) == FALSE)
+		mat.color = mat.pattern;
+		c1 = pat_stripe_at(comp.point, 'x', mat.pattern, mat.pattern_b);
+		c2 = pat_stripe_at(comp.point, 'z', mat.pattern, mat.pattern_b);
+		if (c_chek_iqual_color(c1, c2) == FALSE)
 		{
-			if(c_chek_iqual_color(mat.pattern,c2) == TRUE)
+			if (c_chek_iqual_color(mat.pattern, c2) == TRUE)
 				mat.color = c2;
 			else
-		       mat.color =	 mat.pattern_b;
-
+				mat.color = mat.pattern_b;
 		}
-		 
-
-	}	
+	}
 	light.efectiv = c_multipl(mat.color, luz.intenstiy);
 	light.luztv = normalize(sub_tuples(luz.point, comp.point));
 	light.amb_c = c_multipl(light.efectiv, c_new(mat.values.amb,
@@ -68,7 +64,7 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	}
 	else
 		lig_specular_and_difuse(&light, comp, mat, luz);
-	if(is_equal_float( comp.t_luz, 1))
+	if (is_equal_float(comp.t_luz, 1))
 	{
 		light.diffuse = c_new(0, 0, 0);
 		light.sepcular = c_new(0, 0, 0);
