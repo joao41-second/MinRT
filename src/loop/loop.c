@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 23:35:50 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 18:17:21 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,8 @@
 #include <stdio.h>
 #include <time.h>
 
-void	loop(t_minirt *rt_struct)
+void	loop_mat_word_update(t_minirt *rt_struct)
 {
-	char		*str;
-	clock_t		start;
-	clock_t		end;
-	double		vaule;
-
 	mat_set_view_transform(&rt_struct->cam_m.tranform_matrix,
 		create_point(1, 1, -3),
 		create_point(0, 0, 0),
@@ -47,6 +42,16 @@ void	loop(t_minirt *rt_struct)
 	mat_set_multip(&rt_struct->cam_m.tranform_matrix,
 		rt_struct->cam_m.calculate.restl_temp,
 		rt_struct->cam_m.calculate.tras);
+}
+
+void	loop(t_minirt *rt_struct)
+{
+	char		*str;
+	clock_t		start;
+	clock_t		end;
+	double		vaule;
+
+	loop_mat_word_update(rt_struct);
 	start = clock();
 	cm_update(&rt_struct->cam_m);
 	cm_windo_put(rt_struct, WALL_X, WALL_Y, rt_struct->needs_render);

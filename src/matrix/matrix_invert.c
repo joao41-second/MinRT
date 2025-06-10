@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 09:56:27 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/05 16:48:02 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 18:38:05 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ t_matrix	mat_inv(t_matrix mat)
 
 	invertd = mat_the_cof(mat);
 	mat_trans(&invertd);
-
 	mat_matsh_matrix(&invertd, '/', mat_det(mat));
-
 	y = -1;
 	while (++y < mat.size)
 	{

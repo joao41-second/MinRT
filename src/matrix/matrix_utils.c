@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:11:40 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 12:17:41 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 18:37:53 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,7 @@ void	mat_matsh_matrix(t_matrix *mat, char math, double nb)
 				mat->matr[l][c] = temp * nb;
 			if (math == '/')
 			{
-				mat->matr[l][c] = temp ;
-				if (nb != 0)
-					mat->matr[l][c] = temp / nb;
+				mat->matr[l][c] = temp / nb;
 			}
 		}
 	}

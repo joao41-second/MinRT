@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:00:10 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 12:03:42 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 18:24:18 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../minRT.h"
@@ -16,13 +16,10 @@ t_matrix	mat_set_3_sub(t_matrix mat, int line, int column)
 {
 	static t_matrix	new;
 	static int		ok = 0;
-	int				l;
-	int				c;
-	int				l_sub;
-	int				c_sub;
+	int				i[4];
 
-	c = -1;
-	c_sub = 0;
+	i[0] = -1;
+	i[3] = 0;
 	if (ok != 10)
 	{
 		new = mat_gener(3);
@@ -30,17 +27,15 @@ t_matrix	mat_set_3_sub(t_matrix mat, int line, int column)
 	}
 	mat_set_clear(&new);
 	new.size = mat.size -1;
-	while (++c < mat.size)
+	while (++i[0] < mat.size)
 	{
-		l = -1;
-		l_sub = -1;
-		while (++l < mat.size)
-		{
-			if (l != line && l_sub < new.size && c_sub < new.size)
-				new.matr[++l_sub][c_sub] = mat.matr[l][c];
-		}
-		if (c != column)
-			c_sub++;
+		i[1] = -1;
+		i[2] = -1;
+		while (++i[1] < mat.size)
+			if (i[1] != line && i[2] < new.size && i[3] < new.size)
+				new.matr[++i[2]][i[3]] = mat.matr[i[1]][i[0]];
+		if (i[0] != column)
+			i[3]++;
 	}
 	return (new);
 }
@@ -49,30 +44,27 @@ t_matrix	mat_set_2_sub(t_matrix mat, int line, int column)
 {
 	static t_matrix	new;
 	static int		ok = 0;
-	int				l;
-	int				c;
-	int				l_sub;
-	int				c_sub;
+	int				i[4];
 
-	c = -1;
-	c_sub = 0;
+	i[1] = -1;
+	i[3] = 0;
 	if (ok != 10)
 	{
 		new = mat_gener(2);
 		ok = 10;
 	}
 	mat_set_clear(&new);
-	while (++c < mat.size)
+	while (++i[1] < mat.size)
 	{
-		l = -1;
-		l_sub = -1;
-		while (++l < mat.size)
+		i[0] = -1;
+		i[2] = -1;
+		while (++i[0] < mat.size)
 		{
-			if (l != line && l_sub < new.size && c_sub < new.size)
-				new.matr[++l_sub][c_sub] = mat.matr[l][c];
+			if (i[0] != line && i[2] < new.size && i[3] < new.size)
+				new.matr[++i[2]][i[3]] = mat.matr[i[0]][i[1]];
 		}
-		if (c != column)
-			c_sub++;
+		if (i[1] != column)
+			i[3]++;
 	}
 	return (new);
 }

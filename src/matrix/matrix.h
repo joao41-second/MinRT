@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:44:00 by jperpct           #+#    #+#             */
-/*   Updated: 2025/04/29 16:31:07 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 18:28:07 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,4 +199,8 @@ double	mat_set_cof(t_matrix mat, int line, int column);
 void	mat_set_transpose(t_matrix *mat);
 
 void mat_set_clear(t_matrix	*matrix_);
+
+void	mat_set_identity(t_matrix	*matrix_);
+
+void	mat_set_scal(t_matrix *ret, double x, double y, double z);
 #endif
