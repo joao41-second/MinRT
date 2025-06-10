@@ -111,29 +111,25 @@ t_color	pat_pixe_at_triang(t_point point, t_img_ *img, t_triangle *trinange, t_u
 t_vector	pat_nomral_preturb(t_uv uv, t_vector normal,
 		t_img_ *img, double vaule_in_mat)
 {
-	t_color	right;
-	t_color	left;
-	t_color	up;
-	t_color	down;
-	float	vaule;
-	double	height[4];
-	double	du;
-	double	dv;
 	t_vector	vect;
+	t_color		colors[4];
+	float		vaule;
+	double		height[4];
+	t_uv		uv_;
 
 	vaule = 0.001;
-	right = c_get_color(my_mlx_pixel_retunr(img, uv.u + vaule, uv.v));
-	left = c_get_color(my_mlx_pixel_retunr(img, uv.u - vaule, uv.v));
-	up = c_get_color(my_mlx_pixel_retunr(img, uv.u, uv.v + vaule));
-	down = c_get_color(my_mlx_pixel_retunr(img, uv.u, uv.v - vaule));
-	height[0] = c_rgb_to_heihte(right);
-	height[1] = c_rgb_to_heihte(left);
-	height[2] = c_rgb_to_heihte(up);
-	height[3] = c_rgb_to_heihte(down);
-	du = (height[0] - height[1]) * vaule_in_mat;
-	dv = (height[2] - height[3]) * vaule_in_mat;
-	vect.x = normal.x + du;
+	colors[0] = c_get_color(my_mlx_pixel_retunr(img, uv.u + vaule, uv.v));
+	colors[1] = c_get_color(my_mlx_pixel_retunr(img, uv.u - vaule, uv.v));
+	colors[2] = c_get_color(my_mlx_pixel_retunr(img, uv.u, uv.v + vaule));
+	colors[3] = c_get_color(my_mlx_pixel_retunr(img, uv.u, uv.v - vaule));
+	height[0] = c_rgb_to_heihte(colors[0]);
+	height[1] = c_rgb_to_heihte(colors[1]);
+	height[2] = c_rgb_to_heihte(colors[2]);
+	height[3] = c_rgb_to_heihte(colors[3]);
+	uv_.u = (height[0] - height[1]) * vaule_in_mat;
+	uv_.v = (height[2] - height[3]) * vaule_in_mat;
+	vect.x = normal.x + uv_.u;
 	vect.y = normal.y ;
-	vect.z = normal.z + dv;
+	vect.z = normal.z + uv_.v;
 	return (normalize(vect));
 }

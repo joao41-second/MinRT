@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:31:53 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/22 11:44:25 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/10 13:17:44 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	calculate_triangle_intersection(t_ray ray, t_triangle tri, float *t)
 	t_vector	dir_cross_e2;
 	t_vector	p1_to_origin;
 	t_vector	origin_cross_e1;
-	static float		fuv[3];
+	float		fuv[3];
 
 	dir_cross_e2 = cross_product(ray.direction, tri.edge2);
 	fuv[0] = dot_product(tri.edge1, dir_cross_e2);
@@ -57,7 +57,7 @@ static int	calculate_triangle_intersection(t_ray ray, t_triangle tri, float *t)
 t_intersection	ray_int_triangle(t_ray ray, t_triangle tri)
 {
 	t_intersection	ret;
-	static float			t;
+	static float	t;
 
 	ret = init_intersection();
 	if (!calculate_triangle_intersection(ray, tri, &t))
