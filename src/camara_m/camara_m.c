@@ -51,11 +51,6 @@ t_camera_ms	cm_init(double x, double y, double field_of_view
 	return (ret);
 }
 
-void	cm_update(t_camera_ms *cam)
-{
-	mat_set_inv(&cam->inv_tranform_matrix, cam->tranform_matrix);
-}
-
 t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
 {
 	t_ray	ret;

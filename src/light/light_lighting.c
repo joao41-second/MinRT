@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:43:55 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 22:49:02 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 18:13:57 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,7 @@ void	lig_specular_and_difuse(t_lightnig *light,
 t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 {
 	t_lightnig	light;
-	t_color		c1;
-	t_color		c2;	
 
-	if (c_chek_iqual_color(mat.pattern,
-			c_new(-1, -1, -1)) == TRUE && comp.t_luz == -2)
-	{
-		mat.color = mat.pattern;
-		c1 = pat_stripe_at(comp.point, 'x', mat.pattern, mat.pattern_b);
-		c2 = pat_stripe_at(comp.point, 'z', mat.pattern, mat.pattern_b);
-		if (c_chek_iqual_color(c1, c2) == FALSE)
-		{
-			if (c_chek_iqual_color(mat.pattern, c2) == TRUE)
-				mat.color = c2;
-			else
-				mat.color = mat.pattern_b;
-		}
-	}
 	light.efectiv = c_multipl(mat.color, luz.intenstiy);
 	light.luztv = normalize(sub_tuples(luz.point, comp.point));
 	light.amb_c = c_multipl(light.efectiv, c_new(mat.values.amb,
@@ -71,4 +55,14 @@ t_color	lig_lighting(t_mater mat, t_light luz, t_computations comp)
 	}
 	light.ret = c_adding(c_adding(light.sepcular, light.amb_c), light.diffuse);
 	return (light.ret);
+}
+
+void	lig_print_computations(t_computations comp)
+{
+	printf("point ");
+	lig_print_tuple(comp.point);
+	printf("eyev ");
+	lig_print_tuple(comp.eyev);
+	printf("normal ");
+	lig_print_tuple(comp.norm);
 }

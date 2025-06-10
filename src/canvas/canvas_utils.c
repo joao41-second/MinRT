@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:13:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/31 15:18:55 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 17:00:23 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,4 @@ void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base )
 		base.color[2] = 0;
 	my_mlx_pixel_put(&rt_struct->canva.canva, x, y, create_trgb((int)(base.red),
 			(int)(base.green), (int)(base.blue)));
-}
-
-void	canva_update(t_minirt *rt_struct)
-{
-	mlx_put_image_to_window(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,
-		rt_struct->canva.canva.img, 0, 0);
-}
-
-double	c_rgb_to_heihte(t_color color)
-{
-	return (0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue);
 }
