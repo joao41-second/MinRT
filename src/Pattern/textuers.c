@@ -6,7 +6,7 @@
 /*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 23:43:45 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/31 15:17:23 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/10 16:54:10 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,73 +39,34 @@ t_color	pat_pixe_at(t_point point, t_img_ *img, t_uv *uv)
 	return (color);
 }
 
-t_uv	uv_add(t_uv a, t_uv b)
+t_color	pat_pixe_at_triang(t_point point, t_img_ *img,
+		t_triangle *trinange, t_uv *ret_uv)
 {
-	t_uv	uv;
-
-	uv.u = a.u + b.u;
-	uv.v = a.v + b.v;
-	return (uv);
-}
-
-t_uv	uv_sacl(t_uv a, float b)
-{
-	t_uv	uv;
-
-	uv.u = a.u * b;
-	uv.v = a.v * b;
-	return (uv);
-}
-
-t_color	pat_pixe_at_triang(t_point point, t_img_ *img, t_triangle *trinange, t_uv *ret_uv)
-{
-	t_uv	uv;
-	float	u;
-	float	v;
-	t_point	edge0;
-	t_point	edge1;
-	t_point	edge2;
+	t_uv	uv;	
 	float	dp[5];
-	float	denom;
-	float	beta;
-	float	gamma;
-	float	alpha;
-	int		x;
-	int		y;
+	float	vaules[4];
 
-	uv.u = 0;
-	uv.v = 0;
-	uv.index = 0;
-	edge2 = sub_tuples(point, trinange->p1);
-	edge1 = trinange->edge2;
-	edge0 = trinange->edge1;
-	dp[0] = dot_product(edge0, edge0);
-	dp[1] = dot_product(edge1, edge0);
-	dp[2] = dot_product(edge1, edge1);
-	dp[3] = dot_product(edge2, edge0);
-	dp[4] = dot_product(edge2, edge1);
-	denom = (dp[0] * dp[2]) - (dp[1] * dp[1]);
-	beta = (dp[2] * dp[3] - dp[1] * dp[4]) / denom;
-	gamma = (dp[0] * dp[4] - dp[1] * dp[3]) / denom;
-	alpha = 1.0 - beta - gamma;
-	uv = uv_add(uv_add(uv_sacl(trinange->uv1, alpha),
-				uv_sacl(trinange->uv2, beta)), uv_sacl(trinange->uv3, gamma));
-	x = (int)(uv.u * (img->width - 1));
-	y = (int)((1.0f - uv.v) * (img->height));
-	if (x < 0)
-		x = 0;
-	if (x >= img->width)
-		x = img->width - 1;
-	if (y < 0)
-		y = 0;
-	if (y >= img->height)
-		y = img->height - 1;
+	pat_set_dp_trinagle(trinange->edge1, trinange->edge2,
+		sub_tuples(point, trinange->p1), dp);
+	vaules[0] = (dp[0] * dp[2]) - (dp[1] * dp[1]);
+	vaules[1] = (dp[2] * dp[3] - dp[1] * dp[4]) / vaules[0];
+	vaules[2] = (dp[0] * dp[4] - dp[1] * dp[3]) / vaules[0];
+	vaules[3] = 1.0 - vaules[1] - vaules[2];
+	uv = uv_add(uv_add(uv_sacl(trinange->uv1, vaules[3]), uv_sacl(trinange->uv2,
+					vaules[1])), uv_sacl(trinange->uv3, vaules[2]));
+	uv.u = (int)(uv.u * (img->width - 1));
+	uv.v = (int)((1.0f - uv.v) * (img->height));
+	if (uv.u < 0)
+		uv.u = 0;
+	if (uv.u >= img->width)
+		uv.u = img->width - 1;
+	if (uv.v < 0)
+		uv.v = 0;
+	if (uv.v >= img->height)
+		uv.v = img->height - 1;
 	if (ret_uv != NULL)
-	{
-		ret_uv->u = x;
-		ret_uv->v = y;
-	}
-	return (c_get_color(my_mlx_pixel_retunr(img, x, y)));
+		*ret_uv = uv;
+	return (c_get_color(my_mlx_pixel_retunr(img, uv.u, uv.v)));
 }
 
 t_vector	pat_nomral_preturb(t_uv uv, t_vector normal,
