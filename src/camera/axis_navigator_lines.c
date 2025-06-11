@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 10:34:47 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/22 09:35:13 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/02 11:18:02 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * Draw a thick line
  */
-static void	draw_thick_line(t_img_ *img, t_point start, t_point end, int color)
+void	draw_thick_line(t_img_ *img, t_point start, t_point end, int color)
 {
 	int		i;
 	int		j;
@@ -83,7 +83,7 @@ t_point	proj_point(t_camera_ms *cam, t_point point)
 /**
  * Draw the axis cube navigator with the Blender-style orientation indicator
  */
-void	draw_axis_navigator(t_minirt *rt_struct)
+void	draw_axis_navigator(t_minirt *rt_struct, t_img_ *target)
 {
 	t_point	ori;
 	t_point	end;
@@ -91,10 +91,10 @@ void	draw_axis_navigator(t_minirt *rt_struct)
 
 	ori = proj_point(&rt_struct->camera, create_point(0, 0, 0));
 	end = proj_point(&rt_struct->camera, create_point(1, 0, 0));
-	draw_thick_line(&rt_struct->canva.canva, ori, end, COLOR_X);
+	draw_thick_line(target, ori, end, COLOR_X);
 	end = proj_point(&rt_struct->camera, create_point(0, 1, 0));
-	draw_thick_line(&rt_struct->canva.canva, ori, end, COLOR_Y);
+	draw_thick_line(target, ori, end, COLOR_Y);
 	end = proj_point(&rt_struct->camera, create_point(0, 0, 1));
-	draw_thick_line(&rt_struct->canva.canva, ori, end, COLOR_Z);
+	draw_thick_line(target, ori, end, COLOR_Z);
 	lab = proj_point(&rt_struct->camera, create_point(1.2, 0, 0));
 }

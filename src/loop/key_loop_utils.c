@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/22 00:12:36 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/05 13:29:28 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,28 @@ void	set_ortho(t_camera_ms *cam, t_point origin,
 {
 	cam->origin = origin;
 	cam->direction = direction;
-	camera_update_view(cam);
 }
 
-void	handle_orthographic_view(int keycode, t_camera_ms *camera)
+void	handle_orthographic_view(t_minirt *rt_struct)
 {
-	if (keycode == NUMPAD_1)
-		set_ortho(camera, create_point(0, 1, -10), create_vector(0, 0, 1));
-	else if (keycode == NUMPAD_4)
-		set_ortho(camera, create_point(10, 1, 0), create_vector(-1, 0, 0));
-	else if (keycode == NUMPAD_7)
-		set_ortho(camera, create_point(0, 10, 0), create_vector(0, -1, 0));
-	else if (keycode == NUMPAD_2)
-		set_ortho(camera, create_point(0, 1, 10), create_vector(0, 0, -1));
-	else if (keycode == NUMPAD_5)
-		set_ortho(camera, create_point(-10, 1, 0), create_vector(1, 0, 0));
-	else if (keycode == NUMPAD_8)
-		set_ortho(camera, create_point(0, -10, 0), create_vector(0, 1, 0));
+	if (rt_struct->clicked == NUMPAD_1)
+		set_ortho(&rt_struct->camera, create_point(0, 1, -10), \
+		create_vector(0, 0, 1));
+	else if (rt_struct->clicked == NUMPAD_4)
+		set_ortho(&rt_struct->camera, create_point(10, 1, 0), \
+		create_vector(-1, 0, 0));
+	else if (rt_struct->clicked == NUMPAD_7)
+		set_ortho(&rt_struct->camera, create_point(0, 10, 0), \
+		create_vector(0, -1, 0));
+	else if (rt_struct->clicked == NUMPAD_2)
+		set_ortho(&rt_struct->camera, create_point(0, 1, 10), \
+		create_vector(0, 0, -1));
+	else if (rt_struct->clicked == NUMPAD_5)
+		set_ortho(&rt_struct->camera, create_point(-10, 1, 0), \
+		create_vector(1, 0, 0));
+	else if (rt_struct->clicked == NUMPAD_8)
+		set_ortho(&rt_struct->camera, create_point(0, -10, 0), \
+		create_vector(0, 1, 0));
 	else
 		return ;
 }

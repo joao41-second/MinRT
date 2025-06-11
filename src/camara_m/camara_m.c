@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:30 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/22 11:34:41 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/02 12:55:45 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	cm_windo_put(t_minirt *rt_struct, int x_, int y_, int resul)
 	int		y;
 
 	y = 0;
-	rt_struct->cam = cm_ray_for_pixel(rt_struct->cam_m,
+	rt_struct->cam = cm_ray_for_pixel(rt_struct->camera,
 			(double)x_ / 2, (double)y_ / 2);
 	while (y < y_)
 	{

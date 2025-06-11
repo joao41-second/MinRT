@@ -6,10 +6,10 @@
 	url = git@github.com:joao41-second/ft_printf.git
 [submodule "libft/ft_get_next_line"]
 	path = libft/ft_get_next_line
+	url = git@github.com:joao41-second/ft_get_next_line.git
 [submodule "libft/list"]
 	path = libft/ft_list
 	url = git@github.com:joao41-second/ft_list.git
-	url = git@github.com:joao41-second/ft_get_next_line.git
 [submodule "libft/ft_libft"]
 	path = libft/ft_libft
 	url = git@github.com:joao41-second/ft_libft.git
