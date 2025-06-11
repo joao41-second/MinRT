@@ -35,8 +35,6 @@ int	canva_loop_key(int keycode, void *param)
 	return (1);
 }
 
-
-
 void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 {
 	(void)base;

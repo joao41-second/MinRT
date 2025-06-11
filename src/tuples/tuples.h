@@ -50,7 +50,7 @@ t_tuple		cross_product(t_tuple a, t_tuple b);
 
 int			is_equal_float(float a, float b);
 
-int	is_equal_double(float a, float b);
+int			is_equal_double(float a, float b);
 int			is_equal_tuple(t_tuple a, t_tuple b);
 int			is_vector(t_tuple t);
 int			is_point(t_tuple t);

@@ -21,25 +21,23 @@
 # include "./camera/camera.h"
 # include "./light/light_struct.h"
 # include "./objects/objects.h"
-#include <strings.h>
 
 typedef struct s_camera_m
 {
-	double		x;
-	double		y;
-	double		field_of_view;
+	t_mat_calculate		calculate;
+	double				x;
+	double				y;
+	double				field_of_view;
 
-	t_point		loc;
-	t_vector	dir;
+	t_point				loc;
+	t_vector			dir;
 
-	t_matrix	tranform_matrix;
-	t_mat_calculate	calculate;
-	t_matrix	inv_tranform_matrix;
-	double		half_width;
-	double		half_height;
-	double		pixel_size;
+	t_matrix			tranform_matrix;
+	t_matrix			inv_tranform_matrix;
+	double				half_width;
+	double				half_height;
+	double				pixel_size;
 }				t_camera_ms;
-
 
 typedef struct s_world
 {
@@ -62,11 +60,11 @@ typedef struct s_minirt
 	t_list_		*word;
 	t_ray		c_ray;
 	t_light		luz[100];
-	int 		luz_index;
+	int			luz_index;
 	t_ray		cam;
 	int			needs_render;
 	t_point		point;
-	t_color 	color;
+	t_color		color;
 	double		rota_x;
 	double		rota_y;
 

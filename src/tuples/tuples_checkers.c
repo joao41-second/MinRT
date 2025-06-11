@@ -18,10 +18,6 @@ int	is_equal_float(float a, float b)
 {
 	return (fabs(a - b) < EPSILON);
 }
-int	is_equal_double(float a, float b)
-{
-	return (fabs(a - b) < EPSILON);
-}
 
 int	is_equal_tuple(t_tuple a, t_tuple b)
 {

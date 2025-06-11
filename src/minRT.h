@@ -30,18 +30,17 @@
 # include "../libft/ft_printf/ft_printf.h"
 # include "../libft/minilibx-linux/mlx.h"
 # include "../libft/minilibx-linux/mlx_int.h"
-
-# include "./tuples/tuples.h"
-# include "./matrix/matrix.h"
-# include "./ray/ray.h"
+# include "./Pattern/pattern.h"
 # include "./camara_m/camara_m.h"
+# include "./camera/camera.h"
 # include "./canvas/canvas.h"
 # include "./light/light.h"
 # include "./loop/loop.h"
+# include "./matrix/matrix.h"
 # include "./miniRT_struct.h"
 # include "./objects/objects.h"
-# include "./camera/camera.h"
-# include "./Pattern/pattern.h"
+# include "./ray/ray.h"
+# include "./tuples/tuples.h"
 # include <asm-generic/errno.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -56,13 +55,13 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-void start_word(t_minirt  *rt_struct);
-void draw_navigator(t_minirt *rt_struct);
-void print_list_(t_list_ *list);
-void draw_cube_labels(t_minirt *rt_struct);
+void	start_word(t_minirt *rt_struct);
+void	draw_navigator(t_minirt *rt_struct);
+void	print_list_(t_list_ *list);
+void	draw_cube_labels(t_minirt *rt_struct);
 
 void	start_word_test(t_minirt *rt_struct, double ambinet, t_color color);
 
-
-void obj_open_stl_start(t_minirt *rt_struct, char *file_name,t_matrix matrix,t_mater mat);
+void	obj_open_stl_start(t_minirt *rt_struct, char *file_name,
+			t_matrix matrix, t_mater mat);
 #endif

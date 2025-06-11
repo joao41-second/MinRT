@@ -34,6 +34,7 @@ t_mater	obj_material_init(t_color intensty,
 	ret.color = intensty;
 	ret.pattern_b = intensty;
 	ret.reflect = reflect;
+	ret.bumbp = 0;
 	return (ret);
 }
 

@@ -46,4 +46,3 @@ void	canva_update(t_minirt *rt_struct)
 	mlx_put_image_to_window(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,
 		rt_struct->canva.canva.img, 0, 0);
 }
-

@@ -23,7 +23,7 @@ void	my_mlx_pixel_put(t_img_ *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-unsigned int	my_mlx_pixel_retunr(t_img_ *data, int x, int y)
+int	my_mlx_pixel_retunr(t_img_ *data, int x, int y)
 {
 	unsigned int	color;
 

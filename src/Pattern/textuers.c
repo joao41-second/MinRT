@@ -78,7 +78,7 @@ t_vector	pat_nomral_preturb(t_uv uv, t_vector normal,
 	float		height[4];
 	t_uv		uv_;
 
-	vaule = 0.01;
+	vaule = 0.0001;
 	colors[0] = c_get_color(my_mlx_pixel_retunr(img, uv.u + vaule, uv.v));
 	colors[1] = c_get_color(my_mlx_pixel_retunr(img, uv.u - vaule, uv.v));
 	colors[2] = c_get_color(my_mlx_pixel_retunr(img, uv.u, uv.v + vaule));
@@ -89,8 +89,8 @@ t_vector	pat_nomral_preturb(t_uv uv, t_vector normal,
 	height[3] = c_rgb_to_heihte(colors[3]);
 	uv_.u = (height[0] - height[1]) * vaule_in_mat;
 	uv_.v = (height[2] - height[3]) * vaule_in_mat;
-	vect.x = normal.x + uv_.u;
-	vect.y = normal.y;
-	vect.z = normal.z + uv_.v;
+	vect.x = normal.x - uv_.u;
+	vect.y = normal.y - uv_.v;
+	vect.z = normal.z ;
 	return (normalize(vect));
 }

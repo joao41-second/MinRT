@@ -38,10 +38,10 @@ t_color	lig_reflect_color(t_minirt *rt_struct, t_computations comp)
 	i++;
 	point = add_tuples(comp.point, scalar_mult_tuples(comp.norm, EPSILON));
 	if (comp.object == NULL || obj == NULL || obj->matiral.reflect == 0)
-		return (c_new(0,0,0));
+		return (c_new(0, 0, 0));
 	reflec = ray_gener(point, comp.reflect);
 	color = lig_color_at(rt_struct, reflec);
-	return (c_scalar_multipl(color, 1));
+	return (c_scalar_multipl(color, obj->matiral.reflect));
 }
 
 void	lig_set_color_patern(t_mater *mat, t_computations comp)

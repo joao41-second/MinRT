@@ -33,15 +33,13 @@ t_color			lig_color_at(t_minirt *rt_struct, t_ray ray);
 
 void			lig_print_tuple(t_tuple tuple);
 
+t_color			lig_reflect_color(t_minirt *rt_struct, t_computations comp);
 
-t_color lig_reflect_color(t_minirt *rt_struct,t_computations comp);
+void			lig_set_color_patern(t_mater *mat, t_computations comp);
 
+t_color			lig_loop_ligth(t_minirt *rt_struct, t_obj_int ray_in_obj,
+					t_computations compt);
 
-void lig_set_color_patern(t_mater *mat,t_computations comp);
-
-t_color	lig_loop_ligth(t_minirt *rt_struct, t_obj_int ray_in_obj,
-		t_computations compt);
-
-void	lig_set_texture(t_object *test, t_obj_int *ray_in_obj,
-	t_computations *compt);
+void			lig_set_texture(t_object *test, t_obj_int *ray_in_obj,
+					t_computations *compt);
 #endif

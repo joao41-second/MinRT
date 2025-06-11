@@ -18,32 +18,32 @@
 
 float	dot_product(t_tuple a, t_tuple b)
 {
-	float ok;
-	ok = 0;
+	float	ok;
 
+	ok = 0;
 	ok = (a.x * b.x) + \
 		(a.y * b.y) + \
 		(a.z * b.z) + \
 		(a.w * b.w);
-	if(isnan(ok))
+	if (isnan(ok))
 	{
 		printf("nan \n");
 		lig_print_tuple(a);
-		//printf("end \n");
 	}
-	return (ok );
+	return (ok);
 }
 
 float	magnitude(t_tuple t)
 {
-	if(dot_product(t, t) == 0)
+	if (dot_product(t, t) == 0)
 		return (0);
 	return (sqrt(dot_product(t, t)));
 }
 
 t_tuple	normalize(t_tuple t)
 {
-	float	_magnitude = magnitude(t);
+	const float	_magnitude = magnitude(t);
+
 	if (is_equal_float(_magnitude, 1))
 		return (t);
 	if (is_equal_tuple(t, create_vector(0, 0, 0)))

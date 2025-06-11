@@ -70,49 +70,46 @@ t_intersection	ray_int_plane(t_ray ray, t_plane plane)
 	return (ret);
 }
 
-t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
+int	ray_chek_in_hit_box(t_object *tri, t_ray ray)
 {
-	int			i;
-	int			i_;
-	static	float		min;
 	t_intersection		intr;
-	t_intersection		min_;
+	int					i;
 
 	i = -1;
-	min = (float)INT_MIN;
-	min_.inter = 0;
-	intr.t[0] = 0;
 	while (++i < 12)
 	{
 		intr = ray_int_triangle(ray, tri->hit_box[i]);
 		if (intr.t[0] > EPSILON)
 		{
-			i = 20;
-			break ;
+			return (1);
 		}
 	}
-	if (i == 20)
+	return (0);
+}
+
+t_intersection	ray_in_trinagles(t_object *tri, int index, t_ray ray)
+{
+	const int		i_ = ray_chek_in_hit_box(tri, ray);
+	int				min;
+	int				i;
+	t_intersection	intr;
+	t_intersection	min_;
+
+	min = INT_MIN;
+	min_.inter = 0;
+	min_.t[0] = -1;
+	intr.t[0] = 0;
+	i = -1;
+	while (i_ == 1 && ++i < index)
 	{
-		i = -1;
-		while (++i < index)
+		intr = ray_int_triangle(ray, tri->triangle[i]);
+		if ((intr.t[0] > EPSILON && intr.t[0] < min_.t[0])
+			|| (min == INT_MIN && intr.t[0] > EPSILON && min))
 		{
-			intr = ray_int_triangle(ray, tri->triangle[i]);
-			if (min == INT_MIN && intr.t[0] > EPSILON)
-			{
-				min = 0;
-				min_ = intr;
-				tri->u_data.triangle = tri->triangle[i];
-			}
-			if (intr.t[0] > EPSILON && intr.t[0] < min_.t[0])
-			{
-				min_.t[0] = intr.t[0];
-				min_.t[1] = intr.t[0];
-				tri->u_data.triangle = tri->triangle[i];
-				min_ = intr;
-				i_ = i;
-			}
+			min = 0;
+			tri->u_data.triangle = tri->triangle[i];
+			min_ = intr;
 		}
-		return (min_);
 	}
-	return (intr);
+	return (min_);
 }
