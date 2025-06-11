@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minRT.h"
+#include <stdio.h>
 #include "objects.h"
 
 t_mat_calculate	obj_mat_calulate_init(void)
@@ -34,6 +35,9 @@ t_img_	*obj_creat_texture(t_canva canva, char *img)
 
 	a = 0;
 	imgg = ft_malloc(sizeof(t_img_) * 1, NULL);
+	printf("img-- %s\n",img);
+	if(img == NULL)
+		return (NULL);	
 	i = open(img, O_RDONLY);
 	if (i < 0)
 		return (NULL);
