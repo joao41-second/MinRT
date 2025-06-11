@@ -66,7 +66,6 @@ void	mat_set_rota(t_matrix *mat, char axis, double deg)
 
 void	mat_set_the_cof(t_matrix *mat, t_matrix not_inv)
 {
-	t_matrix	new_mat;
 	int			l;
 	int			c;
 

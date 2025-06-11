@@ -44,12 +44,10 @@ void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,
 	}
 }
 
-t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_)
+t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray)
 {
 	t_intersection	intr;
-	t_intersection	shadow;
 	t_obj_int		save_points;
-	static t_tuple		sh;
  	t_list_					*start;
 	t_object			*obj;
 

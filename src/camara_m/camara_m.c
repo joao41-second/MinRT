@@ -61,8 +61,8 @@ t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
 
 	xoffset = (px + 0.5) * cam.pixel_size;
 	yoffset = (py + 0.5) * cam.pixel_size;
-	pixel = mat_x_tuple((t_point){cam.half_width
-			- xoffset, cam.half_height - yoffset, -1, 1},
+	pixel = mat_x_tuple((t_point){{cam.half_width
+			- xoffset, cam.half_height - yoffset, -1, 1}},
 			cam.inv_tranform_matrix);
 	origin = mat_x_tuple(cam.loc, cam.inv_tranform_matrix);
 	ret.origin = origin;

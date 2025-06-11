@@ -95,11 +95,11 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 	t_computations	compt;
 	t_obj_int		ray_in_obj;
 	t_color			ret;
-	t_ray			luz;
 	t_color			tes;
+	t_object 		*obj;
 
 	ret = c_new(0, 0, 0);
-	ray_in_obj = ray_for_objects(rt_struct->word, ray, luz);
+	ray_in_obj = ray_for_objects(rt_struct->word, ray);
 	if (ray_in_obj.min > EPSILON)
 	{
 		compt = lig_prepare_computations(ray_in_obj, ray_in_obj.ray);
@@ -107,6 +107,10 @@ t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
 		lig_set_color_patern(&ray_in_obj.mat, compt);
 		tes = shadow_calcule(ray_in_obj,
 				rt_struct->luz, ray, rt_struct);
+		obj = ray_in_obj.object;
+		if (compt.uv.v != -1)
+			compt.norm = pat_nomral_preturb(compt.uv, compt.norm,
+					obj->texture, 1);
 		ret = c_adding(lig_loop_ligth(rt_struct, ray_in_obj, compt),
 				lig_reflect_color(rt_struct, compt));
 		ret = c_subtracting(c_new(ret.red, ret.green, ret.blue), tes);

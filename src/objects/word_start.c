@@ -23,7 +23,6 @@ void start_word(t_minirt *rt_struct) {
   t_mater mat3;
   t_object *obj_sphere;
   t_object *obj_sphere2;
-  t_object *obj_sphere3;
   t_point luz;
 
   luz = create_point(0, 0, 0);
@@ -40,14 +39,14 @@ ray_set_transform_obj(
       mat_multip(mat_multip(mat_gener_scal(1, 1, 1), mat_gener_trans(0, 1, 1)),
                  mat_gener_rota('z', 0.5)));
 
-   ft_add_node(obj_sphere, &word_objects);
+   //ft_add_node(obj_sphere, &word_objects);
 
   mat2 = obj_material_init(c_new(0, 1, 0), c_new(1, 1, 1),
                            obj_init_values_material(0.1, 0.6, 0.3, 100),0);
 
   sph2 = sphere(create_point(0, 0, 0), 1);
   obj_sphere2 =
-      create_object(&sph2, OBJ_SPHERE, mat2,
+      create_object(&sph2, OBJ_SPHERE, mat1,
                     obj_creat_texture(rt_struct->canva, "./texture/word.xpm"));
   my_mlx_pixel_retunr(obj_sphere2->texture, 1, 1);
   ray_set_transform_obj(
@@ -56,12 +55,12 @@ ray_set_transform_obj(
                  mat_gener_rota('z', 0.5)));
  ft_add_node(obj_sphere2, &word_objects);
   mat3 = obj_material_init(c_new(1, 1, 0), c_new(1, 0, 0),
-                           obj_init_values_material(0.1, 0.6, 0.3, 100),0);
+                           obj_init_values_material(0.1, 0.6, 0.3, 100),0.5);
 
   t_plane pln = create_plane(create_point(0, -2, 0), create_point(1, -2, 0),
                              create_point(0, -2, 5));
 
-  t_object *obj_plane = create_object(&pln, OBJ_PLANE, mat2, NULL);
+  t_object *obj_plane = create_object(&pln, OBJ_PLANE, mat3, NULL);
 
   ray_set_transform_obj(obj_plane, mat_multip(mat_gener_scal(1, 1, 1),
                                               mat_gener_trans(0, 0, 0)));
@@ -76,19 +75,18 @@ ray_set_transform_obj(
 
   rt_struct->word = ft_node_start(word_objects);
   rt_struct->luz[0] = ligth_init(c_new(3, 3, 3), luz); 
-  rt_struct->luz[1] = ligth_init(c_new(1, 1, 1), (t_point){50, 3, 0});
+  rt_struct->luz[1] = ligth_init(c_new(1, 1, 1), (t_point){{50, 3, 0}});
   rt_struct->luz_index= 1;
 }
 
 void start_word_test(t_minirt *rt_struct, double ambinet, t_color color) {
   t_sphere sph;
   t_sphere sph2;
-  t_sphere sph3;
   t_list_ *word_objects;
   t_mater mat1;
 
   t_point luz = create_point(-10, 10, -10);
-
+(void )color;
   word_objects = NULL;
   sph = sphere(create_point(0, 0, 0), 1);
   mat1 = obj_material_init(c_new(1, 0, 0), c_new(-1, -1, -1),

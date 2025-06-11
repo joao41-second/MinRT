@@ -14,12 +14,12 @@
 #include <math.h>
 #include <stdio.h>
 #include <strings.h>
+#include "../matrix/matrix.h"
 
 t_color	pat_pixe_at(t_point point, t_img_ *img, t_uv *uv)
 {
 	int		x;
 	int		y;
-	int		col;
 	double	theta;
 	t_color	color;
 
@@ -75,10 +75,10 @@ t_vector	pat_nomral_preturb(t_uv uv, t_vector normal,
 	t_vector	vect;
 	t_color		colors[4];
 	float		vaule;
-	double		height[4];
+	float		height[4];
 	t_uv		uv_;
 
-	vaule = 0.001;
+	vaule = 0.01;
 	colors[0] = c_get_color(my_mlx_pixel_retunr(img, uv.u + vaule, uv.v));
 	colors[1] = c_get_color(my_mlx_pixel_retunr(img, uv.u - vaule, uv.v));
 	colors[2] = c_get_color(my_mlx_pixel_retunr(img, uv.u, uv.v + vaule));
@@ -90,7 +90,7 @@ t_vector	pat_nomral_preturb(t_uv uv, t_vector normal,
 	uv_.u = (height[0] - height[1]) * vaule_in_mat;
 	uv_.v = (height[2] - height[3]) * vaule_in_mat;
 	vect.x = normal.x + uv_.u;
-	vect.y = normal.y ;
+	vect.y = normal.y;
 	vect.z = normal.z + uv_.v;
 	return (normalize(vect));
 }

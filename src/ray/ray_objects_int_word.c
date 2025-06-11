@@ -16,7 +16,6 @@
 #include <stdio.h>
 
 // Add a forward declaration for check_cap at the top of the file
-static int	check_cap(t_ray ray, double t, t_cylinder cylinder);
 
 // At2+By+C=0
 //
@@ -78,10 +77,9 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 	static	float		min;
 	t_intersection		intr;
 	t_intersection		min_;
-	t_triangle		tria;	
 
 	i = -1;
-	min = (float)INT_MAX;
+	min = (float)INT_MIN;
 	min_.inter = 0;
 	intr.t[0] = 0;
 	while (++i < 12)
@@ -99,7 +97,7 @@ t_intersection ray_in_trinagles(t_object *tri,int index,t_ray ray)
 		while (++i < index)
 		{
 			intr = ray_int_triangle(ray, tri->triangle[i]);
-			if (min == INT_MAX && intr.t[0] > EPSILON)
+			if (min == INT_MIN && intr.t[0] > EPSILON)
 			{
 				min = 0;
 				min_ = intr;

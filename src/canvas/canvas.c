@@ -22,6 +22,7 @@ int	canva_loop(t_minirt *rt_struct)
 
 int	canva_mause_loop(t_minirt *rt_struct)
 {
+	(void)(rt_struct);
 	return (1);
 }
 
@@ -34,13 +35,7 @@ int	canva_loop_key(int keycode, void *param)
 	return (1);
 }
 
-int	canva_loop_mouse(int button, int x, int y, void *param)
-{
-	t_minirt	*rt_struct;
-	t_ray		ray;
 
-	return (1);
-}
 
 void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 {
@@ -53,7 +48,6 @@ void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 			&rt_struct->canva.canva.line_length,
 			&rt_struct->canva.canva.endian);
 	mlx_key_hook(rt_struct->canva.mlx_wind, canva_loop_key, rt_struct);
-	mlx_mouse_hook(rt_struct->canva.mlx_wind, canva_loop_mouse, rt_struct);
 	mlx_loop_hook(rt_struct->canva.mlx, canva_loop, rt_struct);
 	mlx_hook(rt_struct->canva.mlx_wind,
 		17, 01, &mlx_loop_end, rt_struct->canva.mlx);

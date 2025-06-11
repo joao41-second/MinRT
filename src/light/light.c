@@ -38,7 +38,7 @@ t_color	lig_reflect_color(t_minirt *rt_struct, t_computations comp)
 	i++;
 	point = add_tuples(comp.point, scalar_mult_tuples(comp.norm, EPSILON));
 	if (comp.object == NULL || obj == NULL || obj->matiral.reflect == 0)
-		return ((t_color){0, 0, 0});
+		return (c_new(0,0,0));
 	reflec = ray_gener(point, comp.reflect);
 	color = lig_color_at(rt_struct, reflec);
 	return (c_scalar_multipl(color, 1));
@@ -76,9 +76,6 @@ void	lig_set_texture(t_object *test, t_obj_int *ray_in_obj,
 			ray_in_obj->mat.color = pat_pixe_at_triang(
 					compt->textur_point, test->texture,
 					&test->u_data.triangle, NULL);
-		if (compt->uv.v != -1)
-			compt->norm = pat_nomral_preturb(compt->uv, compt->norm,
-					test->texture, 1);
 	}
 }
 

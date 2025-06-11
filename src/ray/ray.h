@@ -32,7 +32,7 @@ t_intersection	ray_int_object(t_ray ray, t_object *obj);
 t_tuple			ray_ang_to_vect(double x, double y, double z);
 
 
-t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray, t_ray shadow_);
+t_obj_int	ray_for_objects(t_list_ *objs_w, t_ray ray);
 
 void			ray_canva(t_minirt *rt_struct);
 

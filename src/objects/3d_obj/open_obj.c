@@ -43,11 +43,9 @@ void	obj_set_trinagles(char **file, t_creat3d *create,
 	}
 }
 
-void	obj_add_trinagles( t_object *obj_t, char **file, char **point
-		, t_point *list)
+void	obj_add_trinagles( t_object *obj_t, char **file, t_point *list)
 {
 	t_creat3d		create;
-	char			**b[5];
 
 	create.i = -1;
 	create.nb_f_c = -1;
@@ -76,25 +74,25 @@ t_triangle	*obj_cobe_cube(t_point max, t_point min)
 
 	triangle = ft_malloc(sizeof(t_triangle) * 12, "main");
 	p[0] = obj_create_points(max,
-			(t_point){max.x, min.y, max.z}, (t_point){min.x, min.y, max.z},
-			(t_point){min.x, max.y, max.z});
+			(t_point){{max.x, min.y, max.z}}, (t_point){{min.x, min.y, max.z}},
+			(t_point){{min.x, max.y, max.z}});
 	p[1] = obj_create_points(min,
-			(t_point){min.x, max.y, min.z}, (t_point){max.x, max.y, min.z},
-			(t_point){max.x, min.y, min.z});
+			(t_point){{min.x, max.y, min.z}}, (t_point){{max.x, max.y, min.z}},
+			(t_point){{max.x, min.y, min.z}});
 	obj_square_set(triangle, 0, p[0]);
 	obj_square_set(triangle, 2, p[1]);
 	obj_square_set(triangle, 4, obj_create_points(min,
-			(t_point){max.x, min.y, min.z}, (t_point){max.x, min.y, max.z},
-			(t_point){min.x, min.y, max.z}));
+			(t_point){{max.x, min.y, min.z}}, (t_point){{max.x, min.y, max.z}},
+			(t_point){{min.x, min.y, max.z}}));
 	obj_square_set(triangle, 6, obj_create_points(max,
-			(t_point){min.x, max.y, max.z}, (t_point){min.x, max.y, min.z},
-			(t_point){max.x, max.y, min.z}));
+			(t_point){{min.x, max.y, max.z}}, (t_point){{min.x, max.y, min.z}},
+			(t_point){{max.x, max.y, min.z}}));
 	obj_square_set(triangle, 8, obj_create_points(min,
-			(t_point){min.x, max.y, min.z}, (t_point){min.x, max.y, max.z},
-			(t_point){min.x, min.y, max.z}));
+			(t_point){{min.x, max.y, min.z}}, (t_point){{min.x, max.y, max.z}},
+			(t_point){{min.x, min.y, max.z}}));
 	obj_square_set(triangle, 10, obj_create_points(max,
-			(t_point){max.x, min.y, max.z}, (t_point){max.x, min.y, min.z},
-			(t_point){max.x, max.y, min.z}));
+			(t_point){{max.x, min.y, max.z}}, (t_point){{max.x, min.y, min.z}},
+			(t_point){{max.x, max.y, min.z}}));
 	return (triangle);
 }
 
@@ -152,13 +150,12 @@ int	obj_chek_fd(char *name)
 void	obj_set_all_trianges(char *file_name, t_object *obj_t, char **file)
 {
 	t_point	*point_list;
-	char	**point;
 	int		nb;	
 
 	ft_pocket_set("main");
 	point_list = obj_list_the_pointres(file_name, &nb);
 	obj_add_hit_box(obj_t, nb, point_list);
-	obj_add_trinagles(obj_t, file, point, point_list);
+	obj_add_trinagles(obj_t, file, point_list);
 	obj_t->u_data.triangle = obj_t->triangle[0];
 	ft_pocket_set("add_obj");
 }
@@ -179,8 +176,8 @@ void	obj_open_stl_start(t_minirt *rt_struct, char *file_name,
 	file = obj_get_file(file_name, &nb_face);
 	nb_face = obj_locate_face(file);
 	ft_pocket_set("main");
-	new = create_triangle((t_point){0, 0, 0},
-			(t_point){0, 0, 0}, (t_point){0, 0, 0});
+	new = create_triangle((t_point){{0, 0, 0}},
+			(t_point){{0, 0, 0}}, (t_point){{0, 0, 0}});
 	obj_t = create_object(&new, OBJ_SQUARE,
 			mat, obj_creat_texture(rt_struct->canva,
 				obj_texture_xpm(file_name)));
