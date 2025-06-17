@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:31:15 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 18:17:21 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/17 17:41:20 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ void	loop(t_minirt *rt_struct)
 	cm_update(&rt_struct->cam_m);
 	cm_windo_put(rt_struct, WALL_X, WALL_Y, rt_struct->needs_render);
 	end = clock();
-	printf("time for gener the frame %f second\n",
-		((double)end - (double)start)
-		/ (double)CLOCKS_PER_SEC);
 	vaule = ((double)((double)end - (double)start) / (double)CLOCKS_PER_SEC);
 	canva_update(rt_struct);
 	mlx_string_put(rt_struct->canva.mlx,

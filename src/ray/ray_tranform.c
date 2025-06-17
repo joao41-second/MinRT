@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:12:41 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 13:32:28 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/17 18:46:49 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_ray	ray_transform(t_ray ray, t_matrix mat)
 	t_ray	new_ray;
 
 	new_ray = ray_gener(mat_x_tuple(ray.origin, mat),
-			mat_x_tuple(ray.direction, mat));
+			mat_x_tuple(ray.dir, mat));
 	return (new_ray);
 }
 

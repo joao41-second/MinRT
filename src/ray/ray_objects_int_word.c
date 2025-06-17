@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:31:53 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 19:53:40 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/17 18:46:31 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ t_intersection	ray_int_sphere(t_ray ray, t_sphere shp)
 	double			temp;
 	t_intersection	ret;
 
-	a_ = ((ray.direction.x * ray.direction.x) + (ray.direction.y
-				* ray.direction.y) + (ray.direction.z * ray.direction.z));
-	b_ = 2 * ((ray.direction.x * (ray.origin.x - shp.center.x))
-			+ (ray.direction.y * (ray.origin.y - shp.center.y))
-			+ (ray.direction.z * (ray.origin.z - shp.center.z)));
+	a_ = ((ray.dir.x * ray.dir.x) + (ray.dir.y
+				* ray.dir.y) + (ray.dir.z * ray.dir.z));
+	b_ = 2 * ((ray.dir.x * (ray.origin.x - shp.center.x))
+			+ (ray.dir.y * (ray.origin.y - shp.center.y))
+			+ (ray.dir.z * (ray.origin.z - shp.center.z)));
 	c_ = ((ray.origin.x - shp.center.x) * (ray.origin.x - shp.center.x))
 		+ ((ray.origin.y - shp.center.y) * (ray.origin.y - shp.center.y))
 		+ ((ray.origin.z - shp.center.z) * (ray.origin.z - shp.center.z))
@@ -60,8 +60,8 @@ t_intersection	ray_int_plane(t_ray ray, t_plane plane)
 
 	a = -(plane.normal.x * ray.origin.x + plane.normal.y
 			* ray.origin.y + plane.normal.z * ray.origin.z);
-	b = (plane.normal.x * ray.direction.x + plane.normal.y
-			* ray.direction.y + plane.normal.z * ray.direction.z);
+	b = (plane.normal.x * ray.dir.x + plane.normal.y
+			* ray.dir.y + plane.normal.z * ray.dir.z);
 	t = (a / b);
 	ret.inter = t;
 	ret.t[0] = t;

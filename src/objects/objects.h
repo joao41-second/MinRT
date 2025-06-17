@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:30:36 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/11 16:30:41 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/17 18:44:03 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef OBJECTS_H
 # define OBJECTS_H
 
@@ -159,7 +160,7 @@ t_object				*create_object(void *data, t_obj_type type, t_mater mat,
 
 t_plane					create_plane(t_point point1, t_point point2,
 							t_point point3);
-
+t_plane					create_plane_parser(t_point p, t_vector n);
 t_m_values				obj_init_values_material(double ambient, double diffuse,
 							double sepcular, double shininess);
 
@@ -189,4 +190,12 @@ void					obj_set_uv(t_uv *uvs, char ***line, t_triangle *tri,
 							int fl);
 
 t_mat_calculate			obj_mat_calulate_init(void);
+
+void					obj_set_trinagles(char **file, t_creat3d *create,
+							t_object *obj_t, t_point *list);
+void					obj_add_trinagles( t_object *obj_t, char **file,
+							t_point *list);
+void					obj_square_set(t_triangle *triangle, int i,
+							t_point *points);
+t_triangle				*obj_cobe_cube(t_point max, t_point min);
 #endif

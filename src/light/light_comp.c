@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_comp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 18:12:20 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/17 18:45:23 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 	ret.object = inter.object;
 	ret.point = ray_position(ray, ret.t);
 	ret.textur_point = ray_position(ray_, ret.t);
-	ret.eyev = neg_tuple(ray.direction);
+	ret.eyev = neg_tuple(ray.dir);
 	ret.norm = lig_normalize(*obj, ret.point);
 	ret.t_luz = inter.shadow;
 	if (dot_product(ret.norm, ret.eyev) < EPSILON)
@@ -49,7 +49,7 @@ t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 	}
 	else
 		ret.inside = FALSE;
-	ret.reflect = lig_reflect(ray.direction, ret.norm);
+	ret.reflect = lig_reflect(ray.dir, ret.norm);
 	return (ret);
 }
 
@@ -76,7 +76,7 @@ t_color	shadow_calcule(t_obj_int save_points, t_light *shadow_,
 		while (++i <= rt_struct->luz_index)
 		{
 			rat.origin = ray_position(ray, save_points.min);
-			rat.direction = shadow_[i].point;
+			rat.dir = shadow_[i].point;
 			save_points.shadow = ray_for_shadow(rt_struct->word,
 					rat, save_points.object);
 			comp = lig_prepare_computations(save_points, rat);

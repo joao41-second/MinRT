@@ -6,7 +6,7 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/05/21 21:49:55 by jperpct          ###   ########.fr        #
+#    Updated: 2025/06/17 18:53:08 by rerodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,71 @@ VAL = valgrind --leak-check=full
 MAKEFLAGS += -s
 
 # Source files
-SRCS = $(shell find src -name '*.c')
+# SRCS = $(shell find src -name '*.c')
+
+SRCS = src/camara_m/camara_m.c \
+       src/camara_m/camara_m_utilis.c \
+       src/canvas/canvas.c \
+       src/canvas/canvas_utils.c \
+       src/canvas/colors.c \
+       src/canvas/colors_check.c \
+       src/light/light.c \
+       src/light/light_comp.c \
+       src/light/light_lighting.c \
+       src/light/lig_norm_obj.c \
+       src/light/lig_view_transform.c \
+       src/loop/key_loop.c \
+       src/loop/loop.c \
+       src/loop/muose.c \
+       src/main.c \
+       src/matrix/matrix.c \
+       src/matrix/matrix_det.c \
+       src/matrix/matrix_func_param.c \
+       src/matrix/matrix_invert.c \
+       src/matrix/matrix_not_memory/matrix_type_extra.c \
+       src/matrix/matrix_not_memory/matrix_type_gener.c \
+       src/matrix/matrix_not_memory/matrix_type_utilits.c \
+       src/matrix/matrix_not_memory/mat_set_det.c \
+       src/matrix/matrix_operacion.c \
+       src/matrix/matrix_rotation.c \
+       src/matrix/matrix_shearing.c \
+       src/matrix/matrix_translation.c \
+       src/matrix/matrix_updated.c \
+       src/matrix/matrix_utils.c \
+       src/objects/3d_obj/obj_open_uv_point.c \
+       src/objects/3d_obj/open_obj.c \
+       src/objects/3d_obj/open_obj_extra.c \
+       src/objects/3d_obj/open_obj_utils.c \
+       src/objects/matirial.c \
+       src/objects/obj_calcule/cylinder.c \
+       src/objects/obj_calcule/light.c \
+       src/objects/obj_calcule/plane.c \
+       src/objects/obj_calcule/sphere.c \
+       src/objects/obj_calcule/square.c \
+       src/objects/obj_calcule/triangle.c \
+       src/objects/objects.c \
+       src/objects/obj_mat_calule.c \
+       src/objects/obj_mat_init.c \
+       src/objects/word_start.c \
+       src/parser/parser.c \
+       src/parser/parser_elements.c \
+       src/parser/parser_elements_utils.c \
+       src/parser/parser_utils.c \
+       src/Pattern/stripe.c \
+       src/Pattern/textuers.c \
+       src/Pattern/uv_utilits.c \
+       src/ray/ray.c \
+       src/ray/ray_in_shadow.c \
+       src/ray/ray_limit.c \
+       src/ray/ray_objects_int_cylinder.c \
+       src/ray/ray_objects_int_triangle.c \
+       src/ray/ray_objects_int_word.c \
+       src/ray/ray_objects_logic.c \
+       src/ray/ray_tranform.c \
+       src/tuples/tuples.c \
+       src/tuples/tuples_checkers.c \
+       src/tuples/tuples_manipulations.c \
+       src/tuples/tuples_operations.c
 
 # Object files
 OBJDIR = Objs
@@ -108,12 +172,13 @@ test_vall: all
 	make val -C tests
 
 
+SCENE = ./scenes/obj.rt
 s:
-	clear && make re && ./$(NAME)
+	clear && make re && ./$(NAME) $(SCENE)
 n:
-	clear && make renew && ./$(NAME)
+	clear && make renew && ./$(NAME) $(SCENE)
 v:
-	clear && make re && $(VAL) ./$(NAME)
+	clear && make re && $(VAL) ./$(NAME)  $(SCENE)
 e:
 	make re && env -i ./$(NAME)
 b:

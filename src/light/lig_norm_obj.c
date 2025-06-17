@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 11:38:59 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 11:41:04 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:40:30 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,29 @@ t_vector	lig_normalize_plane(t_object pln, t_point point)
 	return (ret);
 }
 
+t_vector	lig_normalize_cyl(t_object obj, t_point p_the_obj)
+{
+	t_cylinder	*cylinder;
+	t_vector	obj_point;
+	double		dist;
+	t_point		projected;
+	t_vector	normal;
+
+	cylinder = &obj.u_data.cylinder;
+	obj_point = mat_x_tuple(p_the_obj, obj.inv_transform);
+	dist = pow(obj_point.x, 2) + pow(obj_point.z, 2);
+	if (dist < pow(cylinder->radius, 2))
+	{
+		if (obj_point.y >= cylinder->maximum - EPSILON)
+			return (create_vector(0, 1, 0));
+		if (obj_point.y <= cylinder->minimum + EPSILON)
+			return (create_vector(0, -1, 0));
+	}
+	projected = create_point(obj_point.x, 0, obj_point.z);
+	normal = sub_tuples(projected, create_point(0, 0, 0));
+	return (normalize(normal));
+}
+
 t_vector	lig_normalize(t_object obj, t_point p_the_obj)
 {
 	t_vector	ret;
@@ -52,6 +75,7 @@ t_vector	lig_normalize(t_object obj, t_point p_the_obj)
 	}
 	else if (obj.type == OBJ_CYLINDER)
 	{
+		ret = lig_normalize_cyl(obj, p_the_obj);
 	}
 	else
 	{

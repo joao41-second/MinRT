@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:30 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/13 19:47:29 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/17 18:45:10 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
 			cam.inv_tranform_matrix);
 	origin = mat_x_tuple(cam.loc, cam.inv_tranform_matrix);
 	ret.origin = origin;
-	ret.direction = normalize(sub_tuples(pixel, origin));
+	ret.dir = normalize(sub_tuples(pixel, origin));
 	return (ret);
 }
 

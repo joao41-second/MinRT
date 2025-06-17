@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/04 14:29:15 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/17 12:04:27 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include "../libft/minilibx-linux/mlx.h"
 # include "../libft/minilibx-linux/mlx_int.h"
 # include "./Pattern/pattern.h"
+# include "./parser/parser.h"
 # include "./camara_m/camara_m.h"
 # include "./camera/camera.h"
 # include "./canvas/canvas.h"

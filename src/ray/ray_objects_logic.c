@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ray_objects_logic.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:26:26 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 13:34:20 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/17 18:37:51 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../minRT.h"
+
 #include "ray.h"
 #include "ray_struct.h"
 #include <stdio.h>
 #include <strings.h>
+#include <limits.h>
 
 void	ray_for_objects_organize(t_intersection intr, t_obj_int *save_points,
 		t_object *obj)
@@ -88,7 +89,7 @@ t_intersection	ray_int_object(t_ray ray, t_object *obj)
 	else if (obj->type == OBJ_TRIANGLE)
 		intersection = ray_int_triangle(ray_, obj->u_data.triangle);
 	else if (obj->type == OBJ_CYLINDER)
-		intersection.object = &obj;
+		intersection = ray_int_cylinder(ray_, obj->u_data.cylinder);
 	else if (obj->type == OBJ_SQUARE)
 		intersection = ray_in_trinagles(obj, obj->index, ray_);
 	else

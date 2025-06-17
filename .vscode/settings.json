@@ -2,7 +2,8 @@
   "files.associations": {
     "minrt.h": "c",
     "loop.h": "c",
-    "ft_printf.h": "c"
+    "ft_printf.h": "c",
+    "stdio.h": "c"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",

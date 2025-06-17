@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:37:14 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/07 12:28:51 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/17 18:38:56 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef union s_ray
 	struct
 	{
 		t_tuple		origin;
-		t_tuple		direction;
+		t_tuple		dir;
 	};
 	t_tuple			all[2];
 }					t_ray;

@@ -1,24 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_mat_calule.c                                   :+:      :+:    :+:   */
+/*   parser_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 11:36:12 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/17 17:44:50 by rerodrig         ###   ########.fr       */
+/*   Created: 2025/03/20 11:21:05 by rerodrig          #+#    #+#             */
+/*   Updated: 2025/06/17 14:10:22 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minRT.h"
+#ifndef PARSER_STRUCT_H
+# define PARSER_STRUCT_H
 
-void	obj_matrix_calcuate(t_mat_calculate *mat)
+typedef enum e_token
 {
-	mat_set_multip(&mat->restl_temp, mat->scal, mat->tras);
-	if (mat->rot_y.flag != 0)
-		mat_set_multip(&mat->restl, mat->restl_temp, mat->rot_y);
-	if (mat->rot_x.flag != 0)
-		mat_set_multip(&mat->restl_temp, mat->restl, mat->rot_x);
-	if (mat->rot_z.flag != 0)
-		mat_set_multip(&mat->restl, mat->restl_temp, mat->rot_z);
-}
+	AMBIENT,
+	CAMERA,
+	LIGHT,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	COMMENT,
+	NEWLINE,
+	OBJECT,
+	ERROR,
+	COUNT
+}	t_token;
+
+typedef struct s_token_map
+{
+	char		*key;
+	t_token		value;
+}	t_token_map;
+
+typedef struct s_range
+{
+	double	min;
+	double	max;
+}	t_range;
+#endif

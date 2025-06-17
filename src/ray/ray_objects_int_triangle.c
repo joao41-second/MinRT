@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:31:53 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 13:17:44 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/17 18:46:16 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	calculate_triangle_intersection(t_ray ray, t_triangle tri, float *t)
 	t_vector	origin_cross_e1;
 	float		fuv[3];
 
-	dir_cross_e2 = cross_product(ray.direction, tri.edge2);
+	dir_cross_e2 = cross_product(ray.dir, tri.edge2);
 	fuv[0] = dot_product(tri.edge1, dir_cross_e2);
 	if (fabs(fuv[0]) < EPSILON)
 		return (0);
@@ -47,7 +47,7 @@ static int	calculate_triangle_intersection(t_ray ray, t_triangle tri, float *t)
 	if (!check_triangle_bounds(fuv[1], 0))
 		return (0);
 	origin_cross_e1 = cross_product(p1_to_origin, tri.edge1);
-	fuv[2] = fuv[0] * dot_product(ray.direction, origin_cross_e1);
+	fuv[2] = fuv[0] * dot_product(ray.dir, origin_cross_e1);
 	if (!check_triangle_bounds(fuv[1], fuv[2]))
 		return (0);
 	*t = fuv[0] * dot_product(tri.edge2, origin_cross_e1);

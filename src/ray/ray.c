@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 14:01:13 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 13:15:28 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/17 18:46:00 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../minRT.h"
 
 t_ray	ray_gener(t_point point, t_vector dir)
 {
 	t_ray	ray;
 
-	ray.direction = dir;
+	ray.dir = dir;
 	ray.origin = point;
 	return (ray);
 }
@@ -24,7 +25,7 @@ t_point	ray_position(t_ray ray, double t)
 {
 	t_point	scaled_direction;
 
-	scaled_direction = scalar_mult_tuples(ray.direction, t);
+	scaled_direction = scalar_mult_tuples(ray.dir, t);
 	return (add_tuples(ray.origin, scaled_direction));
 }
 
