@@ -8,7 +8,7 @@
             "name": "MINIRT",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/miniRT",
+            "program": "${workspaceFolder}/miniRT_bonus",
             "args": ["${workspaceFolder}/scenes/obj.rt"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

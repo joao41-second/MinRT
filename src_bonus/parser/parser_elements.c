@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/06/18 08:48:29 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:52:55 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,19 @@ void	parse_light(char *line, t_minirt *data, int fd)
 	data->luz_index++;
 }
 
+static void	parse_reflect(char **line, double *reflection, int fd)
+{
+	while (**line && ft_isspace(**line))
+		(*line)++;
+	if (**line && ft_isdigit(**line))
+		parse_value(line, reflection, (t_range){0.0, 1.0}, fd);
+	else
+		*reflection = 0.0;
+}
+
 void	parse_sphere(char *line, t_minirt *data, int fd)
 {
-	double		val[7];
+	double		val[8];
 	t_object	*obj_sphere;
 	char		*texture_file;
 	t_img_		*texture_img;
@@ -55,6 +65,7 @@ void	parse_sphere(char *line, t_minirt *data, int fd)
 		!parse_value(&line, &val[3], (t_range){0.0, DBL_MAX}, fd) ||
 		!parse_rgb(&line, &val[4], (t_range){0.0, 255.0}, fd))
 		return ;
+	parse_reflect(&line, &val[7], fd);
 	texture_file = parse_texture_file(&line);
 	texture_img = load_texture_image(texture_file, data);
 	sph = sphere(create_point(0, 0, 0), val[3]);
@@ -69,7 +80,7 @@ void	parse_sphere(char *line, t_minirt *data, int fd)
 
 void	parse_plane(char *line, t_minirt *data, int fd)
 {
-	double		val[9];
+	double		val[10];
 	t_color		colors[2];
 	t_object	*obj_plane;
 	int			has_pattern;
@@ -81,6 +92,7 @@ void	parse_plane(char *line, t_minirt *data, int fd)
 		!parse_vector(&line, &val[3], (t_range){-1.0, 1.0}, fd) ||
 		!parse_rgb(&line, &val[6], (t_range){0.0, 255.0}, fd))
 		return ;
+	parse_reflect(&line, &val[9], fd);
 	has_pattern = parse_pattern(&line, &colors[0], &colors[1]);
 	plane = create_plane_parser(
 			create_point(val[0], val[1], val[2]),
@@ -95,7 +107,7 @@ void	parse_plane(char *line, t_minirt *data, int fd)
 
 void	parse_cylinder(char *line, t_minirt *data, int fd)
 {
-	double		val[11];
+	double		val[12];
 	t_color		colors[2];
 	t_object	*obj_cylinder;
 	int			has_pattern;
@@ -109,38 +121,14 @@ void	parse_cylinder(char *line, t_minirt *data, int fd)
 		!parse_value(&line, &val[7], (t_range){0.0, DBL_MAX}, fd) ||
 		!parse_rgb(&line, &val[8], (t_range){0.0, 255.0}, fd))
 		return ;
+	parse_reflect(&line, &val[11], fd);
 	has_pattern = parse_pattern(&line, &colors[0], &colors[1]);
 	cyl = create_cylinder(
 			create_point(val[0], val[1], val[2]),
 			create_vector(val[3], val[4], val[5]), val[6], val[7]);
 	obj_cylinder = create_object(&cyl,
-			OBJ_CYLINDER, get_cylinder_mat(val, colors[0], has_pattern), NULL);
+			OBJ_CYLINDER, get_cylinder_mat(val, colors[0], colors[1],
+				has_pattern), NULL);
 	ray_set_transform_obj(obj_cylinder, mat_gener_scal(1, 1, 1));
 	ft_add_node(obj_cylinder, &data->word);
-}
-
-void	parse_3d_object(char *line, t_minirt *data, int fd)
-{
-	double		val[6];
-	t_mater		mat2;
-	char		*filename;
-	char		*start;
-
-	while (*line && ft_isspace(*line))
-		line++;
-	if (!parse_vector(&line, &val[0], (t_range){-DBL_MAX, DBL_MAX}, fd))
-		return ;
-	while (*line && ft_isspace(*line))
-		line++;
-	start = line;
-	while (*line && !ft_isspace(*line) && *line != '\n')
-		line++;
-	filename = ft_substr(start, 0, line - start);
-	if (!filename)
-		return ;
-	mat2 = obj_material_init(c_new(0.8, 0.8, 0.8), c_new(-1, -1, -1),
-			obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0);
-	obj_open_stl_start(data, filename,
-		mat_multip(mat_gener_scal(1, 1, 1),
-			mat_gener_trans(val[0], val[1], val[2])), mat2);
 }

@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/06/17 18:35:29 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:22:16 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	parse_pattern(char **line, t_color *pattern_a, t_color *pattern_b)
 
 	while (**line && ft_isspace(**line))
 		(*line)++;
-	if (!**line || **line == '\n')
+	if (!**line || (**line == '\n') || (**line == '\0'))
 		return (0);
 	pattern_type = extract_pattern_type(line);
 	result = 0;

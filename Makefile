@@ -6,7 +6,7 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/06/18 10:08:59 by rerodrig         ###   ########.fr        #
+#    Updated: 2025/06/18 12:01:52 by rerodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -141,6 +141,7 @@ SRCS_BONUS = src_bonus/camara_m/camara_m.c \
        src_bonus/parser/parser_elements.c \
        src_bonus/parser/parser_elements_utils.c \
        src_bonus/parser/parser_sphere_texture.c \
+       src_bonus/parser/parser_elements_extra.c\
        src_bonus/parser/parser_utils.c \
        src_bonus/Pattern/stripe.c \
        src_bonus/Pattern/textuers.c \
@@ -174,6 +175,9 @@ AR = ar rcs
 CC = cc
 RM = rm -f
 CAT = cat number.txt
+
+
+.DEFAULT_GOAL := all
 
 # Output
 NAME = miniRT
@@ -212,6 +216,7 @@ $(NAME): $(LIB) $(OBJS)
 	@echo "║ ✅ Compiled Successfully!║"
 	@echo "╚══════════════════════════╝"
 # New target to rebuild only the source files
+
 # Main target
 $(NAME_BONUS): $(LIB) $(OBJS_BONUS)
 	$(CC) $(OBJS_BONUS) $(LIB) $(FLGS) -o $(NAME_BONUS)
@@ -220,16 +225,14 @@ $(NAME_BONUS): $(LIB) $(OBJS_BONUS)
 	@echo "╚══════════════════════════╝"
 # New target to rebuild only the source files
 
+all: $(NAME)
+
 renew: $(OBJS)
 	$(CC) $(OBJS) $(LIB) $(FLGS) -o $(NAME)
 	@echo "╔══════════════════════════╗"
 	@echo "║ ✅ Renewed Successfully! ║"
 	@echo "╚══════════════════════════╝"
 
-# Phony targets
-.PHONY: all clean fclean re exec norm normi
-
-all: $(NAME)
 
 bonus: $(NAME_BONUS)
 
@@ -284,3 +287,5 @@ pro:
 
 pdf:
 	cd ~/Downloads/ && evince JamisBuck-TheRayTracer.pdf
+# Phony targets
+.PHONY: all clean fclean re exec norm normi re_bonus bonus test test_vall s n v e b g t pro pdf

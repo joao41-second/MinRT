@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/06/18 08:46:02 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:51:19 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ t_mater	get_sphere_mat(double *val, char **line)
 
 	has_pattern = parse_pattern(line, &colors[0], &colors[1]);
 	if (has_pattern)
-		return (obj_material_init(
-				c_new(val[4] / 255.0, val[5] / 255.0, val[6] / 255.0),
-				colors[0], obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0));
+		return (obj_material_init(colors[0], colors[1],
+				obj_init_values_material(0.1, 0.6, 0.3, 100), val[7]));
 	else
 		return (obj_material_init(
 				c_new(val[4] / 255.0, val[5] / 255.0, val[6] / 255.0),
 				c_new(-1, -1, -1), obj_init_values_material(0.1, 0.6, 0.3, 100),
-				0.0));
+				val[7]));
 }
 
 t_mater	get_plane_mat(double *val, t_color col_a, t_color col_b, int has_pat)
@@ -37,23 +36,23 @@ t_mater	get_plane_mat(double *val, t_color col_a, t_color col_b, int has_pat)
 	base_color = c_new(val[6] / 255.0, val[7] / 255.0, val[8] / 255.0);
 	if (has_pat)
 		return (obj_material_init(col_a, col_b,
-				obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0));
+				obj_init_values_material(0.1, 0.6, 0.3, 100), val[9]));
 	else
 		return (obj_material_init(base_color, c_new(-1, -1, -1),
-				obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0));
+				obj_init_values_material(0.1, 0.6, 0.3, 100), val[9]));
 }
 
-t_mater	get_cylinder_mat(double *val, t_color color_a, int has_pattern)
+t_mater	get_cylinder_mat(double *val, t_color col_a, t_color col_b, int has_pat)
 {
 	t_color	base_color;
 
 	base_color = c_new(val[8] / 255.0, val[9] / 255.0, val[10] / 255.0);
-	if (has_pattern)
-		return (obj_material_init(base_color, color_a,
-				obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0));
+	if (has_pat)
+		return (obj_material_init(col_a, col_b,
+				obj_init_values_material(0.1, 0.6, 0.3, 100), val[11]));
 	else
 		return (obj_material_init(base_color, c_new(-1, -1, -1),
-				obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0));
+				obj_init_values_material(0.1, 0.6, 0.3, 100), val[11]));
 }
 
 char	*extract_pattern_type(char **line)

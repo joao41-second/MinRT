@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/06/18 09:41:07 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:13:28 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	parse_ambient(char *line, t_minirt *data, int fd)
 	data->scene.world.ambient.red = (val[1] / 255.0) * val[0];
 	data->scene.world.ambient.green = (val[2] / 255.0) * val[0];
 	data->scene.world.ambient.blue = (val[3] / 255.0) * val[0];
-	ft_printf("TOKEN AMBIENT -> Intensity: %.2f, Color: (%.0f, %.0f, %.0f)\n",
-		val[0], val[1], val[2], val[3]);
 }
 
 char	*tokenizer(char *line, const t_token_map *token_map, t_token *type)

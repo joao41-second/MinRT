@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:53 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/06/18 08:48:14 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:49:45 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int			parse_pattern(char **line, t_color *pattern_a, t_color *pattern_b);
 t_mater		get_sphere_mat(double *val, char **line);
 t_mater		get_plane_mat(double *val, t_color color_a, t_color color_b,
 				int has_pattern);
-t_mater		get_cylinder_mat(double *val, t_color color_a, int has_pattern);
+t_mater		get_cylinder_mat(double *val, t_color color_a, t_color color_b,
+				int has_pattern);
 char		*extract_pattern_type(char **line);
 int			parse_checkered_colors(char **line, double *val, t_color *pattern_a,
 				t_color *pattern_b);
