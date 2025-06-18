@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:35:47 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/18 10:01:29 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:03:19 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	init_planes(t_list_ **word_objects)
 	t_object	*obj_plane;
 	t_mater		mat2;
 
-	mat2 = obj_material_init(c_new(0, 1, 0), c_new(-1, -1, -1),
-			obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0);
+	mat2 = obj_material_init(c_new(0, 1, 0), c_new(0, 0, 1),
+			obj_init_values_material(0.1, 0.6, 0.3, 100), 1.0);
 	pln = create_plane_parser(create_point(0, 0, 0), create_vector(0, 1, 0));
 	obj_plane = create_object(&pln, OBJ_PLANE, mat2, NULL);
 	ray_set_transform_obj(obj_plane, mat_multip(mat_gener_scal(1, 1, 1),
@@ -100,7 +100,7 @@ void	start_word(t_minirt *rt_struct)
 	luz = create_point(0, 0, 0);
 	luz = mat_x_tuple(create_point(0, 0, 0), mat_gener_trans(0, 5, -50));
 	mat1 = obj_material_init(c_new(1, 0, 0), c_new(-1, -1, -1),
-			obj_init_values_material(0.1, 0.6, 0.3, 100), 0);
+			obj_init_values_material(0.1, 0.6, 0.3, 100), 1);
 	word_objects = NULL;
 	init_cylinders(&word_objects);
 	init_spheres(&word_objects);

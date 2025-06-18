@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/17 18:42:34 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:58:33 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 
 static int	init_scene(char *scene_file, t_minirt *rt)
 {
-	int		status;
+	int			status;
+	const int	fd = open(scene_file, O_RDONLY);
 
 	status = 0;
 	rt->rota_y = 0;
 	rt->rota_x = 0;
 	rt->needs_render = 5;
-	if (scene_file)
+	if (fd >= 0)
 		status = parser(scene_file, rt);
 	else
 		start_word(rt);

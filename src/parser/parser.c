@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/06/18 12:13:28 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:55:07 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	parser(const char *file, t_minirt *data, t_list_ **word_objects)
 	};
 
 	type = ERROR;
-	if (fd < 0)
+	if (fd == -1)
 		return (perror("Error file"), -1);
 	ctx.data = data;
 	ctx.fd = fd;

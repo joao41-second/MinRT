@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/18 09:32:44 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:56:48 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 static int	init_scene(char *scene_file, t_minirt *rt, t_list_ **word_objects)
 {
-	int		status;
-
+	int			status;
+	const int	fd = open(scene_file, O_RDONLY);
+	
 	status = 0;
-	if (scene_file)
+	if (fd >= 0)
 	{
 		status = parser(scene_file, rt, word_objects);
 		unified_camera_set_mode(&rt->camera, CAM_MODE_R);
