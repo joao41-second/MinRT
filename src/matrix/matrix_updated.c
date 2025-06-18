@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_updated.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 15:44:53 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 12:15:49 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/22 01:40:18 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	mat_mult_ntm(const t_matrix mat1, const t_matrix mat2, t_matrix *new)
 	}
 }
 
-void	mat_view_transform_ntm(t_matrix *mat, t_tuple form,
-		t_tuple to, t_tuple up)
+void	mat_view_transform_ntm(t_matrix *mat, t_tuple form, t_tuple to,
+		t_tuple up)
 {
 	t_tuple		forward;
 	t_tuple		left;
@@ -52,4 +52,30 @@ void	mat_view_transform_ntm(t_matrix *mat, t_tuple form,
 	mat->matr[2][1] = -forward.y;
 	mat->matr[2][2] = -forward.z;
 	mat_mult_ntm(*mat, mat_gener_trans(-form.x, -form.y, -form.z), mat);
+}
+
+void	mat_get_file(char *file, t_matrix mat)
+{
+	char	*line;
+	int		fd;
+	char	**nb_char;
+	int		i;
+	int		y;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return ;
+	ft_pocket_new("gete_file");
+	line = ft_add_memory(get_next_line(fd), NULL);
+	y = -1;
+	while (line != NULL && ++y < mat.size)
+	{
+		i = -1;
+		nb_char = ft_split(line, '|');
+		while (nb_char[++i] != NULL && i < mat.size)
+			mat.matr[y][i] = ft_atoi(nb_char[i]);
+		line = ft_add_memory(get_next_line(fd), NULL);
+	}
+	close(fd);
+	ft_free_all_pocket("gete_file");
 }

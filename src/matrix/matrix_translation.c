@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_translation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:50:13 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 12:13:49 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/22 00:32:04 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../minRT.h"
+
 #include "matrix.h"
 #include <stdio.h>
 
@@ -43,17 +43,13 @@ t_point	mat_x_tuple(t_tuple point, t_matrix mat)
 	va4 = 0;
 	if (mat.size != 4)
 		return (create_tuple(0, 0, 0, 0));
-	va1 = (point.val[0] * mat.matr[0][0])
-		+ (point.val[1] * mat.matr[0][1])
+	va1 = (point.val[0] * mat.matr[0][0]) + (point.val[1] * mat.matr[0][1])
 		+ (point.val[2] * mat.matr[0][2]) + (point.val[3] * mat.matr[0][3]);
-	va2 = (point.val[0] * mat.matr[1][0])
-		+ (point.val[1] * mat.matr[1][1])
+	va2 = (point.val[0] * mat.matr[1][0]) + (point.val[1] * mat.matr[1][1])
 		+ (point.val[2] * mat.matr[1][2]) + (point.val[3] * mat.matr[1][3]);
-	va3 = (point.val[0] * mat.matr[2][0])
-		+ (point.val[1] * mat.matr[2][1])
+	va3 = (point.val[0] * mat.matr[2][0]) + (point.val[1] * mat.matr[2][1])
 		+ (point.val[2] * mat.matr[2][2]) + (point.val[3] * mat.matr[2][3]);
-	va4 = (point.val[0] * mat.matr[3][0])
-		+ (point.val[1] * mat.matr[3][1])
+	va4 = (point.val[0] * mat.matr[3][0]) + (point.val[1] * mat.matr[3][1])
 		+ (point.val[2] * mat.matr[3][2]) + (point.val[3] * mat.matr[3][3]);
 	return (create_tuple(va1, va2, va3, va4));
 }

@@ -41,12 +41,12 @@ t_tuple	neg_tuple(t_tuple tuple)
 	return (ret);
 }
 
-t_tuple	scalar_mult_tuples(t_tuple t, float s)
+t_tuple	scalar_mult_tuples(t_tuple t, double s)
 {
 	return (create_tuple((t.x * s), (t.y * s), (t.z * s), (t.w * s)));
 }
 
-t_tuple	scalar_div_tuples(t_tuple t, float s)
+t_tuple	scalar_div_tuples(t_tuple t, double s)
 {
 	return (create_tuple((t.x / s), (t.y / s), (t.z / s), (t.w / s)));
 }

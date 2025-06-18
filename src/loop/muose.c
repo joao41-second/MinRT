@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   muose.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:13:28 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/12 17:26:29 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/21 23:54:38 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../minRT.h"
 
 void	mouse_rotaitio(t_minirt *rt_struct)

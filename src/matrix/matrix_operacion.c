@@ -23,7 +23,7 @@ int	mat_iqual(t_matrix mat1, t_matrix mat2)
 		x = -1;
 		while (++x < mat1.size)
 		{
-			if (!is_equal_float(mat1.matr[y][x], mat2.matr[y][x]))
+			if (!is_equal_double(mat1.matr[y][x], mat2.matr[y][x]))
 				return (FALSE);
 		}
 	}

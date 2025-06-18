@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   canvas_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:13:35 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/10 17:00:23 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/18 09:41:58 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "canvas.h"
 #include "canvas_struct.h"
+#include "menu/menu.h"
+#include "../camera/axis.h"
 #include <unistd.h>
 
 void	my_mlx_pixel_put(t_img_ *data, int x, int y, int color)
@@ -23,51 +25,44 @@ void	my_mlx_pixel_put(t_img_ *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	my_mlx_pixel_retunr(t_img_ *data, int x, int y)
+unsigned int	my_mlx_pixel_retunr(t_img_ *data, int x, int y)
 {
 	unsigned int	color;
 
-	if (x > data->width)
-		x = data->width;
-	if (y > data->height)
-		y = data->height;
 	color = *(unsigned int *)(data->addr + (y * data->line_length + x
 				* (data->bits_per_pixel / 8)));
 	return (color);
 }
 
-int	create_trgb( int r, int g, int b)
+int	create_trgb(int t, int r, int g, int b)
 {
-	return (r << 16 | g << 8 | b);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-t_color	c_get_color(int color)
+void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base)
 {
-	t_color	ret;
-
-	ret.red = (color >> 16 & 0xFF) / 255.0 ;
-	ret.green = (color >> 8 & 0xFF) / 255.0 ;
-	ret.blue = (color & 0xFF) / 255.0;
-	return (ret);
+	clamp_color(&base, 0, 10);
+	my_mlx_pixel_put(&rt_struct->canva.canva, x, y, create_trgb(3,
+			(int)(base.red), (int)(base.green), (int)(base.blue)));
 }
 
-void	canva_set_pixel(t_minirt *rt_struct, int x, int y, t_color base )
+// void	canva_update(t_minirt *rt_struct)
+// {
+// 	mlx_put_image_to_window(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,
+// 		rt_struct->canva.canva.img, 0, 0);
+// }
+
+void	canva_update(t_minirt *rt_struct)
 {
-	base.color[0] = base.color[0] * 255;
-	base.color[1] = base.color[1] * 255;
-	base.color[2] = base.color[2] * 255;
-	if (base.color[0] > 255)
-		base.color[0] = 255;
-	if (base.color[1] > 255)
-		base.color[1] = 255;
-	if (base.color[2] > 255)
-		base.color[2] = 255;
-	if (base.color[0] < 0)
-		base.color[0] = 0;
-	if (base.color[1] < 0)
-		base.color[1] = 0;
-	if (base.color[2] < 0)
-		base.color[2] = 0;
-	my_mlx_pixel_put(&rt_struct->canva.canva, x, y, create_trgb((int)(base.red),
-			(int)(base.green), (int)(base.blue)));
+	draw_axis_navigator(rt_struct, &rt_struct->canva.canva);
+	draw_orientation_cube(rt_struct, &rt_struct->canva.canva);
+	mlx_put_image_to_window(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,
+		rt_struct->canva.canva.img, 0, 0);
+	draw_cube_labels(rt_struct);
+	if (rt_struct->menu)
+		ft_menu(rt_struct);
+	else
+		mlx_string_put(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,
+			W_POS, WALL_Y - HEIGHT_POS * 2, WHITE, "Press 'TAB' for menu");
+	camera_update_view(&rt_struct->camera);
 }

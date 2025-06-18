@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:21:05 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/06/17 14:10:22 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/03/27 03:19:28 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef enum e_token
 	CYLINDER,
 	COMMENT,
 	NEWLINE,
-	OBJECT,
 	ERROR,
 	COUNT
 }	t_token;

@@ -14,7 +14,7 @@
 
 //CHECKERS -------------------------------------------------------------------
 
-int	is_equal_float(float a, float b)
+int	is_equal_double(double a, double b)
 {
 	return (fabs(a - b) < EPSILON);
 }
@@ -22,10 +22,10 @@ int	is_equal_float(float a, float b)
 int	is_equal_tuple(t_tuple a, t_tuple b)
 {
 	return (
-		is_equal_float(a.x, b.x) && \
-		is_equal_float(a.y, b.y) && \
-		is_equal_float(a.z, b.z) && \
-		is_equal_float(a.w, b.w)
+		is_equal_double(a.x, b.x) && \
+		is_equal_double(a.y, b.y) && \
+		is_equal_double(a.z, b.z) && \
+		is_equal_double(a.w, b.w)
 	);
 }
 

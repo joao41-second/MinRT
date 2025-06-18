@@ -6,45 +6,37 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:07:37 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/13 16:53:25 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/05/22 10:14:22 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "tuples.h"
-#include <stdio.h>
 
 //MANIPULATIONS -----------------------------------------------------
 
-float	dot_product(t_tuple a, t_tuple b)
+double	dot_product(t_tuple a, t_tuple b)
 {
-	float	ok;
+	double	ok;
 
 	ok = 0;
 	ok = (a.x * b.x) + \
 		(a.y * b.y) + \
 		(a.z * b.z) + \
 		(a.w * b.w);
-	if (isnan(ok))
-	{
-		printf("nan \n");
-		lig_print_tuple(a);
-	}
 	return (ok);
 }
 
-float	magnitude(t_tuple t)
+double	magnitude(t_tuple t)
 {
-	if (dot_product(t, t) == 0)
-		return (0);
 	return (sqrt(dot_product(t, t)));
 }
 
 t_tuple	normalize(t_tuple t)
 {
-	const float	_magnitude = magnitude(t);
+	const double	_magnitude = magnitude(t);
 
-	if (is_equal_float(_magnitude, 1))
+	if (is_equal_double(_magnitude, 1))
 		return (t);
 	if (is_equal_tuple(t, create_vector(0, 0, 0)))
 		return (t);

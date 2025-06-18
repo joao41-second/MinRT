@@ -13,7 +13,7 @@
 #include "../minRT.h"
 
 //create -------------------------------------------------------------
-t_tuple	create_tuple(float x, float y, float z, float w)
+t_tuple	create_tuple(double x, double y, double z, double w)
 {
 	t_tuple	tuple;
 
@@ -32,12 +32,12 @@ t_tuple	create_tuple(float x, float y, float z, float w)
 	return (tuple);
 }
 
-t_point	create_point(float x, float y, float z)
+t_point	create_point(double x, double y, double z)
 {
 	return (create_tuple(x, y, z, W_POINT));
 }
 
-t_vector	create_vector(float x, float y, float z)
+t_vector	create_vector(double x, double y, double z)
 {
 	return (create_tuple(x, y, z, W_VECTOR));
 }

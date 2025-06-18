@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 08:59:44 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/17 15:39:32 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/05 13:38:40 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,58 @@
 # include "./canvas/canvas_struct.h"
 # include "../libft/ft_list/lsit_struct.h"
 # include "./ray/ray_struct.h"
-# include "./camera/camera.h"
 # include "./light/light_struct.h"
 # include "./objects/objects.h"
 
+typedef enum e_camera_mode
+{
+	CAM_MODE_R,
+	CAM_MODE_J
+}	t_camera_mode;
+
 typedef struct s_camera_m
 {
-	t_mat_calculate		calculate;
-	double				x;
-	double				y;
-	double				field_of_view;
+	double			x;
+	double			y;
+	double			field_of_view;
 
-	t_point				loc;
-	t_vector			dir;
+	t_point			origin;
+	t_vector		direction;
 
-	t_matrix			tranform_matrix;
-	t_matrix			inv_tranform_matrix;
-	double				half_width;
-	double				half_height;
-	double				pixel_size;
-}				t_camera_ms;
+	t_matrix		tranform_matrix;
+	t_matrix		inv_tranform_matrix;
+	t_mat_calculate	calculate;
+
+	double			fov;
+	double			aspect_ratio;
+
+	double			half_width;
+	double			half_height;
+	double			pixel_size;
+	t_camera_mode	mode;
+}	t_camera_ms;
+
+// typedef struct s_camera_m
+// {
+// 	double		x;
+// 	double		y;
+// 	double		field_of_view;
+
+// 	t_point		loc;
+// 	t_vector	dir;
+
+// 	t_matrix	tranform_matrix;
+// 	t_mat_calculate	calculate;
+// 	t_matrix	inv_tranform_matrix;
+// 	double		half_width;
+// 	double		half_height;
+// 	double		pixel_size;
+// }				t_camera_ms;
 
 typedef struct s_world
 {
 	t_color		ambient;
-	t_camera	camera;
+	t_camera_ms	camera;
 	t_light		light;
 }				t_world;
 
@@ -57,17 +84,20 @@ typedef struct s_minirt
 	t_canva		canva;
 	t_scene		scene;
 	t_camera_ms	cam_m;
+	t_camera_ms	camera;
 	t_list_		*word;
 	t_ray		c_ray;
-	t_light		luz[100];
-	int			luz_index;
+	t_light		luz;
 	t_ray		cam;
 	int			needs_render;
 	t_point		point;
 	t_color		color;
 	double		rota_x;
 	double		rota_y;
-	int			obj_3d;
+	double		rota_z;
+
+	int			clicked;
+	int			menu;
 
 }				t_minirt;
 
