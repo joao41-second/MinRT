@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/06/17 18:35:37 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 08:48:29 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void	parse_light(char *line, t_minirt *data, int fd)
 void	parse_sphere(char *line, t_minirt *data, int fd)
 {
 	double		val[7];
-	t_mater		mat1;
-	t_sphere	sph;
 	t_object	*obj_sphere;
+	char		*texture_file;
+	t_img_		*texture_img;
+	t_sphere	sph;
 
 	while (*line && ft_isspace(*line))
 		line++;
@@ -54,11 +55,15 @@ void	parse_sphere(char *line, t_minirt *data, int fd)
 		!parse_value(&line, &val[3], (t_range){0.0, DBL_MAX}, fd) ||
 		!parse_rgb(&line, &val[4], (t_range){0.0, 255.0}, fd))
 		return ;
+	texture_file = parse_texture_file(&line);
+	texture_img = load_texture_image(texture_file, data);
 	sph = sphere(create_point(0, 0, 0), val[3]);
-	mat1 = get_sphere_material(val, &line);
-	obj_sphere = create_object(&sph, OBJ_SPHERE, mat1, NULL);
+	obj_sphere = create_object(&sph,
+			OBJ_SPHERE, get_sphere_mat(val, &line), texture_img);
 	ray_set_transform_obj(obj_sphere, mat_multip(
 			mat_gener_scal(1, 1, 1), mat_gener_trans(val[0], val[1], val[2])));
+	if (texture_file)
+		free(texture_file);
 	ft_add_node(obj_sphere, &data->word);
 }
 
@@ -67,7 +72,7 @@ void	parse_plane(char *line, t_minirt *data, int fd)
 	double		val[9];
 	t_color		colors[2];
 	t_object	*obj_plane;
-	bool		has_pattern;
+	int			has_pattern;
 	t_plane		plane;
 
 	while (*line && ft_isspace(*line))
@@ -81,7 +86,8 @@ void	parse_plane(char *line, t_minirt *data, int fd)
 			create_point(val[0], val[1], val[2]),
 			normalize(create_vector(val[3], val[4], val[5])));
 	obj_plane = create_object(&plane,
-			OBJ_PLANE, get_plane_mat(val, colors[1], has_pattern), NULL);
+			OBJ_PLANE, get_plane_mat(val, colors[0], colors[1], has_pattern),
+			NULL);
 	ray_set_transform_obj(obj_plane, mat_multip(mat_gener_scal(1, 1, 1),
 			mat_gener_trans(0, 0, 0)));
 	ft_add_node(obj_plane, &data->word);
@@ -92,7 +98,7 @@ void	parse_cylinder(char *line, t_minirt *data, int fd)
 	double		val[11];
 	t_color		colors[2];
 	t_object	*obj_cylinder;
-	bool		has_pattern;
+	int			has_pattern;
 	t_cylinder	cyl;
 
 	while (*line && ft_isspace(*line))

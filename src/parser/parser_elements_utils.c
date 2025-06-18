@@ -6,22 +6,23 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/06/17 18:36:54 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 08:46:02 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "../objects/objects.h"
 
-t_mater	get_sphere_material(double *val, char **line)
+t_mater	get_sphere_mat(double *val, char **line)
 {
-	t_color	pattern_a;
-	t_color	pattern_b;
+	t_color		colors[2];
+	int			has_pattern;
 
-	if (parse_pattern(line, &pattern_a, &pattern_b))
+	has_pattern = parse_pattern(line, &colors[0], &colors[1]);
+	if (has_pattern)
 		return (obj_material_init(
 				c_new(val[4] / 255.0, val[5] / 255.0, val[6] / 255.0),
-				pattern_a, obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0));
+				colors[0], obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0));
 	else
 		return (obj_material_init(
 				c_new(val[4] / 255.0, val[5] / 255.0, val[6] / 255.0),
@@ -29,13 +30,13 @@ t_mater	get_sphere_material(double *val, char **line)
 				0.0));
 }
 
-t_mater	get_plane_mat(double *val, t_color color_a, int has_pattern)
+t_mater	get_plane_mat(double *val, t_color col_a, t_color col_b, int has_pat)
 {
 	t_color	base_color;
 
 	base_color = c_new(val[6] / 255.0, val[7] / 255.0, val[8] / 255.0);
-	if (has_pattern)
-		return (obj_material_init(base_color, color_a,
+	if (has_pat)
+		return (obj_material_init(col_a, col_b,
 				obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0));
 	else
 		return (obj_material_init(base_color, c_new(-1, -1, -1),

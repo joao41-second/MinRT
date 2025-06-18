@@ -6,7 +6,7 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/06/17 18:53:08 by rerodrig         ###   ########.fr        #
+#    Updated: 2025/06/18 08:50:18 by rerodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRCS = src/camara_m/camara_m.c \
        src/parser/parser.c \
        src/parser/parser_elements.c \
        src/parser/parser_elements_utils.c \
+       src/parser/parser_sphere_texture.c \
        src/parser/parser_utils.c \
        src/Pattern/stripe.c \
        src/Pattern/textuers.c \
