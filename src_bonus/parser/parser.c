@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/06/18 12:07:23 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:48:42 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	parse_handler(t_token type, char *line, t_parser_ctx *ctx)
 	else if (type == OBJECT)
 		parse_3d_object(line, ctx->data, ctx->fd);
 	else if (type == COMMENT || type == NEWLINE)
-		ft_printf("\n");
+		;
 	else
 		ft_printf("ERROR: UNKNOWN ELEMENT.\n");
 }

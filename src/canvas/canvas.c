@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:39:58 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/18 09:50:11 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:23:06 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int	canva_loop_key(int keycode, void *param)
 void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 {
 	(void)base;
+	if (!rt_struct)
+		return ;
+	ft_memset(&rt_struct->canva, 0, sizeof(t_canva));
 	rt_struct->canva.mlx = ft_add_memory(mlx_init(), NULL);
 	rt_struct->canva.mlx_wind = mlx_new_window(rt_struct->canva.mlx,
 			x, y, "new minRT");

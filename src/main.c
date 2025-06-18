@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/18 13:06:57 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:11:19 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,48 @@
 static int	init_scene(char *scene_file, t_minirt *rt, t_list_ **word_objects)
 {
 	int			status;
-	const int	fd = open(scene_file, O_RDONLY);
+	int			fd;
 
 	status = 0;
-	if (fd >= 0)
+	if (scene_file != NULL)
 	{
-		status = parser(scene_file, rt, word_objects);
-		unified_camera_set_mode(&rt->camera, CAM_MODE_R);
-		rt->word = ft_node_start(*word_objects);
-	}
-	else
-	{
-		camera_init(&rt->camera, create_point(0, 1, -10),
-			create_vector(0, 0, 1),
-			100);
-		start_word(rt);
+		fd = open(scene_file, O_RDONLY);
+		if (fd >= 0)
+		{
+			status = parser(scene_file, rt, word_objects);
+			unified_camera_set_mode(&rt->camera, CAM_MODE_R);
+			rt->word = ft_node_start(*word_objects);
+			close(fd);
+		}
+		else
+		{
+			printf("Error: Cannot open scene file '%s'\n", scene_file);
+			exit (-1);
+		}
 	}
 	return (status);
 }
 
-int	main(int ac, char **av, char **env)
+int	main(int ac, char **av)
 {
 	t_minirt	rt_struct;
 	int			status;
 	t_list_		*word_objects;
 
-	word_objects = NULL;
 	status = 0;
-	(void)ac;
-	(void)av;
-	(void)env;
+	word_objects = NULL;
+	ft_memset(&rt_struct, 0, sizeof(t_minirt));
+	ft_memset(&word_objects, 0, sizeof(t_list_));
 	ft_start_alloc();
-	status = init_scene(av[1], &rt_struct, &word_objects);
+	if (ac >= 2)
+		status = init_scene(av[1], &rt_struct, &word_objects);
+	else
+	{
+		camera_init(&rt_struct.camera, create_point(0, 1, -10),
+			create_vector(0, 0, 1),
+			100);
+		start_word(&rt_struct);
+	}
 	rt_struct.point = create_point(0, 0, 0);
 	rt_struct.rota_y = 0;
 	rt_struct.rota_x = 0;

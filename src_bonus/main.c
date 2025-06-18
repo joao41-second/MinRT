@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/18 12:58:33 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:06:44 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 	ft_start_alloc();
+	ft_memset(&rt_struct, 0, sizeof(t_minirt));
 	rt_struct.canva.mlx = ft_add_memory(mlx_init(), NULL);
 	rt_struct.luz_index = 0;
 	status = init_scene(av[1], &rt_struct);

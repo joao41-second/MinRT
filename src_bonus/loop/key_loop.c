@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/15 13:14:07 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/18 14:33:05 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	pixle_range(int key, t_minirt *rt_struct)
 	}
 	if (rt_struct->needs_render <= 1)
 		rt_struct->needs_render = 1;
+	if (rt_struct->needs_render >= 10)
+		rt_struct->needs_render = 10;
 }
 
 void	key_loop(int key, t_minirt *rt_struct)

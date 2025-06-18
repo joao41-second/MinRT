@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:12:41 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/17 18:46:49 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:51:45 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	ray_set_transform_pln(t_object *pln, t_matrix mat)
 	mat_not_neg_zero(&pln->inv_transform);
 	mat_not_neg_zero(&pln->transform);
 	mat_not_neg_zero(&pln->inv_transpose);
-	mat_print(pln->transform);
 }
 
 void	ray_set_transform_obj(t_object *obj, t_matrix mat)

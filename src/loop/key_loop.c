@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:32:25 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/18 09:31:39 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:33:38 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ void	handle_misc_keys(t_minirt *rt_struct)
 		rt_struct->needs_render--;
 	if (rt_struct->needs_render <= 1)
 		rt_struct->needs_render = 1;
+	if (rt_struct->needs_render >= 10)
+		rt_struct->needs_render = 10;
 }
 
 void	key_loop(int keycode, t_minirt *rt_struct)

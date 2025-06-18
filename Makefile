@@ -6,7 +6,7 @@
 #    By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 06:17:31 by jperpect          #+#    #+#              #
-#    Updated: 2025/06/18 12:01:52 by rerodrig         ###   ########.fr        #
+#    Updated: 2025/06/18 14:37:20 by rerodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 #WFLGS = -Wall -Wextra -Werror
 
 #READ_FLG = -g -pg
- READ_FLG =  -O3 -march=native -flto -funroll-loops  -g -pg
+ READ_FLG =  -O3 -march=native -flto -funroll-loops  -g
 
 MINILIB_FLG = -Llibft/minilibx-linux -lmlx_Linux -lX11 -lXext -lm -Llibft/ft_get_next_line -Llibft/ft_free -Llibft/ft_libft \
 	      -Llibft/ft_list
@@ -272,7 +272,7 @@ s:
 n:
 	clear && make renew && ./$(NAME) $(SCENE)
 v:
-	clear && make re && $(VAL) ./$(NAME)  $(SCENE)
+	clear && make re && valgrind --leak-check=full --show-leak-kinds=definite ./$(NAME) $(SCENE)
 e:
 	make re && env -i ./$(NAME)
 b:

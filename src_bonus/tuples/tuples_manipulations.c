@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:07:37 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/13 16:53:25 by jperpct          ###   ########.fr       */
+/*   Updated: 2025/06/18 14:52:54 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ float	dot_product(t_tuple a, t_tuple b)
 		(a.w * b.w);
 	if (isnan(ok))
 	{
-		printf("nan \n");
-		lig_print_tuple(a);
+		printf("\n");
 	}
 	return (ok);
 }
