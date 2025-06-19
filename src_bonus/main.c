@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/18 14:06:44 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/19 11:16:36 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 #include "minRT.h"
 #include "objects/objects.h"
 
-static int	init_scene(char *scene_file, t_minirt *rt)
+static int	init_scene(char *scene_file, t_minirt *rt, int i)
 {
 	int			status;
-	const int	fd = open(scene_file, O_RDONLY);
+	int			fd;
 
+	fd = -1;
+	if (i == 2)
+		fd = open(scene_file, O_RDONLY);
 	status = 0;
 	rt->rota_y = 0;
 	rt->rota_x = 0;
@@ -30,7 +33,7 @@ static int	init_scene(char *scene_file, t_minirt *rt)
 	return (status);
 }
 
-int	main(int ac, char **av, char **env)
+int	main(int ac, char **av)
 {
 	t_minirt	rt_struct;
 	t_matrix	ok ;
@@ -38,14 +41,11 @@ int	main(int ac, char **av, char **env)
 
 	rt_struct.word = NULL;
 	status = 0;
-	(void)ac;
-	(void)av;
-	(void)env;
 	ft_start_alloc();
 	ft_memset(&rt_struct, 0, sizeof(t_minirt));
 	rt_struct.canva.mlx = ft_add_memory(mlx_init(), NULL);
 	rt_struct.luz_index = 0;
-	status = init_scene(av[1], &rt_struct);
+	status = init_scene(av[1], &rt_struct, ac);
 	rt_struct.word = ft_node_start(rt_struct.word);
 	ok = mat_gener_identity(4);
 	rt_struct.point = create_point(0, 0, 0);
