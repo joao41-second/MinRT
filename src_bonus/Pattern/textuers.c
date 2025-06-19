@@ -92,5 +92,5 @@ t_vector	pat_nomral_preturb(t_uv uv, t_vector normal,
 	vect.x = normal.x - uv_.u;
 	vect.y = normal.y - uv_.v;
 	vect.z = normal.z ;
-	return (normalize(vect));
+	return (vect);
 }

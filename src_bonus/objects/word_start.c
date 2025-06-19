@@ -40,7 +40,7 @@ void	init_triangles(t_list_ **word_objects)
 	ft_add_node(obj_triangle2, word_objects);
 }
 
-void	init_spheres(t_list_ **word_objects)
+void	init_spheres(t_list_ **word_objects, t_minirt *rt_struct)
 {
 	t_sphere	sph;
 	t_object	*obj_sphere;
@@ -49,7 +49,8 @@ void	init_spheres(t_list_ **word_objects)
 	mat1 = obj_material_init(c_new(1, 0, 0), c_new(-1, -1, -1),
 			obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0);
 	sph = sphere(create_point(0, 0, 0), 1);
-	obj_sphere = create_object(&sph, OBJ_SPHERE, mat1, NULL);
+	obj_sphere = create_object(&sph, OBJ_SPHERE, mat1,
+			obj_creat_texture(rt_struct->canva, "./texture/word.xpm"));
 	ray_set_transform_obj(obj_sphere, mat_gener_scal(1, 1, 1));
 	ft_add_node(obj_sphere, word_objects);
 }
@@ -103,7 +104,7 @@ void	start_word(t_minirt *rt_struct)
 			obj_init_values_material(0.1, 0.6, 0.3, 100), 1);
 	word_objects = NULL;
 	init_cylinders(&word_objects);
-	init_spheres(&word_objects);
+	init_spheres(&word_objects, rt_struct);
 	init_planes(&word_objects);
 	init_triangles(&word_objects);
 	rt_struct->word = word_objects;
