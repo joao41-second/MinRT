@@ -73,6 +73,7 @@ void	parse_sphere(char *line, t_minirt *data, int fd)
 			OBJ_SPHERE, get_sphere_mat(val, &line), texture_img);
 	ray_set_transform_obj(obj_sphere, mat_multip(
 			mat_gener_scal(1, 1, 1), mat_gener_trans(val[0], val[1], val[2])));
+
 	if (texture_file)
 		free(texture_file);
 	ft_add_node(obj_sphere, &data->word);
@@ -100,6 +101,7 @@ void	parse_plane(char *line, t_minirt *data, int fd)
 	obj_plane = create_object(&plane,
 			OBJ_PLANE, get_plane_mat(val, colors[0], colors[1], has_pattern),
 			NULL);
+
 	ray_set_transform_obj(obj_plane, mat_multip(mat_gener_scal(1, 1, 1),
 			mat_gener_trans(0, 0, 0)));
 	ft_add_node(obj_plane, &data->word);
@@ -129,6 +131,7 @@ void	parse_cylinder(char *line, t_minirt *data, int fd)
 	obj_cylinder = create_object(&cyl,
 			OBJ_CYLINDER, get_cylinder_mat(val, colors[0], colors[1],
 				has_pattern), NULL);
-	ray_set_transform_obj(obj_cylinder, mat_gener_scal(1, 1, 1));
+	
+	ray_set_transform_obj(obj_cylinder, mat_multip(  mat_multip( mat_gener_scal(1, 1, 1), mat_gener_rota('x',val[3])), mat_gener_rota('y',val[4])));
 	ft_add_node(obj_cylinder, &data->word);
 }
