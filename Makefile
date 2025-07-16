@@ -202,12 +202,13 @@ $(OBJDIR_BONUS)/%.o: src_bonus/%.c
 
 # Compile static libraries before linking the final executable
 $(LIB):
+	git submodule init | git submodule update --init --recursive
 	cd libft/ft_free  && make 
 	cd libft/ft_libft && make bonus 
 	cd libft/ft_printf && make 
 	cd libft/ft_get_next_line && make 
 	cd libft/ft_list && make 
-	cd libft/minilibx-linux && make
+	cd libft/minilibx-linux && make all
 
 # Main target
 $(NAME): $(LIB) $(OBJS)
@@ -243,7 +244,6 @@ clean:
 	cd libft/ft_libft && make clean
 	cd libft/ft_printf && make clean
 	cd libft/ft_get_next_line && make clean
-	cd libft/minilibx-linux && make clean
 	cd libft/ft_list && make clean 
 
 fclean: clean
