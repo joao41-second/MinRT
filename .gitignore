@@ -1,5 +1,6 @@
 miniRT
 miniRT_test
+miniRT_bonus
 *.a
 *.o
 /Objs
