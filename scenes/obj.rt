@@ -5,22 +5,25 @@ A   0.1                                 255,255,255
 
 # Camera
 # <coordinates of camera position: x,y,z> <camera view: x,y,z> <pov:x,y,z>
-C   0,1,-50  0,0,1   100
+C   0,1,-50  0,1,0   100
 
 # Light
-L  10,12,-5                  1         255,255,255
-
+#
+L  0,12,0                 1         0,0,255
+L  10,12,0                  1         255,255,255
 
 
 # Plane 
 # <coordinates: x,y,z> <origin:x,y,z> <color:red,green,blue> <reflection: 0.0> <patern_type: checkered, striped_at> <color1:red,green,blue> <color2:red,green,blue>
 # pl  0,0,0            0,1,0       255,229,229  0  checkered  0,0,0  255,255,255
 pl  0,0,0            0,1,0       255,255,255 1 checkered  0,0,0  255,255,255
-cy  -0.1,0.03,-0.1       0,1,0   1.2   0.07   30,30,30 1 checkered  0,0,0  255,255,255
+cy  -0.1,0.03,-0.1       0,1,0   1.2   1   30,30,30 0 checkered  0,0,0  255,255,55
 # sp  0,1,0                      1           200,200,200 
-sp  0,1,0                 1          200,200,200 1
+sp  2,1,3                 1          200,200,200 1
+
+sp  2,1,5                 1          100,250,200 1
 
 
 # # Objects 3d
 # # obj <coordinates: x,y,z> <orientation: x,y,z>  file_name
-obj 0,2,0     ./texture/Gun.obj
+obj 0,1,0   ./texture/house2.obj

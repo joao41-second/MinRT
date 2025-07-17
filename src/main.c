@@ -53,10 +53,11 @@ int	main(int ac, char **av)
 		status = init_scene(av[1], &rt_struct, &word_objects);
 	else
 	{
+
+		start_word(&rt_struct);
 		camera_init(&rt_struct.camera, create_point(0, 1, -10),
 			create_vector(0, 0, 1),
 			100);
-		start_word(&rt_struct);
 	}
 	rt_struct.point = create_point(0, 0, 0);
 	rt_struct.rota_y = 0;

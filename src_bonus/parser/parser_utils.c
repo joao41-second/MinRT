@@ -93,6 +93,5 @@ int	parse_pattern(char **line, t_color *pattern_a, t_color *pattern_b)
 	result = 0;
 	if (ft_strncmp(pattern_type, "checkered", 10) == 0)
 		result = parse_checkered_colors(line, val, pattern_a, pattern_b);
-	free(pattern_type);
 	return (result);
 }

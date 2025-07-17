@@ -18,7 +18,7 @@
 void	loop_mat_word_update(t_minirt *rt_struct)
 {
 	mat_set_view_transform(&rt_struct->cam_m.tranform_matrix,
-		create_point(1, 1, -3),
+		create_point(0, 1, -10),
 		create_point(0, 0, 0),
 		create_vector(0, 1, 0));
 	mat_set_rota(&rt_struct->cam_m.calculate.rot_x, 'x', rt_struct->rota_x);

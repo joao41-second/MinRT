@@ -12,12 +12,57 @@
 
 #include "../../minRT.h"
 
+t_point spl_get_point_line(const char *line)
+{
+	t_point point;	
+	char len[1024];
+	int i;
+	int index = -1;
+	int nb = -1;
+	
+	
+	i = -1;
+	while (line [++i] != '\0')
+	{
+		index++;
+		len[index] = line[i];
+		if(line[i] == ' ')
+		{
+			len[index] = '\0';
+			nb++;
+			if(nb-1 >= 0)	
+			 point.val[nb -1] = ft_atof(len,NULL);
+			index = -1;
+		}	
+	}
+
+	return point; 
+}
+
+int spl_len_char(const char *line)
+{
+	int i;
+	int nb = 0;
+	
+	
+	i = -1;
+	while (line [++i] != '\0')
+	{
+		if(line[i] == ' ')
+		{
+			nb++;
+		}	
+	}
+	nb++;
+
+	return nb; 
+}
+
 t_point	*obj_set_points(char *file_name, int nb)
 {
 	int		fd;
 	char	*line;
 	t_point	*list;
-	char	**split;
 	int		nb_;
 
 	list = ft_malloc((nb +1) * sizeof(t_point), "main");
@@ -26,15 +71,14 @@ t_point	*obj_set_points(char *file_name, int nb)
 	line = get_next_line(fd);
 	printf("line %s --%d \n", line, nb);
 	while (line != NULL)
-	{
+	{ 
 		free(line);
 		line = get_next_line(fd);
 		if (line != NULL && line[0] == 'v' && line[1] == ' ')
 		{
 			nb_++;
-			split = ft_split(line, ' ');
-			list[nb_] = create_point(ft_atof(split[1], NULL),
-					ft_atof(split[2], NULL), ft_atof(split[3], NULL));
+			//split = ft_split(line, ' ');
+			list[nb_] = spl_get_point_line(line) ;		
 		}
 	}
 	close(fd);
@@ -105,7 +149,6 @@ char	**obj_get_file(char *name, int *nb)
 
 int	obj_locate_face(char **file)
 {
-	char	**split;
 	int		i;
 	int		nb;
 	int		len;
@@ -118,9 +161,9 @@ int	obj_locate_face(char **file)
 		if (file[i][0] == 'f' && file[i][1] == ' ')
 		{
 			len = 0;
-			split = ft_split(file[i], ' ');
-			while (split[len] != NULL)
-				len++;
+			//split = ft_split(file[i], ' ');
+			len = spl_len_char(file[i]);
+			
 			if (len > 4)
 				nb++;
 			nb++;

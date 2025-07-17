@@ -244,7 +244,6 @@ clean:
 	cd libft/ft_libft && make clean
 	cd libft/ft_printf && make clean
 	cd libft/ft_get_next_line && make clean
-	cd libft/minilibx-linux && make clean
 	cd libft/ft_list && make clean 
 
 fclean: clean

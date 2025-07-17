@@ -56,21 +56,21 @@ t_uv	*obj_get_uv(char **file)
 	return (ft_pocket_set("main"), points);
 }
 
-void	obj_set_uv(t_uv *uvs, char ***line, t_triangle *tri, int fl)
+void	obj_set_uv(t_uv *uvs, int nb[4][3], t_triangle *tri, int fl)
 {
 	tri->uv2.index = -1;
 	tri->uv3.index = -1;
 	tri->uv1.index = -1;
 	if (fl == 0)
 	{
-		tri->uv1 = uvs[ft_atoi(line[0][1]) - 1];
-		tri->uv2 = uvs[ft_atoi(line[1][1]) - 1];
-		tri->uv3 = uvs[ft_atoi(line[2][1]) - 1];
+		tri->uv1 = uvs[nb[0][1] - 1];
+		tri->uv2 = uvs[nb[1][1] - 1];
+		tri->uv3 = uvs[nb[2][1] - 1];
 	}
 	if (fl == 1)
 	{
-		tri->uv1 = uvs[ft_atoi(line[3][1]) - 1];
-		tri->uv2 = uvs[ft_atoi(line[0][1]) - 1];
-		tri->uv3 = uvs[ft_atoi(line[2][1]) - 1];
+		tri->uv1 = uvs[nb[3][1] - 1];
+		tri->uv2 = uvs[nb[0][1] - 1];
+		tri->uv3 = uvs[nb[2][1] - 1];
 	}
 }

@@ -186,8 +186,8 @@ int						obj_locate_face(char **file);
 
 t_uv					*obj_get_uv(char **file);
 
-void					obj_set_uv(t_uv *uvs, char ***line, t_triangle *tri,
-							int fl);
+
+void	obj_set_uv(t_uv *uvs, int nb[4][3], t_triangle *tri, int fl);
 
 t_mat_calculate			obj_mat_calulate_init(void);
 

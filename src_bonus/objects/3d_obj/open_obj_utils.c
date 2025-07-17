@@ -14,32 +14,80 @@
 #include "../objects.h"
 #include <stdio.h>
 
+int  spl_nb_3(char *line, int i_[3])
+{
+	char len[1024];
+	int i;
+	int index = -1;
+	int nb = -1;
+	
+	
+	i = -1;
+	while (line [++i] != '\0')
+	{
+		index++;
+		len[index] = line[i];
+		if(line[i] == '/' || line[i] == ' ' || line[i] == '\0')
+		{
+			len[index] = '\0';
+			nb++;
+			if(nb >= 0)	
+				i_[nb] = ft_atoi(len);
+			index = -1;
+		}	
+	}
+	return (nb + 1);
+	
+}
+
+int spl_get_int(const char *line, int vaule[4][3])
+{
+	char len[1024];
+	int i;
+	int index = -1;
+	int nb = -1;
+	
+	
+	i = -1;
+	while (line [++i] != '\0')
+	{
+		index++;
+		len[index] = line[i];
+		if(line[i] == ' ' || line[i+1] == '\0')
+		{
+			len[index] = '\0';
+			nb++;
+			if(nb-1 >= 0)	
+				spl_nb_3(len,vaule[nb-1]);
+			index = -1;
+		}	
+	}
+
+	return (nb + 1);
+}
+
+
+
 void	obj_set_trinagles(char **file, t_creat3d *create,
 		t_object *obj_t, t_point *list)
 {
-	char	**b[5];
-	char	**point;
-
-	point = ft_split(file[create->i], ' ');
-	b[0] = ft_split(point[1], '/');
-	b[1] = ft_split(point[2], '/');
-	b[2] = ft_split(point[3], '/');
-	if (point[4] != NULL)
+	int len;
+	int nbs[4][3];
+	 len = spl_get_int(file[create->i],nbs);
+	if (len > 4)
 	{
-		b[3] = ft_split(point[4], '/');
-		obj_t->triangle[++create->nb_f_c] = create_triangle(list[
-				ft_atoi(b[0][0])], list[ft_atoi(b[1][0])],
-				list[ft_atoi(b[2][0])]);
-		obj_set_uv(create->uv_list, b, &obj_t->triangle[create->nb_f_c], 0);
-		obj_t->triangle[++create->nb_f_c] = create_triangle(list[ft_atoi(b[3]
-				[0])], list[ft_atoi(b[0][0])], list[ft_atoi(b[2][0])]);
-		obj_set_uv(create->uv_list, b, &obj_t->triangle[create->nb_f_c], 1);
+		obj_t->triangle[++create->nb_f_c] = create_triangle(list[nbs[0][0]], list[nbs[1][0]],
+				list[nbs[2][0]]);
+		obj_set_uv(create->uv_list, nbs, &obj_t->triangle[create->nb_f_c], 0);
+
+		obj_t->triangle[++create->nb_f_c] = create_triangle(list[nbs[3]
+				[0]], list[nbs[0][0]], list[nbs[2][0]]);
+		obj_set_uv(create->uv_list, nbs, &obj_t->triangle[create->nb_f_c], 1);
 	}
 	else
 	{
-		obj_t->triangle[++create->nb_f_c] = create_triangle(list[ft_atoi(
-					b[0][0])], list[ft_atoi(b[1][0])], list[ft_atoi(b[2][0])]);
-		obj_set_uv(create->uv_list, b, &obj_t->triangle[create->nb_f_c], 0);
+		obj_t->triangle[++create->nb_f_c] = create_triangle(list[nbs[0][0]], list[nbs[1][0]], list[nbs[2][0]]);
+		obj_set_uv(create->uv_list, nbs, &obj_t->triangle[create->nb_f_c], 0);
 	}
 }
 
