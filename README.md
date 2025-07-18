@@ -1,4 +1,10 @@
 # MinRT
+
+<img src="./img/Screenshot From 2025-07-18 09-58-15.png" alt="Alt text" width="49%" height="20%"/>   
+
+<img src="./img/Screenshot From 2025-07-18 10-24-27.png" alt="Alt text" width="49%" height="20%" />   
+</br>
+
 # Project Objective: Create a Ray Tracer
 
 For the project completion, several goals were defined, including:

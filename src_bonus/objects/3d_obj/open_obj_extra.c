@@ -39,7 +39,7 @@ t_point spl_get_point_line(const char *line)
 	{
 		index++;
 		len[index] = line[i];
-		if(line[i] == ' ')
+		if(line[i] == ' ' || line[i+1] =='\0' )
 		{
 			len[index] = '\0';
 			nb++;

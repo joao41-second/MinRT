@@ -30,7 +30,7 @@ t_color	lig_reflect_color(t_minirt *rt_struct, t_computations comp)
 {
 	t_object	*obj;
 	t_ray		reflec;
-	t_color		color;
+	static t_color		color;
 	static int	i = 0;
 	t_point		point;
 
@@ -38,7 +38,7 @@ t_color	lig_reflect_color(t_minirt *rt_struct, t_computations comp)
 	i++;
 	point = add_tuples(comp.point, scalar_mult_tuples(comp.norm, EPSILON));
 	if (comp.object == NULL || obj == NULL || obj->matiral.reflect
-		== 0 || i == 1000)
+		== 0 )
 	{
 		i = 0;
 		return (c_new(0, 0, 0));
