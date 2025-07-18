@@ -10,6 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   open_obj_extra.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/30 11:52:06 by jperpct           #+#    #+#             */
+/*   Updated: 2025/06/10 12:56:31 by jperpct          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../minRT.h"
 
 t_point spl_get_point_line(const char *line)
@@ -20,7 +33,7 @@ t_point spl_get_point_line(const char *line)
 	int index = -1;
 	int nb = -1;
 	
-	
+	point = create_point(0, 0, 0);
 	i = -1;
 	while (line [++i] != '\0')
 	{
@@ -84,6 +97,7 @@ t_point	*obj_set_points(char *file_name, int nb)
 	close(fd);
 	return (list);
 }
+
 
 t_point	*obj_list_the_pointres(char *file_name, int *ret)
 {

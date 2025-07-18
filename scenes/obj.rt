@@ -26,4 +26,4 @@ sp  2,1,5                 1          100,250,200 1
 
 # # Objects 3d
 # # obj <coordinates: x,y,z> <orientation: x,y,z>  file_name
-obj 0,1,0   ./texture/house2.obj
+obj 0,1,0   ./texture/tire.obj
