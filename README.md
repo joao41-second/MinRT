@@ -1,8 +1,15 @@
 # MinRT
 
-<img src="./img/Screenshot From 2025-07-18 09-58-15.png" alt="Alt text" width="49%" height="20%"/>   
+<p align="center">
+  <img src="./img/Screenshot%20From%202025-07-18%2009-58-15.png"
+       width="49%" height="300"
+       style="object-fit: cover; margin-right: 2%;" />
+  <img src="./img/Screenshot%20From%202025-07-18%2010-24-27.png"
+       width="49%" height="300"
+       style="object-fit: cover;" />
+</p>
 
-<img src="./img/Screenshot From 2025-07-18 10-24-27.png" alt="Alt text" width="49%" height="20%" />   
+
 </br>
 
 # Project Objective: Create a Ray Tracer
