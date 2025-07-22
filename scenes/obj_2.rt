@@ -27,5 +27,4 @@ obj 25,1,-25 ./texture/tree.obj
 
 obj -25,1,-35   ./texture/tree.obj
 
-
-obj 0,0,20    255,0,0 ./texture/house2.obj
+obj 0,0,20    ./texture/house2.obj

@@ -170,6 +170,8 @@ int	obj_locate_face(char **file)
 	nb = 0;
 	i = -1;
 	len = 0;
+	if(file)
+	{
 	while (file[++i] != NULL)
 	{
 		if (file[i][0] == 'f' && file[i][1] == ' ')
@@ -182,6 +184,7 @@ int	obj_locate_face(char **file)
 				nb++;
 			nb++;
 		}
+	}
 	}
 	return (nb);
 }

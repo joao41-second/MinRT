@@ -58,6 +58,8 @@ int	obj_chek_fd(char *name)
 {
 	int	fd;
 
+	if(name == NULL)
+		return (FALSE);
 	fd = open(name, O_RDONLY);
 	if (fd < 0)
 		return (FALSE);
@@ -86,7 +88,7 @@ void	obj_open_stl_start(t_minirt *rt_struct, char *file_name,
 	t_object	*obj_t;
 	int			nb_face;
 
-	if (obj_chek_fd(file_name) < 0)
+	if (obj_chek_fd(file_name) == FALSE)
 		return ;
 	ft_pocket_new("add_obj");
 	file = obj_get_file(file_name, &nb_face);
