@@ -26,7 +26,7 @@ t_vector	lig_reflect(t_vector in, t_vector normal)
 	return (ret);
 }
 
-t_color	lig_reflect_color(t_minirt *rt_struct, t_computations comp)
+t_color	lig_reflect_color(t_minirt *rt_struct, t_computations comp, int reflect)
 {
 	t_object	*obj;
 	t_ray		reflec;
@@ -38,13 +38,12 @@ t_color	lig_reflect_color(t_minirt *rt_struct, t_computations comp)
 	i++;
 	point = add_tuples(comp.point, scalar_mult_tuples(comp.norm, EPSILON));
 	if (comp.object == NULL || obj == NULL || obj->matiral.reflect
-		== 0 )
+		<= 0 || reflect <= 0)
 	{
-		i = 0;
 		return (c_new(0, 0, 0));
 	}
 	reflec = ray_gener(point, comp.reflect);
-	color = lig_color_at(rt_struct, reflec);
+	color = lig_color_at(rt_struct, reflec, reflect -1);
 	return (c_scalar_multipl(color, obj->matiral.reflect));
 }
 

@@ -29,11 +29,11 @@ t_color			lig_lighting(t_mater mat, t_light luz, t_computations comp);
 
 t_color			lig_shade_hit(t_obj_int obj, t_light luz, t_computations comp);
 
-t_color			lig_color_at(t_minirt *rt_struct, t_ray ray);
+t_color			lig_color_at(t_minirt *rt_struct, t_ray ray, int ref);
 
 void			lig_print_tuple(t_tuple tuple);
 
-t_color			lig_reflect_color(t_minirt *rt_struct, t_computations comp);
+t_color			lig_reflect_color(t_minirt *rt_struct, t_computations comp, int reflect);
 
 void			lig_set_color_patern(t_mater *mat, t_computations comp);
 

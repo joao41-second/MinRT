@@ -90,30 +90,29 @@ t_color	shadow_calcule(t_obj_int save_points, t_light *shadow_,
 	return (color);
 }
 
-t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
+t_color	lig_color_at(t_minirt *rt_struct, t_ray ray, int ref)
 {
 	t_computations	compt;
 	t_obj_int		ray_in_obj;
-	t_color			ret;
-	t_color			tes;
+	t_color			ret;	
 	t_object		*obj;
 
 	ret = c_new(0, 0, 0);
 	ray_in_obj = ray_for_objects(rt_struct->word, ray);
-	if (ray_in_obj.min > EPSILON)
+	if (ray_in_obj.min > EPSILON )
 	{
 		compt = lig_prepare_computations(ray_in_obj, ray_in_obj.ray);
 		lig_set_texture(ray_in_obj.object, &ray_in_obj, &compt);
 		lig_set_color_patern(&ray_in_obj.mat, compt);
-		tes = shadow_calcule(ray_in_obj,
-				rt_struct->luz, ray, rt_struct);
 		obj = ray_in_obj.object;
 		if (compt.uv.v != -1)
 			compt.norm = pat_nomral_preturb(compt.uv, compt.norm,
-					obj->texture, obj->matiral.bumbp);
-		ret = c_adding(lig_loop_ligth(rt_struct, ray_in_obj, compt),
-				lig_reflect_color(rt_struct, compt));
-		ret = c_subtracting(c_new(ret.red, ret.green, ret.blue), tes);
+					obj->texture, obj->matiral.bumbp);	
+		if(ref > 0)
+			ret = c_adding(lig_loop_ligth(rt_struct, ray_in_obj, compt),
+				lig_reflect_color(rt_struct, compt,ref));
+		ret = c_subtracting(c_new(ret.red, ret.green, ret.blue),  shadow_calcule(ray_in_obj,
+				rt_struct->luz, ray, rt_struct));
 	}
 	return (ret);
 }

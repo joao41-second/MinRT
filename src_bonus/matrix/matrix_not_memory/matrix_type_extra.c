@@ -53,12 +53,14 @@ void	mat_set_rota(t_matrix *mat, char axis, double deg)
 {
 	mat_set_clear(mat);
 	mat_set_scal(mat, 1, 1, 1);
-	if (axis == 'x')
+	if (axis == 'y')
 	{
-		mat_x_rota(mat, deg);
-	}
-	else if (axis == 'y')
+
 		mat_y_rota(mat, deg);
+	}
+	else if (axis == 'x')
+
+		mat_x_rota(mat, deg);
 	else if (axis == 'z')
 		mat_z_rota(mat, deg);
 	mat->flag = ROTA;

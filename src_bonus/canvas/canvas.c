@@ -55,9 +55,7 @@ void	cleanup_all_object_textures(void *mlx, t_list_ *world)
 
 void	canva_inicializ(t_minirt *rt_struct, int x, int y, t_color base)
 {
-	(void)base;
-	rt_struct->canva.mlx_wind = mlx_new_window(rt_struct->canva.mlx,
-			x, y, "new minRT");
+	(void)base;	
 	rt_struct->canva.canva.img = mlx_new_image(rt_struct->canva.mlx, x, y);
 	rt_struct->canva.canva.addr = mlx_get_data_addr(rt_struct->canva.canva.img,
 			&rt_struct->canva.canva.bits_per_pixel,

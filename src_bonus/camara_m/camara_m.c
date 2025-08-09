@@ -101,7 +101,7 @@ void	cm_windo_put(t_minirt *rt_struct, int x_, int y_, int resul)
 		while (x < x_)
 		{
 			ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
-			rt_struct->color = lig_color_at(rt_struct, ray);
+			rt_struct->color = lig_color_at(rt_struct, ray,16);
 			cm_pixle_paint(rt_struct, y, x, resul);
 			x += resul;
 		}

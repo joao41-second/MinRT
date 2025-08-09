@@ -51,7 +51,7 @@ void	init_spheres(t_list_ **word_objects, t_minirt *rt_struct)
 	sph = sphere(create_point(0, 0, 0), 1);
 	obj_sphere = create_object(&sph, OBJ_SPHERE, mat1,
 			obj_creat_texture(rt_struct->canva, "./texture/word.xpm"));
-	ray_set_transform_obj(obj_sphere, mat_gener_scal(1, 1, 1));
+	ray_set_transform_obj(obj_sphere, mat_gener_trans(1, 1, 1));
 	ft_add_node(obj_sphere, word_objects);
 }
 
