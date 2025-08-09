@@ -34,6 +34,7 @@ void	parse_3d_object(char *line, t_minirt *data, int fd)
 		return ;
 	mat2 = obj_material_init(c_new(0.8, 0.8, 0.8), c_new(-1, -1, -1),
 			obj_init_values_material(0.1, 0.6, 0.3, 100), 0.0);
+	printf("ok %s \n",filename);
 	obj_open_stl_start(data, filename,
 		mat_multip(mat_gener_scal(1, 1, 1),
 			mat_gener_trans(val[0], val[1], val[2])), mat2);

@@ -13,6 +13,7 @@
 #include "../minRT.h"
 #include "ray.h"
 #include "ray_struct.h"
+#include <stdio.h>
 
 t_ray	ray_transform(t_ray ray, t_matrix mat)
 {
@@ -58,6 +59,7 @@ void	ray_set_transform_pln(t_object *pln, t_matrix mat)
 
 void	ray_set_transform_obj(t_object *obj, t_matrix mat)
 {
+	
 	if (obj->type == OBJ_SPHERE)
 	{
 		ray_set_transform_sph(obj, mat);
@@ -68,8 +70,11 @@ void	ray_set_transform_obj(t_object *obj, t_matrix mat)
 	}
 	else if (obj->type == OBJ_TRIANGLE || obj->type == OBJ_SQUARE)
 	{
+		if(mat.size != 4 )
+			mat = mat_gener_scal(1, 1, 1);
 		obj->transform = mat_cp(mat);
-		obj->inv_transform = mat_cp(mat_inv(mat));
+		obj->inv_transform = mat_cp(mat_inv(mat));	
+
 	}
 	else if (obj->type == OBJ_CYLINDER)
 	{
@@ -79,7 +84,5 @@ void	ray_set_transform_obj(t_object *obj, t_matrix mat)
 		obj->inv_transform = mat_cp(mat_inv(mat));
 	}
 	else
-	{
 		printf("Unknown object type for transformation.\n");
-	}
 }
