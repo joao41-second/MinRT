@@ -36,7 +36,7 @@ t_color	lig_reflect_color(t_minirt *rt_struct, t_computations comp, int reflect)
 
 	obj = comp.object;
 	i++;
-	point = add_tuples(comp.point, scalar_mult_tuples(comp.norm, EPSILON));
+	point = add_tuples(comp.point, scalar_mult_tuples(comp.norm, 0.0001f));
 	if (comp.object == NULL || obj == NULL || obj->matiral.reflect
 		<= 0 || reflect <= 0)
 	{
