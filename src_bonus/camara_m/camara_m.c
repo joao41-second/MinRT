@@ -91,6 +91,8 @@ void	cm_windo_put(t_minirt *rt_struct, int x_, int y_, int resul)
 	t_ray	ray;
 	int		x;
 	int		y;
+	t_color c1;
+	t_color c2;
 
 	y = 0;
 	rt_struct->cam = cm_ray_for_pixel(rt_struct->cam_m,
@@ -101,9 +103,21 @@ void	cm_windo_put(t_minirt *rt_struct, int x_, int y_, int resul)
 		while (x < x_)
 		{
 			ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
-			rt_struct->color = lig_color_at(rt_struct, ray,16);
+			c1 = lig_color_at(rt_struct, ray,16);
+			rt_struct->color = c1;
 			cm_pixle_paint(rt_struct, y, x, resul);
 			x += resul;
+			x += resul;	
+			ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
+			c2 = lig_color_at(rt_struct, ray,16);
+			rt_struct->color = c_average(c1,c2);
+			cm_pixle_paint(rt_struct, y, x-resul, resul);	
+			rt_struct->color = c2;
+			cm_pixle_paint(rt_struct, y, x, resul);
+
+			x += resul;
+			
+
 		}
 		y += resul;
 	}

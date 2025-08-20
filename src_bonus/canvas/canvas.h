@@ -25,6 +25,9 @@ t_color	c_scalar_multipl(t_color c1, double c2);
 
 t_color	c_multipl(t_color c1, t_color c2);
 
+
+t_color c_average(t_color c1, t_color c2);
+
 int		c_chek_iqual_color(t_color a, t_color b);
 
 void	c_print(t_color color);

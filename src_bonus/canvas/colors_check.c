@@ -46,3 +46,11 @@ void	canva_update(t_minirt *rt_struct)
 	mlx_put_image_to_window(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,
 		rt_struct->canva.canva.img, 0, 0);
 }
+
+t_color c_average(t_color c1, t_color c2) {
+    t_color result;
+    result.red = (c1.red + c2.red) / 2.0f;
+    result.green = (c1.green + c2.green) / 2.0f;
+    result.blue = (c1.blue + c2.blue) / 2.0f;
+    return result;
+}
