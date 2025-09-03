@@ -25,7 +25,7 @@ static int	init_scene(char *scene_file, t_minirt *rt, int i)
 	status = 0;
 	rt->rota_y = 3;
 	rt->rota_x = 0;
-	rt->needs_render = 5;
+	rt->needs_render = 1;
 	if (fd >= 0)
 		status = parser(scene_file, rt);
 	else

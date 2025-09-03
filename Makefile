@@ -240,11 +240,11 @@ bonus: $(NAME_BONUS)
 clean:
 	$(RM) -r $(OBJDIR)
 	$(RM) -r $(OBJDIR_BONUS)
-	cd libft/ft_free  && make clean
-	cd libft/ft_libft && make clean
-	cd libft/ft_printf && make clean
-	cd libft/ft_get_next_line && make clean
-	cd libft/ft_list && make clean 
+	cd libft/ft_free  && make fclean
+	cd libft/ft_libft && make fclean
+	cd libft/ft_printf && make fclean
+	cd libft/ft_get_next_line && make fclean
+	cd libft/ft_list && make fclean 
 
 fclean: clean
 	$(RM) $(NAME)

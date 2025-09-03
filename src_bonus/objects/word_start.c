@@ -64,7 +64,7 @@ void	init_planes(t_list_ **word_objects)
 	t_mater		mat2;
 
 	mat2 = obj_material_init(c_new(0, 1, 0), c_new(0, 0, 1),
-			obj_init_values_material(0.1, 0.6, 0.3, 100), 1.0);
+			obj_init_values_material(0.1, 0.6, 0.3, 100), 0);
 	pln = create_plane_parser(create_point(0, 0, 0), create_vector(0, 1, 0));
 	obj_plane = create_object(&pln, OBJ_PLANE, mat2, NULL);
 	ray_set_transform_obj(obj_plane, mat_multip(mat_gener_scal(1, 1, 1),
@@ -101,7 +101,7 @@ void	start_word(t_minirt *rt_struct)
 	luz = create_point(0, 0, 0);
 	luz = mat_x_tuple(create_point(0, 0, 0), mat_gener_trans(0, 5, -50));
 	mat1 = obj_material_init(c_new(1, 0, 0), c_new(-1, -1, -1),
-			obj_init_values_material(0.1, 0.6, 0.3, 100), 1);
+			obj_init_values_material(0.1, 0.6, 0.3, 100), 0);
 	word_objects = NULL;
 	init_cylinders(&word_objects);
 	init_spheres(&word_objects, rt_struct);
@@ -109,7 +109,7 @@ void	start_word(t_minirt *rt_struct)
 	init_triangles(&word_objects);
 	rt_struct->word = word_objects;
 	obj_open_stl_start(
-		rt_struct, "./texture/Gun.obj", mat_multip(mat_gener_scal(1, 1, 1),
+		rt_struct, "./texture/Dra.obj", mat_multip(mat_gener_scal(1, 1, 1),
 			mat_gener_trans(0, 1, 0)), mat1);
 	rt_struct->word = ft_node_start(word_objects);
 	rt_struct->luz[0] = ligth_init(c_new(3, 3, 3), luz);
