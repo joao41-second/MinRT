@@ -1,3 +1,4 @@
+
 # MinRT
 
 <p align="center">
@@ -48,4 +49,15 @@ These are the basic modules to start working on. Then we will:
 > At the end, put it all together to obtain a beautiful image (or a segfault!)
 
 ## Now Let’s See Some Pictures
+
+## build the prject
+```bash 
+git clone repo
+cd repo
+sudo apt-get update
+sudo apt-get install xorg
+git submodule update --init --recursive
+
+```
+
 
