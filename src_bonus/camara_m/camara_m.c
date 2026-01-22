@@ -143,7 +143,7 @@ void	cm_create_frame_thead(t_minirt *rt_struct,int x_, int y_, int resul)
 	    str_th.result =resul; 
 	    str_th.rt_struct = rt_struct;
 	    str_th.x_ = x_/2;
-	    str_th.y_ = y_/2; 
+	    str_th.y_ = y_; 
 	    str_th.min_x = 0; 
 	    str_th.min_y = 0; 
 		
@@ -151,7 +151,7 @@ void	cm_create_frame_thead(t_minirt *rt_struct,int x_, int y_, int resul)
 	    str_th2.result = resul; 
 	    str_th2.rt_struct = rt_struct;
  	    str_th2.min_x = x_/2; 
-	    str_th2.min_y = y_/2; 
+	    str_th2.min_y = 0; 
 	    str_th2.x_ = x_;
 	    str_th2.y_ = y_; 
 
