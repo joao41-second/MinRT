@@ -15,11 +15,15 @@
 
 # include "../miniRT_struct.h"
 
-void		cm_windo_put(t_minirt *rt_struct, int x_, int y_, int resul);
+
+
+void	cm_windo_put(t_minirt *rt_struct, int min_x , int min_y ,int x_, int y_, int resul);
 t_camera_ms	cm_init(double x, double y, double field_of_view,
 				t_matrix tranform);
 void		cm_update(t_camera_ms *cam);
 
 t_ray		cm_ray_for_pixel(t_camera_ms cam, double px, double py);
 void		cm_pixel_size(t_camera_ms *ret);
+
+void	cm_create_frame_thead(t_minirt *rt_struct,int x_, int y_, int resul);
 #endif

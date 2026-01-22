@@ -11,8 +11,7 @@
 # **************************************************************************** #
 
 # Compiler flags
- WFLGS = -Wall -Wextra -Werror
-#WFLGS = -Wall -Wextra -Werror
+ #WFLGS = -Wall -Wextra -Werror
 
 #READ_FLG = -g -pg
  READ_FLG =  -O3 -march=native -flto -funroll-loops  -g

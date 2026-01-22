@@ -54,7 +54,11 @@ void	loop(t_minirt *rt_struct)
 	loop_mat_word_update(rt_struct);
 	start = clock();
 	cm_update(&rt_struct->cam_m);
-	cm_windo_put(rt_struct, WALL_X, WALL_Y, rt_struct->needs_render);
+
+	//cm_windo_put(rt_struct,1,1, WALL_X/2, WALL_Y/2, rt_struct->needs_render);
+
+	cm_create_frame_thead(rt_struct,WALL_X, WALL_Y, rt_struct->needs_render);
+
 	end = clock();
 	vaule = ((double)((double)end - (double)start) / (double)CLOCKS_PER_SEC);
 	canva_update(rt_struct);

@@ -86,39 +86,84 @@ void	cm_pixle_paint(t_minirt *rt_struct, int min_y, int min_x, int scal)
 	}
 }
 
-void	cm_windo_put(t_minirt *rt_struct, int x_, int y_, int resul)
+
+void	cm_windo_put(t_minirt *rt_struct, int min_x , int min_y ,int x_, int y_, int resul )
 {
 	t_ray	ray;
 	int		x;
 	int		y;
 	t_color c1;
-	t_color c2;
 
-	y = 0;
-	rt_struct->cam = cm_ray_for_pixel(rt_struct->cam_m,
-			(double)x_ / 2, (double)y_ / 2);
+	y = min_y;
 	while (y < y_)
 	{
-		x = 0;
+		x = min_x;
 		while (x < x_)
 		{
 			ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
 			c1 = lig_color_at(rt_struct, ray,16);
 			rt_struct->color = c1;
 			cm_pixle_paint(rt_struct, y, x, resul);
-			x += resul;
 			x += resul;	
-			ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
-			c2 = lig_color_at(rt_struct, ray,16);
-			rt_struct->color = c_average(c1,c2);
-			cm_pixle_paint(rt_struct, y, x-resul, resul);	
-			rt_struct->color = c2;
-			cm_pixle_paint(rt_struct, y, x, resul);
-
-			x += resul;
-			
 
 		}
 		y += resul;
 	}
+}
+
+typedef struct data_thead
+{
+	int x_;
+	int y_;
+	int min_y; 
+	int min_x; 
+	int result;
+	t_minirt *rt_struct;
+} t_data_thead;
+
+
+void * thread_windos(void *thead)
+{
+	t_data_thead *data = (t_data_thead*)thead;
+	data->rt_struct->cam = cm_ray_for_pixel(data->rt_struct->cam_m,
+			(double)WALL_X , (double)WALL_Y );
+	cm_windo_put(data->rt_struct, data->min_x,data->min_y,data->x_,data->y_,data->result);
+	
+	return NULL;
+}
+
+#include <pthread.h>
+void	cm_create_frame_thead(t_minirt *rt_struct,int x_, int y_, int resul)
+{
+	    pthread_t thread0;
+	    pthread_t thread1;
+	    t_data_thead str_th;
+	    t_data_thead str_th2;
+
+	    str_th.result =resul; 
+	    str_th.rt_struct = rt_struct;
+	    str_th.x_ = x_/2;
+	    str_th.y_ = y_/2; 
+	    str_th.min_x = 0; 
+	    str_th.min_y = 0; 
+		
+	    ft_printf(" he max x %d ,y %d \n",x_/2,y_/2);
+	    str_th2.result = resul; 
+	    str_th2.rt_struct = rt_struct;
+ 	    str_th2.min_x = x_/2; 
+	    str_th2.min_y = y_/2; 
+	    str_th2.x_ = x_;
+	    str_th2.y_ = y_; 
+
+	    pthread_create(&thread1, NULL, thread_windos, &str_th2);
+
+	    pthread_create(&thread0, NULL, thread_windos, &str_th);
+
+ 	    pthread_join(thread0, NULL);
+ 	    pthread_join(thread1, NULL);
+
+
+
+
+
 }
