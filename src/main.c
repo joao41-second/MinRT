@@ -6,64 +6,65 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:43:20 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/18 14:11:19 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/19 11:16:36 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix/matrix.h"
 #include "minRT.h"
+#include "objects/objects.h"
 
-static int	init_scene(char *scene_file, t_minirt *rt, t_list_ **word_objects)
+static int	init_scene(char *scene_file, t_minirt *rt, int i)
 {
 	int			status;
 	int			fd;
 
-	status = 0;
-	if (scene_file != NULL)
-	{
+	fd = -1;
+	if (i == 2)
 		fd = open(scene_file, O_RDONLY);
-		if (fd >= 0)
-		{
-			status = parser(scene_file, rt, word_objects);
-			unified_camera_set_mode(&rt->camera, CAM_MODE_R);
-			rt->word = ft_node_start(*word_objects);
-			close(fd);
-		}
-		else
-		{
-			printf("Error: Cannot open scene file '%s'\n", scene_file);
-			exit (-1);
-		}
+	status = 0;
+	rt->rota_y = 3;
+	rt->rota_x = 0;
+	rt->needs_render = 1;
+	if (fd >= 0)
+		status = parser(scene_file, rt);
+	else
+	{
+		ft_free_all(); //TODO  not resolve leaks
+		ft_printf("ERROR: not valid argomentes ");
+		exit(-2);
 	}
+
 	return (status);
 }
 
 int	main(int ac, char **av)
 {
 	t_minirt	rt_struct;
+	t_matrix	ok ;
 	int			status;
-	t_list_		*word_objects;
 
+	rt_struct.word = NULL;
 	status = 0;
-	word_objects = NULL;
-	ft_memset(&rt_struct, 0, sizeof(t_minirt));
-	ft_memset(&word_objects, 0, sizeof(t_list_));
 	ft_start_alloc();
-	if (ac >= 2)
-		status = init_scene(av[1], &rt_struct, &word_objects);
-	else
-	{
+	ft_memset(&rt_struct, 0, sizeof(t_minirt));
+	
+	rt_struct.canva.mlx = mlx_init();
+	rt_struct.canva.mlx_wind = mlx_new_window(rt_struct.canva.mlx,
+			WALL_X, WALL_Y, "new minRT");
+	rt_struct.luz_index = 0;
 
-		start_word(&rt_struct);
-		camera_init(&rt_struct.camera, create_point(0, 1, -10),
-			create_vector(0, 0, 1),
-			100);
-	}
-	rt_struct.point = create_point(0, 0, 0);
-	rt_struct.rota_y = 0;
-	rt_struct.rota_x = 0;
-	rt_struct.needs_render = 4;
-	rt_struct.menu = 0;
+	status = init_scene(av[1], &rt_struct, ac);
+
+	rt_struct.word = ft_node_start(rt_struct.word);
+	ok = mat_gener_identity(4);
+	rt_struct.point = create_point(2, -1, 10);
+	ok = lig_view_transform(rt_struct.point,
+			create_point(0, 0, 0), create_vector(0, 1, 0));
+	rt_struct.cam_m = cm_init(WALL_X, WALL_Y, M_PI / 3, ok);
+	rt_struct.cam = cm_ray_for_pixel(rt_struct.cam_m,
+			(double)WALL_X / 2, (double)WALL_Y / 2);
+	rt_struct.cam_m.calculate = obj_mat_calulate_init();
 	canva_inicializ(&rt_struct, WALL_X, WALL_Y, c_new(0, 0, 0));
 	return (status);
 }

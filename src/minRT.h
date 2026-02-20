@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:27:02 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/02 11:18:42 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/17 12:04:27 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # define TRUE 0
 # define FALSE 1
 
-# define WALL_X 1000
-# define WALL_Y 900
+# define WALL_X 200
+# define WALL_Y 200
 # define WALL_Z 1.0
 # define WALL_SIZE 1.0
+# define CUBE 64
 
 # include "../libft/ft_free/ft_free.h"
 # include "../libft/ft_get_next_line/get_next_line_bonus.h"
@@ -29,19 +30,18 @@
 # include "../libft/ft_printf/ft_printf.h"
 # include "../libft/minilibx-linux/mlx.h"
 # include "../libft/minilibx-linux/mlx_int.h"
-
+# include "./Pattern/pattern.h"
 # include "./parser/parser.h"
-# include "./tuples/tuples.h"
-# include "./matrix/matrix.h"
-# include "./ray/ray.h"
 # include "./camara_m/camara_m.h"
+# include "./camera/camera.h"
 # include "./canvas/canvas.h"
 # include "./light/light.h"
 # include "./loop/loop.h"
+# include "./matrix/matrix.h"
 # include "./miniRT_struct.h"
 # include "./objects/objects.h"
-# include "./camera/camera.h"
-
+# include "./ray/ray.h"
+# include "./tuples/tuples.h"
 # include <asm-generic/errno.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -57,8 +57,12 @@
 # include <unistd.h>
 
 void	start_word(t_minirt *rt_struct);
-void	ft_menu(t_minirt *minirt);
+void	draw_navigator(t_minirt *rt_struct);
 void	print_list_(t_list_ *list);
+void	draw_cube_labels(t_minirt *rt_struct);
 
 void	start_word_test(t_minirt *rt_struct, double ambinet, t_color color);
+
+void	obj_open_stl_start(t_minirt *rt_struct, char *file_name,
+			t_matrix matrix, t_mater mat);
 #endif

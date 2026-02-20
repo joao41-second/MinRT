@@ -103,7 +103,6 @@ double	mat_cof(t_matrix mat, int line, int column)
 	t_matrix	sub_signal;
 	int			mul;
 
-	sub_signal = mat_matrix_signal(mat.size -1);
 	sub = mat_sub(mat, line, column);
 	sub_signal = mat_matrix_signal(mat.size);
 	mul = sub_signal.matr[column][line];

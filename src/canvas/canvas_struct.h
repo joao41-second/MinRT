@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:30:27 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/19 15:35:55 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/03/24 14:30:28 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

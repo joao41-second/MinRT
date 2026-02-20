@@ -6,11 +6,29 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/06/18 14:47:35 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:48:42 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
+
+void	parse_camera(char *line, t_minirt *data, int fd)
+{
+	double			val[7];
+	const t_range	range_pos = {-DBL_MAX, DBL_MAX};
+	const t_range	range_dir = {-1.0, 1.0};
+	const t_range	range_fov = {0.0, 180.0};
+
+	while (*line && ft_isspace(*line))
+		line++;
+	if (!parse_vector(&line, &val[0], range_pos, fd) || \
+		!parse_vector(&line, &val[3], range_dir, fd) || \
+		!parse_value(&line, &val[6], range_fov, fd))
+		return ;
+	data->cam_m.loc = create_point(val[0], val[1], val[2]);
+	data->cam_m.dir = normalize(create_vector(val[3], val[4], val[5]));
+	data->cam_m.field_of_view = val[6];
+}
 
 void	parse_ambient(char *line, t_minirt *data, int fd)
 {
@@ -55,18 +73,20 @@ static void	parse_handler(t_token type, char *line, t_parser_ctx *ctx)
 	else if (type == LIGHT)
 		parse_light(line, ctx->data, ctx->fd);
 	else if (type == SPHERE)
-		parse_sphere(line, ctx->fd, ctx->word_objects);
+		parse_sphere(line, ctx->data, ctx->fd);
 	else if (type == PLANE)
-		parse_plane(line, ctx->fd, ctx->word_objects);
+		parse_plane(line, ctx->data, ctx->fd);
 	else if (type == CYLINDER)
-		parse_cylinder(line, ctx->fd, ctx->word_objects);
+		parse_cylinder(line, ctx->data, ctx->fd);
+	else if (type == OBJECT)
+		parse_3d_object(line, ctx->data, ctx->fd);
 	else if (type == COMMENT || type == NEWLINE)
 		;
 	else
 		ft_printf("ERROR: UNKNOWN ELEMENT.\n");
 }
 
-int	parser(const char *file, t_minirt *data, t_list_ **word_objects)
+int	parser(const char *file, t_minirt *data)
 {
 	char				*line;
 	t_token				type;
@@ -74,16 +94,15 @@ int	parser(const char *file, t_minirt *data, t_list_ **word_objects)
 	const int			fd = open(file, O_RDONLY);
 	const t_token_map	token_map[COUNT] = {
 	{"A", AMBIENT}, {"C", CAMERA}, {"L", LIGHT},
-	{"sp", SPHERE}, {"pl", PLANE}, {"cy", CYLINDER},
+	{"sp", SPHERE}, {"pl", PLANE}, {"cy", CYLINDER}, {"obj", OBJECT},
 	{"#", COMMENT}, {"\n", NEWLINE}, {NULL, ERROR},
 	};
 
 	type = ERROR;
-	if (fd == -1)
+	if (fd < 0)
 		return (perror("Error file"), -1);
 	ctx.data = data;
 	ctx.fd = fd;
-	ctx.word_objects = word_objects;
 	line = ft_add_memory(get_next_line(fd), NULL);
 	while (line)
 	{

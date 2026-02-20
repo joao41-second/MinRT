@@ -6,12 +6,13 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:08:21 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/18 09:31:14 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/17 18:45:23 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "light.h"
+#include "light_struct.h"
 #include <stdio.h>
 
 void	lig_print_tuple(t_tuple tuple)
@@ -26,25 +27,29 @@ void	lig_print_tuple(t_tuple tuple)
 
 t_computations	lig_prepare_computations(t_obj_int inter, t_ray ray)
 {
-	t_computations	ret;
-	t_object		*obj;
-	double			test;
+	t_computations		ret;
+	static t_ray		ray_;
+	t_object			*obj;
 
 	obj = inter.object;
+	ray_ = ray_transform(ray, obj->inv_transform);
 	ret.t = inter.min;
+	ret.uv.v = -1;
+	ret.uv.u = -1;
 	ret.object = inter.object;
 	ret.point = ray_position(ray, ret.t);
-	ret.eyev = neg_tuple(ray.d);
+	ret.textur_point = ray_position(ray_, ret.t);
+	ret.eyev = neg_tuple(ray.dir);
 	ret.norm = lig_normalize(*obj, ret.point);
-	test = dot_product(ret.norm, ret.eyev);
 	ret.t_luz = inter.shadow;
-	if (test < EPSILON)
+	if (dot_product(ret.norm, ret.eyev) < EPSILON)
 	{
 		ret.norm = neg_tuple(ret.norm);
 		ret.inside = TRUE;
 	}
 	else
 		ret.inside = FALSE;
+	ret.reflect = lig_reflect(ray.dir, ret.norm);
 	return (ret);
 }
 
@@ -56,31 +61,58 @@ t_color	lig_shade_hit(t_obj_int obj, t_light luz, t_computations comp)
 	return (ret);
 }
 
-void	lig_print_computations(t_computations comp)
+t_color	shadow_calcule(t_obj_int save_points, t_light *shadow_,
+		t_ray ray, t_minirt *rt_struct)
 {
-	printf("point ");
-	lig_print_tuple(comp.point);
-	printf("eyev ");
-	lig_print_tuple(comp.eyev);
-	printf("normal ");
-	lig_print_tuple(comp.norm);
+	int				i;
+	t_ray			rat;
+	t_color			color;
+	t_computations	comp;
+
+	color = c_new(0, 0, 0);
+	if (save_points.min > 0)
+	{
+		i = -1;
+		while (++i <= rt_struct->luz_index)
+		{
+			rat.origin = ray_position(ray, save_points.min);
+			rat.dir = shadow_[i].point;
+			save_points.shadow = ray_for_shadow(rt_struct->word,
+					rat, save_points.object);
+			comp = lig_prepare_computations(save_points, rat);
+			if (save_points.shadow == 1)
+			{
+				color = c_adding(c_new(color.red, color.green, color.blue),
+						lig_lighting(save_points.mat, shadow_[i], comp));
+			}
+		}
+	}
+	return (color);
 }
 
-t_color	lig_color_at(t_minirt *rt_struct, t_ray ray)
+t_color	lig_color_at(t_minirt *rt_struct, t_ray ray, int ref)
 {
-	t_computations		compt;
-	t_obj_int			ray_in_obj;
-	t_color				ret;
-	t_ray				luz;
+	t_computations	compt;
+	t_obj_int		ray_in_obj;
+	t_color			ret;	
+	t_object		*obj;
 
 	ret = c_new(0, 0, 0);
-	luz.o = ray.o;
-	luz.d = normalize(rt_struct->luz.point);
-	ray_in_obj = ray_for_objects(rt_struct->word, ray, luz);
-	if (ray_in_obj.min > EPSILON)
+	ray_in_obj = ray_for_objects(rt_struct->word, ray);
+	if (ray_in_obj.min > EPSILON )
 	{
-		compt = lig_prepare_computations(ray_in_obj, ray);
-		ret = lig_lighting(ray_in_obj.mat, rt_struct->luz, compt);
+		compt = lig_prepare_computations(ray_in_obj, ray_in_obj.ray);
+		lig_set_texture(ray_in_obj.object, &ray_in_obj, &compt);
+		lig_set_color_patern(&ray_in_obj.mat, compt);
+		obj = ray_in_obj.object;
+		if (compt.uv.v != -1)
+			compt.norm = pat_nomral_preturb(compt.uv, compt.norm,
+					obj->texture, obj->matiral.bumbp);	
+		if(ref > 0)
+			ret = c_adding(lig_loop_ligth(rt_struct, ray_in_obj, compt),
+				lig_reflect_color(rt_struct, compt,ref));
+		ret = c_subtracting(c_new(ret.red, ret.green, ret.blue),  shadow_calcule(ray_in_obj,
+				rt_struct->luz, ray, rt_struct));
 	}
 	return (ret);
 }

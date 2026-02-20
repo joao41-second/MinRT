@@ -32,7 +32,8 @@ void	mat_y_rota(t_matrix *mat, double rad)
 	mat->matr[0][0] = cos(rad);
 	mat->matr[2][0] = -sin(rad);
 	mat->matr[0][2] = sin(rad);
-	mat->matr[2][2] = cos(rad);
+	mat->matr[2][2] = cos(rad); 
+
 }
 
 void	mat_z_rota(t_matrix *mat, double rad)

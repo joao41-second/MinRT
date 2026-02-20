@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 11:38:59 by jperpct           #+#    #+#             */
-/*   Updated: 2025/06/18 09:31:04 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:40:30 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,13 @@ t_vector	lig_normalize_sph(t_object sph, t_point p_the_obj)
 	return (normalize(ret));
 }
 
-t_vector	lig_normalize_plane(t_object pln)
+t_vector	lig_normalize_plane(t_object pln, t_point point)
 {
 	t_vector	ret;
 
+	(void)point;
 	ret = pln.u_data.plane.normal;
 	return (ret);
-}
-
-t_vector	lig_normalize_tri(t_object obj)
-{
-	t_triangle	triangle;
-	t_vector	edge1;
-	t_vector	edge2;
-	t_vector	normal;
-
-	triangle = obj.u_data.triangle;
-	edge1 = sub_tuples(triangle.p2, triangle.p1);
-	edge2 = sub_tuples(triangle.p3, triangle.p1);
-	normal = cross_product(edge1, edge2);
-	return (normalize(normal));
 }
 
 t_vector	lig_normalize_cyl(t_object obj, t_point p_the_obj)
@@ -75,15 +62,24 @@ t_vector	lig_normalize(t_object obj, t_point p_the_obj)
 {
 	t_vector	ret;
 
+	ret = create_tuple(0, 0, 0, 0);
 	if (obj.type == OBJ_SPHERE)
+	{
 		ret = lig_normalize_sph(obj, p_the_obj);
+	}
 	else if (obj.type == OBJ_PLANE)
-		ret = lig_normalize_plane(obj);
-	else if (obj.type == OBJ_TRIANGLE)
-		ret = lig_normalize_tri(obj);
+		ret = obj.u_data.plane.normal;
+	else if (obj.type == OBJ_TRIANGLE || obj.type == OBJ_SQUARE)
+	{
+		ret = obj.u_data.triangle.normal;
+	}
 	else if (obj.type == OBJ_CYLINDER)
+	{
 		ret = lig_normalize_cyl(obj, p_the_obj);
+	}
 	else
+	{
 		ret = create_vector(0, 0, 0);
+	}
 	return (ret);
 }

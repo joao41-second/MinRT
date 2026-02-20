@@ -6,13 +6,39 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:11:40 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/22 01:40:08 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:37:53 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minRT.h"
 #include "matrix.h"
 #include <stdio.h>
+
+void	mat_get_file(char *file, t_matrix mat)
+{
+	char	*line;
+	int		fd;
+	char	**nb_char;
+	int		i;
+	int		y;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return ;
+	ft_pocket_new("gete_file");
+	line = ft_add_memory(get_next_line(fd), NULL);
+	y = -1;
+	while (line != NULL && ++y < mat.size)
+	{
+		i = -1;
+		nb_char = ft_split(line, '|');
+		while (nb_char[++i] != NULL && i < mat.size)
+			mat.matr[y][i] = ft_atoi(nb_char[i]);
+		line = ft_add_memory(get_next_line(fd), NULL);
+	}
+	close(fd);
+	ft_free_all_pocket("gete_file");
+}
 
 t_matrix	mat_cp(t_matrix mat)
 {
@@ -26,7 +52,7 @@ t_matrix	mat_cp(t_matrix mat)
 void	mat_trans(t_matrix *mat)
 {
 	t_matrix	tmp;
-	t_matrix	ret;
+	t_matrix	ret;	
 
 	tmp = mat_cp(*mat);
 	ret = mat_exet(*mat, tmp, mat_transposing);
@@ -48,26 +74,11 @@ void	mat_free(t_matrix *matrix)
 	matrix = NULL;
 }
 
-static double	apply_math_operation(double temp, char math, double nb)
-{
-	if (math == '+')
-		return (temp + nb);
-	if (math == '-')
-		return (temp - nb);
-	if (math == '*')
-		return (temp * nb);
-	if (math == '/')
-	{
-		if (nb != 0)
-			return (temp / nb);
-	}
-	return (temp);
-}
-
 void	mat_matsh_matrix(t_matrix *mat, char math, double nb)
 {
 	int		l;
 	int		c;
+	double	temp;
 
 	l = -1;
 	while (++l < mat->size)
@@ -75,7 +86,18 @@ void	mat_matsh_matrix(t_matrix *mat, char math, double nb)
 		c = -1;
 		while (++c < mat->size)
 		{
-			mat->matr[l][c] = apply_math_operation(mat->matr[l][c], math, nb);
+			temp = mat->matr[l][c];
+			mat->matr[l][c] = 0;
+			if (math == '+')
+				mat->matr[l][c] = temp + nb;
+			if (math == '-')
+				mat->matr[l][c] = temp - nb;
+			if (math == '*')
+				mat->matr[l][c] = temp * nb;
+			if (math == '/')
+			{
+				mat->matr[l][c] = temp / nb;
+			}
 		}
 	}
 }

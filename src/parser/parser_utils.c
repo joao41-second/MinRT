@@ -6,7 +6,7 @@
 /*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:56:57 by rerodrig          #+#    #+#             */
-/*   Updated: 2025/05/22 22:53:22 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:22:16 by rerodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,29 +79,19 @@ int	parse_vector(char **ptr, double vec[3], t_range range, int fd)
 	return (1);
 }
 
-// void	add_object(t_scene *scene, t_obj_type type, void *data)
-// {
-// 	t_object	*new_obj;
-// 	t_object	*tmp;
+int	parse_pattern(char **line, t_color *pattern_a, t_color *pattern_b)
+{
+	double	val[6];
+	char	*pattern_type;
+	int		result;
 
-// 	new_obj = ft_malloc(sizeof(t_object), NULL);
-// 	ft_memset(new_obj, 0, sizeof(t_object));
-// 	new_obj->type = type;
-// 	new_obj->next = NULL;
-// 	if (type == SPHERE)
-// 		new_obj->u_data.sphere = *(t_sphere *)data;
-// 	else if (type == PLANE)
-// 		new_obj->u_data.plane = *(t_plane *)data;
-// 	else if (type == CYLINDER)
-// 		new_obj->u_data.cylinder = *(t_cylinder *)data;
-// 	printf("Adding object: %p\n", new_obj);
-// 	if (!scene->objects)
-// 	{
-// 		scene->objects = new_obj;
-// 		return ;
-// 	}
-// 	tmp = scene->objects;
-// 	while (tmp->next)
-// 		tmp = tmp->next;
-// 	tmp->next = new_obj;
-// }
+	while (**line && ft_isspace(**line))
+		(*line)++;
+	if (!**line || (**line == '\n') || (**line == '\0'))
+		return (0);
+	pattern_type = extract_pattern_type(line);
+	result = 0;
+	if (ft_strncmp(pattern_type, "checkered", 10) == 0)
+		result = parse_checkered_colors(line, val, pattern_a, pattern_b);
+	return (result);
+}

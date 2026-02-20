@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:44:00 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/22 00:43:15 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:28:07 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,9 +172,36 @@ t_matrix			mat_matrix_signal(int size);
 void				mat_not_neg_zero(t_matrix *mat);
 
 int					mat_iqual(t_matrix mat1, t_matrix mat2);
-void				mat_set_trans(t_matrix *ret, double x, double y, double z);
-void				mat_set_multip(t_matrix *res, t_matrix mat1, t_matrix mat2);
-void				mat_set_identity(t_matrix	*matrix_);
+
+void				mat_set_multip(t_matrix *resolt, t_matrix mat1,
+						t_matrix mat2);
+
 void				mat_set_view_transform(t_matrix *mat_, t_tuple form,
 						t_tuple to, t_tuple up);
+
+void				mat_set_trans(t_matrix *ret, double x, double y, double z);
+
+void				mat_z_rota(t_matrix *mat, double rad);
+
+void				mat_y_rota(t_matrix *mat, double rad);
+
+void				mat_x_rota(t_matrix *mat, double rad);
+
+void				mat_set_rota(t_matrix *mat, char axis, double deg);
+
+void				mat_set_cp(t_matrix *matrix_, t_matrix *copied);
+
+void				mat_set_inv(t_matrix *mat, t_matrix not_inv);
+
+double				mat_set_det(t_matrix mat);
+
+double				mat_set_cof(t_matrix mat, int line, int column);
+
+void				mat_set_transpose(t_matrix *mat);
+
+void				mat_set_clear(t_matrix *matrix_);
+
+void				mat_set_identity(t_matrix *matrix_);
+
+void				mat_set_scal(t_matrix *ret, double x, double y, double z);
 #endif

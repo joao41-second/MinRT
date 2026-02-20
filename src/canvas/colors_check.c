@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerodrig <rerodrig@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jperpct <jperpect@student.42porto.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:41:36 by jperpct           #+#    #+#             */
-/*   Updated: 2025/05/21 22:20:49 by rerodrig         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:00:18 by jperpct          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,21 @@ void	c_print(t_color color)
 	printf("color %f %f %f \n", color.red, color.green, color.blue);
 }
 
-void	clamp_color(t_color *color, double min, double max)
+double	c_rgb_to_heihte(t_color color)
 {
-	int	i;
+	return (0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue);
+}
 
-	i = 0;
-	while (i < 3)
-	{
-		if (color->color[i] > max)
-			color->color[i] = max;
-		if (color->color[i] < min)
-			color->color[i] = min;
-		color->color[i] *= 255;
-		if (color->color[i] > 255)
-			color->color[i] = 255;
-		if (color->color[i] < 0)
-			color->color[i] = 0;
-		i++;
-	}
+void	canva_update(t_minirt *rt_struct)
+{
+	mlx_put_image_to_window(rt_struct->canva.mlx, rt_struct->canva.mlx_wind,
+		rt_struct->canva.canva.img, 0, 0);
+}
+
+t_color c_average(t_color c1, t_color c2) {
+    t_color result;
+    result.red = (c1.red + c2.red) / 2.0f;
+    result.green = (c1.green + c2.green) / 2.0f;
+    result.blue = (c1.blue + c2.blue) / 2.0f;
+    return result;
 }
