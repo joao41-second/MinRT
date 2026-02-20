@@ -54,10 +54,12 @@ These are the basic modules to start working on. Then we will:
 ```bash 
 git clone repo
 cd repo
+sudo apt update
 sudo apt-get update
 sudo apt-get install xorg
-git submodule update --init --recursive
-
+sudo apt install libbsd-dev libx11-dev libxext-dev
+git submodule update --init --recursive 
+make
 ```
 
 
