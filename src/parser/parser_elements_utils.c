@@ -21,11 +21,11 @@ t_mater	get_sphere_mat(double *val, char **line)
 	has_pattern = parse_pattern(line, &colors[0], &colors[1]);
 	if (has_pattern)
 		return (obj_material_init(colors[0], colors[1],
-				obj_init_values_material(0.1, 0.6, 0.3, 100), val[7]));
+				obj_init_values_material(0.9, 0.9, 0.9, 100), val[7]));
 	else
 		return (obj_material_init(
 				c_new(val[4] / 255.0, val[5] / 255.0, val[6] / 255.0),
-				c_new(-1, -1, -1), obj_init_values_material(0.9, 0.6, 0.3, 100),
+				c_new(-1, -1, -1), obj_init_values_material(0.5, 0.5, 0.1, 1),
 				val[7]));
 }
 
@@ -36,10 +36,10 @@ t_mater	get_plane_mat(double *val, t_color col_a, t_color col_b, int has_pat)
 	base_color = c_new(val[6] / 255.0, val[7] / 255.0, val[8] / 255.0);
 	if (has_pat)
 		return (obj_material_init(col_a, col_b,
-				obj_init_values_material(0.1, 0.6, 0.3, 100), val[9]));
+				obj_init_values_material(0.9, 0.6, 0.3, 100), val[9]));
 	else
 		return (obj_material_init(base_color, c_new(-1, -1, -1),
-				obj_init_values_material(0.1, 0.6, 0.3, 100), val[9]));
+				obj_init_values_material(0.9, 0.6, 0.3, 100), val[9]));
 }
 
 t_mater	get_cylinder_mat(double *val, t_color col_a, t_color col_b, int has_pat)

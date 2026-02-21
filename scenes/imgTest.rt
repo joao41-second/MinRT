@@ -16,5 +16,5 @@ C   0,15,-5              1,0,0           10
 L   10,12,-5             1               255,0,0
 
 # Sphere
-# <coordinates: x,y,z> <diameter> <color:red,green,blue>
-sp  0,0,0                1               255,51,255
+# <coordinates: x,y,z> <diameter> <rotacion> <color:red,green,blue>
+sp  0,0,0                1          1,1,2         255,51,255

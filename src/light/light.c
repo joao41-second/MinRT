@@ -90,11 +90,14 @@ t_color	lig_loop_ligth(t_minirt *rt_struct, t_obj_int ray_in_obj,
 
 	i = -1;
 	ret = c_new(0, 0, 0);
+	
+
 	while (++i < rt_struct->luz_index + 1)
 	{
 		ret = c_adding(lig_lighting(ray_in_obj.mat,
 					rt_struct->luz[i], compt),
 				c_new(ret.red, ret.green, ret.blue));
 	}
+	
 	return (ret);
 }
