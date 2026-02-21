@@ -25,7 +25,7 @@ t_mater	get_sphere_mat(double *val, char **line)
 	else
 		return (obj_material_init(
 				c_new(val[4] / 255.0, val[5] / 255.0, val[6] / 255.0),
-				c_new(-1, -1, -1), obj_init_values_material(0.1, 0.6, 0.3, 100),
+				c_new(-1, -1, -1), obj_init_values_material(0.9, 0.6, 0.3, 100),
 				val[7]));
 }
 

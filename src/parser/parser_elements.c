@@ -96,14 +96,14 @@ void	parse_plane(char *line, t_minirt *data, int fd)
 	parse_reflect(&line, &val[9], fd);
 	has_pattern = parse_pattern(&line, &colors[0], &colors[1]);
 	plane = create_plane_parser(
-			create_point(val[0], val[1], val[2]),
+			create_point(0, 0, 0),
 			normalize(create_vector(val[3], val[4], val[5])));
 	obj_plane = create_object(&plane,
 			OBJ_PLANE, get_plane_mat(val, colors[0], colors[1], has_pattern),
 			NULL);
 
 	ray_set_transform_obj(obj_plane, mat_multip(mat_gener_scal(1, 1, 1),
-			mat_gener_trans(0, 0, 0)));
+			mat_gener_trans(val[0], val[1], val[2])));
 	ft_add_node(obj_plane, &data->word);
 }
 
