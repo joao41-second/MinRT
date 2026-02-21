@@ -22,6 +22,12 @@
 # define WALL_SIZE 1.0
 # define CUBE 64
 
+# define AMB 0.5
+# define DIFUSE 0.3
+# define SEPECULAR 0.1
+# define SHAD 100
+
+
 # include "../libft/ft_free/ft_free.h"
 # include "../libft/ft_get_next_line/get_next_line_bonus.h"
 # include "../libft/ft_libft/libft.h"
