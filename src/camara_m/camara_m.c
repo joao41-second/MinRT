@@ -12,6 +12,7 @@
 
 #include "../minRT.h"
 #include "../ray/ray_struct.h"
+#include <omp.h>
 
 void	cm_pixel_size(t_camera_ms *ret)
 {
@@ -62,18 +63,18 @@ t_ray	cm_ray_for_pixel(t_camera_ms cam, double px, double py)
 	xoffset = (px + 0.5) * cam.pixel_size;
 	yoffset = (py + 0.5) * cam.pixel_size;
 	pixel = mat_x_tuple((t_point){{cam.half_width
-			- xoffset, cam.half_height - yoffset, -1, 1}},
-			cam.inv_tranform_matrix);
+		- xoffset, cam.half_height - yoffset, -1, 1}} ,
+												cam.inv_tranform_matrix);
 	origin = mat_x_tuple(cam.loc, cam.inv_tranform_matrix);
 	ret.origin = origin;
 	ret.dir = normalize(sub_tuples(pixel, origin));
 	return (ret);
 }
 
-void	cm_pixle_paint(t_minirt *rt_struct, int min_y, int min_x, int scal)
+void	cm_pixle_paint(t_minirt *rt_struct, int min_y, int min_x, int scal, t_color color)
 {
 	int	x;
-	int	y;	
+	int	y;
 
 	y = -1;
 	while (++y < scal)
@@ -81,7 +82,7 @@ void	cm_pixle_paint(t_minirt *rt_struct, int min_y, int min_x, int scal)
 		x = -1;
 		while (++x < scal)
 		{
-			canva_set_pixel(rt_struct, min_x + x, min_y + y, rt_struct->color);
+			canva_set_pixel(rt_struct, min_x + x, min_y + y, color);
 		}
 	}
 }
@@ -89,36 +90,34 @@ void	cm_pixle_paint(t_minirt *rt_struct, int min_y, int min_x, int scal)
 void	cm_windo_put(t_minirt *rt_struct, int x_, int y_, int resul)
 {
 	t_ray	ray;
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 	t_color c1;
 	t_color c2;
 
-	y = 0;
 	rt_struct->cam = cm_ray_for_pixel(rt_struct->cam_m,
-			(double)x_ / 2, (double)y_ / 2);
-	while (y < y_)
+									
+							(double)x_ / 2, (double)y_ / 2);
+	
+	#pragma omp parallel for private(y, x, ray, c1, c2) schedule(dynamic)
+	for (y = 0; y < y_; y += resul)
 	{
 		x = 0;
 		while (x < x_)
 		{
-			ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
-			c1 = lig_color_at(rt_struct, ray,16);
-			rt_struct->color = c1;
-			cm_pixle_paint(rt_struct, y, x, resul);
+			ray = cm_ray_for_pixel(rt_struct->cam_m, (double)x, (double)y);
+			c1 = lig_color_at(rt_struct, ray, 16);
+			cm_pixle_paint(rt_struct, y, x, resul, c1);
 			x += resul;
-			x += resul;	
-			ray = cm_ray_for_pixel(rt_struct->cam_m, x, y);
-			c2 = lig_color_at(rt_struct, ray,16);
-			rt_struct->color = c_average(c1,c2);
-			cm_pixle_paint(rt_struct, y, x-resul, resul);	
-			rt_struct->color = c2;
-			cm_pixle_paint(rt_struct, y, x, resul);
-
 			x += resul;
-			
-
+			if (x < x_)
+			{
+				ray = cm_ray_for_pixel(rt_struct->cam_m, (double)x, (double)y);
+				c2 = lig_color_at(rt_struct, ray, 16);
+				cm_pixle_paint(rt_struct, y, x - resul, resul, c_average(c1, c2));	
+				cm_pixle_paint(rt_struct, y, x, resul, c2);
+			}
+			x += resul;
 		}
-		y += resul;
 	}
 }
