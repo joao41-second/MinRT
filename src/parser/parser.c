@@ -26,6 +26,7 @@ void	parse_camera(char *line, t_minirt *data, int fd)
 		!parse_value(&line, &val[6], range_fov, fd))
 		return ;
 	data->cam_m.loc = create_point(val[0], val[1], val[2]);
+	data->point =  create_point(val[0], val[1], val[2]);
 	data->cam_m.dir = normalize(create_vector(val[3], val[4], val[5]));
 	data->cam_m.field_of_view = val[6];
 }

@@ -21,6 +21,7 @@ void	loop_mat_word_update(t_minirt *rt_struct)
 		create_point(0, 0, 1),
 		create_point(0, 0, 0),
 		create_vector(0, 1, 0));
+	printf("point %f %f %f \n",rt_struct->point.x,rt_struct->point.y,rt_struct->point.z);
 	mat_set_rota(&rt_struct->cam_m.calculate.rot_x, 'x', rt_struct->rota_x);
 	mat_set_rota(&rt_struct->cam_m.calculate.rot_y, 'y', rt_struct->rota_y);
 	mat_set_trans(&rt_struct->cam_m.calculate.tras,
